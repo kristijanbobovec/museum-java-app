@@ -1,0 +1,21 @@
+DELETE FROM CuratorCollection;
+DELETE FROM ImagePath;
+DELETE FROM Exhibit;
+DELETE FROM Curator;
+DELETE FROM MuseumCollection;
+DELETE FROM Museum;
+DELETE FROM [User];
+DELETE FROM Role;
+DELETE FROM City;
+DELETE FROM Country;
+
+DBCC CHECKIDENT ('CuratorCollection', RESEED, 0);
+DBCC CHECKIDENT ('ImagePath',         RESEED, 0);
+DBCC CHECKIDENT ('Exhibit',           RESEED, 0);
+DBCC CHECKIDENT ('Curator',           RESEED, 0);
+DBCC CHECKIDENT ('MuseumCollection',  RESEED, 0);
+DBCC CHECKIDENT ('Museum',            RESEED, 0);
+DBCC CHECKIDENT ('[User]',            RESEED, 0);
+DBCC CHECKIDENT ('Role',              RESEED, 0);
+DBCC CHECKIDENT ('City',              RESEED, 0);
+DBCC CHECKIDENT ('Country',           RESEED, 0);
