@@ -2,125 +2,60 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
-## Build and Run Commands
+## Commands
 
-### Build
 ```bash
-./mvnw clean package
-```
-Compiles the project and packages it into a JAR file in the `target/` directory.
-
-### Run the Application
-```bash
+# Run the application
 ./mvnw clean javafx:run
-```
-Compiles and runs the JavaFX application. The main entry point is `me.kristijanbobovec.museum.Main`.
 
-### Compile Only
-```bash
+# Build JAR
+./mvnw clean package
+
+# Compile only
 ./mvnw clean compile
-```
-Compiles the source code without packaging.
 
-### Install Dependencies
-```bash
-./mvnw clean install
-```
-Installs all Maven dependencies defined in pom.xml.
+# Run tests
+./mvnw test
 
-## Project Structure
+# Run a single test class
+./mvnw test -Dtest=ClassName
 
-### Technology Stack
-- **UI Framework**: JavaFX 22.0.1 with FXML for UI layouts
-- **Validation**: ValidatorFX 0.6.1 for form validation
-- **Testing**: JUnit 5 (Jupiter 5.12.1) for unit tests
-- **Java Version**: Java 22 (source and target compatibility)
-- **Database**: SQL Server with stored procedures for all data access
-- **Build System**: Maven 3.8.5
-
-### Source Layout
-```
-src/main/
-  java/
-    me.kristijanbobovec.museum/
-      Main.java                         # JavaFX application entry point
-      module-info.java                  # Module declarations
-      model/                            # Domain model classes
-      controller/                       # JavaFX controllers
-  resources/
-    me/kristijanbobovec/museum/view/
-      hello-world.fxml                 # JavaFX UI layout
-
-sql/
-  CreateDatabases.sql                  # Database schema (SQL Server)
-  Procedures.sql                       # All stored procedures
-  Reset.sql                            # Database reset script
+# Run a single test method
+./mvnw test -Dtest=ClassName#methodName
 ```
 
-## Architecture Overview
+> **Note:** `pom.xml` references `me.kristijanbobovec.museum.HelloApplication` as the main class, but the actual entry point is `Main`. Update the `<mainClass>` in `pom.xml` if `javafx:run` fails.
 
-This is a museum management desktop application with a hierarchical data model and role-based user access control.
+## Architecture
 
-### Domain Model
+Museum management desktop app: JavaFX 22 + FXML frontend, SQL Server backend, HikariCP connection pool. No separate backend service — everything runs in-process.
 
-**Location Hierarchy**
-- `Country` - Contains cities
-- `City` - Contains museums
-- `Museum` - Core entity, has exhibits and curators
+### Startup sequence
 
-**Content Management**
-- `Exhibit` - Museum exhibits belonging to collections
-- `MuseumCollection` - Named collections of exhibits
-- `ImagePath` - Image files associated with exhibits
+`Main.init()` → `DatabaseInitialization.init()` checks if the database exists, then creates it, runs DDL, and installs stored procedures (all from `SQLQueries` string constants) — then `Main.start()` loads `home.fxml`.
 
-**User & Access Control**
-- `Person` (sealed abstract class) - Base for Curator and User
-  - `Curator` (final) - Museum staff managing collections
-  - `User` (final) - System users with roles
-- `Role` - Defines role type (User or Administrator)
-- `RoleType` (enum) - USER, ADMINISTRATOR
+### Configuration
 
-**Many-to-Many Relationship**
-- `CuratorCollection` - Junction table linking curators to collections
+`ApplicationProperties` loads `src/main/resources/application.properties` at startup and falls back to hardcoded defaults. DB credentials come exclusively from env vars `DB_USERNAME` and `DB_PASSWORD` (default: `"development"` if unset). Connection target: `localhost:1401`, database `museum`.
 
-### Data Access Layer
+### Database layer
 
-The database uses SQL Server with stored procedures following a naming convention: `usp_<TableName>_<Operation>`. Each entity has standard CRUD procedures:
-- `usp_<Entity>_GetAll` - Retrieve all records
-- `usp_<Entity>_GetByID` - Retrieve single record
-- `usp_<Entity>_Insert` - Create new record
-- `usp_<Entity>_Update` - Modify record
-- `usp_<Entity>_Delete` - Remove record
+- **`DatabaseManager`** — singleton HikariCP pool; call `DatabaseManager.getConnection()` to get a `Connection`.
+- **`DatabaseInitialization`** — runs once at startup; DDL and procedures are embedded as Java string constants in `SQLQueries`, split on `GO` and batch-executed.
+- All data access uses stored procedures named `usp_<Entity>_<Operation>`. No ad-hoc SQL elsewhere.
 
-Some entities have additional specialized procedures (e.g., `usp_Museum_GetByCity`, `usp_Exhibit_GetByMuseum`).
+### Domain model
 
-### UI Layer
+Sealed class hierarchy: `Person` (abstract, sealed) → `Curator` (final) | `User` (final).
 
-- **FXML-based Views**: Views are defined in XML format (hello-world.fxml)
-- **Controllers**: Bind to FXML views and handle user interactions (HelloWorldController)
-- **Module System**: Uses Java module system (module-info.java) with javafx.fxml and javafx.controls exports
+Location hierarchy: `Country` → `City` → `Museum`. Content: `Museum` → `Exhibit` → `ImagePath`; `Exhibit` optionally belongs to a `MuseumCollection`. Many-to-many: `CuratorCollection` links `Curator` ↔ `MuseumCollection`.
 
-### Model Implementation Details
+Model instances from the database carry an ID field (e.g. `idMuseum`); in-memory instances created before insertion do not.
 
-All model classes implement:
-- `equals()` and `hashCode()` based on ID fields
-- Constructors for creating instances with and without database IDs
-- Getters and setters for all properties
-- `toString()` for debugging
+### UI layer
 
-Instances from the database include an ID (e.g., `idMuseum`, `idUser`), while new instances created in memory before database insertion do not.
+FXML views live under `src/main/resources/me/kristijanbobovec/museum/`. Controllers are in the `controller` package and must be `open`ed to `javafx.fxml` in `module-info.java`. The `database` package is also opened to `javafx.fxml` (required for initialization triggered from FXML context).
 
-## Key Files to Understand
+### Module system
 
-- **pom.xml**: Maven configuration, dependencies, and build plugins (JavaFX Maven plugin)
-- **module-info.java**: Java module declarations required by JavaFX
-- **Main.java**: Application bootstrap, loads hello-world.fxml
-- **Model classes** (in `src/main/java/me/kristijanbobovec/museum/model/`): Domain entities
-- **Procedures.sql**: Complete database contract and data access logic
-
-## Development Notes
-
-- The application uses Java 22 features including sealed classes and records (if present)
-- ValidatorFX is used for form validation in the UI
-- The project is structured as a monolithic desktop application with no separate backend/frontend
-- No test files currently exist; unit tests should be added under `src/test/java/`
+`module-info.java` declares all `requires` and `opens`. When adding a new package that is injected by FXML or reflection, add an `opens` directive there.

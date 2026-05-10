@@ -1,7 +1,6 @@
 package me.kristijanbobovec.museum.model;
 
 import java.util.Objects;
-import java.util.Optional;
 
 public final class User extends Person {
     private int idUser;
@@ -9,27 +8,19 @@ public final class User extends Person {
     private String email;
 
     private String password;
+    private int roleId;
     private Role role;
 
-    public User(String username, String email, String firstName, String lastName, String password, Role role) {
+    public User(String username, String email, String firstName, String lastName, int roleId) {
         super(firstName, lastName);
         this.username = username;
         this.email = email;
+        this.roleId = roleId;
+    }
+
+    public User(String username, String email, String firstName, String lastName, String password, int roleId) {
+        this(username, email, firstName, lastName, roleId);
         this.password = password;
-        this.role = role;
-    }
-
-    public User(String username, String email, String firstName, String lastName, Role role) {
-        super(firstName, lastName);
-        this.username = username;
-        this.email = email;
-        this.role = role;
-    }
-
-
-    public User(int idUser, String username, String email, String firstName, String lastName, String password, Role role) {
-        this(username, email, firstName, lastName, password, role);
-        this.idUser = idUser;
     }
 
     public void setUsername(String username) {
@@ -42,6 +33,10 @@ public final class User extends Person {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public int getRoleId() {
+        return roleId;
     }
 
     @Override
@@ -67,8 +62,8 @@ public final class User extends Person {
         return email;
     }
 
-    public Optional<String> getPassword() {
-        return Optional.ofNullable(password);
+    public String getPassword() {
+        return password;
     }
 
     public Role getRole() {
@@ -83,6 +78,7 @@ public final class User extends Person {
                 ", email='" + email + '\'' +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
+                ", roleId='" + roleId + '\'' +
                 ", role=" + role +
                 '}';
     }

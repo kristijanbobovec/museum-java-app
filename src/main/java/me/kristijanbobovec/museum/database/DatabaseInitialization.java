@@ -1,0 +1,120 @@
+package me.kristijanbobovec.museum.database;
+
+import com.microsoft.sqlserver.jdbc.SQLServerDataSource;
+import me.kristijanbobovec.museum.config.ApplicationProperties;
+import me.kristijanbobovec.museum.model.RoleType;
+import me.kristijanbobovec.museum.util.SQLErrors;
+import me.kristijanbobovec.museum.util.SQLQueries;
+import org.mindrot.jbcrypt.BCrypt;
+
+import java.sql.CallableStatement;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.sql.Statement;
+
+public class DatabaseInitialization {
+    private DatabaseInitialization() {}
+
+    public static void init() throws SQLException {
+        var dataSource = new SQLServerDataSource();
+        dataSource.setTrustServerCertificate(true);
+        dataSource.setPortNumber(ApplicationProperties.Database.getPort());
+        dataSource.setServerName(ApplicationProperties.Database.getHost());
+        dataSource.setUser(ApplicationProperties.Database.getUsername());
+        dataSource.setPassword(ApplicationProperties.Database.getPassword());
+
+        try (Connection conn = dataSource.getConnection()) {
+            if (checkDatabase(conn)) return;
+
+            createDatabaseIfNotExists(conn);
+
+            conn.setAutoCommit(false);
+            try {
+                createTablesIfNotExists(conn);
+                createProceduresIfNotExists(conn);
+                createRoles(conn);
+                createAdminAccount(conn);
+                conn.commit();
+            } catch (SQLException e) {
+                conn.rollback();
+                conn.setAutoCommit(true);
+                dropDatabase(conn);
+                throw e;
+            } finally {
+                conn.setAutoCommit(true);
+            }
+        }
+    }
+
+    private static void createAdminAccount(Connection conn) throws SQLException {
+        try (
+                CallableStatement csInsertUser = conn.prepareCall(SQLQueries.INSERT_USER);
+        ) {
+            csInsertUser.setString(1, "admin");
+            csInsertUser.setString(2, "admin@algebra.hr");
+            csInsertUser.setString(3, "User");
+            csInsertUser.setString(4, "Admin");
+            csInsertUser.setString(5, BCrypt.hashpw(ApplicationProperties.Administrator.getPassword(), BCrypt.gensalt()));
+            csInsertUser.setInt(6, RoleType.ADMINISTRATOR.getValue());
+            csInsertUser.execute();
+        }
+    }
+
+    private static void createRoles(Connection conn) throws SQLException {
+        try (
+            CallableStatement csInsertRole = conn.prepareCall(SQLQueries.INSERT_ROLE);
+        ) {
+            for (RoleType type : RoleType.values()) {
+                csInsertRole.setInt(1, type.getValue());
+                csInsertRole.setString(2, type.toString());
+                csInsertRole.execute();
+            }
+        }
+    }
+
+    private static void createProceduresIfNotExists(Connection conn) throws SQLException {
+        try(Statement statement = conn.createStatement()) {
+            statement.execute(SQLQueries.USE_DATABASE.formatted(ApplicationProperties.Database.getDatabase()));
+            String[] procedures = SQLQueries.PROCEDURES.split("(?im)^\\s*GO\\s*$");
+            for (String procedure : procedures) {
+                statement.execute(procedure);
+            }
+        }
+    }
+
+    private static void createTablesIfNotExists(Connection conn) throws SQLException {
+        try(Statement statement = conn.createStatement()) {
+            statement.execute(SQLQueries.USE_DATABASE.formatted(ApplicationProperties.Database.getDatabase()));
+            String[] ddls = SQLQueries.DDL.split("(?im)^\\s*GO\\s*$");
+            for (String ddl : ddls) {
+                statement.addBatch(ddl);
+            }
+            statement.executeBatch();
+        }
+    }
+
+    private static void createDatabaseIfNotExists(Connection conn) throws SQLException {
+        try (Statement statement = conn.createStatement()) {
+            statement.execute(SQLQueries.CREATE_DATABASE.formatted(ApplicationProperties.Database.getDatabase()));
+        }
+    }
+
+    private static void dropDatabase(Connection conn) throws SQLException {
+        try (Statement statement = conn.createStatement()) {
+            statement.execute(SQLQueries.DROP_DATABASE.formatted(ApplicationProperties.Database.getDatabase()));
+        }
+    }
+
+    private static boolean checkDatabase(Connection conn) throws SQLException {
+        try (Statement statement = conn.createStatement()) {
+            statement.execute(SQLQueries.USE_DATABASE.formatted(ApplicationProperties.Database.getDatabase()));
+        } catch (SQLException e) {
+            if (e.getErrorCode() == SQLErrors.DATABASE_NOT_FOUND) {
+                return false;
+            } else {
+                throw e;
+            }
+        }
+        return true;
+    }
+}
