@@ -7,10 +7,8 @@ import me.kristijanbobovec.museum.util.SQLErrors;
 import me.kristijanbobovec.museum.util.SQLQueries;
 import org.mindrot.jbcrypt.BCrypt;
 
-import java.sql.CallableStatement;
-import java.sql.Connection;
-import java.sql.SQLException;
-import java.sql.Statement;
+import javax.sql.DataSource;
+import java.sql.*;
 
 public class DatabaseInitialization {
     private DatabaseInitialization() {}
@@ -38,7 +36,7 @@ public class DatabaseInitialization {
             } catch (SQLException e) {
                 conn.rollback();
                 conn.setAutoCommit(true);
-                dropDatabase(conn);
+                dropDatabase(dataSource);
                 throw e;
             } finally {
                 conn.setAutoCommit(true);
@@ -56,6 +54,7 @@ public class DatabaseInitialization {
             csInsertUser.setString(4, "Admin");
             csInsertUser.setString(5, BCrypt.hashpw(ApplicationProperties.Administrator.getPassword(), BCrypt.gensalt()));
             csInsertUser.setInt(6, RoleType.ADMINISTRATOR.getValue());
+            csInsertUser.registerOutParameter(7, Types.INTEGER);
             csInsertUser.execute();
         }
     }
@@ -99,9 +98,12 @@ public class DatabaseInitialization {
         }
     }
 
-    private static void dropDatabase(Connection conn) throws SQLException {
-        try (Statement statement = conn.createStatement()) {
-            statement.execute(SQLQueries.DROP_DATABASE.formatted(ApplicationProperties.Database.getDatabase()));
+    private static void dropDatabase(DataSource ds) throws SQLException {
+        try (
+                Connection conn = ds.getConnection();
+                Statement statement = conn.createStatement()) {
+            String db = ApplicationProperties.Database.getDatabase();
+            statement.execute(SQLQueries.DROP_DATABASE.formatted(db, db));
         }
     }
 

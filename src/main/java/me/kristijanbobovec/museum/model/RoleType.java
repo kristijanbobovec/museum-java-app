@@ -13,4 +13,11 @@ public enum RoleType {
     public int getValue() {
         return value;
     }
+
+    public static RoleType fromValue(int value) {
+        for (RoleType r : values()) {
+            if (r.value == value) return r;
+        }
+        return RoleType.USER;
+    }
 }

@@ -1,4 +1,4 @@
-package me.kristijanbobovec.museum.manger;
+package me.kristijanbobovec.museum.manager;
 
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;

@@ -1,7 +1,9 @@
 package me.kristijanbobovec.museum.service;
 
 import me.kristijanbobovec.museum.model.User;
+import me.kristijanbobovec.museum.model.dto.user.UserToInsertDTO;
 import me.kristijanbobovec.museum.repository.UserRepository;
+import org.mindrot.jbcrypt.BCrypt;
 
 import java.sql.SQLException;
 import java.util.Optional;
@@ -22,5 +24,21 @@ public class UserService {
 
     public boolean emailExists(String email) throws SQLException {
         return userRepository.emailExists(email);
+    }
+
+
+    public void insert(UserToInsertDTO userDto) throws SQLException {
+        User user = userDto.mapToUser();
+
+        user.setPassword(hashPassworrd(user.getPassword()));
+        userRepository.insert(user);
+    }
+
+    public boolean isValidPass(String enteredPassword, String userPassword) {
+        return BCrypt.checkpw(enteredPassword, userPassword);
+    }
+
+    private String hashPassworrd(String plainPassword) {
+        return BCrypt.hashpw(plainPassword, BCrypt.gensalt());
     }
 }

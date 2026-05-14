@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="me.kristijanbobovec.museum.controller.RegisterController"
+            minWidth="320" minHeight="500"
+            prefWidth="600" prefHeight="580"
+            styleClass="root-pane">
+
+    <center>
+        <GridPane hgap="0" vgap="0">
+            <columnConstraints>
+                <ColumnConstraints percentWidth="100" />
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints percentHeight="100" />
+            </rowConstraints>
+
+            <VBox alignment="CENTER" spacing="0"
+                  maxWidth="420" minWidth="280"
+                  GridPane.columnIndex="0" GridPane.rowIndex="0"
+                  GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+
+                <!-- Title -->
+                <Label text="Museum" styleClass="title-label" />
+                <Label text="Create your account" styleClass="subtitle-label">
+                    <VBox.margin>
+                        <Insets top="4" bottom="28" />
+                    </VBox.margin>
+                </Label>
+
+                <!-- Card -->
+                <VBox styleClass="card" spacing="20">
+                    <padding>
+                        <Insets top="32" right="36" bottom="32" left="36" />
+                    </padding>
+
+                    <!-- First Name + Last Name -->
+                    <HBox spacing="12">
+                        <VBox spacing="6" HBox.hgrow="ALWAYS">
+                            <Label text="First Name" styleClass="field-label" />
+                            <TextField fx:id="firstNameField"
+                                       promptText="First name"
+                                       styleClass="input-field" />
+                        </VBox>
+                        <VBox spacing="6" HBox.hgrow="ALWAYS">
+                            <Label text="Last Name" styleClass="field-label" />
+                            <TextField fx:id="lastNameField"
+                                       promptText="Last name"
+                                       styleClass="input-field" />
+                        </VBox>
+                    </HBox>
+
+                    <!-- Username -->
+                    <VBox spacing="6">
+                        <Label text="Username" styleClass="field-label" />
+                        <TextField fx:id="usernameField"
+                                   promptText="Choose a username"
+                                   styleClass="input-field" />
+                    </VBox>
+
+                    <!-- Email -->
+                    <VBox spacing="6">
+                        <Label text="Email" styleClass="field-label" />
+                        <TextField fx:id="emailField"
+                                   promptText="Enter your email"
+                                   styleClass="input-field" />
+                    </VBox>
+
+                    <!-- Password -->
+                    <VBox spacing="6">
+                        <Label text="Password" styleClass="field-label" />
+                        <PasswordField fx:id="passwordField"
+                                       promptText="Create a password"
+                                       styleClass="input-field" />
+                    </VBox>
+
+                    <!-- Register Button -->
+                    <Button fx:id="registerButton"
+                            text="Create Account"
+                            onAction="#handleRegister"
+                            defaultButton="true"
+                            maxWidth="Infinity"
+                            styleClass="primary-button">
+                        <VBox.margin>
+                            <Insets top="8" />
+                        </VBox.margin>
+                    </Button>
+
+                    <!-- Login link -->
+                    <HBox alignment="CENTER" spacing="4">
+                        <Label text="Already have an account?" styleClass="muted-label" />
+                        <Hyperlink text="Sign in" fx:id="loginLink"
+                                   onAction="#handleLogin"
+                                   styleClass="link" />
+                    </HBox>
+
+                    <!-- Error message -->
+                    <Label fx:id="errorLabel"
+                           text=""
+                           wrapText="true"
+                           visible="false"
+                           managed="false"
+                           styleClass="error-label" />
+
+                </VBox>
+
+            </VBox>
+        </GridPane>
+    </center>
+
+</BorderPane>

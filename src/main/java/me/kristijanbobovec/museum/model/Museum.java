@@ -9,19 +9,28 @@ public class Museum {
     private int establishmentYear;
     private String description;
     private String imagePath;
+    private int cityId;
     private City city;
 
-    public Museum(String name, String adress, int establishmentYear, String description, String imagePath, City city) {
+    public int getCityId() {
+        return cityId;
+    }
+
+    public void setCityId(int cityId) {
+        this.cityId = cityId;
+    }
+
+    public Museum(String name, String adress, int establishmentYear, String description, String imagePath, int cityId) {
         this.name = name;
         this.adress = adress;
         this.establishmentYear = establishmentYear;
         this.description = description;
         this.imagePath = imagePath;
-        this.city = city;
+        this.cityId = cityId;
     }
 
-    public Museum(int idMuseum, String name, String adress, int establishmentYear, String description, String imagePath, City city) {
-        this(name, adress, establishmentYear, description, imagePath, city);
+    public Museum(int idMuseum, String name, String adress, int establishmentYear, String description, String imagePath, int cityId) {
+        this(name, adress, establishmentYear, description, imagePath, cityId);
         this.idMuseum = idMuseum;
     }
 
@@ -45,9 +54,6 @@ public class Museum {
         this.imagePath = imagePath;
     }
 
-    public void setCity(City city) {
-        this.city = city;
-    }
 
     public int getIdMuseum() {
         return idMuseum;
@@ -84,10 +90,6 @@ public class Museum {
         return imagePath;
     }
 
-    public City getCity() {
-        return city;
-    }
-
     @Override
     public String toString() {
         return "Museum{" +
@@ -97,7 +99,7 @@ public class Museum {
                 ", establishmentYear=" + establishmentYear +
                 ", description='" + description + '\'' +
                 ", imagePath='" + imagePath + '\'' +
-                ", city=" + city +
+                ", cityId=" + cityId +
                 '}';
     }
 }

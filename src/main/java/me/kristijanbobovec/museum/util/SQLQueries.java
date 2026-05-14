@@ -5,15 +5,25 @@ public class SQLQueries {
 
     public final static String USE_DATABASE = "USE %s";
     public final static String CREATE_DATABASE = "CREATE DATABASE %s";
-    public final static String DROP_DATABASE = "DROP DATABASE %s";
-
+    public final static String DROP_DATABASE = """
+            ALTER DATABASE %s SET SINGLE_USER WITH ROLLBACK IMMEDIATE
+            DROP DATABASE %s
+            """;
     public final static String INSERT_ROLE = "{call usp_Role_Insert(?, ?)}";
-    public final static String INSERT_USER = "{call usp_User_Insert(?, ?, ?, ? ,?, ?)}";
+    public final static String INSERT_USER = "{call usp_User_Insert(?, ?, ?, ?, ?, ?, ?)}";
     public final static String GETALL_USERS = "{call usp_User_GetAll}";
     public final static String GETBYID_USER = "{call usp_User_GetById(?)}";
     public final static String GETBYUSERNAME_USER = "{call usp_User_GetByUsername(?)}";
     public final static String USERNAMEEXISTS_USER = "{call usp_User_UsernameExists(?, ?)}";
     public final static String EMAILEXISTS_USER = "{call usp_User_EmailExists(?, ?)}";
+    public final static String UPDATE_USER = "{call usp_User_Update(?, ?, ?, ?, ?)}";
+    public final static String DELETE_USER = "{call usp_User_Delete(?)}";
+    public final static String GETALL_MUSEUMS             = "{call usp_Museum_GetAll}";
+    public final static String GETBYID_MUSEUM             = "{call usp_Museum_GetById(?)}";
+    public final static String GETBYID_MUSEUM_WITH_CITY_COUNTRY = "{call usp_Museum_GetByIdWithCityCountry(?)}";
+    public final static String INSERT_MUSEUM              = "{call usp_Museum_Insert(?, ?, ?, ?, ?, ?, ?)}";
+    public final static String UPDATE_MUSEUM              = "{call usp_Museum_Update(?, ?, ?, ?, ?, ?, ?)}";
+    public final static String DELETE_MUSEUM              = "{call usp_Museum_Delete(?)}";
 
 
 
@@ -103,18 +113,145 @@ public class SQLQueries {
             VALUES (@IDRole, @Name);
         END
         GO
+        CREATE OR ALTER PROCEDURE usp_User_Delete
+            @IDUser INT
+        AS
+        BEGIN
+            DELETE FROM [User]
+            WHERE IDUser = @IDUser;
+        END
+        GO
+        CREATE OR ALTER PROCEDURE usp_User_Update
+            @IDUser     INT,
+            @Username   NVARCHAR(100),
+            @Email      NVARCHAR(200),
+            @FirstName  NVARCHAR(100),
+            @LastName   NVARCHAR(100)
+        AS
+        BEGIN
+            UPDATE [User]
+            SET
+                Username  = @Username,
+                Email     = @Email,
+                FirstName = @FirstName,
+                LastName  = @LastName
+            WHERE IDUser = @IDUser;
+        END
+        GO
         CREATE OR ALTER PROCEDURE usp_User_Insert
             @Username   NVARCHAR(100),
             @Email      NVARCHAR(200),
             @FirstName  NVARCHAR(100),
             @LastName   NVARCHAR(100),
             @Password   NVARCHAR(500),
-            @RoleID     INT
+            @RoleID     INT,
+            @IDUser     INT OUTPUT
         AS
         BEGIN
             SET NOCOUNT ON;
             INSERT INTO [User] (Username, Email, FirstName, LastName, Password, RoleID)
             VALUES (@Username, @Email, @FirstName, @LastName, @Password, @RoleID);
+            SET @IDUser = SCOPE_IDENTITY();
+        END
+        GO
+        CREATE OR ALTER PROCEDURE usp_Museum_GetAll
+        AS
+        BEGIN
+            SET NOCOUNT ON;
+            SELECT
+                m.IDMuseum,
+                m.Name,
+                m.Adress,
+                m.EstablishmentYear,
+                m.Description,
+                m.ImagePath,
+                m.CityID
+            FROM Museum  m
+        END
+        GO
+        CREATE OR ALTER PROCEDURE usp_Museum_GetById
+            @IDMuseum INT
+        AS
+        BEGIN
+            SET NOCOUNT ON;
+            SELECT
+                m.IDMuseum,
+                m.Name,
+                m.Adress,
+                m.EstablishmentYear,
+                m.Description,
+                m.ImagePath,
+                m.CityID
+            FROM Museum  m
+            WHERE m.IDMuseum = @IDMuseum;
+        END
+        GO
+        CREATE OR ALTER PROCEDURE usp_Museum_Insert
+            @Name               NVARCHAR(200),
+            @Adress             NVARCHAR(300),
+            @EstablishmentYear  INT,
+            @Description        NVARCHAR(MAX),
+            @ImagePath          NVARCHAR(500),
+            @CityID             INT,
+            @IDMuseum           INT OUTPUT
+        AS
+        BEGIN
+            SET NOCOUNT ON;
+            INSERT INTO Museum (Name, Adress, EstablishmentYear, Description, ImagePath, CityID)
+            VALUES (@Name, @Adress, @EstablishmentYear, @Description, @ImagePath, @CityID);
+            SET @IDMuseum = SCOPE_IDENTITY();
+        END
+        GO
+        CREATE OR ALTER PROCEDURE usp_Museum_Update
+            @IDMuseum           INT,
+            @Name               NVARCHAR(200),
+            @Adress             NVARCHAR(300),
+            @EstablishmentYear  INT,
+            @Description        NVARCHAR(MAX),
+            @ImagePath          NVARCHAR(500),
+            @CityID             INT
+        AS
+        BEGIN
+            UPDATE Museum
+            SET
+                Name              = @Name,
+                Adress            = @Adress,
+                EstablishmentYear = @EstablishmentYear,
+                Description       = @Description,
+                ImagePath         = @ImagePath,
+                CityID            = @CityID
+            WHERE IDMuseum = @IDMuseum;
+        END
+        GO
+        CREATE OR ALTER PROCEDURE usp_Museum_Delete
+            @IDMuseum INT
+        AS
+        BEGIN
+            DELETE FROM Museum
+            WHERE IDMuseum = @IDMuseum;
+        END
+        GO
+        CREATE OR ALTER PROCEDURE usp_Museum_GetByIdWithCityCountry
+            @IDMuseum INT
+        AS
+        BEGIN
+            SET NOCOUNT ON;
+            SELECT
+                m.IDMuseum,
+                m.Name,
+                m.Adress,
+                m.EstablishmentYear,
+                m.Description,
+                m.ImagePath,
+                m.CityID,
+                c.IDCity,
+                c.Name          AS CityName,
+                co.IDCountry,
+                co.Name         AS CountryName
+            FROM Museum m
+            INNER JOIN City    c  ON m.CityID    = c.IDCity
+            INNER JOIN Country co ON c.CountryID = co.IDCountry
+            WHERE m.IDMuseum = @IDMuseum;
         END
     """;
 

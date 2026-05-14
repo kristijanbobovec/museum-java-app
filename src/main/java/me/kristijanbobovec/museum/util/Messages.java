@@ -13,6 +13,10 @@ public final class Messages {
         public static final String SERVER_ERROR_CONTENT = "There is a problem with the server try again later!";
     }
 
+    public static final class SceneManager {
+        public static final String NOT_INITIALIZED = "Stage is not initialized and/or controller factory is not injected!";
+    }
+
     public static final class Auth {
         public static final String LOGIN_FAILED = "Your username or password is wrong!";
         public static final String SERVER_ERROR_CONTENT = "There is a problem with the server try again later!";
@@ -21,5 +25,10 @@ public final class Messages {
         public static final String EMPTY_FIELDS = "You must fill out all fields.";
         public static final String EMAIL_FORMAT = "Email format is not valid (Ex: kbobovec@algebra.hr).";
         public static final String PASSWORD_NOT_VALID = "Password must be at least 8 characters long!";
+        public static final String LOGIN_SUCCEED_HEADER = "Successfully logged!";
+        public static final String LOGIN_SUCCEED_CONTENT = "Welcome back %s %s!";
+
+        public static final String REGISTER_SUCCEED_HEADER = "Successfully registered!";
+        public static final String REGISTER_SUCCEED_CONTENT = "Welcome now login with your username and password!";
     }
 }

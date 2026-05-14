@@ -2,12 +2,19 @@ package me.kristijanbobovec.museum;
 
 import javafx.application.Application;
 import javafx.application.Platform;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.stage.Stage;
 import me.kristijanbobovec.museum.database.DatabaseInitialization;
+import me.kristijanbobovec.museum.event.AppSubscribers;
+import me.kristijanbobovec.museum.manager.ControllerFactory;
+import me.kristijanbobovec.museum.manager.SceneManager;
+import me.kristijanbobovec.museum.repository.MuseumRepository;
+import me.kristijanbobovec.museum.repository.MuseumRepositoryImpl;
+import me.kristijanbobovec.museum.repository.UserRepository;
+import me.kristijanbobovec.museum.repository.UserRepositoryImpl;
+import me.kristijanbobovec.museum.service.AuthService;
+import me.kristijanbobovec.museum.service.MuseumService;
+import me.kristijanbobovec.museum.service.UserService;
 import me.kristijanbobovec.museum.util.AlertHelper;
 import me.kristijanbobovec.museum.util.Messages;
 
@@ -22,8 +29,11 @@ public class Main extends Application {
             DatabaseInitialization.init();
         } catch (SQLException e) {
             databaseException = true;
+            e.printStackTrace();
         }
 
+        // Must because singleton is lazy loaded
+        AppSubscribers subscribers = AppSubscribers.INSTANCE;
     }
 
     public static void main(String[] args) {
@@ -39,10 +49,22 @@ public class Main extends Application {
                     Platform::exit);
         }
 
-        // Starting point of application!
-        Parent root = FXMLLoader.load(getClass().getResource("login.fxml"));
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
+        // Registring repositories
+        UserRepository userRepository = new UserRepositoryImpl();
+        MuseumRepository museumRepository = new MuseumRepositoryImpl();
+
+        // Registring services
+        UserService userService = new UserService(userRepository);
+        AuthService authService = new AuthService(userService);
+        MuseumService museumService = new MuseumService(museumRepository);
+
+        ControllerFactory cf = new ControllerFactory(authService);
+
+        // Set primary stage in stagemanager!
+        SceneManager.setStage(stage);
+        SceneManager.setControllerFactory(cf);
+
+        SceneManager.switchTo("login.fxml");
         stage.show();
     }
 }

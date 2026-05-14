@@ -6,10 +6,16 @@ public final class User extends Person {
     private int idUser;
     private String username;
     private String email;
-
     private String password;
     private int roleId;
-    private Role role;
+
+    public User(int idUser, String username, String email, String firstName, String lastName, int roleId) {
+        super(firstName, lastName);
+        this.username = username;
+        this.email = email;
+        this.roleId = roleId;
+        this.idUser = idUser;
+    }
 
     public User(String username, String email, String firstName, String lastName, int roleId) {
         super(firstName, lastName);
@@ -20,6 +26,11 @@ public final class User extends Person {
 
     public User(String username, String email, String firstName, String lastName, String password, int roleId) {
         this(username, email, firstName, lastName, roleId);
+        this.password = password;
+    }
+
+    public User(int idUser, String username, String email, String firstName, String lastName, String password, int roleId) {
+        this(idUser, username, email, firstName, lastName, roleId);
         this.password = password;
     }
 
@@ -66,10 +77,6 @@ public final class User extends Person {
         return password;
     }
 
-    public Role getRole() {
-        return role;
-    }
-
     @Override
     public String toString() {
         return "User{" +
@@ -79,7 +86,6 @@ public final class User extends Person {
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", roleId='" + roleId + '\'' +
-                ", role=" + role +
                 '}';
     }
 }
