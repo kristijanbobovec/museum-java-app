@@ -1,6 +1,8 @@
 package me.kristijanbobovec.museum.config;
 
 import me.kristijanbobovec.museum.util.Messages;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -9,6 +11,8 @@ import java.util.Optional;
 import java.util.Properties;
 
 public class ApplicationProperties {
+    private static final Logger log = LoggerFactory.getLogger(ApplicationProperties.class);
+
     private ApplicationProperties() {}
 
     private static final Properties defaultProps = new Properties();
@@ -30,9 +34,9 @@ public class ApplicationProperties {
             if (is == null) throw new FileNotFoundException();
             props.load(is);
         } catch (FileNotFoundException e) {
-            System.out.printf(Messages.Configuration.FILE_NOT_FOUND, "application.properties");
+            log.error(Messages.Configuration.FILE_NOT_FOUND.formatted("application.properties"), e);
         } catch (IOException e) {
-            System.out.printf(Messages.Configuration.FILE_ERROR, "application.properties");
+            log.error(Messages.Configuration.FILE_ERROR.formatted("application.properties"), e);
         }
 
         loadEnvVariable("DB_USERNAME");

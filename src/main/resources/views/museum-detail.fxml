@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="me.kristijanbobovec.museum.controller.MuseumDetailController"
+            minWidth="640" minHeight="480">
+
+    <top>
+        <VBox style="-fx-background-color: #ffffff; -fx-border-color: #e0e0e0; -fx-border-width: 0 0 1 0;">
+
+            <HBox alignment="CENTER_LEFT" spacing="12"
+                  style="-fx-background-color: #f8f9fa;">
+                <padding>
+                    <Insets top="10" right="16" bottom="10" left="16" />
+                </padding>
+                <Button fx:id="backButton"
+                        text="← Natrag"
+                        onAction="#handleBack"
+                        style="-fx-cursor: hand;" />
+                <Label fx:id="museumNameLabel"
+                       text=""
+                       style="-fx-font-size: 20; -fx-font-weight: bold;" />
+            </HBox>
+
+            <Separator />
+
+            <HBox spacing="40" style="-fx-background-color: #ffffff;">
+                <padding>
+                    <Insets top="16" right="24" bottom="16" left="24" />
+                </padding>
+
+                <VBox spacing="6" HBox.hgrow="ALWAYS">
+                    <HBox spacing="6" alignment="CENTER_LEFT">
+                        <Label text="Adresa:" style="-fx-font-weight: bold; -fx-text-fill: #555555;" />
+                        <Label fx:id="museumAddressLabel" text="" style="-fx-text-fill: #333333;" />
+                    </HBox>
+                    <HBox spacing="6" alignment="CENTER_LEFT">
+                        <Label text="Grad:" style="-fx-font-weight: bold; -fx-text-fill: #555555;" />
+                        <Label fx:id="museumCityLabel" text="" style="-fx-text-fill: #333333;" />
+                    </HBox>
+                    <HBox spacing="6" alignment="CENTER_LEFT">
+                        <Label text="Država:" style="-fx-font-weight: bold; -fx-text-fill: #555555;" />
+                        <Label fx:id="museumCountryLabel" text="" style="-fx-text-fill: #333333;" />
+                    </HBox>
+                    <HBox spacing="6" alignment="CENTER_LEFT">
+                        <Label text="Godina osnivanja:" style="-fx-font-weight: bold; -fx-text-fill: #555555;" />
+                        <Label fx:id="museumYearLabel" text="" style="-fx-text-fill: #333333;" />
+                    </HBox>
+                </VBox>
+
+                <VBox spacing="6" HBox.hgrow="ALWAYS">
+                    <Label text="Opis:" style="-fx-font-weight: bold; -fx-text-fill: #555555;" />
+                    <Label fx:id="museumDescriptionLabel"
+                           text=""
+                           wrapText="true"
+                           style="-fx-text-fill: #333333;" />
+                </VBox>
+
+                <ImageView fx:id="museumImageView"
+                           fitWidth="200" fitHeight="150"
+                           preserveRatio="true"
+                           smooth="true" />
+            </HBox>
+
+            <Separator />
+
+            <HBox alignment="CENTER_LEFT" spacing="10"
+                  style="-fx-background-color: #f8f9fa;">
+                <padding>
+                    <Insets top="10" right="16" bottom="10" left="24" />
+                </padding>
+                <Label text="Filtriraj po zbirci:"
+                       style="-fx-font-weight: bold; -fx-text-fill: #444444;" />
+                <ComboBox fx:id="collectionComboBox"
+                          onAction="#handleCollectionFilter"
+                          prefWidth="220" />
+                <Label text="Pretraži:"
+                       style="-fx-font-weight: bold; -fx-text-fill: #444444;" />
+                <TextField fx:id="searchField"
+                           prefWidth="160"
+                           promptText="Naziv eksponata..." />
+                <Label text="Sortiraj:"
+                       style="-fx-font-weight: bold; -fx-text-fill: #444444;" />
+                <ComboBox fx:id="sortComboBox"
+                          onAction="#handleSort"
+                          prefWidth="180" />
+                <Region HBox.hgrow="ALWAYS" />
+                <Label fx:id="exhibitCountLabel"
+                       text=""
+                       style="-fx-text-fill: #888888; -fx-font-size: 13;" />
+            </HBox>
+        </VBox>
+    </top>
+
+    <center>
+        <BorderPane>
+            <center>
+
+                <TableView fx:id="exhibitsTableView"
+                           style="-fx-background-color: transparent;">
+                    <padding>
+                        <Insets top="8" right="16" bottom="8" left="16" />
+                    </padding>
+                    <columns>
+                        <TableColumn fx:id="imageColumn" text="Slika" />
+                        <TableColumn fx:id="nameColumn" text="Naziv" />
+                        <TableColumn fx:id="collectionColumn" text="Zbirka" />
+                    </columns>
+                </TableView>
+            </center>
+
+            <bottom>
+                <Label fx:id="noExhibitsLabel"
+                       text="Nema eksponata za odabranu zbirku."
+                       visible="false"
+                       managed="false"
+                       style="-fx-font-size: 15; -fx-text-fill: #888888; -fx-padding: 40;"
+                       BorderPane.alignment="CENTER" />
+            </bottom>
+        </BorderPane>
+    </center>
+</BorderPane>

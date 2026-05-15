@@ -8,6 +8,7 @@ module me.kristijanbobovec.museum {
     requires java.sql;
     requires jbcrypt;
     requires java.management;
+    requires org.slf4j;
 
 
     opens me.kristijanbobovec.museum to javafx.fxml;

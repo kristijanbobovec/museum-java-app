@@ -2,53 +2,66 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
 
 <BorderPane xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="me.kristijanbobovec.museum.controller.HelloWorldController">
+            fx:controller="me.kristijanbobovec.museum.controller.HomeController"
+            minWidth="640" minHeight="480">
     <top>
-        <MenuBar>
-            <menus>
-                <Menu mnemonicParsing="false" text="Home" />
-                <Menu mnemonicParsing="false" text="Edit">
-                    <items>
-                        <MenuItem mnemonicParsing="false" text="New Museum" />
-                        <MenuItem mnemonicParsing="false" text="New Collection" />
-                        <MenuItem mnemonicParsing="false" text="Edit Exhibit" />
-                        <MenuItem mnemonicParsing="false" text="Edit Curator" />
-                    </items>
-                </Menu>
-                <Menu mnemonicParsing="false" text="Admin">
-                    <items>
-                        <MenuItem mnemonicParsing="false" text="Create Backup" />
-                        <MenuItem mnemonicParsing="false" text="Load Backup" />
-                        <MenuItem mnemonicParsing="false" text="Delete All" />
-                    </items>
-                </Menu>
-            </menus>
-        </MenuBar>
+        <VBox>
+            <MenuBar>
+                <menus>
+                    <Menu mnemonicParsing="false" text="Home" />
+                    <Menu mnemonicParsing="false" text="Edit">
+                        <items>
+                            <MenuItem mnemonicParsing="false" text="New Museum"     onAction="#handleNewMuseum" />
+                            <MenuItem mnemonicParsing="false" text="New Collection" onAction="#handleNewCollection" />
+                            <MenuItem mnemonicParsing="false" text="Edit Exhibit"   onAction="#handleEditExhibit" />
+                            <MenuItem mnemonicParsing="false" text="Edit Curator"   onAction="#handleEditCurator" />
+                        </items>
+                    </Menu>
+                    <Menu mnemonicParsing="false" text="Admin">
+                        <items>
+                            <MenuItem mnemonicParsing="false" text="Create Backup" onAction="#handleCreateBackup" />
+                            <MenuItem mnemonicParsing="false" text="Load Backup"   onAction="#handleLoadBackup" />
+                            <MenuItem mnemonicParsing="false" text="Delete All"    onAction="#handleDeleteAll" />
+                        </items>
+                    </Menu>
+                </menus>
+            </MenuBar>
+            <HBox alignment="CENTER_LEFT" spacing="10"
+                  style="-fx-background-color: #f8f9fa; -fx-border-color: #e0e0e0; -fx-border-width: 0 0 1 0;">
+                <padding>
+                    <Insets top="8" right="16" bottom="8" left="16" />
+                </padding>
+                <Label text="Search:" style="-fx-font-weight: bold; -fx-text-fill: #444444;" />
+                <TextField fx:id="searchField" prefWidth="220" promptText="Name of museum..." />
+            </HBox>
+        </VBox>
     </top>
+
     <center>
         <StackPane>
             <Label fx:id="noMuseumsLabel"
-                   text="Nema muzeja. Dodajte novi muzej putem Edit → New Museum."
                    visible="false"
-                   style="-fx-font-size: 16; -fx-text-fill: #888888;" />
-            <ScrollPane fx:id="museumsScrollPane" fitToWidth="true" visible="false">
-                <content>
-                    <FlowPane fx:id="museumsFlowPane" hgap="16" vgap="16">
-                        <padding>
-                            <Insets top="16" right="16" bottom="16" left="16" />
-                        </padding>
-                    </FlowPane>
-                </content>
-            </ScrollPane>
+                   style="-fx-font-size: 15; -fx-text-fill: #888888;" />
+
+            <ListView fx:id="museumsListView"
+                      onMouseClicked="#handleMuseumSelected"
+                      visible="false"
+                      style="-fx-background-color: transparent;">
+                <padding>
+                    <Insets top="12" right="16" bottom="12" left="16" />
+                </padding>
+            </ListView>
         </StackPane>
     </center>
 </BorderPane>

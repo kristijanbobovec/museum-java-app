@@ -11,6 +11,32 @@ public class Museum {
     private String imagePath;
     private int cityId;
     private City city;
+    private int countryId;
+    private Country country;
+
+    public City getCity() {
+        return city;
+    }
+
+    public void setCity(City city) {
+        this.city = city;
+    }
+
+    public int getCountryId() {
+        return countryId;
+    }
+
+    public void setCountryId(int countryId) {
+        this.countryId = countryId;
+    }
+
+    public Country getCountry() {
+        return country;
+    }
+
+    public void setCountry(Country country) {
+        this.country = country;
+    }
 
     public int getCityId() {
         return cityId;
@@ -92,14 +118,6 @@ public class Museum {
 
     @Override
     public String toString() {
-        return "Museum{" +
-                "idMuseum=" + idMuseum +
-                ", name='" + name + '\'' +
-                ", adress='" + adress + '\'' +
-                ", establishmentYear=" + establishmentYear +
-                ", description='" + description + '\'' +
-                ", imagePath='" + imagePath + '\'' +
-                ", cityId=" + cityId +
-                '}';
+        return name;
     }
 }

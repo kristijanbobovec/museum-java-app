@@ -13,8 +13,28 @@ public final class Messages {
         public static final String SERVER_ERROR_CONTENT = "There is a problem with the server try again later!";
     }
 
+    public static final class Database {
+        public static final String DATABASE_STARTED_CREATION = "Database not found creating new one!";
+        public static final String DATABASE_CREATED = "Database is created!";
+        public static final String DATABASE_FAIL_CREATION = "Database failed with creation!";
+        public static final String DATABASE_FAIL_DROP = "Failed to drop database after failed initialization.";
+        public static final String DATABASE_CREATING_TABLES = "Creating tables...";
+        public static final String DATABASE_CREATING_PROCEDURES = "Creating stored procedures...";
+        public static final String DATABASE_CREATING_ROLES = "Creating roles...";
+        public static final String DATABASE_CREATING_ADMIN = "Creating admin account...";
+    }
+
+        public static final class Museum {
+        public static final String MUSEUMS_LOAD_FAIL_LOG = "Failed to load museums";
+        public static final String NO_MUSEUMS = "There is no museums. Add new museum. (EDIT -> NEW MUSEUM)";
+    }
+
     public static final class SceneManager {
         public static final String NOT_INITIALIZED = "Stage is not initialized and/or controller factory is not injected!";
+    }
+
+    public static final class Filter {
+        public static final String NO_RESULTS = "There is no results for the search: %s.";
     }
 
     public static final class Auth {
@@ -30,5 +50,10 @@ public final class Messages {
 
         public static final String REGISTER_SUCCEED_HEADER = "Successfully registered!";
         public static final String REGISTER_SUCCEED_CONTENT = "Welcome now login with your username and password!";
+
+        public static final String LOGIN_SUCCEED_LOG = "User %s successfully logged in!";
+        public static final String REGISTER_SUCCEED_LOG = "User %s successfully registered!";
+        public static final String LOGIN_FAILED_LOG = "User %s failed at login!";
+        public static final String USER_LOAD_FAIL_LOG = "Failed to load user during login";
     }
 }

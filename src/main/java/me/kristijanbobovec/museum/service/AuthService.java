@@ -9,12 +9,15 @@ import me.kristijanbobovec.museum.model.User;
 import me.kristijanbobovec.museum.model.dto.user.UserToInsertDTO;
 import me.kristijanbobovec.museum.util.Messages;
 import me.kristijanbobovec.museum.util.Patterns;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
 public class AuthService {
+    private static final Logger log = LoggerFactory.getLogger(AuthService.class);
     private final UserService userService;
 
     public AuthService(UserService userService) {
@@ -25,7 +28,8 @@ public class AuthService {
         User user = userService.getByUsername(username)
                 .orElseThrow(WrongCredentialsException::new);
 
-        if (!userService.isValidPass(password, user.getPassword())) throw new WrongCredentialsException();
+        if (!userService.isValidPass(password, user.getPassword()))
+            throw new WrongCredentialsException();
 
         // User logged in notify all subscribers!
         EventBus.INSTANCE.publish(new UserLoggedInEvent(user));
@@ -51,5 +55,6 @@ public class AuthService {
 
         UserToInsertDTO userToInsert = new UserToInsertDTO(username, email, firstName, lastName, password, RoleType.USER.getValue());
         userService.insert(userToInsert);
+        log.info(Messages.Auth.REGISTER_SUCCEED_LOG.formatted(userToInsert.username()));
     }
 }

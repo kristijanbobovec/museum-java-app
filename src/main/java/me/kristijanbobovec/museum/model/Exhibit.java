@@ -7,20 +7,22 @@ public class Exhibit {
     private String name;
     private String description;
     private int creationYear;
+    private String imagePath;
     private MuseumCollection museumCollection;
     private Museum museum;
 
 
-    public Exhibit(String name, String description, int creationYear, MuseumCollection museumCollection, Museum museum) {
+    public Exhibit(String name, String description, int creationYear, String imagePath, MuseumCollection museumCollection, Museum museum) {
         this.name = name;
         this.description = description;
         this.creationYear = creationYear;
+        this.imagePath = imagePath;
         this.museumCollection = museumCollection;
         this.museum = museum;
     }
 
-    public Exhibit(int idExhibit, String name, String description, int creationYear, MuseumCollection museumCollection, Museum museum) {
-        this(name, description, creationYear, museumCollection, museum);
+    public Exhibit(int idExhibit, String name, String description, int creationYear, String imagePath, MuseumCollection museumCollection, Museum museum) {
+        this(name, description, creationYear, imagePath, museumCollection, museum);
         this.idExhibit = idExhibit;
     }
 
@@ -31,6 +33,7 @@ public class Exhibit {
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
                 ", creationYear=" + creationYear +
+                ", imagePath='" + imagePath + '\'' +
                 ", collection=" + museumCollection +
                 ", museum=" + museum +
                 '}';
@@ -65,6 +68,14 @@ public class Exhibit {
 
     public void setCreationYear(int creationYear) {
         this.creationYear = creationYear;
+    }
+
+    public String getImagePath() {
+        return imagePath;
+    }
+
+    public void setImagePath(String imagePath) {
+        this.imagePath = imagePath;
     }
 
 

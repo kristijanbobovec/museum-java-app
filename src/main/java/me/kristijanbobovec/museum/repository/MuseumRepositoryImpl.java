@@ -1,6 +1,8 @@
 package me.kristijanbobovec.museum.repository;
 
 import me.kristijanbobovec.museum.manager.DatabaseManager;
+import me.kristijanbobovec.museum.model.City;
+import me.kristijanbobovec.museum.model.Country;
 import me.kristijanbobovec.museum.model.Museum;
 import me.kristijanbobovec.museum.util.SQLQueries;
 
@@ -93,13 +95,57 @@ public class MuseumRepositoryImpl implements MuseumRepository {
 
     private Museum mapRow(ResultSet rs) throws SQLException {
         return new Museum(
-                rs.getInt(1),
-                rs.getString(2),
-                rs.getString(3),
-                rs.getInt(4),
-                rs.getString(5),
-                rs.getString(6),
-                rs.getInt(7)
+                rs.getInt("IDMuseum"),
+                rs.getString("Name"),
+                rs.getString("Adress"),
+                rs.getInt("EstablishmentYear"),
+                rs.getString("Description"),
+                rs.getString("ImagePath"),
+                rs.getInt("CityID")
         );
+    }
+
+    @Override
+    public List<Museum> getAllWithDetails() throws SQLException {
+        List<Museum> museums = new ArrayList<>();
+        try (Connection conn = DatabaseManager.getConnection();
+        CallableStatement csGetAllMuseumsWithDetials = conn.prepareCall(SQLQueries.GETALL_MUSEUMS_WITH_DETAILS)) {
+            ResultSet rsMuseum = csGetAllMuseumsWithDetials.executeQuery();
+
+            while (rsMuseum.next()) {
+                Museum museum = mapRow(rsMuseum);
+                mapDetailsToMuseum(museum, rsMuseum);
+                museums.add(museum);
+            }
+        }
+        return museums;
+    }
+
+    @Override
+    public Optional<Museum> getByIdWithDetails(int id) throws SQLException {
+        try (Connection conn = DatabaseManager.getConnection();
+             CallableStatement csGetByIdMuseumsWithDetials = conn.prepareCall(SQLQueries.GETBYID_MUSEUM_WITH_DETAILS)) {
+
+            csGetByIdMuseumsWithDetials.setInt("IDMuseum", id);
+
+            ResultSet rsMuseum = csGetByIdMuseumsWithDetials.executeQuery();
+
+            if (rsMuseum.next()) {
+                Museum museum = mapRow(rsMuseum);
+                mapDetailsToMuseum(museum, rsMuseum);
+                return Optional.of(mapRow(rsMuseum));
+            }
+
+        }
+        return Optional.empty();
+    }
+
+    private void mapDetailsToMuseum(Museum museum, ResultSet rsMuseum) throws SQLException {
+        museum.setCountry(new Country(rsMuseum.getInt("IDCountry"),
+                rsMuseum.getString("CountryName")));
+
+        museum.setCity(new City(rsMuseum.getInt("IDCity"),
+                rsMuseum.getString("CityName")));
+
     }
 }

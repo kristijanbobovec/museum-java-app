@@ -20,10 +20,17 @@ public class SQLQueries {
     public final static String DELETE_USER = "{call usp_User_Delete(?)}";
     public final static String GETALL_MUSEUMS             = "{call usp_Museum_GetAll}";
     public final static String GETBYID_MUSEUM             = "{call usp_Museum_GetById(?)}";
-    public final static String GETBYID_MUSEUM_WITH_CITY_COUNTRY = "{call usp_Museum_GetByIdWithCityCountry(?)}";
+    public final static String GETBYID_MUSEUM_WITH_DETAILS = "{call usp_Museum_GetByIdWithDetails(?)}";
+    public final static String GETALL_MUSEUMS_WITH_DETAILS      = "{call usp_Museum_GetAllWithDetails}";
     public final static String INSERT_MUSEUM              = "{call usp_Museum_Insert(?, ?, ?, ?, ?, ?, ?)}";
     public final static String UPDATE_MUSEUM              = "{call usp_Museum_Update(?, ?, ?, ?, ?, ?, ?)}";
     public final static String DELETE_MUSEUM              = "{call usp_Museum_Delete(?)}";
+    public final static String GETALL_EXHIBITS             = "{call usp_Exhibit_GetAll}";
+    public final static String GETBYID_EXHIBIT             = "{call usp_Exhibit_GetById(?)}";
+    public final static String GETBYMUSEUMID_EXHIBIT       = "{call usp_Exhibit_GetByMuseumId(?)}";
+    public final static String INSERT_EXHIBIT              = "{call usp_Exhibit_Insert(?, ?, ?, ?, ?, ?, ?)}";
+    public final static String UPDATE_EXHIBIT              = "{call usp_Exhibit_Update(?, ?, ?, ?, ?, ?, ?)}";
+    public final static String DELETE_EXHIBIT              = "{call usp_Exhibit_Delete(?)}";
 
 
 
@@ -231,7 +238,7 @@ public class SQLQueries {
             WHERE IDMuseum = @IDMuseum;
         END
         GO
-        CREATE OR ALTER PROCEDURE usp_Museum_GetByIdWithCityCountry
+        CREATE OR ALTER PROCEDURE usp_Museum_GetByIdWithDetails
             @IDMuseum INT
         AS
         BEGIN
@@ -252,6 +259,148 @@ public class SQLQueries {
             INNER JOIN City    c  ON m.CityID    = c.IDCity
             INNER JOIN Country co ON c.CountryID = co.IDCountry
             WHERE m.IDMuseum = @IDMuseum;
+        END
+        GO
+        CREATE OR ALTER PROCEDURE usp_Museum_GetAllWithDetails
+        AS
+        BEGIN
+            SET NOCOUNT ON;
+            SELECT
+                m.IDMuseum,
+                m.Name,
+                m.Adress,
+                m.EstablishmentYear,
+                m.Description,
+                m.ImagePath,
+                m.CityID,
+                c.IDCity,
+                c.Name          AS CityName,
+                co.IDCountry,
+                co.Name         AS CountryName
+            FROM Museum m
+            INNER JOIN City    c  ON m.CityID    = c.IDCity
+            INNER JOIN Country co ON c.CountryID = co.IDCountry;
+        END
+        GO
+        CREATE OR ALTER PROCEDURE usp_Exhibit_GetAll
+        AS
+        BEGIN
+            SET NOCOUNT ON;
+            SELECT
+                e.IDExhibit,
+                e.Name,
+                e.Description,
+                e.CreationYear,
+                e.ImagePath,
+                e.MuseumCollectionID,
+                mc.Name             AS CollectionName,
+                m.IDMuseum,
+                m.Name              AS MuseumName,
+                m.Adress            AS MuseumAdress,
+                m.EstablishmentYear,
+                m.Description       AS MuseumDescription,
+                m.ImagePath         AS MuseumImagePath,
+                m.CityID
+            FROM Exhibit e
+            INNER JOIN Museum           m   ON e.MuseumID           = m.IDMuseum
+            INNER JOIN MuseumCollection mc  ON e.MuseumCollectionID = mc.IDMuseumCollection
+        END
+        GO
+        CREATE OR ALTER PROCEDURE usp_Exhibit_GetById
+            @IDExhibit INT
+        AS
+        BEGIN
+            SET NOCOUNT ON;
+            SELECT
+                e.IDExhibit,
+                e.Name,
+                e.Description,
+                e.CreationYear,
+                e.ImagePath,
+                e.MuseumCollectionID,
+                mc.Name             AS CollectionName,
+                m.IDMuseum,
+                m.Name              AS MuseumName,
+                m.Adress            AS MuseumAdress,
+                m.EstablishmentYear,
+                m.Description       AS MuseumDescription,
+                m.ImagePath         AS MuseumImagePath,
+                m.CityID
+            FROM Exhibit e
+            INNER JOIN Museum           m   ON e.MuseumID           = m.IDMuseum
+            INNER JOIN MuseumCollection mc  ON e.MuseumCollectionID = mc.IDMuseumCollection
+            WHERE e.IDExhibit = @IDExhibit
+        END
+        GO
+        CREATE OR ALTER PROCEDURE usp_Exhibit_GetByMuseumId
+            @MuseumID INT
+        AS
+        BEGIN
+            SET NOCOUNT ON;
+            SELECT
+                e.IDExhibit,
+                e.Name,
+                e.Description,
+                e.CreationYear,
+                e.ImagePath,
+                e.MuseumCollectionID,
+                mc.Name             AS CollectionName,
+                m.IDMuseum,
+                m.Name              AS MuseumName,
+                m.Adress            AS MuseumAdress,
+                m.EstablishmentYear,
+                m.Description       AS MuseumDescription,
+                m.ImagePath         AS MuseumImagePath,
+                m.CityID
+            FROM Exhibit e
+            INNER JOIN Museum           m   ON e.MuseumID           = m.IDMuseum
+            INNER JOIN MuseumCollection mc  ON e.MuseumCollectionID = mc.IDMuseumCollection
+            WHERE e.MuseumID = @MuseumID
+        END
+        GO
+        CREATE OR ALTER PROCEDURE usp_Exhibit_Insert
+            @Name               NVARCHAR(200),
+            @Description        NVARCHAR(MAX),
+            @CreationYear       INT,
+            @ImagePath          NVARCHAR(500),
+            @MuseumCollectionID INT,
+            @MuseumID           INT,
+            @IDExhibit          INT OUTPUT
+        AS
+        BEGIN
+            SET NOCOUNT ON;
+            INSERT INTO Exhibit (Name, Description, CreationYear, ImagePath, MuseumCollectionID, MuseumID)
+            VALUES (@Name, @Description, @CreationYear, @ImagePath, @MuseumCollectionID, @MuseumID);
+            SET @IDExhibit = SCOPE_IDENTITY();
+        END
+        GO
+        CREATE OR ALTER PROCEDURE usp_Exhibit_Update
+            @IDExhibit          INT,
+            @Name               NVARCHAR(200),
+            @Description        NVARCHAR(MAX),
+            @CreationYear       INT,
+            @ImagePath          NVARCHAR(500),
+            @MuseumCollectionID INT,
+            @MuseumID           INT
+        AS
+        BEGIN
+            UPDATE Exhibit
+            SET
+                Name                = @Name,
+                Description         = @Description,
+                CreationYear        = @CreationYear,
+                ImagePath           = @ImagePath,
+                MuseumCollectionID  = @MuseumCollectionID,
+                MuseumID            = @MuseumID
+            WHERE IDExhibit = @IDExhibit;
+        END
+        GO
+        CREATE OR ALTER PROCEDURE usp_Exhibit_Delete
+            @IDExhibit INT
+        AS
+        BEGIN
+            DELETE FROM Exhibit
+            WHERE IDExhibit = @IDExhibit;
         END
     """;
 
@@ -295,7 +444,8 @@ public class SQLQueries {
         Name                NVARCHAR(200)  NOT NULL,
         Description         NVARCHAR(MAX)  NULL,
         CreationYear        INT            NULL,
-        MuseumCollectionID  INT            NULL,
+        ImagePath           NVARCHAR(500)  NULL,
+        MuseumCollectionID  INT            NOT NULL,
         MuseumID            INT            NOT NULL,
         CONSTRAINT PK_Exhibit PRIMARY KEY (IDExhibit),
         CONSTRAINT FK_Exhibit_MuseumCollection FOREIGN KEY (MuseumCollectionID)

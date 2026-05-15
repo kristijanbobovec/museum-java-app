@@ -3,7 +3,7 @@ BEGIN
     DECLARE @idHrvatska  INT, @idItalija    INT, @idFrancuska INT;
     DECLARE @idZagreb    INT, @idSplit      INT, @idRim        INT, @idParis INT;
     DECLARE @idMUO       INT, @idAM         INT, @idVatikan    INT, @idLouvre INT;
-    DECLARE @idKol1      INT, @idKol2       INT, @idKol3       INT;
+    DECLARE @idKol1      INT, @idKol2       INT, @idKol3       INT, @idKol4 INT;
     DECLARE @idKur1      INT, @idKur2       INT, @idKur3       INT, @idKur4 INT;
 
     -- Countries
@@ -39,9 +39,10 @@ BEGIN
     SET @idLouvre = SCOPE_IDENTITY();
 
     -- Museum collections
-    INSERT INTO MuseumCollection (Name) VALUES ('Antička zbirka');       SET @idKol1 = SCOPE_IDENTITY();
-    INSERT INTO MuseumCollection (Name) VALUES ('Moderna umjetnost');    SET @idKol2 = SCOPE_IDENTITY();
-    INSERT INTO MuseumCollection (Name) VALUES ('Renesansna skulptura'); SET @idKol3 = SCOPE_IDENTITY();
+    INSERT INTO MuseumCollection (Name) VALUES ('Antička zbirka');              SET @idKol1 = SCOPE_IDENTITY();
+    INSERT INTO MuseumCollection (Name) VALUES ('Moderna umjetnost');           SET @idKol2 = SCOPE_IDENTITY();
+    INSERT INTO MuseumCollection (Name) VALUES ('Renesansna skulptura');        SET @idKol3 = SCOPE_IDENTITY();
+    INSERT INTO MuseumCollection (Name) VALUES ('Namještaj i dekorativna art'); SET @idKol4 = SCOPE_IDENTITY();
 
     -- Curators
     INSERT INTO Curator (FirstName, LastName, MuseumID) VALUES ('Ivan',   'Horvat', @idMUO);     SET @idKur1 = SCOPE_IDENTITY();
@@ -50,33 +51,43 @@ BEGIN
     INSERT INTO Curator (FirstName, LastName, MuseumID) VALUES ('Sophie', 'Martin', @idLouvre);  SET @idKur4 = SCOPE_IDENTITY();
 
     -- Exhibits
-    INSERT INTO Exhibit (Name, Description, CreationYear, MuseumCollectionID, MuseumID)
-    VALUES ('Rimska amfora', 'Keramička amfora za prijevoz vina iz 2. st. n.e.', 150, @idKol1, @idAM);
+    INSERT INTO Exhibit (Name, Description, CreationYear, ImagePath, MuseumCollectionID, MuseumID)
+    VALUES ('Rimska amfora', 'Keramička amfora za prijevoz vina iz 2. st. n.e.', 150, NULL, @idKol1, @idAM);
 
-    INSERT INTO Exhibit (Name, Description, CreationYear, MuseumCollectionID, MuseumID)
-    VALUES ('Grčka crvenofiguralna vaza', 'Vaza s prikazom olimpijskih igara iz 5. st. p.n.e.', -450, @idKol1, @idAM);
+    INSERT INTO Exhibit (Name, Description, CreationYear, ImagePath, MuseumCollectionID, MuseumID)
+    VALUES ('Grčka crvenofiguralna vaza', 'Vaza s prikazom olimpijskih igara iz 5. st. p.n.e.', -450, NULL, @idKol1, @idAM);
 
-    INSERT INTO Exhibit (Name, Description, CreationYear, MuseumCollectionID, MuseumID)
-    VALUES ('Secesijska vitrina', 'Drvena vitrina s intarzijama iz razdoblja bečke secesije.', 1905, NULL, @idMUO);
+    INSERT INTO Exhibit (Name, Description, CreationYear, ImagePath, MuseumCollectionID, MuseumID)
+    VALUES ('Secesijska vitrina', 'Drvena vitrina s intarzijama iz razdoblja bečke secesije.', 1905, NULL, @idKol4, @idMUO);
 
-    INSERT INTO Exhibit (Name, Description, CreationYear, MuseumCollectionID, MuseumID)
-    VALUES ('Art Nouveau stolica', 'Stolica Henryja van de Veldea, primjer funkcionalnog dizajna.', 1902, @idKol2, @idMUO);
+    INSERT INTO Exhibit (Name, Description, CreationYear, ImagePath, MuseumCollectionID, MuseumID)
+    VALUES ('Art Nouveau stolica', 'Stolica Henryja van de Veldea, primjer funkcionalnog dizajna.', 1902, NULL, @idKol4, @idMUO);
 
-    INSERT INTO Exhibit (Name, Description, CreationYear, MuseumCollectionID, MuseumID)
-    VALUES ('Mona Lisa', 'Uljana slika Leonarda da Vincija, najpoznatije djelo na svijetu.', 1503, @idKol2, @idLouvre);
+    INSERT INTO Exhibit (Name, Description, CreationYear, ImagePath, MuseumCollectionID, MuseumID)
+    VALUES ('Secesijski ormar s intarzijama', 'Ormar od orahovine ukrašen intarzijama, Beč oko 1900.', 1900, NULL, @idKol4, @idMUO);
 
-    INSERT INTO Exhibit (Name, Description, CreationYear, MuseumCollectionID, MuseumID)
-    VALUES ('Venera Milska', 'Mramorna skulptura iz helenističkog razdoblja, oko 100. g. p.n.e.', -100, @idKol1, @idLouvre);
+    INSERT INTO Exhibit (Name, Description, CreationYear, ImagePath, MuseumCollectionID, MuseumID)
+    VALUES ('Mona Lisa', 'Uljana slika Leonarda da Vincija, najpoznatije djelo na svijetu.', 1503, '/assets/images/mona_lisa.png', @idKol2, @idLouvre);
 
-    INSERT INTO Exhibit (Name, Description, CreationYear, MuseumCollectionID, MuseumID)
-    VALUES ('Pietà', 'Mramorna skulptura Michelangela Buonarrotija.', 1499, @idKol3, @idVatikan);
+    INSERT INTO Exhibit (Name, Description, CreationYear, ImagePath, MuseumCollectionID, MuseumID)
+    VALUES ('Venera Milska', 'Mramorna skulptura iz helenističkog razdoblja, oko 100. g. p.n.e.', -100, NULL, @idKol1, @idLouvre);
 
-    INSERT INTO Exhibit (Name, Description, CreationYear, MuseumCollectionID, MuseumID)
-    VALUES ('Laokoont i sinovi', 'Helenistička skulpturna grupa iz 1. st. p.n.e.', -50, @idKol3, @idVatikan);
+    INSERT INTO Exhibit (Name, Description, CreationYear, ImagePath, MuseumCollectionID, MuseumID)
+    VALUES ('Sloboda predvodi narod', 'Uljana slika Eugènea Delacroixa iz 1830. godine.', 1830, NULL, @idKol2, @idLouvre);
+
+    INSERT INTO Exhibit (Name, Description, CreationYear, ImagePath, MuseumCollectionID, MuseumID)
+    VALUES ('Pietà', 'Mramorna skulptura Michelangela Buonarrotija.', 1499, NULL, @idKol3, @idVatikan);
+
+    INSERT INTO Exhibit (Name, Description, CreationYear, ImagePath, MuseumCollectionID, MuseumID)
+    VALUES ('Laokoont i sinovi', 'Helenistička skulpturna grupa iz 1. st. p.n.e.', -50, NULL, @idKol3, @idVatikan);
+
+    INSERT INTO Exhibit (Name, Description, CreationYear, ImagePath, MuseumCollectionID, MuseumID)
+    VALUES ('Karta Rimskog Carstva', 'Detaljna mozaična karta iz 4. st. n.e., pronađena u Rimu.', 350, NULL, @idKol1, @idVatikan);
 
     -- Curator collections
     INSERT INTO CuratorCollection (MuseumCollectionID, CuratorID) VALUES (@idKol1, @idKur2);
     INSERT INTO CuratorCollection (MuseumCollectionID, CuratorID) VALUES (@idKol2, @idKur4);
     INSERT INTO CuratorCollection (MuseumCollectionID, CuratorID) VALUES (@idKol3, @idKur3);
+    INSERT INTO CuratorCollection (MuseumCollectionID, CuratorID) VALUES (@idKol4, @idKur1);
     INSERT INTO CuratorCollection (MuseumCollectionID, CuratorID) VALUES (@idKol2, @idKur1);
 END
