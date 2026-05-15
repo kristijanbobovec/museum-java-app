@@ -301,3 +301,28 @@ Caused by: java.net.SocketException: Connection reset
 2026-05-15 14:18:05 INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection ConnectionID:2 ClientConnectionId: 7068b271-0da9-49c8-90b5-7d59e37396e8
 2026-05-15 14:18:05 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
 2026-05-15 14:18:06 INFO  m.k.museum.event.AppSubscribers - User admin successfully logged in!
+2026-05-15 14:20:20 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-05-15 14:20:20 INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection ConnectionID:2 ClientConnectionId: df4ce4b5-460b-4166-b5c8-79c4b5f0d725
+2026-05-15 14:20:20 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-05-15 14:20:20 INFO  m.k.museum.event.AppSubscribers - User admin successfully logged in!
+2026-05-15 22:58:09 ERROR me.kristijanbobovec.museum.Main - Database failed with creation!
+com.microsoft.sqlserver.jdbc.SQLServerException: The TCP/IP connection to the host localhost, port 1401 has failed. Error: "Connection refused. Verify the connection properties. Make sure that an instance of SQL Server is running on the host and accepting TCP/IP connections at the port. Make sure that TCP connections to the port are not blocked by a firewall.".
+	at com.microsoft.sqlserver.jdbc@13.4.0.jre11/com.microsoft.sqlserver.jdbc.SQLServerException.makeFromDriverError(SQLServerException.java:308)
+	at com.microsoft.sqlserver.jdbc@13.4.0.jre11/com.microsoft.sqlserver.jdbc.SQLServerException.convertConnectExceptionToSQLServerException(SQLServerException.java:399)
+	at com.microsoft.sqlserver.jdbc@13.4.0.jre11/com.microsoft.sqlserver.jdbc.SocketFinder.findSocket(IOBuffer.java:2618)
+	at com.microsoft.sqlserver.jdbc@13.4.0.jre11/com.microsoft.sqlserver.jdbc.TDSChannel.open(IOBuffer.java:743)
+	at com.microsoft.sqlserver.jdbc@13.4.0.jre11/com.microsoft.sqlserver.jdbc.SQLServerConnection.connectHelper(SQLServerConnection.java:4352)
+	at com.microsoft.sqlserver.jdbc@13.4.0.jre11/com.microsoft.sqlserver.jdbc.SQLServerConnection.login(SQLServerConnection.java:3937)
+	at com.microsoft.sqlserver.jdbc@13.4.0.jre11/com.microsoft.sqlserver.jdbc.SQLServerConnection.connectInternal(SQLServerConnection.java:3700)
+	at com.microsoft.sqlserver.jdbc@13.4.0.jre11/com.microsoft.sqlserver.jdbc.SQLServerConnection.connect(SQLServerConnection.java:2385)
+	at com.microsoft.sqlserver.jdbc@13.4.0.jre11/com.microsoft.sqlserver.jdbc.SQLServerDataSource.getConnectionInternal(SQLServerDataSource.java:1735)
+	at com.microsoft.sqlserver.jdbc@13.4.0.jre11/com.microsoft.sqlserver.jdbc.SQLServerDataSource.getConnection(SQLServerDataSource.java:99)
+	at me.kristijanbobovec.museum/me.kristijanbobovec.museum.database.DatabaseInitialization.init(DatabaseInitialization.java:29)
+	at me.kristijanbobovec.museum/me.kristijanbobovec.museum.Main.init(Main.java:30)
+	at javafx.graphics@22.0.1/com.sun.javafx.application.LauncherImpl.launchApplication1(LauncherImpl.java:817)
+	at javafx.graphics@22.0.1/com.sun.javafx.application.LauncherImpl.lambda$launchApplication$2(LauncherImpl.java:196)
+	at java.base/java.lang.Thread.run(Thread.java:1570)
+2026-05-15 22:58:30 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-05-15 22:58:30 INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection ConnectionID:2 ClientConnectionId: 1aa9f878-2dcb-4e1d-824d-466f4c5be990
+2026-05-15 22:58:30 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-05-15 22:58:30 INFO  m.k.museum.event.AppSubscribers - User admin successfully logged in!
