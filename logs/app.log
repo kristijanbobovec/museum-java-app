@@ -464,3 +464,342 @@ com.microsoft.sqlserver.jdbc.SQLServerException: The TCP/IP connection to the ho
 2026-05-16 14:29:29 INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection ConnectionID:2 ClientConnectionId: dbb8ce1d-58a7-468c-9072-d1c1031b2357
 2026-05-16 14:29:29 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
 2026-05-16 14:29:29 INFO  m.k.museum.event.AppSubscribers - User admin successfully logged in!
+2026-05-16 17:47:13 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-05-16 17:47:13 INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection ConnectionID:2 ClientConnectionId: f7d523eb-3877-4083-896c-4056a86ae026
+2026-05-16 17:47:13 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-05-16 17:47:13 INFO  m.k.museum.event.AppSubscribers - User admin successfully logged in!
+2026-05-16 17:47:15 ERROR m.k.m.c.MuseumDetailController - Failed to load exponats for museum.
+com.microsoft.sqlserver.jdbc.SQLServerException: Could not find stored procedure 'usp_MuseumCollection_GetByMuseumId'.
+	at com.microsoft.sqlserver.jdbc@13.4.0.jre11/com.microsoft.sqlserver.jdbc.SQLServerException.makeFromDatabaseError(SQLServerException.java:356)
+	at com.microsoft.sqlserver.jdbc@13.4.0.jre11/com.microsoft.sqlserver.jdbc.SQLServerStatement.getNextResult(SQLServerStatement.java:1927)
+	at com.microsoft.sqlserver.jdbc@13.4.0.jre11/com.microsoft.sqlserver.jdbc.SQLServerPreparedStatement.doExecutePreparedStatement(SQLServerPreparedStatement.java:764)
+	at com.microsoft.sqlserver.jdbc@13.4.0.jre11/com.microsoft.sqlserver.jdbc.SQLServerPreparedStatement$PrepStmtExecCmd.doExecute(SQLServerPreparedStatement.java:663)
+	at com.microsoft.sqlserver.jdbc@13.4.0.jre11/com.microsoft.sqlserver.jdbc.TDSCommand.execute(IOBuffer.java:7832)
+	at com.microsoft.sqlserver.jdbc@13.4.0.jre11/com.microsoft.sqlserver.jdbc.SQLServerConnection.executeCommand(SQLServerConnection.java:5024)
+	at com.microsoft.sqlserver.jdbc@13.4.0.jre11/com.microsoft.sqlserver.jdbc.SQLServerStatement.executeCommand(SQLServerStatement.java:364)
+	at com.microsoft.sqlserver.jdbc@13.4.0.jre11/com.microsoft.sqlserver.jdbc.SQLServerStatement.executeStatement(SQLServerStatement.java:282)
+	at com.microsoft.sqlserver.jdbc@13.4.0.jre11/com.microsoft.sqlserver.jdbc.SQLServerPreparedStatement.executeQuery(SQLServerPreparedStatement.java:577)
+	at com.zaxxer.hikari@7.0.2/com.zaxxer.hikari.pool.ProxyPreparedStatement.executeQuery(ProxyPreparedStatement.java:52)
+	at com.zaxxer.hikari@7.0.2/com.zaxxer.hikari.pool.HikariProxyCallableStatement.executeQuery(HikariProxyCallableStatement.java)
+	at me.kristijanbobovec.museum/me.kristijanbobovec.museum.repository.MuseumCollectionRepositoryImpl.getByMuseumId(MuseumCollectionRepositoryImpl.java:39)
+	at me.kristijanbobovec.museum/me.kristijanbobovec.museum.service.MuseumCollectionService.getByMuseumId(MuseumCollectionService.java:19)
+	at me.kristijanbobovec.museum/me.kristijanbobovec.museum.controller.MuseumDetailController.setMuseum(MuseumDetailController.java:63)
+	at me.kristijanbobovec.museum/me.kristijanbobovec.museum.controller.HomeController.lambda$handleMuseumSelected$3(HomeController.java:100)
+	at me.kristijanbobovec.museum/me.kristijanbobovec.museum.manager.SceneManager.switchTo(SceneManager.java:39)
+	at me.kristijanbobovec.museum/me.kristijanbobovec.museum.controller.HomeController.handleMuseumSelected(HomeController.java:99)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at com.sun.javafx.reflect.Trampoline.invoke(MethodUtil.java:72)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at javafx.base@22.0.1/com.sun.javafx.reflect.MethodUtil.invoke(MethodUtil.java:270)
+	at javafx.fxml@22.0.1/com.sun.javafx.fxml.MethodHelper.invoke(MethodHelper.java:84)
+	at javafx.fxml@22.0.1/javafx.fxml.FXMLLoader$MethodHandler.invoke(FXMLLoader.java:1858)
+	at javafx.fxml@22.0.1/javafx.fxml.FXMLLoader$ControllerMethodEventHandler.handle(FXMLLoader.java:1731)
+	at javafx.base@22.0.1/com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:86)
+	at javafx.base@22.0.1/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:232)
+	at javafx.base@22.0.1/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:189)
+	at javafx.base@22.0.1/com.sun.javafx.event.CompositeEventDispatcher.dispatchBubblingEvent(CompositeEventDispatcher.java:59)
+	at javafx.base@22.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58)
+	at javafx.base@22.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@22.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@22.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@22.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@22.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@22.0.1/com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74)
+	at javafx.base@22.0.1/com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:54)
+	at javafx.base@22.0.1/javafx.event.Event.fireEvent(Event.java:198)
+	at javafx.graphics@22.0.1/javafx.scene.Scene$ClickGenerator.postProcess(Scene.java:3689)
+	at javafx.graphics@22.0.1/javafx.scene.Scene$MouseHandler.process(Scene.java:3994)
+	at javafx.graphics@22.0.1/javafx.scene.Scene.processMouseEvent(Scene.java:1891)
+	at javafx.graphics@22.0.1/javafx.scene.Scene$ScenePeerListener.mouseEvent(Scene.java:2709)
+	at javafx.graphics@22.0.1/com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.run(GlassViewEventHandler.java:411)
+	at javafx.graphics@22.0.1/com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.run(GlassViewEventHandler.java:301)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:400)
+	at javafx.graphics@22.0.1/com.sun.javafx.tk.quantum.GlassViewEventHandler.lambda$handleMouseEvent$2(GlassViewEventHandler.java:450)
+	at javafx.graphics@22.0.1/com.sun.javafx.tk.quantum.QuantumToolkit.runWithoutRenderLock(QuantumToolkit.java:430)
+	at javafx.graphics@22.0.1/com.sun.javafx.tk.quantum.GlassViewEventHandler.handleMouseEvent(GlassViewEventHandler.java:449)
+	at javafx.graphics@22.0.1/com.sun.glass.ui.View.handleMouseEvent(View.java:551)
+	at javafx.graphics@22.0.1/com.sun.glass.ui.View.notifyMouse(View.java:937)
+	at javafx.graphics@22.0.1/com.sun.glass.ui.mac.MacView.notifyMouse(MacView.java:127)
+2026-05-16 17:55:11 INFO  m.k.m.d.DatabaseInitialization - Database not found creating new one!
+2026-05-16 17:55:11 ERROR me.kristijanbobovec.museum.Main - Database failed with creation!
+com.microsoft.sqlserver.jdbc.SQLServerException: SQL Server did not return a response. The connection has been closed.
+	at com.microsoft.sqlserver.jdbc@13.4.0.jre11/com.microsoft.sqlserver.jdbc.SQLServerConnection.terminate(SQLServerConnection.java:4904)
+	at com.microsoft.sqlserver.jdbc@13.4.0.jre11/com.microsoft.sqlserver.jdbc.SQLServerConnection.terminate(SQLServerConnection.java:4893)
+	at com.microsoft.sqlserver.jdbc@13.4.0.jre11/com.microsoft.sqlserver.jdbc.TDSReader.readPacket(IOBuffer.java:6989)
+	at com.microsoft.sqlserver.jdbc@13.4.0.jre11/com.microsoft.sqlserver.jdbc.TDSCommand.startResponse(IOBuffer.java:8232)
+	at com.microsoft.sqlserver.jdbc@13.4.0.jre11/com.microsoft.sqlserver.jdbc.SQLServerStatement.doExecuteStatement(SQLServerStatement.java:1080)
+	at com.microsoft.sqlserver.jdbc@13.4.0.jre11/com.microsoft.sqlserver.jdbc.SQLServerStatement$StmtExecCmd.doExecute(SQLServerStatement.java:964)
+	at com.microsoft.sqlserver.jdbc@13.4.0.jre11/com.microsoft.sqlserver.jdbc.TDSCommand.execute(IOBuffer.java:7832)
+	at com.microsoft.sqlserver.jdbc@13.4.0.jre11/com.microsoft.sqlserver.jdbc.SQLServerConnection.executeCommand(SQLServerConnection.java:5024)
+	at com.microsoft.sqlserver.jdbc@13.4.0.jre11/com.microsoft.sqlserver.jdbc.SQLServerStatement.executeCommand(SQLServerStatement.java:364)
+	at com.microsoft.sqlserver.jdbc@13.4.0.jre11/com.microsoft.sqlserver.jdbc.SQLServerStatement.executeStatement(SQLServerStatement.java:282)
+	at com.microsoft.sqlserver.jdbc@13.4.0.jre11/com.microsoft.sqlserver.jdbc.SQLServerStatement.execute(SQLServerStatement.java:937)
+	at me.kristijanbobovec.museum/me.kristijanbobovec.museum.database.DatabaseInitialization.createDatabaseIfNotExists(DatabaseInitialization.java:124)
+	at me.kristijanbobovec.museum/me.kristijanbobovec.museum.database.DatabaseInitialization.init(DatabaseInitialization.java:34)
+	at me.kristijanbobovec.museum/me.kristijanbobovec.museum.Main.init(Main.java:27)
+	at javafx.graphics@22.0.1/com.sun.javafx.application.LauncherImpl.launchApplication1(LauncherImpl.java:817)
+	at javafx.graphics@22.0.1/com.sun.javafx.application.LauncherImpl.lambda$launchApplication$2(LauncherImpl.java:196)
+	at java.base/java.lang.Thread.run(Thread.java:1570)
+2026-05-16 17:55:50 INFO  m.k.m.d.DatabaseInitialization - Database not found creating new one!
+2026-05-16 17:55:50 DEBUG m.k.m.d.DatabaseInitialization - Creating tables...
+2026-05-16 17:55:50 DEBUG m.k.m.d.DatabaseInitialization - Creating stored procedures...
+2026-05-16 17:55:50 DEBUG m.k.m.d.DatabaseInitialization - Creating roles...
+2026-05-16 17:55:50 DEBUG m.k.m.d.DatabaseInitialization - Creating admin account...
+2026-05-16 17:55:50 DEBUG m.k.m.d.DatabaseInitialization - Seeding initial data...
+2026-05-16 17:55:50 INFO  m.k.m.d.DatabaseInitialization - Database is created!
+2026-05-16 17:55:55 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-05-16 17:55:55 INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection ConnectionID:2 ClientConnectionId: 2ed73a72-9569-4ffa-9a60-b2f2cf336ad6
+2026-05-16 17:55:55 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-05-16 17:55:55 INFO  m.k.museum.event.AppSubscribers - User admin successfully logged in!
+2026-05-16 17:57:06 INFO  m.k.m.d.DatabaseInitialization - Database not found creating new one!
+2026-05-16 17:57:06 ERROR me.kristijanbobovec.museum.Main - Database failed with creation!
+com.microsoft.sqlserver.jdbc.SQLServerException: SQL Server did not return a response. The connection has been closed.
+	at com.microsoft.sqlserver.jdbc@13.4.0.jre11/com.microsoft.sqlserver.jdbc.SQLServerConnection.terminate(SQLServerConnection.java:4904)
+	at com.microsoft.sqlserver.jdbc@13.4.0.jre11/com.microsoft.sqlserver.jdbc.SQLServerConnection.terminate(SQLServerConnection.java:4893)
+	at com.microsoft.sqlserver.jdbc@13.4.0.jre11/com.microsoft.sqlserver.jdbc.TDSReader.readPacket(IOBuffer.java:6989)
+	at com.microsoft.sqlserver.jdbc@13.4.0.jre11/com.microsoft.sqlserver.jdbc.TDSCommand.startResponse(IOBuffer.java:8232)
+	at com.microsoft.sqlserver.jdbc@13.4.0.jre11/com.microsoft.sqlserver.jdbc.SQLServerStatement.doExecuteStatement(SQLServerStatement.java:1080)
+	at com.microsoft.sqlserver.jdbc@13.4.0.jre11/com.microsoft.sqlserver.jdbc.SQLServerStatement$StmtExecCmd.doExecute(SQLServerStatement.java:964)
+	at com.microsoft.sqlserver.jdbc@13.4.0.jre11/com.microsoft.sqlserver.jdbc.TDSCommand.execute(IOBuffer.java:7832)
+	at com.microsoft.sqlserver.jdbc@13.4.0.jre11/com.microsoft.sqlserver.jdbc.SQLServerConnection.executeCommand(SQLServerConnection.java:5024)
+	at com.microsoft.sqlserver.jdbc@13.4.0.jre11/com.microsoft.sqlserver.jdbc.SQLServerStatement.executeCommand(SQLServerStatement.java:364)
+	at com.microsoft.sqlserver.jdbc@13.4.0.jre11/com.microsoft.sqlserver.jdbc.SQLServerStatement.executeStatement(SQLServerStatement.java:282)
+	at com.microsoft.sqlserver.jdbc@13.4.0.jre11/com.microsoft.sqlserver.jdbc.SQLServerStatement.execute(SQLServerStatement.java:937)
+	at me.kristijanbobovec.museum/me.kristijanbobovec.museum.database.DatabaseInitialization.createDatabaseIfNotExists(DatabaseInitialization.java:124)
+	at me.kristijanbobovec.museum/me.kristijanbobovec.museum.database.DatabaseInitialization.init(DatabaseInitialization.java:34)
+	at me.kristijanbobovec.museum/me.kristijanbobovec.museum.Main.init(Main.java:27)
+	at javafx.graphics@22.0.1/com.sun.javafx.application.LauncherImpl.launchApplication1(LauncherImpl.java:817)
+	at javafx.graphics@22.0.1/com.sun.javafx.application.LauncherImpl.lambda$launchApplication$2(LauncherImpl.java:196)
+	at java.base/java.lang.Thread.run(Thread.java:1570)
+2026-05-16 17:57:16 INFO  m.k.m.d.DatabaseInitialization - Database not found creating new one!
+2026-05-16 17:57:16 DEBUG m.k.m.d.DatabaseInitialization - Creating tables...
+2026-05-16 17:57:16 DEBUG m.k.m.d.DatabaseInitialization - Creating stored procedures...
+2026-05-16 17:57:16 DEBUG m.k.m.d.DatabaseInitialization - Creating roles...
+2026-05-16 17:57:16 DEBUG m.k.m.d.DatabaseInitialization - Creating admin account...
+2026-05-16 17:57:16 DEBUG m.k.m.d.DatabaseInitialization - Seeding initial data...
+2026-05-16 17:57:16 INFO  m.k.m.d.DatabaseInitialization - Database is created!
+2026-05-16 17:57:19 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-05-16 17:57:19 INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection ConnectionID:2 ClientConnectionId: 451ce11f-6458-4a3c-b41e-f94bc4b959d4
+2026-05-16 17:57:19 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-05-16 17:57:19 INFO  m.k.museum.event.AppSubscribers - User admin successfully logged in!
+2026-05-16 18:04:56 INFO  m.k.m.d.DatabaseInitialization - Database not found creating new one!
+2026-05-16 18:04:56 ERROR me.kristijanbobovec.museum.Main - Database failed with creation!
+com.microsoft.sqlserver.jdbc.SQLServerException: SQL Server did not return a response. The connection has been closed.
+	at com.microsoft.sqlserver.jdbc@13.4.0.jre11/com.microsoft.sqlserver.jdbc.SQLServerConnection.terminate(SQLServerConnection.java:4904)
+	at com.microsoft.sqlserver.jdbc@13.4.0.jre11/com.microsoft.sqlserver.jdbc.SQLServerConnection.terminate(SQLServerConnection.java:4893)
+	at com.microsoft.sqlserver.jdbc@13.4.0.jre11/com.microsoft.sqlserver.jdbc.TDSReader.readPacket(IOBuffer.java:6989)
+	at com.microsoft.sqlserver.jdbc@13.4.0.jre11/com.microsoft.sqlserver.jdbc.TDSCommand.startResponse(IOBuffer.java:8232)
+	at com.microsoft.sqlserver.jdbc@13.4.0.jre11/com.microsoft.sqlserver.jdbc.SQLServerStatement.doExecuteStatement(SQLServerStatement.java:1080)
+	at com.microsoft.sqlserver.jdbc@13.4.0.jre11/com.microsoft.sqlserver.jdbc.SQLServerStatement$StmtExecCmd.doExecute(SQLServerStatement.java:964)
+	at com.microsoft.sqlserver.jdbc@13.4.0.jre11/com.microsoft.sqlserver.jdbc.TDSCommand.execute(IOBuffer.java:7832)
+	at com.microsoft.sqlserver.jdbc@13.4.0.jre11/com.microsoft.sqlserver.jdbc.SQLServerConnection.executeCommand(SQLServerConnection.java:5024)
+	at com.microsoft.sqlserver.jdbc@13.4.0.jre11/com.microsoft.sqlserver.jdbc.SQLServerStatement.executeCommand(SQLServerStatement.java:364)
+	at com.microsoft.sqlserver.jdbc@13.4.0.jre11/com.microsoft.sqlserver.jdbc.SQLServerStatement.executeStatement(SQLServerStatement.java:282)
+	at com.microsoft.sqlserver.jdbc@13.4.0.jre11/com.microsoft.sqlserver.jdbc.SQLServerStatement.execute(SQLServerStatement.java:937)
+	at me.kristijanbobovec.museum/me.kristijanbobovec.museum.database.DatabaseInitialization.createDatabaseIfNotExists(DatabaseInitialization.java:124)
+	at me.kristijanbobovec.museum/me.kristijanbobovec.museum.database.DatabaseInitialization.init(DatabaseInitialization.java:34)
+	at me.kristijanbobovec.museum/me.kristijanbobovec.museum.Main.init(Main.java:27)
+	at javafx.graphics@22.0.1/com.sun.javafx.application.LauncherImpl.launchApplication1(LauncherImpl.java:817)
+	at javafx.graphics@22.0.1/com.sun.javafx.application.LauncherImpl.lambda$launchApplication$2(LauncherImpl.java:196)
+	at java.base/java.lang.Thread.run(Thread.java:1570)
+2026-05-16 18:04:59 INFO  m.k.m.d.DatabaseInitialization - Database not found creating new one!
+2026-05-16 18:05:00 DEBUG m.k.m.d.DatabaseInitialization - Creating tables...
+2026-05-16 18:05:00 DEBUG m.k.m.d.DatabaseInitialization - Creating stored procedures...
+2026-05-16 18:05:00 DEBUG m.k.m.d.DatabaseInitialization - Creating roles...
+2026-05-16 18:05:00 DEBUG m.k.m.d.DatabaseInitialization - Creating admin account...
+2026-05-16 18:05:00 DEBUG m.k.m.d.DatabaseInitialization - Seeding initial data...
+2026-05-16 18:05:00 INFO  m.k.m.d.DatabaseInitialization - Database is created!
+2026-05-16 18:05:03 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-05-16 18:05:03 INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection ConnectionID:2 ClientConnectionId: fe760910-7b23-48dc-993b-31ae44dc6adc
+2026-05-16 18:05:03 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-05-16 18:05:03 INFO  m.k.museum.event.AppSubscribers - User admin successfully logged in!
+2026-05-16 18:07:07 INFO  m.k.m.d.DatabaseInitialization - Database not found creating new one!
+2026-05-16 18:07:07 ERROR me.kristijanbobovec.museum.Main - Database failed with creation!
+com.microsoft.sqlserver.jdbc.SQLServerException: SQL Server did not return a response. The connection has been closed.
+	at com.microsoft.sqlserver.jdbc@13.4.0.jre11/com.microsoft.sqlserver.jdbc.SQLServerConnection.terminate(SQLServerConnection.java:4904)
+	at com.microsoft.sqlserver.jdbc@13.4.0.jre11/com.microsoft.sqlserver.jdbc.SQLServerConnection.terminate(SQLServerConnection.java:4893)
+	at com.microsoft.sqlserver.jdbc@13.4.0.jre11/com.microsoft.sqlserver.jdbc.TDSReader.readPacket(IOBuffer.java:6989)
+	at com.microsoft.sqlserver.jdbc@13.4.0.jre11/com.microsoft.sqlserver.jdbc.TDSCommand.startResponse(IOBuffer.java:8232)
+	at com.microsoft.sqlserver.jdbc@13.4.0.jre11/com.microsoft.sqlserver.jdbc.SQLServerStatement.doExecuteStatement(SQLServerStatement.java:1080)
+	at com.microsoft.sqlserver.jdbc@13.4.0.jre11/com.microsoft.sqlserver.jdbc.SQLServerStatement$StmtExecCmd.doExecute(SQLServerStatement.java:964)
+	at com.microsoft.sqlserver.jdbc@13.4.0.jre11/com.microsoft.sqlserver.jdbc.TDSCommand.execute(IOBuffer.java:7832)
+	at com.microsoft.sqlserver.jdbc@13.4.0.jre11/com.microsoft.sqlserver.jdbc.SQLServerConnection.executeCommand(SQLServerConnection.java:5024)
+	at com.microsoft.sqlserver.jdbc@13.4.0.jre11/com.microsoft.sqlserver.jdbc.SQLServerStatement.executeCommand(SQLServerStatement.java:364)
+	at com.microsoft.sqlserver.jdbc@13.4.0.jre11/com.microsoft.sqlserver.jdbc.SQLServerStatement.executeStatement(SQLServerStatement.java:282)
+	at com.microsoft.sqlserver.jdbc@13.4.0.jre11/com.microsoft.sqlserver.jdbc.SQLServerStatement.execute(SQLServerStatement.java:937)
+	at me.kristijanbobovec.museum/me.kristijanbobovec.museum.database.DatabaseInitialization.createDatabaseIfNotExists(DatabaseInitialization.java:124)
+	at me.kristijanbobovec.museum/me.kristijanbobovec.museum.database.DatabaseInitialization.init(DatabaseInitialization.java:34)
+	at me.kristijanbobovec.museum/me.kristijanbobovec.museum.Main.init(Main.java:27)
+	at javafx.graphics@22.0.1/com.sun.javafx.application.LauncherImpl.launchApplication1(LauncherImpl.java:817)
+	at javafx.graphics@22.0.1/com.sun.javafx.application.LauncherImpl.lambda$launchApplication$2(LauncherImpl.java:196)
+	at java.base/java.lang.Thread.run(Thread.java:1570)
+2026-05-16 18:07:11 INFO  m.k.m.d.DatabaseInitialization - Database not found creating new one!
+2026-05-16 18:07:11 DEBUG m.k.m.d.DatabaseInitialization - Creating tables...
+2026-05-16 18:07:11 DEBUG m.k.m.d.DatabaseInitialization - Creating stored procedures...
+2026-05-16 18:07:11 DEBUG m.k.m.d.DatabaseInitialization - Creating roles...
+2026-05-16 18:07:11 DEBUG m.k.m.d.DatabaseInitialization - Creating admin account...
+2026-05-16 18:07:12 DEBUG m.k.m.d.DatabaseInitialization - Seeding initial data...
+2026-05-16 18:07:12 INFO  m.k.m.d.DatabaseInitialization - Database is created!
+2026-05-16 18:07:15 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-05-16 18:07:15 INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection ConnectionID:2 ClientConnectionId: 9cd8238a-d813-4cb9-933f-2a00846dc797
+2026-05-16 18:07:15 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-05-16 18:07:15 INFO  m.k.museum.event.AppSubscribers - User admin successfully logged in!
+2026-05-16 18:08:50 INFO  m.k.m.d.DatabaseInitialization - Database not found creating new one!
+2026-05-16 18:08:50 ERROR me.kristijanbobovec.museum.Main - Database failed with creation!
+com.microsoft.sqlserver.jdbc.SQLServerException: SQL Server did not return a response. The connection has been closed.
+	at com.microsoft.sqlserver.jdbc@13.4.0.jre11/com.microsoft.sqlserver.jdbc.SQLServerConnection.terminate(SQLServerConnection.java:4904)
+	at com.microsoft.sqlserver.jdbc@13.4.0.jre11/com.microsoft.sqlserver.jdbc.SQLServerConnection.terminate(SQLServerConnection.java:4893)
+	at com.microsoft.sqlserver.jdbc@13.4.0.jre11/com.microsoft.sqlserver.jdbc.TDSReader.readPacket(IOBuffer.java:6989)
+	at com.microsoft.sqlserver.jdbc@13.4.0.jre11/com.microsoft.sqlserver.jdbc.TDSCommand.startResponse(IOBuffer.java:8232)
+	at com.microsoft.sqlserver.jdbc@13.4.0.jre11/com.microsoft.sqlserver.jdbc.SQLServerStatement.doExecuteStatement(SQLServerStatement.java:1080)
+	at com.microsoft.sqlserver.jdbc@13.4.0.jre11/com.microsoft.sqlserver.jdbc.SQLServerStatement$StmtExecCmd.doExecute(SQLServerStatement.java:964)
+	at com.microsoft.sqlserver.jdbc@13.4.0.jre11/com.microsoft.sqlserver.jdbc.TDSCommand.execute(IOBuffer.java:7832)
+	at com.microsoft.sqlserver.jdbc@13.4.0.jre11/com.microsoft.sqlserver.jdbc.SQLServerConnection.executeCommand(SQLServerConnection.java:5024)
+	at com.microsoft.sqlserver.jdbc@13.4.0.jre11/com.microsoft.sqlserver.jdbc.SQLServerStatement.executeCommand(SQLServerStatement.java:364)
+	at com.microsoft.sqlserver.jdbc@13.4.0.jre11/com.microsoft.sqlserver.jdbc.SQLServerStatement.executeStatement(SQLServerStatement.java:282)
+	at com.microsoft.sqlserver.jdbc@13.4.0.jre11/com.microsoft.sqlserver.jdbc.SQLServerStatement.execute(SQLServerStatement.java:937)
+	at me.kristijanbobovec.museum/me.kristijanbobovec.museum.database.DatabaseInitialization.createDatabaseIfNotExists(DatabaseInitialization.java:124)
+	at me.kristijanbobovec.museum/me.kristijanbobovec.museum.database.DatabaseInitialization.init(DatabaseInitialization.java:34)
+	at me.kristijanbobovec.museum/me.kristijanbobovec.museum.Main.init(Main.java:27)
+	at javafx.graphics@22.0.1/com.sun.javafx.application.LauncherImpl.launchApplication1(LauncherImpl.java:817)
+	at javafx.graphics@22.0.1/com.sun.javafx.application.LauncherImpl.lambda$launchApplication$2(LauncherImpl.java:196)
+	at java.base/java.lang.Thread.run(Thread.java:1570)
+2026-05-16 18:08:54 INFO  m.k.m.d.DatabaseInitialization - Database not found creating new one!
+2026-05-16 18:08:54 DEBUG m.k.m.d.DatabaseInitialization - Creating tables...
+2026-05-16 18:08:54 DEBUG m.k.m.d.DatabaseInitialization - Creating stored procedures...
+2026-05-16 18:08:54 DEBUG m.k.m.d.DatabaseInitialization - Creating roles...
+2026-05-16 18:08:54 DEBUG m.k.m.d.DatabaseInitialization - Creating admin account...
+2026-05-16 18:08:54 DEBUG m.k.m.d.DatabaseInitialization - Seeding initial data...
+2026-05-16 18:08:54 INFO  m.k.m.d.DatabaseInitialization - Database is created!
+2026-05-16 18:08:57 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-05-16 18:08:57 INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection ConnectionID:2 ClientConnectionId: c51eb4d9-2f63-4406-8ed2-9dc2bab6c168
+2026-05-16 18:08:57 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-05-16 18:08:57 INFO  m.k.museum.event.AppSubscribers - User admin successfully logged in!
+2026-05-16 18:09:32 INFO  m.k.m.d.DatabaseInitialization - Database not found creating new one!
+2026-05-16 18:09:32 ERROR me.kristijanbobovec.museum.Main - Database failed with creation!
+com.microsoft.sqlserver.jdbc.SQLServerException: SQL Server did not return a response. The connection has been closed.
+	at com.microsoft.sqlserver.jdbc@13.4.0.jre11/com.microsoft.sqlserver.jdbc.SQLServerConnection.terminate(SQLServerConnection.java:4904)
+	at com.microsoft.sqlserver.jdbc@13.4.0.jre11/com.microsoft.sqlserver.jdbc.SQLServerConnection.terminate(SQLServerConnection.java:4893)
+	at com.microsoft.sqlserver.jdbc@13.4.0.jre11/com.microsoft.sqlserver.jdbc.TDSReader.readPacket(IOBuffer.java:6989)
+	at com.microsoft.sqlserver.jdbc@13.4.0.jre11/com.microsoft.sqlserver.jdbc.TDSCommand.startResponse(IOBuffer.java:8232)
+	at com.microsoft.sqlserver.jdbc@13.4.0.jre11/com.microsoft.sqlserver.jdbc.SQLServerStatement.doExecuteStatement(SQLServerStatement.java:1080)
+	at com.microsoft.sqlserver.jdbc@13.4.0.jre11/com.microsoft.sqlserver.jdbc.SQLServerStatement$StmtExecCmd.doExecute(SQLServerStatement.java:964)
+	at com.microsoft.sqlserver.jdbc@13.4.0.jre11/com.microsoft.sqlserver.jdbc.TDSCommand.execute(IOBuffer.java:7832)
+	at com.microsoft.sqlserver.jdbc@13.4.0.jre11/com.microsoft.sqlserver.jdbc.SQLServerConnection.executeCommand(SQLServerConnection.java:5024)
+	at com.microsoft.sqlserver.jdbc@13.4.0.jre11/com.microsoft.sqlserver.jdbc.SQLServerStatement.executeCommand(SQLServerStatement.java:364)
+	at com.microsoft.sqlserver.jdbc@13.4.0.jre11/com.microsoft.sqlserver.jdbc.SQLServerStatement.executeStatement(SQLServerStatement.java:282)
+	at com.microsoft.sqlserver.jdbc@13.4.0.jre11/com.microsoft.sqlserver.jdbc.SQLServerStatement.execute(SQLServerStatement.java:937)
+	at me.kristijanbobovec.museum/me.kristijanbobovec.museum.database.DatabaseInitialization.createDatabaseIfNotExists(DatabaseInitialization.java:124)
+	at me.kristijanbobovec.museum/me.kristijanbobovec.museum.database.DatabaseInitialization.init(DatabaseInitialization.java:34)
+	at me.kristijanbobovec.museum/me.kristijanbobovec.museum.Main.init(Main.java:27)
+	at javafx.graphics@22.0.1/com.sun.javafx.application.LauncherImpl.launchApplication1(LauncherImpl.java:817)
+	at javafx.graphics@22.0.1/com.sun.javafx.application.LauncherImpl.lambda$launchApplication$2(LauncherImpl.java:196)
+	at java.base/java.lang.Thread.run(Thread.java:1570)
+2026-05-16 18:09:36 INFO  m.k.m.d.DatabaseInitialization - Database not found creating new one!
+2026-05-16 18:09:36 DEBUG m.k.m.d.DatabaseInitialization - Creating tables...
+2026-05-16 18:09:36 DEBUG m.k.m.d.DatabaseInitialization - Creating stored procedures...
+2026-05-16 18:09:36 DEBUG m.k.m.d.DatabaseInitialization - Creating roles...
+2026-05-16 18:09:36 DEBUG m.k.m.d.DatabaseInitialization - Creating admin account...
+2026-05-16 18:09:36 DEBUG m.k.m.d.DatabaseInitialization - Seeding initial data...
+2026-05-16 18:09:36 INFO  m.k.m.d.DatabaseInitialization - Database is created!
+2026-05-16 18:09:39 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-05-16 18:09:39 INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection ConnectionID:2 ClientConnectionId: 7c65a60c-99c2-4d91-9877-8fc90710e928
+2026-05-16 18:09:39 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-05-16 18:09:39 INFO  m.k.museum.event.AppSubscribers - User admin successfully logged in!
+2026-05-16 18:11:41 INFO  m.k.m.d.DatabaseInitialization - Database not found creating new one!
+2026-05-16 18:11:41 ERROR me.kristijanbobovec.museum.Main - Database failed with creation!
+com.microsoft.sqlserver.jdbc.SQLServerException: SQL Server did not return a response. The connection has been closed.
+	at com.microsoft.sqlserver.jdbc@13.4.0.jre11/com.microsoft.sqlserver.jdbc.SQLServerConnection.terminate(SQLServerConnection.java:4904)
+	at com.microsoft.sqlserver.jdbc@13.4.0.jre11/com.microsoft.sqlserver.jdbc.SQLServerConnection.terminate(SQLServerConnection.java:4893)
+	at com.microsoft.sqlserver.jdbc@13.4.0.jre11/com.microsoft.sqlserver.jdbc.TDSReader.readPacket(IOBuffer.java:6989)
+	at com.microsoft.sqlserver.jdbc@13.4.0.jre11/com.microsoft.sqlserver.jdbc.TDSCommand.startResponse(IOBuffer.java:8232)
+	at com.microsoft.sqlserver.jdbc@13.4.0.jre11/com.microsoft.sqlserver.jdbc.SQLServerStatement.doExecuteStatement(SQLServerStatement.java:1080)
+	at com.microsoft.sqlserver.jdbc@13.4.0.jre11/com.microsoft.sqlserver.jdbc.SQLServerStatement$StmtExecCmd.doExecute(SQLServerStatement.java:964)
+	at com.microsoft.sqlserver.jdbc@13.4.0.jre11/com.microsoft.sqlserver.jdbc.TDSCommand.execute(IOBuffer.java:7832)
+	at com.microsoft.sqlserver.jdbc@13.4.0.jre11/com.microsoft.sqlserver.jdbc.SQLServerConnection.executeCommand(SQLServerConnection.java:5024)
+	at com.microsoft.sqlserver.jdbc@13.4.0.jre11/com.microsoft.sqlserver.jdbc.SQLServerStatement.executeCommand(SQLServerStatement.java:364)
+	at com.microsoft.sqlserver.jdbc@13.4.0.jre11/com.microsoft.sqlserver.jdbc.SQLServerStatement.executeStatement(SQLServerStatement.java:282)
+	at com.microsoft.sqlserver.jdbc@13.4.0.jre11/com.microsoft.sqlserver.jdbc.SQLServerStatement.execute(SQLServerStatement.java:937)
+	at me.kristijanbobovec.museum/me.kristijanbobovec.museum.database.DatabaseInitialization.createDatabaseIfNotExists(DatabaseInitialization.java:132)
+	at me.kristijanbobovec.museum/me.kristijanbobovec.museum.database.DatabaseInitialization.init(DatabaseInitialization.java:42)
+	at me.kristijanbobovec.museum/me.kristijanbobovec.museum.Main.init(Main.java:27)
+	at javafx.graphics@22.0.1/com.sun.javafx.application.LauncherImpl.launchApplication1(LauncherImpl.java:817)
+	at javafx.graphics@22.0.1/com.sun.javafx.application.LauncherImpl.lambda$launchApplication$2(LauncherImpl.java:196)
+	at java.base/java.lang.Thread.run(Thread.java:1570)
+2026-05-16 18:12:03 INFO  m.k.m.d.DatabaseInitialization - Database not found creating new one!
+2026-05-16 18:12:03 DEBUG m.k.m.d.DatabaseInitialization - Creating tables...
+2026-05-16 18:12:03 DEBUG m.k.m.d.DatabaseInitialization - Creating stored procedures...
+2026-05-16 18:12:03 DEBUG m.k.m.d.DatabaseInitialization - Creating roles...
+2026-05-16 18:12:03 DEBUG m.k.m.d.DatabaseInitialization - Creating admin account...
+2026-05-16 18:12:03 DEBUG m.k.m.d.DatabaseInitialization - Seeding initial data...
+2026-05-16 18:12:03 INFO  m.k.m.d.DatabaseInitialization - Database is created!
+2026-05-16 18:12:06 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-05-16 18:12:06 INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection ConnectionID:2 ClientConnectionId: d8bd53cd-5367-4758-8b1a-e041667b17e9
+2026-05-16 18:12:06 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-05-16 18:12:06 INFO  m.k.museum.event.AppSubscribers - User admin successfully logged in!
+2026-05-16 18:13:31 INFO  m.k.m.d.DatabaseInitialization - Database not found creating new one!
+2026-05-16 18:13:31 ERROR me.kristijanbobovec.museum.Main - Database failed with creation!
+com.microsoft.sqlserver.jdbc.SQLServerException: SQL Server did not return a response. The connection has been closed.
+	at com.microsoft.sqlserver.jdbc@13.4.0.jre11/com.microsoft.sqlserver.jdbc.SQLServerConnection.terminate(SQLServerConnection.java:4904)
+	at com.microsoft.sqlserver.jdbc@13.4.0.jre11/com.microsoft.sqlserver.jdbc.SQLServerConnection.terminate(SQLServerConnection.java:4893)
+	at com.microsoft.sqlserver.jdbc@13.4.0.jre11/com.microsoft.sqlserver.jdbc.TDSReader.readPacket(IOBuffer.java:6989)
+	at com.microsoft.sqlserver.jdbc@13.4.0.jre11/com.microsoft.sqlserver.jdbc.TDSCommand.startResponse(IOBuffer.java:8232)
+	at com.microsoft.sqlserver.jdbc@13.4.0.jre11/com.microsoft.sqlserver.jdbc.SQLServerStatement.doExecuteStatement(SQLServerStatement.java:1080)
+	at com.microsoft.sqlserver.jdbc@13.4.0.jre11/com.microsoft.sqlserver.jdbc.SQLServerStatement$StmtExecCmd.doExecute(SQLServerStatement.java:964)
+	at com.microsoft.sqlserver.jdbc@13.4.0.jre11/com.microsoft.sqlserver.jdbc.TDSCommand.execute(IOBuffer.java:7832)
+	at com.microsoft.sqlserver.jdbc@13.4.0.jre11/com.microsoft.sqlserver.jdbc.SQLServerConnection.executeCommand(SQLServerConnection.java:5024)
+	at com.microsoft.sqlserver.jdbc@13.4.0.jre11/com.microsoft.sqlserver.jdbc.SQLServerStatement.executeCommand(SQLServerStatement.java:364)
+	at com.microsoft.sqlserver.jdbc@13.4.0.jre11/com.microsoft.sqlserver.jdbc.SQLServerStatement.executeStatement(SQLServerStatement.java:282)
+	at com.microsoft.sqlserver.jdbc@13.4.0.jre11/com.microsoft.sqlserver.jdbc.SQLServerStatement.execute(SQLServerStatement.java:937)
+	at me.kristijanbobovec.museum/me.kristijanbobovec.museum.database.DatabaseInitialization.createDatabaseIfNotExists(DatabaseInitialization.java:132)
+	at me.kristijanbobovec.museum/me.kristijanbobovec.museum.database.DatabaseInitialization.init(DatabaseInitialization.java:42)
+	at me.kristijanbobovec.museum/me.kristijanbobovec.museum.Main.init(Main.java:27)
+	at javafx.graphics@22.0.1/com.sun.javafx.application.LauncherImpl.launchApplication1(LauncherImpl.java:817)
+	at javafx.graphics@22.0.1/com.sun.javafx.application.LauncherImpl.lambda$launchApplication$2(LauncherImpl.java:196)
+	at java.base/java.lang.Thread.run(Thread.java:1570)
+2026-05-16 18:13:42 INFO  m.k.m.d.DatabaseInitialization - Database not found creating new one!
+2026-05-16 18:13:42 DEBUG m.k.m.d.DatabaseInitialization - Creating tables...
+2026-05-16 18:13:42 DEBUG m.k.m.d.DatabaseInitialization - Creating stored procedures...
+2026-05-16 18:13:42 DEBUG m.k.m.d.DatabaseInitialization - Creating roles...
+2026-05-16 18:13:42 DEBUG m.k.m.d.DatabaseInitialization - Creating admin account...
+2026-05-16 18:13:42 DEBUG m.k.m.d.DatabaseInitialization - Seeding initial data...
+2026-05-16 18:13:42 INFO  m.k.m.d.DatabaseInitialization - Database is created!
+2026-05-16 18:13:45 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-05-16 18:13:45 INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection ConnectionID:2 ClientConnectionId: c5c0958d-1492-4749-9414-c64e96678d6a
+2026-05-16 18:13:45 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-05-16 18:13:45 INFO  m.k.museum.event.AppSubscribers - User admin successfully logged in!
+2026-05-16 18:14:19 INFO  m.k.m.d.DatabaseInitialization - Database not found creating new one!
+2026-05-16 18:14:19 DEBUG m.k.m.d.DatabaseInitialization - Creating tables...
+2026-05-16 18:14:19 DEBUG m.k.m.d.DatabaseInitialization - Creating stored procedures...
+2026-05-16 18:14:19 DEBUG m.k.m.d.DatabaseInitialization - Creating roles...
+2026-05-16 18:14:19 DEBUG m.k.m.d.DatabaseInitialization - Creating admin account...
+2026-05-16 18:14:19 DEBUG m.k.m.d.DatabaseInitialization - Seeding initial data...
+2026-05-16 18:14:20 INFO  m.k.m.d.DatabaseInitialization - Database is created!
+2026-05-16 18:14:22 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-05-16 18:14:22 INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection ConnectionID:3 ClientConnectionId: 54cb54d1-762d-44bd-8d6f-6152aff6d393
+2026-05-16 18:14:22 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-05-16 18:14:22 INFO  m.k.museum.event.AppSubscribers - User admin successfully logged in!
+2026-05-16 18:21:57 INFO  m.k.m.d.DatabaseInitialization - Database not found creating new one!
+2026-05-16 18:21:57 DEBUG m.k.m.d.DatabaseInitialization - Creating tables...
+2026-05-16 18:21:57 DEBUG m.k.m.d.DatabaseInitialization - Creating stored procedures...
+2026-05-16 18:21:57 DEBUG m.k.m.d.DatabaseInitialization - Creating roles...
+2026-05-16 18:21:57 DEBUG m.k.m.d.DatabaseInitialization - Creating admin account...
+2026-05-16 18:21:57 DEBUG m.k.m.d.DatabaseInitialization - Seeding initial data...
+2026-05-16 18:21:57 INFO  m.k.m.d.DatabaseInitialization - Database is created!
+2026-05-16 18:22:00 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-05-16 18:22:00 INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection ConnectionID:3 ClientConnectionId: 46ddb98a-62ef-4cc5-866c-788bd2afe86d
+2026-05-16 18:22:00 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-05-16 18:22:00 INFO  m.k.museum.event.AppSubscribers - User admin successfully logged in!
+2026-05-16 18:28:22 INFO  m.k.m.d.DatabaseInitialization - Database not found creating new one!
+2026-05-16 18:28:22 DEBUG m.k.m.d.DatabaseInitialization - Creating tables...
+2026-05-16 18:28:22 DEBUG m.k.m.d.DatabaseInitialization - Creating stored procedures...
+2026-05-16 18:28:22 DEBUG m.k.m.d.DatabaseInitialization - Creating roles...
+2026-05-16 18:28:22 DEBUG m.k.m.d.DatabaseInitialization - Creating admin account...
+2026-05-16 18:28:22 DEBUG m.k.m.d.DatabaseInitialization - Seeding initial data...
+2026-05-16 18:28:23 INFO  m.k.m.d.DatabaseInitialization - Database is created!
+2026-05-16 18:28:25 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-05-16 18:28:25 INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection ConnectionID:3 ClientConnectionId: 847a9133-e854-4069-9450-17ef288be7e7
+2026-05-16 18:28:25 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-05-16 18:28:25 INFO  m.k.museum.event.AppSubscribers - User admin successfully logged in!

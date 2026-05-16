@@ -22,6 +22,7 @@ public final class Messages {
         public static final String DATABASE_CREATING_PROCEDURES = "Creating stored procedures...";
         public static final String DATABASE_CREATING_ROLES = "Creating roles...";
         public static final String DATABASE_CREATING_ADMIN = "Creating admin account...";
+        public static final String DATABASE_SEEDING = "Seeding initial data...";
     }
 
     public static final class Museum {

@@ -3,6 +3,7 @@ module me.kristijanbobovec.museum {
     requires javafx.fxml;
 
     requires net.synedra.validatorfx;
+    requires org.controlsfx.controls;
     requires com.zaxxer.hikari;
     requires com.microsoft.sqlserver.jdbc;
     requires java.sql;

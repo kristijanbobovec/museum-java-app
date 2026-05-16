@@ -6,6 +6,7 @@ import me.kristijanbobovec.museum.controller.MuseumDetailController;
 import me.kristijanbobovec.museum.controller.RegisterController;
 import me.kristijanbobovec.museum.service.AuthService;
 import me.kristijanbobovec.museum.service.ExhibitService;
+import me.kristijanbobovec.museum.service.MuseumCollectionService;
 import me.kristijanbobovec.museum.service.MuseumService;
 
 public class ControllerFactory {
@@ -13,11 +14,13 @@ public class ControllerFactory {
     private final MuseumService museumService;
 
     private final ExhibitService exhibitService;
+    private final MuseumCollectionService museumCollectionService;
 
-    public ControllerFactory(AuthService authService, MuseumService museumService, ExhibitService exhibitService) {
+    public ControllerFactory(AuthService authService, MuseumService museumService, ExhibitService exhibitService, MuseumCollectionService museumCollectionService) {
         this.authService = authService;
         this.museumService = museumService;
         this.exhibitService = exhibitService;
+        this.museumCollectionService = museumCollectionService;
     }
 
     public Object create(Class<?> controllerClass) {
@@ -34,7 +37,7 @@ public class ControllerFactory {
         }
 
         if (controllerClass == MuseumDetailController.class) {
-            return new MuseumDetailController(exhibitService);
+            return new MuseumDetailController(exhibitService, museumCollectionService);
         }
 
         try {

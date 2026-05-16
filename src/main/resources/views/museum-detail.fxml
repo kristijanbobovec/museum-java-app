@@ -2,7 +2,7 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ComboBox?>
+<?import org.controlsfx.control.CheckComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TableColumn?>
@@ -89,9 +89,8 @@
                            promptText="Name of exhibit..." />
                 <Label text="Collection:"
                        style="-fx-font-weight: bold; -fx-text-fill: #444444;" />
-                <ComboBox fx:id="collectionComboBox"
-                          onAction="#handleCollectionFilter"
-                          prefWidth="220" />
+                <CheckComboBox fx:id="collectionComboBox"
+                              prefWidth="220" />
                 <Region HBox.hgrow="ALWAYS" />
                 <Label fx:id="exhibitCountLabel"
                        text=""

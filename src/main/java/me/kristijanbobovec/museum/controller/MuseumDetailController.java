@@ -2,11 +2,15 @@ package me.kristijanbobovec.museum.controller;
 
 import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
+import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.*;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Label;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import me.kristijanbobovec.museum.factory.column.ExhibitColumnFactory;
 import me.kristijanbobovec.museum.manager.SceneManager;
@@ -14,22 +18,27 @@ import me.kristijanbobovec.museum.model.Exhibit;
 import me.kristijanbobovec.museum.model.Museum;
 import me.kristijanbobovec.museum.model.MuseumCollection;
 import me.kristijanbobovec.museum.service.ExhibitService;
+import me.kristijanbobovec.museum.service.MuseumCollectionService;
 import me.kristijanbobovec.museum.util.AlertHelper;
 import me.kristijanbobovec.museum.util.ImageHelper;
 import me.kristijanbobovec.museum.util.Messages;
+import org.controlsfx.control.CheckComboBox;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.sql.SQLException;
+import java.util.List;
 import java.util.Optional;
 
 public final class MuseumDetailController {
 
     private static final Logger log = LoggerFactory.getLogger(MuseumDetailController.class);
     private final ExhibitService exhibitService;
+    private final MuseumCollectionService museumCollectionService;
 
-    public MuseumDetailController(ExhibitService exhibitService) {
+    public MuseumDetailController(ExhibitService exhibitService,MuseumCollectionService museumCollectionService) {
         this.exhibitService = exhibitService;
+        this.museumCollectionService = museumCollectionService;
     }
 
     @FXML private Label museumNameLabel;
@@ -39,7 +48,7 @@ public final class MuseumDetailController {
     @FXML private Label museumYearLabel;
     @FXML private Label museumDescriptionLabel;
 
-    @FXML private ComboBox<MuseumCollection> collectionComboBox;
+    @FXML private CheckComboBox<MuseumCollection> collectionComboBox;
     @FXML private TextField searchField;
 
     @FXML private Label exhibitCountLabel;
@@ -50,12 +59,14 @@ public final class MuseumDetailController {
 
     private Museum museum;
     private ObservableList<Exhibit> exhibits;
+    private ObservableList<MuseumCollection> collections;
     private FilteredList<Exhibit> filteredExhibits;
 
     public void setMuseum(Museum museum) {
         try {
             this.museum = museum;
             exhibits = FXCollections.observableArrayList(exhibitService.getAllByMuseumId(museum.getIdMuseum()));
+            collections = FXCollections.observableArrayList(museumCollectionService.getByMuseumId(museum.getIdMuseum()));
             filteredExhibits = new FilteredList<>(exhibits);
             initView();
         } catch (SQLException e) {
@@ -69,8 +80,20 @@ public final class MuseumDetailController {
         bindVisibility();
         loadMuseumFacade();
         initTableView();
+        initCollectionComboBox();
         updateLabels();
     }
+
+    private void initCollectionComboBox() {
+        collectionComboBox.getItems().addAll(collections);
+        initHandlersCollectionComboBox();
+    }
+
+    private void initHandlersCollectionComboBox()  {
+        collectionComboBox.getCheckModel().getCheckedItems().addListener((ListChangeListener<MuseumCollection>) e -> {
+            List<MuseumCollection> choosed = collectionComboBox.getCheckModel().getCheckedItems();
+        });
+        }
 
     private void initTableView() {
         exhibitsTableView.setItems(filteredExhibits);
@@ -131,10 +154,6 @@ public final class MuseumDetailController {
         imagePath.ifPresent(path -> museumImageView.setImage(ImageHelper.loadImage(this.getClass().getResource(path))));
     }
 
-    @FXML
-    private void handleCollectionFilter(ActionEvent event) {
-
-    }
 
 
     @FXML

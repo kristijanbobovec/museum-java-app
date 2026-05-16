@@ -28,10 +28,7 @@ public class MuseumCollection {
 
     @Override
     public String toString() {
-        return "MuseumCollection{" +
-                "idCollection=" + idMuseumCollection +
-                ", name='" + name + '\'' +
-                '}';
+        return name;
     }
 
     public void setName(String name) {

@@ -9,10 +9,7 @@ import me.kristijanbobovec.museum.event.AppSubscribers;
 import me.kristijanbobovec.museum.factory.ControllerFactory;
 import me.kristijanbobovec.museum.manager.SceneManager;
 import me.kristijanbobovec.museum.repository.*;
-import me.kristijanbobovec.museum.service.AuthService;
-import me.kristijanbobovec.museum.service.ExhibitService;
-import me.kristijanbobovec.museum.service.MuseumService;
-import me.kristijanbobovec.museum.service.UserService;
+import me.kristijanbobovec.museum.service.*;
 import me.kristijanbobovec.museum.util.AlertHelper;
 import me.kristijanbobovec.museum.util.Messages;
 import org.slf4j.Logger;
@@ -54,14 +51,17 @@ public class Main extends Application {
         UserRepository userRepository = new UserRepositoryImpl();
         MuseumRepository museumRepository = new MuseumRepositoryImpl();
         ExhibitRepository exhibitRepository = new ExhibitRepositoryImpl();
+        MuseumCollectionRepository museumCollectionRepository = new MuseumCollectionRepositoryImpl();
+
 
         // Registring services
         UserService userService = new UserService(userRepository);
         AuthService authService = new AuthService(userService);
         MuseumService museumService = new MuseumService(museumRepository);
         ExhibitService exhibitService = new ExhibitService(exhibitRepository);
+        MuseumCollectionService museumCollectionService = new MuseumCollectionService(museumCollectionRepository);
 
-        ControllerFactory cf = new ControllerFactory(authService, museumService, exhibitService);
+        ControllerFactory cf = new ControllerFactory(authService, museumService, exhibitService, museumCollectionService);
 
         // Set primary stage in stagemanager!
         SceneManager.setStage(stage);
