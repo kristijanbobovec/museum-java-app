@@ -1,11 +1,15 @@
 package me.kristijanbobovec.museum.controller;
 
+import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.*;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
+import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import me.kristijanbobovec.museum.manager.SceneManager;
 import me.kristijanbobovec.museum.model.Museum;
@@ -20,13 +24,14 @@ import java.sql.SQLException;
 public final class HomeController {
 
     private static final Logger log = LoggerFactory.getLogger(HomeController.class);
+
     @FXML private ListView<Museum> museumsListView;
     @FXML private Label noMuseumsLabel;
     @FXML private TextField searchField;
 
     private final MuseumService museumService;
-    private ObservableList<Museum> listOfMuseums;
-    private FilteredList<Museum> filteredList;
+    private ObservableList<Museum> museums;
+    private FilteredList<Museum> filteredMuseums;
 
     public HomeController(MuseumService museumService) {
         this.museumService = museumService;
@@ -35,45 +40,56 @@ public final class HomeController {
     @FXML
     private void initialize() {
         try {
-            listOfMuseums = FXCollections.observableArrayList(museumService.getAllWithoutDetails());
-            initList();
-            applyFilters();
+            museums = FXCollections.observableArrayList(museumService.getAllWithoutDetails());
+            filteredMuseums = new FilteredList<>(museums, m -> true);
+            initView();
         } catch (SQLException e) {
             log.error(Messages.Museum.MUSEUMS_LOAD_FAIL_LOG, e);
             AlertHelper.displayAlert(Alert.AlertType.ERROR, Messages.Server.SERVER_ERROR_HEADER, Messages.Server.SERVER_ERROR_CONTENT);
         }
     }
 
+    private void initView() {
+        initList();
+        bindVisibility();
+        applyFilters();
+    }
+
+    private void bindVisibility() {
+        bindNoMuseumsLabelVisiblity();
+        bindMuseumsListViewVisiblity();
+    }
+
+    private void bindMuseumsListViewVisiblity() {
+        museumsListView.visibleProperty().bind(Bindings.isEmpty(filteredMuseums).not());
+        museumsListView.managedProperty().bind(Bindings.isEmpty(filteredMuseums).not());
+    }
+
+    private void bindNoMuseumsLabelVisiblity() {
+        noMuseumsLabel.visibleProperty().bind(Bindings.isEmpty(filteredMuseums));
+        noMuseumsLabel.managedProperty().bind(Bindings.isEmpty(filteredMuseums));
+    }
+
+
     private void initList() {
-        filteredList = new FilteredList<>(listOfMuseums, m -> true);
-        museumsListView.setItems(filteredList);
-        updateView();
+        museumsListView.setItems(filteredMuseums);
+        updateNoMusemsLabel();
     }
 
     private void applyFilters() {
         searchField.textProperty().addListener((obs, oldval, newval) -> {
-            filteredList.setPredicate(m -> {
+            filteredMuseums.setPredicate(m -> {
                 if (newval == null || newval.isEmpty()) return true;
                 return m.getName().toLowerCase().contains(newval.toLowerCase());
             });
-            updateView(Messages.Filter.NO_RESULTS.formatted(newval));
+            updateNoMusemsLabel();
         });
     }
 
-    private void updateView() {
-        boolean isEmpty = filteredList.isEmpty();
-        noMuseumsLabel.setVisible(isEmpty);
-        noMuseumsLabel.setManaged(isEmpty);
-        noMuseumsLabel.setText(Messages.Museum.NO_MUSEUMS);
-        museumsListView.setVisible(!isEmpty);
-        museumsListView.setManaged(!isEmpty);
+    private void updateNoMusemsLabel() {
+        String text = museums.isEmpty() ? Messages.Museum.NO_MUSEUMS : Messages.Filter.NO_RESULTS;
+        noMuseumsLabel.setText(text);
     }
-
-    private void updateView(String fallbackText) {
-        updateView();
-        noMuseumsLabel.setText(fallbackText);
-    }
-
 
     @FXML
     private void handleMuseumSelected(MouseEvent event) {

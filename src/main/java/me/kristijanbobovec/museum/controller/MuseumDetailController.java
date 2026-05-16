@@ -1,31 +1,36 @@
 package me.kristijanbobovec.museum.controller;
 
-import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import me.kristijanbobovec.museum.factory.column.ExhibitColumnFactory;
 import me.kristijanbobovec.museum.manager.SceneManager;
 import me.kristijanbobovec.museum.model.Exhibit;
 import me.kristijanbobovec.museum.model.Museum;
 import me.kristijanbobovec.museum.model.MuseumCollection;
 import me.kristijanbobovec.museum.service.ExhibitService;
+import me.kristijanbobovec.museum.util.AlertHelper;
+import me.kristijanbobovec.museum.util.ImageHelper;
+import me.kristijanbobovec.museum.util.Messages;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.sql.SQLException;
+import java.util.Optional;
 
 public final class MuseumDetailController {
 
+    private static final Logger log = LoggerFactory.getLogger(MuseumDetailController.class);
     private final ExhibitService exhibitService;
 
     public MuseumDetailController(ExhibitService exhibitService) {
         this.exhibitService = exhibitService;
     }
-
-
-    // ── FXML polja ─────────────────────────────────────────────────────────────
 
     @FXML private Label museumNameLabel;
     @FXML private Label museumAddressLabel;
@@ -36,59 +41,81 @@ public final class MuseumDetailController {
 
     @FXML private ComboBox<MuseumCollection> collectionComboBox;
     @FXML private TextField searchField;
-    @FXML private ComboBox<?> sortComboBox;
+
     @FXML private Label exhibitCountLabel;
 
     @FXML private TableView<Exhibit> exhibitsTableView;
-    @FXML private TableColumn<Exhibit, String> imageColumn;
-    @FXML private TableColumn<Exhibit, String> nameColumn;
-    @FXML private TableColumn<Exhibit, String> collectionColumn;
     @FXML private Label noExhibitsLabel;
     @FXML private ImageView museumImageView;
 
     private Museum museum;
+    private ObservableList<Exhibit> exhibits;
+    private FilteredList<Exhibit> filteredExhibits;
 
     public void setMuseum(Museum museum) {
-        this.museum = museum;
-        setLabels();
-        imageColumn.setCellValueFactory(cell -> new SimpleStringProperty(cell.getValue().getImagePath()));
-        imageColumn.setCellFactory(col -> new TableCell<>() {
-            private final ImageView imageView = new ImageView();
-            {
-                imageView.setFitWidth(80);
-                imageView.setFitHeight(55);
-                imageView.setPreserveRatio(true);
-            }
-            @Override
-            protected void updateItem(String path, boolean empty) {
-                super.updateItem(path, empty);
-                if (empty || path == null || path.isBlank()) {
-                    setGraphic(null);
-                } else {
-                    try {
-                        String url = path.startsWith("/")
-                                ? getClass().getResource(path).toExternalForm()
-                                : path;
-                        imageView.setImage(new Image(url, true));
-                        setGraphic(imageView);
-                    } catch (Exception e) {
-                        setGraphic(null);
-                    }
-                }
-            }
-        });
-        nameColumn.setCellValueFactory(cell -> new SimpleStringProperty(cell.getValue().getName()));
-        collectionColumn.setCellValueFactory(cell -> new SimpleStringProperty(cell.getValue().getMuseumCollection().getName()));
-        exhibitsTableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY_FLEX_LAST_COLUMN);
         try {
-            ObservableList<Exhibit> exhibits = FXCollections.observableArrayList(exhibitService.getAllByMuseumId(museum.getIdMuseum()));
-            exhibitsTableView.setItems(exhibits);
+            this.museum = museum;
+            exhibits = FXCollections.observableArrayList(exhibitService.getAllByMuseumId(museum.getIdMuseum()));
+            filteredExhibits = new FilteredList<>(exhibits);
+            initView();
         } catch (SQLException e) {
-            noExhibitsLabel.setManaged(true);
-            noExhibitsLabel.setVisible(true);
+            log.error(Messages.Exhibit.EXHIBITS_LOAD_FAIL_LOG, e);
+            AlertHelper.displayAlert(Alert.AlertType.ERROR, Messages.Server.SERVER_ERROR_HEADER, Messages.Server.SERVER_ERROR_CONTENT);
         }
-        //setImage();
     }
+
+    private void initView() {
+        setLabels();
+        bindVisibility();
+        loadMuseumFacade();
+        initTableView();
+        updateLabels();
+    }
+
+    private void initTableView() {
+        exhibitsTableView.setItems(filteredExhibits);
+
+        for (ExhibitColumnFactory col : ExhibitColumnFactory.values()) {
+            exhibitsTableView.getColumns().add(col.createColumn());
+        }
+    }
+
+
+    private void updateLabels() {
+        updateNoExhibitsLabel();
+        updateExhibitCountLabel();
+    }
+
+    private void updateExhibitCountLabel() {
+        exhibitCountLabel.setText(filteredExhibits.size() + " exhibits shown.");
+    }
+
+    private void updateNoExhibitsLabel() {
+        String text = exhibits.isEmpty() ? Messages.Exhibit.NO_EXHIBITS : Messages.Filter.NO_RESULTS;
+        noExhibitsLabel.setText(text);
+    }
+
+    private void bindVisibility() {
+        bindExhibitListViewVisibility();
+        bindExhibitCountLabelVisibility();
+        bindNoExhibitsLabelVisibility();
+    }
+
+    private void bindNoExhibitsLabelVisibility() {
+        noExhibitsLabel.visibleProperty().bind(Bindings.isEmpty(filteredExhibits));
+        noExhibitsLabel.managedProperty().bind(Bindings.isEmpty(filteredExhibits));
+    }
+
+    private void bindExhibitCountLabelVisibility() {
+        exhibitCountLabel.visibleProperty().bind(Bindings.isEmpty(filteredExhibits).not());
+        exhibitCountLabel.managedProperty().bind(Bindings.isEmpty(filteredExhibits).not());
+    }
+
+    private void bindExhibitListViewVisibility() {
+        exhibitsTableView.visibleProperty().bind(Bindings.isEmpty(filteredExhibits).not());
+        exhibitsTableView.managedProperty().bind(Bindings.isEmpty(filteredExhibits).not());
+    }
+
 
     private void setLabels() {
         museumNameLabel.setText(museum.getName());
@@ -99,15 +126,16 @@ public final class MuseumDetailController {
         museumYearLabel.setText(String.valueOf(museum.getEstablishmentYear()));
     }
 
+    private void loadMuseumFacade() {
+        Optional<String> imagePath = Optional.ofNullable(museum.getImagePath());
+        imagePath.ifPresent(path -> museumImageView.setImage(ImageHelper.loadImage(this.getClass().getResource(path))));
+    }
+
     @FXML
     private void handleCollectionFilter(ActionEvent event) {
 
     }
 
-    @FXML
-    private void handleSort(ActionEvent event) {
-
-    }
 
     @FXML
     private void handleBack(ActionEvent event) {

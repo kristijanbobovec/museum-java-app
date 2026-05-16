@@ -9,6 +9,7 @@ module me.kristijanbobovec.museum {
     requires jbcrypt;
     requires java.management;
     requires org.slf4j;
+    requires java.desktop;
 
 
     opens me.kristijanbobovec.museum to javafx.fxml;
@@ -16,4 +17,5 @@ module me.kristijanbobovec.museum {
     exports me.kristijanbobovec.museum;
     opens me.kristijanbobovec.museum.database to javafx.fxml;
     opens me.kristijanbobovec.museum.manager to javafx.fxml;
+    opens me.kristijanbobovec.museum.factory to javafx.fxml;
 }

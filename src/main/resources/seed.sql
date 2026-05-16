@@ -1,21 +1,35 @@
 IF NOT EXISTS (SELECT 1 FROM Country)
 BEGIN
-    DECLARE @idHrvatska  INT, @idItalija    INT, @idFrancuska INT;
-    DECLARE @idZagreb    INT, @idSplit      INT, @idRim        INT, @idParis INT;
-    DECLARE @idMUO       INT, @idAM         INT, @idVatikan    INT, @idLouvre INT;
-    DECLARE @idKol1      INT, @idKol2       INT, @idKol3       INT, @idKol4 INT;
-    DECLARE @idKur1      INT, @idKur2       INT, @idKur3       INT, @idKur4 INT;
+    DECLARE @idHrvatska  INT, @idItalija    INT, @idFrancuska  INT;
+    DECLARE @idUK        INT, @idSAD        INT, @idNizozemska INT;
+
+    DECLARE @idZagreb    INT, @idSplit      INT, @idRim        INT;
+    DECLARE @idParis     INT, @idLondon     INT, @idNewYork    INT;
+    DECLARE @idFirenza   INT, @idAmsterdam  INT;
+
+    DECLARE @idMUO       INT, @idAM         INT, @idVatikan    INT, @idLouvre     INT;
+    DECLARE @idBritish   INT, @idMet        INT, @idUffizi     INT, @idRijks      INT;
+
+    DECLARE @idKol1      INT, @idKol2       INT, @idKol3       INT, @idKol4       INT;
+    DECLARE @idKur1      INT, @idKur2       INT, @idKur3       INT, @idKur4       INT;
 
     -- Countries
-    INSERT INTO Country (Name) VALUES ('Hrvatska');   SET @idHrvatska  = SCOPE_IDENTITY();
-    INSERT INTO Country (Name) VALUES ('Italija');    SET @idItalija   = SCOPE_IDENTITY();
-    INSERT INTO Country (Name) VALUES ('Francuska');  SET @idFrancuska = SCOPE_IDENTITY();
+    INSERT INTO Country (Name) VALUES ('Hrvatska');               SET @idHrvatska   = SCOPE_IDENTITY();
+    INSERT INTO Country (Name) VALUES ('Italija');                SET @idItalija    = SCOPE_IDENTITY();
+    INSERT INTO Country (Name) VALUES ('Francuska');              SET @idFrancuska  = SCOPE_IDENTITY();
+    INSERT INTO Country (Name) VALUES ('Ujedinjeno Kraljevstvo'); SET @idUK         = SCOPE_IDENTITY();
+    INSERT INTO Country (Name) VALUES ('SAD');                    SET @idSAD        = SCOPE_IDENTITY();
+    INSERT INTO Country (Name) VALUES ('Nizozemska');             SET @idNizozemska = SCOPE_IDENTITY();
 
     -- Cities
-    INSERT INTO City (Name, CountryID) VALUES ('Zagreb', @idHrvatska);  SET @idZagreb = SCOPE_IDENTITY();
-    INSERT INTO City (Name, CountryID) VALUES ('Split',  @idHrvatska);  SET @idSplit  = SCOPE_IDENTITY();
-    INSERT INTO City (Name, CountryID) VALUES ('Rim',    @idItalija);   SET @idRim    = SCOPE_IDENTITY();
-    INSERT INTO City (Name, CountryID) VALUES ('Pariz',  @idFrancuska); SET @idParis  = SCOPE_IDENTITY();
+    INSERT INTO City (Name, CountryID) VALUES ('Zagreb',    @idHrvatska);   SET @idZagreb    = SCOPE_IDENTITY();
+    INSERT INTO City (Name, CountryID) VALUES ('Split',     @idHrvatska);   SET @idSplit     = SCOPE_IDENTITY();
+    INSERT INTO City (Name, CountryID) VALUES ('Rim',       @idItalija);    SET @idRim       = SCOPE_IDENTITY();
+    INSERT INTO City (Name, CountryID) VALUES ('Firenza',   @idItalija);    SET @idFirenza   = SCOPE_IDENTITY();
+    INSERT INTO City (Name, CountryID) VALUES ('Pariz',     @idFrancuska);  SET @idParis     = SCOPE_IDENTITY();
+    INSERT INTO City (Name, CountryID) VALUES ('London',    @idUK);         SET @idLondon    = SCOPE_IDENTITY();
+    INSERT INTO City (Name, CountryID) VALUES ('New York',  @idSAD);        SET @idNewYork   = SCOPE_IDENTITY();
+    INSERT INTO City (Name, CountryID) VALUES ('Amsterdam', @idNizozemska); SET @idAmsterdam = SCOPE_IDENTITY();
 
     -- Museums
     INSERT INTO Museum (Name, Adress, EstablishmentYear, Description, ImagePath, CityID)
@@ -35,8 +49,33 @@ BEGIN
 
     INSERT INTO Museum (Name, Adress, EstablishmentYear, Description, ImagePath, CityID)
     VALUES ('Louvre', 'Rue de Rivoli', 1793,
-            'Najveći muzej na svijetu s više od 35 000 izloženih predmeta.', NULL, @idParis);
+            'Najveći muzej na svijetu s više od 35 000 izloženih predmeta.',
+            '/assets/images/louvre.jpg', @idParis);
     SET @idLouvre = SCOPE_IDENTITY();
+
+    INSERT INTO Museum (Name, Adress, EstablishmentYear, Description, ImagePath, CityID)
+    VALUES ('British Museum', 'Great Russell St, London WC1B 3DG', 1753,
+            'Jedan od najvećih i najstarijih muzeja na svijetu, posvećen povijesti i kulturi čovječanstva.',
+            '/assets/images/british_museum.jpg', @idLondon);
+    SET @idBritish = SCOPE_IDENTITY();
+
+    INSERT INTO Museum (Name, Adress, EstablishmentYear, Description, ImagePath, CityID)
+    VALUES ('The Metropolitan Museum of Art', '1000 Fifth Ave, New York', 1870,
+            'Najveći muzej umjetnosti u SAD-u s više od 2 milijuna predmeta koji pokrivaju 5 000 godina svjetske kulture.',
+            '/assets/images/metropolitan.jpg', @idNewYork);
+    SET @idMet = SCOPE_IDENTITY();
+
+    INSERT INTO Museum (Name, Adress, EstablishmentYear, Description, ImagePath, CityID)
+    VALUES ('Galerija Uffizi', 'Piazzale degli Uffizi 6, Firenza', 1769,
+            'Jedan od najstarijih i najvažnijih muzeja na svijetu s iznimnom zbirkom renesansnih majstora.',
+            '/assets/images/uffizi.jpg', @idFirenza);
+    SET @idUffizi = SCOPE_IDENTITY();
+
+    INSERT INTO Museum (Name, Adress, EstablishmentYear, Description, ImagePath, CityID)
+    VALUES ('Rijksmuseum', 'Museumstraat 1, Amsterdam', 1800,
+            'Nizozemski nacionalni muzej posvećen umjetnosti i povijesti. Čuva najveću zbirku slika zlatnog doba Nizozemske.',
+            '/assets/images/rijksmuseum.jpg', @idAmsterdam);
+    SET @idRijks = SCOPE_IDENTITY();
 
     -- Museum collections
     INSERT INTO MuseumCollection (Name) VALUES ('Antička zbirka');              SET @idKol1 = SCOPE_IDENTITY();

@@ -82,21 +82,16 @@
                 <padding>
                     <Insets top="10" right="16" bottom="10" left="24" />
                 </padding>
-                <Label text="Filtriraj po zbirci:"
+                <Label text="Search:"
+                       style="-fx-font-weight: bold; -fx-text-fill: #444444;" />
+                <TextField fx:id="searchField"
+                           prefWidth="160"
+                           promptText="Name of exhibit..." />
+                <Label text="Collection:"
                        style="-fx-font-weight: bold; -fx-text-fill: #444444;" />
                 <ComboBox fx:id="collectionComboBox"
                           onAction="#handleCollectionFilter"
                           prefWidth="220" />
-                <Label text="Pretraži:"
-                       style="-fx-font-weight: bold; -fx-text-fill: #444444;" />
-                <TextField fx:id="searchField"
-                           prefWidth="160"
-                           promptText="Naziv eksponata..." />
-                <Label text="Sortiraj:"
-                       style="-fx-font-weight: bold; -fx-text-fill: #444444;" />
-                <ComboBox fx:id="sortComboBox"
-                          onAction="#handleSort"
-                          prefWidth="180" />
                 <Region HBox.hgrow="ALWAYS" />
                 <Label fx:id="exhibitCountLabel"
                        text=""
@@ -115,9 +110,6 @@
                         <Insets top="8" right="16" bottom="8" left="16" />
                     </padding>
                     <columns>
-                        <TableColumn fx:id="imageColumn" text="Slika" />
-                        <TableColumn fx:id="nameColumn" text="Naziv" />
-                        <TableColumn fx:id="collectionColumn" text="Zbirka" />
                     </columns>
                 </TableView>
             </center>

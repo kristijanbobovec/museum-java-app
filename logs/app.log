@@ -326,3 +326,141 @@ com.microsoft.sqlserver.jdbc.SQLServerException: The TCP/IP connection to the ho
 2026-05-15 22:58:30 INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection ConnectionID:2 ClientConnectionId: 1aa9f878-2dcb-4e1d-824d-466f4c5be990
 2026-05-15 22:58:30 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
 2026-05-15 22:58:30 INFO  m.k.museum.event.AppSubscribers - User admin successfully logged in!
+2026-05-16 11:22:35 INFO  m.k.m.d.DatabaseInitialization - Database not found creating new one!
+2026-05-16 11:22:35 DEBUG m.k.m.d.DatabaseInitialization - Creating tables...
+2026-05-16 11:22:35 DEBUG m.k.m.d.DatabaseInitialization - Creating stored procedures...
+2026-05-16 11:22:35 DEBUG m.k.m.d.DatabaseInitialization - Creating roles...
+2026-05-16 11:22:35 DEBUG m.k.m.d.DatabaseInitialization - Creating admin account...
+2026-05-16 11:22:36 INFO  m.k.m.d.DatabaseInitialization - Database is created!
+2026-05-16 11:22:39 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-05-16 11:22:39 INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection ConnectionID:2 ClientConnectionId: 241dff84-f67b-403e-8783-e1da9f652d02
+2026-05-16 11:22:39 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-05-16 11:22:39 INFO  m.k.museum.event.AppSubscribers - User admin successfully logged in!
+2026-05-16 11:23:31 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-05-16 11:23:31 INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection ConnectionID:2 ClientConnectionId: 7c3b5d32-ebe0-40ea-bd51-f0fff3390388
+2026-05-16 11:23:31 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-05-16 11:23:31 INFO  m.k.museum.event.AppSubscribers - User admin successfully logged in!
+2026-05-16 11:24:19 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-05-16 11:24:19 INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection ConnectionID:2 ClientConnectionId: 98cf4d8b-7ca6-4716-bd29-f2a2155db5e8
+2026-05-16 11:24:19 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-05-16 11:24:19 INFO  m.k.museum.event.AppSubscribers - User admin successfully logged in!
+2026-05-16 12:04:35 INFO  m.k.m.d.DatabaseInitialization - Database not found creating new one!
+2026-05-16 12:04:35 DEBUG m.k.m.d.DatabaseInitialization - Creating tables...
+2026-05-16 12:04:35 DEBUG m.k.m.d.DatabaseInitialization - Creating stored procedures...
+2026-05-16 12:04:35 DEBUG m.k.m.d.DatabaseInitialization - Creating roles...
+2026-05-16 12:04:35 DEBUG m.k.m.d.DatabaseInitialization - Creating admin account...
+2026-05-16 12:04:36 INFO  m.k.m.d.DatabaseInitialization - Database is created!
+2026-05-16 12:04:38 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-05-16 12:04:38 INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection ConnectionID:2 ClientConnectionId: d3837957-d68c-4782-8c81-40cf5661da82
+2026-05-16 12:04:38 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-05-16 12:04:38 INFO  m.k.museum.event.AppSubscribers - User admin successfully logged in!
+2026-05-16 12:04:50 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-05-16 12:04:50 INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection ConnectionID:2 ClientConnectionId: 2dfe951d-55bd-4d3f-884f-6b38e16a18e6
+2026-05-16 12:04:50 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-05-16 12:04:50 INFO  m.k.museum.event.AppSubscribers - User admin successfully logged in!
+2026-05-16 12:05:40 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-05-16 12:05:40 INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection ConnectionID:2 ClientConnectionId: a486761d-d773-4248-93fa-996c183abb1f
+2026-05-16 12:05:40 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-05-16 12:05:41 INFO  m.k.museum.event.AppSubscribers - User admin successfully logged in!
+2026-05-16 12:31:30 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-05-16 12:31:30 INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection ConnectionID:2 ClientConnectionId: a49b1845-42d9-4236-aa4f-42c8ddd0d841
+2026-05-16 12:31:30 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-05-16 12:31:31 INFO  m.k.museum.event.AppSubscribers - User admin successfully logged in!
+2026-05-16 12:33:02 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-05-16 12:33:02 INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection ConnectionID:2 ClientConnectionId: dfe73879-4409-437c-a1d0-f7db41160aa4
+2026-05-16 12:33:02 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-05-16 12:33:02 INFO  m.k.museum.event.AppSubscribers - User admin successfully logged in!
+2026-05-16 12:38:38 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-05-16 12:38:38 INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection ConnectionID:2 ClientConnectionId: fd87c61a-8f38-4f66-832c-a9380a9da71a
+2026-05-16 12:38:38 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-05-16 12:38:39 INFO  m.k.museum.event.AppSubscribers - User admin successfully logged in!
+2026-05-16 12:39:00 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-05-16 12:39:00 INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection ConnectionID:2 ClientConnectionId: 96e07fd6-48b6-44e8-b854-9d5c4ca5ab5e
+2026-05-16 12:39:00 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-05-16 12:39:00 INFO  m.k.museum.event.AppSubscribers - User admin successfully logged in!
+2026-05-16 12:44:45 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-05-16 12:44:45 INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection ConnectionID:2 ClientConnectionId: 6e8c5c10-1255-4b87-8261-6c5cdc4ed05b
+2026-05-16 12:44:45 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-05-16 12:44:46 INFO  m.k.museum.event.AppSubscribers - User admin successfully logged in!
+2026-05-16 12:45:40 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-05-16 12:45:40 INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection ConnectionID:2 ClientConnectionId: 133dc66d-3502-45e8-a0b9-b33be87fd413
+2026-05-16 12:45:40 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-05-16 12:45:40 INFO  m.k.museum.event.AppSubscribers - User admin successfully logged in!
+2026-05-16 13:05:26 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-05-16 13:05:26 INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection ConnectionID:2 ClientConnectionId: 32162846-6aec-43ec-aae3-7267cf6c09f9
+2026-05-16 13:05:26 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-05-16 13:05:26 INFO  m.k.museum.event.AppSubscribers - User admin successfully logged in!
+2026-05-16 13:05:58 INFO  m.k.m.d.DatabaseInitialization - Database not found creating new one!
+2026-05-16 13:05:59 DEBUG m.k.m.d.DatabaseInitialization - Creating tables...
+2026-05-16 13:05:59 DEBUG m.k.m.d.DatabaseInitialization - Creating stored procedures...
+2026-05-16 13:05:59 DEBUG m.k.m.d.DatabaseInitialization - Creating roles...
+2026-05-16 13:05:59 DEBUG m.k.m.d.DatabaseInitialization - Creating admin account...
+2026-05-16 13:05:59 INFO  m.k.m.d.DatabaseInitialization - Database is created!
+2026-05-16 13:06:01 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-05-16 13:06:01 INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection ConnectionID:2 ClientConnectionId: 6fbe77ac-e21b-4d19-bb6a-54c3c9045480
+2026-05-16 13:06:01 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-05-16 13:06:01 INFO  m.k.museum.event.AppSubscribers - User admin successfully logged in!
+2026-05-16 13:06:20 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-05-16 13:06:20 INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection ConnectionID:2 ClientConnectionId: beef2de0-2633-4485-a8d4-7e651d39eb01
+2026-05-16 13:06:20 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-05-16 13:06:20 INFO  m.k.museum.event.AppSubscribers - User admin successfully logged in!
+2026-05-16 13:08:04 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-05-16 13:08:04 INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection ConnectionID:2 ClientConnectionId: 94cdcc86-cf38-4f36-b3a4-085e3afe4bff
+2026-05-16 13:08:04 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-05-16 13:08:04 INFO  m.k.museum.event.AppSubscribers - User admin successfully logged in!
+2026-05-16 13:09:50 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-05-16 13:09:50 INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection ConnectionID:2 ClientConnectionId: 524bc48f-ecd7-4915-bed9-cef09c23cdf3
+2026-05-16 13:09:50 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-05-16 13:09:50 INFO  m.k.museum.event.AppSubscribers - User admin successfully logged in!
+2026-05-16 13:11:04 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-05-16 13:11:04 INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection ConnectionID:2 ClientConnectionId: 3eb444db-01a3-4f23-8e6c-e08dc7637c8d
+2026-05-16 13:11:04 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-05-16 13:11:04 INFO  m.k.museum.event.AppSubscribers - User admin successfully logged in!
+2026-05-16 13:11:41 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-05-16 13:11:41 INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection ConnectionID:2 ClientConnectionId: c4c0cdd5-8043-465c-9e6d-f6d490d3a691
+2026-05-16 13:11:41 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-05-16 13:11:41 INFO  m.k.museum.event.AppSubscribers - User admin successfully logged in!
+2026-05-16 13:14:29 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-05-16 13:14:29 INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection ConnectionID:2 ClientConnectionId: 60df1a2e-2eef-4599-b298-2ccec53c5dfd
+2026-05-16 13:14:29 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-05-16 13:14:29 INFO  m.k.museum.event.AppSubscribers - User admin successfully logged in!
+2026-05-16 13:16:05 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-05-16 13:16:05 INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection ConnectionID:2 ClientConnectionId: 1defc58e-68c2-4721-944f-d5fc24bd2dcd
+2026-05-16 13:16:05 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-05-16 13:16:05 INFO  m.k.museum.event.AppSubscribers - User admin successfully logged in!
+2026-05-16 13:19:04 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-05-16 13:19:04 INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection ConnectionID:2 ClientConnectionId: 263e924b-96ba-4dae-97f3-0e335e58a530
+2026-05-16 13:19:04 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-05-16 13:19:05 INFO  m.k.museum.event.AppSubscribers - User admin successfully logged in!
+2026-05-16 13:47:29 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-05-16 13:47:29 INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection ConnectionID:2 ClientConnectionId: 471d1101-7206-413b-9142-68ae1609251c
+2026-05-16 13:47:29 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-05-16 13:47:29 INFO  m.k.museum.event.AppSubscribers - User admin successfully logged in!
+2026-05-16 13:48:37 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-05-16 13:48:37 INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection ConnectionID:2 ClientConnectionId: 7a228930-01e0-4bbf-9ba3-200f319ddf8e
+2026-05-16 13:48:37 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-05-16 13:48:37 INFO  m.k.museum.event.AppSubscribers - User admin successfully logged in!
+2026-05-16 14:14:23 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-05-16 14:14:23 INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection ConnectionID:2 ClientConnectionId: c7a4edff-0ee6-4617-b020-e43b41dca30f
+2026-05-16 14:14:23 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-05-16 14:14:23 INFO  m.k.museum.event.AppSubscribers - User admin successfully logged in!
+2026-05-16 14:15:55 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-05-16 14:15:55 INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection ConnectionID:2 ClientConnectionId: 98e69e19-0e78-4415-8735-43682056dad6
+2026-05-16 14:15:55 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-05-16 14:15:55 INFO  m.k.museum.event.AppSubscribers - User admin successfully logged in!
+2026-05-16 14:23:11 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-05-16 14:23:11 INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection ConnectionID:2 ClientConnectionId: b7900379-e3d4-4898-9d67-9f2d0637d47d
+2026-05-16 14:23:11 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-05-16 14:23:12 INFO  m.k.museum.event.AppSubscribers - User admin successfully logged in!
+2026-05-16 14:26:34 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-05-16 14:26:34 INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection ConnectionID:2 ClientConnectionId: 731b2048-bbc7-41b1-a70d-bfef4c984f83
+2026-05-16 14:26:34 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-05-16 14:26:34 INFO  m.k.museum.event.AppSubscribers - User admin successfully logged in!
+2026-05-16 14:29:07 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-05-16 14:29:07 INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection ConnectionID:2 ClientConnectionId: 1df2ca17-8fc2-417f-acd7-60a048d3425c
+2026-05-16 14:29:07 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-05-16 14:29:07 INFO  m.k.museum.event.AppSubscribers - User admin successfully logged in!
+2026-05-16 14:29:29 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-05-16 14:29:29 INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection ConnectionID:2 ClientConnectionId: dbb8ce1d-58a7-468c-9072-d1c1031b2357
+2026-05-16 14:29:29 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-05-16 14:29:29 INFO  m.k.museum.event.AppSubscribers - User admin successfully logged in!

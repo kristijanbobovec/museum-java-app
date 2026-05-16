@@ -1,4 +1,4 @@
-package me.kristijanbobovec.museum.manager;
+package me.kristijanbobovec.museum.factory;
 
 import me.kristijanbobovec.museum.controller.HomeController;
 import me.kristijanbobovec.museum.controller.LoginController;

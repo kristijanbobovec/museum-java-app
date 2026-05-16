@@ -15,6 +15,8 @@ public class MuseumService {
 
     public List<Museum> getAllWithoutDetails() throws SQLException {
         return museumRepository.getAllWithDetails();
+
     }
+
 
 }

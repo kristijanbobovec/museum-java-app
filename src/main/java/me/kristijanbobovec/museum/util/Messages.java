@@ -24,9 +24,14 @@ public final class Messages {
         public static final String DATABASE_CREATING_ADMIN = "Creating admin account...";
     }
 
-        public static final class Museum {
+    public static final class Museum {
         public static final String MUSEUMS_LOAD_FAIL_LOG = "Failed to load museums";
         public static final String NO_MUSEUMS = "There is no museums. Add new museum. (EDIT -> NEW MUSEUM)";
+    }
+
+    public static final class Exhibit {
+        public static final String EXHIBITS_LOAD_FAIL_LOG = "Failed to load exponats for museum.";
+        public static final String NO_EXHIBITS = "There is no exhibits for this museum. (EDIT -> NEW EXHIBIT)";
     }
 
     public static final class SceneManager {
@@ -34,7 +39,7 @@ public final class Messages {
     }
 
     public static final class Filter {
-        public static final String NO_RESULTS = "There is no results for the search: %s.";
+        public static final String NO_RESULTS = "There is no results for this filters!";
     }
 
     public static final class Auth {

@@ -6,7 +6,7 @@ import javafx.scene.control.Alert;
 import javafx.stage.Stage;
 import me.kristijanbobovec.museum.database.DatabaseInitialization;
 import me.kristijanbobovec.museum.event.AppSubscribers;
-import me.kristijanbobovec.museum.manager.ControllerFactory;
+import me.kristijanbobovec.museum.factory.ControllerFactory;
 import me.kristijanbobovec.museum.manager.SceneManager;
 import me.kristijanbobovec.museum.repository.*;
 import me.kristijanbobovec.museum.service.AuthService;
