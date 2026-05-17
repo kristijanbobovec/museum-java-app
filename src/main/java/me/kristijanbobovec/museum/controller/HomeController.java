@@ -50,22 +50,23 @@ public final class HomeController {
     }
 
     private void initView() {
+        setNoMuseumsLabel();
         initList();
         bindVisibility();
         applyFilters();
     }
 
     private void bindVisibility() {
-        bindNoMuseumsLabelVisiblity();
-        bindMuseumsListViewVisiblity();
+        bindNoMuseumsLabelVisibility();
+        bindMuseumsListViewVisibility();
     }
 
-    private void bindMuseumsListViewVisiblity() {
+    private void bindMuseumsListViewVisibility() {
         museumsListView.visibleProperty().bind(Bindings.isEmpty(filteredMuseums).not());
         museumsListView.managedProperty().bind(Bindings.isEmpty(filteredMuseums).not());
     }
 
-    private void bindNoMuseumsLabelVisiblity() {
+    private void bindNoMuseumsLabelVisibility() {
         noMuseumsLabel.visibleProperty().bind(Bindings.isEmpty(filteredMuseums));
         noMuseumsLabel.managedProperty().bind(Bindings.isEmpty(filteredMuseums));
     }
@@ -73,7 +74,6 @@ public final class HomeController {
 
     private void initList() {
         museumsListView.setItems(filteredMuseums);
-        updateNoMusemsLabel();
     }
 
     private void applyFilters() {
@@ -82,11 +82,10 @@ public final class HomeController {
                 if (newval == null || newval.isEmpty()) return true;
                 return m.getName().toLowerCase().contains(newval.toLowerCase());
             });
-            updateNoMusemsLabel();
         });
     }
 
-    private void updateNoMusemsLabel() {
+    private void setNoMuseumsLabel() {
         String text = museums.isEmpty() ? Messages.Museum.NO_MUSEUMS : Messages.Filter.NO_RESULTS;
         noMuseumsLabel.setText(text);
     }

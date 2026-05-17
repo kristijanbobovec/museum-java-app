@@ -21,6 +21,7 @@ public class ColumnFactory {
 
     public static <T> TableColumn<T, String> createColumnImage(String title, Function<T, String> dataInCell) {
         TableColumn<T, String> col = createColumnString(title, dataInCell);
+        col.setSortable(false);
 
         col.setCellFactory(column -> new TableCell<>() {
             @Override
