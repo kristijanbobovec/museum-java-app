@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="me.kristijanbobovec.museum.controller.CuratorCrudController"
+            minWidth="820" minHeight="560">
+
+    <top>
+        <VBox>
+            <MenuBar>
+                <menus>
+                    <Menu mnemonicParsing="false" text="Home" onAction="#handleHome"/>
+                    <Menu mnemonicParsing="false" text="Edit">
+                        <items>
+                            <MenuItem mnemonicParsing="false" text="Country"    onAction="#handleCountry"/>
+                            <MenuItem mnemonicParsing="false" text="City"       onAction="#handleCity"/>
+                            <MenuItem mnemonicParsing="false" text="Collection" onAction="#handleCollection"/>
+                            <MenuItem mnemonicParsing="false" text="Museum"     onAction="#handleMuseum"/>
+                            <MenuItem mnemonicParsing="false" text="Exhibit"    onAction="#handleExhibit"/>
+                            <MenuItem mnemonicParsing="false" text="Curator"    onAction="#handleCurator"/>
+                        </items>
+                    </Menu>
+                    <Menu mnemonicParsing="false" text="Admin" fx:id="adminMenu">
+                        <items>
+                            <MenuItem mnemonicParsing="false" text="Create Backup" onAction="#handleCreateBackup"/>
+                            <MenuItem mnemonicParsing="false" text="Load Backup"   onAction="#handleLoadBackup"/>
+                            <MenuItem mnemonicParsing="false" text="Delete All"    onAction="#handleDeleteAll"/>
+                        </items>
+                    </Menu>
+                </menus>
+            </MenuBar>
+            <HBox alignment="CENTER_LEFT" spacing="12"
+                  style="-fx-background-color: #f8f9fa; -fx-border-color: #e0e0e0; -fx-border-width: 0 0 1 0;">
+                <padding><Insets top="12" right="16" bottom="12" left="16"/></padding>
+                <Label text="Curator Management"
+                       style="-fx-font-size: 18; -fx-font-weight: bold; -fx-text-fill: #333333;"/>
+            </HBox>
+        </VBox>
+    </top>
+
+    <center>
+        <SplitPane dividerPositions="0.38">
+
+            <!-- LEFT: List -->
+            <VBox style="-fx-background-color: #ffffff;">
+                <VBox style="-fx-background-color: #f8f9fa; -fx-border-color: #e0e0e0; -fx-border-width: 0 0 1 0;">
+                    <padding><Insets top="8" right="12" bottom="8" left="12"/></padding>
+                    <HBox spacing="8" alignment="CENTER_LEFT">
+                        <Label text="Search:" style="-fx-font-weight: bold; -fx-text-fill: #444444;"/>
+                        <TextField fx:id="searchField" promptText="Filter curators..." HBox.hgrow="ALWAYS"/>
+                    </HBox>
+                    <HBox spacing="8" alignment="CENTER_LEFT">
+                        <VBox.margin><Insets top="6"/></VBox.margin>
+                        <Label text="Museum:" style="-fx-font-weight: bold; -fx-text-fill: #444444;"/>
+                        <ComboBox fx:id="filterMuseumComboBox" promptText="All museums" HBox.hgrow="ALWAYS"/>
+                    </HBox>
+                </VBox>
+                <TableView fx:id="tableView" VBox.vgrow="ALWAYS"
+                           style="-fx-background-color: transparent;">
+                    <padding><Insets top="4" right="8" bottom="4" left="8"/></padding>
+                    <columns>
+                        <TableColumn fx:id="firstNameColumn" text="First Name" prefWidth="100"/>
+                        <TableColumn fx:id="lastNameColumn" text="Last Name" prefWidth="100"/>
+                        <TableColumn fx:id="museumColumn" text="Museum" prefWidth="110"/>
+                    </columns>
+                </TableView>
+            </VBox>
+
+            <!-- RIGHT: Form -->
+            <BorderPane style="-fx-background-color: #ffffff;">
+                <center>
+                    <VBox spacing="14">
+                        <padding><Insets top="20" right="20" bottom="0" left="20"/></padding>
+
+                        <Label text="Curator Details"
+                               style="-fx-font-size: 15; -fx-font-weight: bold; -fx-text-fill: #333333;"/>
+
+                        <HBox spacing="12">
+                            <VBox spacing="6" HBox.hgrow="ALWAYS">
+                                <Label text="First Name *" style="-fx-font-weight: bold; -fx-text-fill: #444444;"/>
+                                <TextField fx:id="firstNameField" promptText="Enter first name" maxWidth="Infinity"/>
+                            </VBox>
+                            <VBox spacing="6" HBox.hgrow="ALWAYS">
+                                <Label text="Last Name *" style="-fx-font-weight: bold; -fx-text-fill: #444444;"/>
+                                <TextField fx:id="lastNameField" promptText="Enter last name" maxWidth="Infinity"/>
+                            </VBox>
+                        </HBox>
+
+                        <VBox spacing="6">
+                            <Label text="Museum *" style="-fx-font-weight: bold; -fx-text-fill: #444444;"/>
+                            <ComboBox fx:id="museumComboBox" promptText="Select museum" maxWidth="Infinity"/>
+                        </VBox>
+
+                        <Label fx:id="errorLabel" text="" wrapText="true"
+                               visible="false" managed="false"
+                               style="-fx-text-fill: #c0392b; -fx-font-size: 12;"/>
+
+                        <!-- Collections drag-and-drop -->
+                        <VBox spacing="6" VBox.vgrow="ALWAYS">
+                            <HBox alignment="CENTER_LEFT" spacing="8">
+                                <Label text="Collections"
+                                       style="-fx-font-weight: bold; -fx-text-fill: #444444;"/>
+                                <Label text="— drag between lists to assign"
+                                       style="-fx-text-fill: #888888; -fx-font-size: 11;"/>
+                            </HBox>
+                            <HBox spacing="8" VBox.vgrow="ALWAYS">
+
+                                <!-- Available collections -->
+                                <VBox spacing="0" HBox.hgrow="ALWAYS">
+                                    <Label text="Available"
+                                           style="-fx-background-color: #f0f4f8; -fx-text-fill: #555555; -fx-font-weight: bold; -fx-padding: 5 8 5 8; -fx-border-color: #c8d8e8; -fx-border-width: 1 1 0 1;"/>
+                                    <ListView fx:id="availableCollectionsListView" VBox.vgrow="ALWAYS"
+                                              style="-fx-background-color: transparent; -fx-border-color: #c8d8e8; -fx-border-width: 0 1 1 1;"/>
+                                </VBox>
+
+                                <!-- Arrow hint -->
+                                <VBox alignment="CENTER" prefWidth="28">
+                                    <Label text="⇄"
+                                           style="-fx-font-size: 18; -fx-text-fill: #aaaaaa;"/>
+                                </VBox>
+
+                                <!-- Assigned collections -->
+                                <VBox spacing="0" HBox.hgrow="ALWAYS">
+                                    <Label text="Assigned"
+                                           style="-fx-background-color: #f0f8f4; -fx-text-fill: #27ae60; -fx-font-weight: bold; -fx-padding: 5 8 5 8; -fx-border-color: #a8dfc0; -fx-border-width: 1 1 0 1;"/>
+                                    <ListView fx:id="assignedCollectionsListView" VBox.vgrow="ALWAYS"
+                                              style="-fx-background-color: transparent; -fx-border-color: #a8dfc0; -fx-border-width: 0 1 1 1;"/>
+                                </VBox>
+
+                            </HBox>
+                        </VBox>
+
+                    </VBox>
+                </center>
+
+                <bottom>
+                    <HBox spacing="8" alignment="CENTER_LEFT"
+                          style="-fx-background-color: #f8f9fa; -fx-border-color: #e0e0e0; -fx-border-width: 1 0 0 0;">
+                        <padding><Insets top="12" right="16" bottom="12" left="20"/></padding>
+                        <Button fx:id="createButton" text="Create" onAction="#handleCreate"
+                                style="-fx-background-color: #27ae60; -fx-text-fill: white; -fx-font-weight: bold; -fx-cursor: hand; -fx-padding: 8 20 8 20; -fx-background-radius: 4;"/>
+                        <Button fx:id="updateButton" text="Update" onAction="#handleUpdate"
+                                style="-fx-background-color: #2980b9; -fx-text-fill: white; -fx-font-weight: bold; -fx-cursor: hand; -fx-padding: 8 20 8 20; -fx-background-radius: 4;"/>
+                        <Button fx:id="deleteButton" text="Delete" onAction="#handleDelete"
+                                style="-fx-background-color: #c0392b; -fx-text-fill: white; -fx-font-weight: bold; -fx-cursor: hand; -fx-padding: 8 20 8 20; -fx-background-radius: 4;"/>
+                        <Region HBox.hgrow="ALWAYS"/>
+                        <Button fx:id="clearButton" text="Clear" onAction="#handleClear"
+                                style="-fx-background-color: #7f8c8d; -fx-text-fill: white; -fx-font-weight: bold; -fx-cursor: hand; -fx-padding: 8 20 8 20; -fx-background-radius: 4;"/>
+                    </HBox>
+                </bottom>
+            </BorderPane>
+
+        </SplitPane>
+    </center>
+
+</BorderPane>

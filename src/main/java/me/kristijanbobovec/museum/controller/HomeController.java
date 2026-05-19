@@ -4,7 +4,6 @@ import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
@@ -21,7 +20,7 @@ import org.slf4j.LoggerFactory;
 
 import java.sql.SQLException;
 
-public final class HomeController {
+public final class HomeController extends NavigationController {
 
     private static final Logger log = LoggerFactory.getLogger(HomeController.class);
 
@@ -54,6 +53,7 @@ public final class HomeController {
         initList();
         bindVisibility();
         applyFilters();
+        toggleAdminOptions();
     }
 
     private void bindVisibility() {
@@ -101,24 +101,4 @@ public final class HomeController {
         }
     }
 
-    @FXML
-    private void handleNewMuseum(ActionEvent event) {}
-
-    @FXML
-    private void handleNewCollection(ActionEvent event) {}
-
-    @FXML
-    private void handleEditExhibit(ActionEvent event) {}
-
-    @FXML
-    private void handleEditCurator(ActionEvent event) {}
-
-    @FXML
-    private void handleCreateBackup(ActionEvent event) {}
-
-    @FXML
-    private void handleLoadBackup(ActionEvent event) {}
-
-    @FXML
-    private void handleDeleteAll(ActionEvent event) {}
 }

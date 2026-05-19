@@ -19,16 +19,18 @@
         <VBox>
             <MenuBar>
                 <menus>
-                    <Menu mnemonicParsing="false" text="Home" />
+                    <Menu mnemonicParsing="false" text="Home" onAction="#handleHome" />
                     <Menu mnemonicParsing="false" text="Edit">
                         <items>
-                            <MenuItem mnemonicParsing="false" text="New Museum"     onAction="#handleNewMuseum" />
-                            <MenuItem mnemonicParsing="false" text="New Collection" onAction="#handleNewCollection" />
-                            <MenuItem mnemonicParsing="false" text="Edit Exhibit"   onAction="#handleEditExhibit" />
-                            <MenuItem mnemonicParsing="false" text="Edit Curator"   onAction="#handleEditCurator" />
+                            <MenuItem mnemonicParsing="false" text="Country"     onAction="#handleCountry" />
+                            <MenuItem mnemonicParsing="false" text="City"     onAction="#handleCity" />
+                            <MenuItem mnemonicParsing="false" text="Collection" onAction="#handleCollection" />
+                            <MenuItem mnemonicParsing="false" text="Museum"     onAction="#handleMuseum" />
+                            <MenuItem mnemonicParsing="false" text="Exhibit"   onAction="#handleExhibit" />
+                            <MenuItem mnemonicParsing="false" text="Curator"   onAction="#handleCurator" />
                         </items>
                     </Menu>
-                    <Menu mnemonicParsing="false" text="Admin">
+                    <Menu mnemonicParsing="false" text="Admin" fx:id="adminMenu">
                         <items>
                             <MenuItem mnemonicParsing="false" text="Create Backup" onAction="#handleCreateBackup" />
                             <MenuItem mnemonicParsing="false" text="Load Backup"   onAction="#handleLoadBackup" />

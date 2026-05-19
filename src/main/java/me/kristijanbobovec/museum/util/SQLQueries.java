@@ -36,6 +36,11 @@ public class SQLQueries {
     public final static String INSERT_MUSEUMCOLLECTION              = "{call usp_MuseumCollection_Insert(?, ?)}";
     public final static String UPDATE_MUSEUMCOLLECTION              = "{call usp_MuseumCollection_Update(?, ?)}";
     public final static String DELETE_MUSEUMCOLLECTION              = "{call usp_MuseumCollection_Delete(?)}";
+    public final static String GETALL_COUNTRIES  = "{call usp_Country_GetAll}";
+    public final static String GETBYID_COUNTRY   = "{call usp_Country_GetById(?)}";
+    public final static String INSERT_COUNTRY    = "{call usp_Country_Insert(?, ?)}";
+    public final static String UPDATE_COUNTRY    = "{call usp_Country_Update(?, ?)}";
+    public final static String DELETE_COUNTRY    = "{call usp_Country_Delete(?)}";
 
 
 
@@ -462,6 +467,57 @@ public class SQLQueries {
             WHERE MuseumCollectionID = @IDMuseumCollection;
             DELETE FROM MuseumCollection
             WHERE IDMuseumCollection = @IDMuseumCollection;
+        END
+        GO
+        CREATE OR ALTER PROCEDURE usp_Country_GetAll
+        AS
+        BEGIN
+            SET NOCOUNT ON;
+            SELECT
+                IDCountry,
+                Name
+            FROM Country;
+        END
+        GO
+        CREATE OR ALTER PROCEDURE usp_Country_GetById
+            @IDCountry INT
+        AS
+        BEGIN
+            SET NOCOUNT ON;
+            SELECT
+                IDCountry,
+                Name
+            FROM Country
+            WHERE IDCountry = @IDCountry;
+        END
+        GO
+        CREATE OR ALTER PROCEDURE usp_Country_Insert
+            @Name       NVARCHAR(100),
+            @IDCountry  INT OUTPUT
+        AS
+        BEGIN
+            SET NOCOUNT ON;
+            INSERT INTO Country (Name)
+            VALUES (@Name);
+            SET @IDCountry = SCOPE_IDENTITY();
+        END
+        GO
+        CREATE OR ALTER PROCEDURE usp_Country_Update
+            @IDCountry  INT,
+            @Name       NVARCHAR(100)
+        AS
+        BEGIN
+            UPDATE Country
+            SET Name = @Name
+            WHERE IDCountry = @IDCountry;
+        END
+        GO
+        CREATE OR ALTER PROCEDURE usp_Country_Delete
+            @IDCountry INT
+        AS
+        BEGIN
+            DELETE FROM Country
+            WHERE IDCountry = @IDCountry;
         END
     """;
 
