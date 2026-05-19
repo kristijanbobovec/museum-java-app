@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Menu;
 import me.kristijanbobovec.museum.manager.SceneManager;
 import me.kristijanbobovec.museum.manager.UserSession;
+import me.kristijanbobovec.museum.service.AuthService;
 
 public abstract class NavigationController {
 
@@ -48,6 +49,13 @@ public abstract class NavigationController {
     @FXML
     private void handleCurator() {
         SceneManager.switchTo("curator-crud.fxml");
+    }
+
+    @FXML
+    private void handleLogout(){
+        System.out.println("da");
+        AuthService.logout();
+        SceneManager.switchTo("login.fxml");
     }
 
 

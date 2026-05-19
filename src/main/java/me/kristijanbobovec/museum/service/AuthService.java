@@ -2,8 +2,10 @@ package me.kristijanbobovec.museum.service;
 
 import me.kristijanbobovec.museum.event.EventBus;
 import me.kristijanbobovec.museum.event.UserLoggedInEvent;
+import me.kristijanbobovec.museum.event.UserLoggedOutEvent;
 import me.kristijanbobovec.museum.exception.ValidationException;
 import me.kristijanbobovec.museum.exception.WrongCredentialsException;
+import me.kristijanbobovec.museum.manager.UserSession;
 import me.kristijanbobovec.museum.model.RoleType;
 import me.kristijanbobovec.museum.model.User;
 import me.kristijanbobovec.museum.model.dto.user.UserToInsertDTO;
@@ -56,5 +58,9 @@ public class AuthService {
         UserToInsertDTO userToInsert = new UserToInsertDTO(username, email, firstName, lastName, password, RoleType.USER.getValue());
         userService.insert(userToInsert);
         log.info(Messages.Auth.REGISTER_SUCCEED_LOG.formatted(userToInsert.username()));
+    }
+
+    public static void logout() {
+        EventBus.INSTANCE.publish(new UserLoggedOutEvent(UserSession.INSTANCE.getSession()));
     }
 }

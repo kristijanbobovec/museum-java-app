@@ -64,6 +64,7 @@ public final class Messages {
         public static final String REGISTER_SUCCEED_CONTENT = "Welcome now login with your username and password!";
 
         public static final String LOGIN_SUCCEED_LOG = "User %s successfully logged in!";
+        public static final String LOGOUT_SUCCEED_LOG = "User %s successfully logged out!";
         public static final String REGISTER_SUCCEED_LOG = "User %s successfully registered!";
         public static final String LOGIN_FAILED_LOG = "User %s failed at login!";
         public static final String USER_LOAD_FAIL_LOG = "Failed to load user during login";

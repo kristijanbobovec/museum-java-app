@@ -24,28 +24,34 @@
 
     <top>
         <VBox>
-            <MenuBar>
-                <menus>
-                    <Menu mnemonicParsing="false" text="Home" onAction="#handleHome"/>
-                    <Menu mnemonicParsing="false" text="Edit">
-                        <items>
-                            <MenuItem mnemonicParsing="false" text="Country"    onAction="#handleCountry"/>
-                            <MenuItem mnemonicParsing="false" text="City"       onAction="#handleCity"/>
-                            <MenuItem mnemonicParsing="false" text="Collection" onAction="#handleCollection"/>
-                            <MenuItem mnemonicParsing="false" text="Museum"     onAction="#handleMuseum"/>
-                            <MenuItem mnemonicParsing="false" text="Exhibit"    onAction="#handleExhibit"/>
-                            <MenuItem mnemonicParsing="false" text="Curator"    onAction="#handleCurator"/>
-                        </items>
-                    </Menu>
-                    <Menu mnemonicParsing="false" text="Admin" fx:id="adminMenu">
-                        <items>
-                            <MenuItem mnemonicParsing="false" text="Create Backup" onAction="#handleCreateBackup"/>
-                            <MenuItem mnemonicParsing="false" text="Load Backup"   onAction="#handleLoadBackup"/>
-                            <MenuItem mnemonicParsing="false" text="Delete All"    onAction="#handleDeleteAll"/>
-                        </items>
-                    </Menu>
-                </menus>
-            </MenuBar>
+            <HBox alignment="CENTER_LEFT">
+                <Button text="Home" onAction="#handleHome"
+                        style="-fx-background-color: transparent; -fx-padding: 4 8 4 8; -fx-cursor: hand;"/>
+                <MenuBar HBox.hgrow="NEVER">
+                    <menus>
+                        <Menu mnemonicParsing="false" text="Edit">
+                            <items>
+                                <MenuItem mnemonicParsing="false" text="Country"    onAction="#handleCountry"/>
+                                <MenuItem mnemonicParsing="false" text="City"       onAction="#handleCity"/>
+                                <MenuItem mnemonicParsing="false" text="Collection" onAction="#handleCollection"/>
+                                <MenuItem mnemonicParsing="false" text="Museum"     onAction="#handleMuseum"/>
+                                <MenuItem mnemonicParsing="false" text="Exhibit"    onAction="#handleExhibit"/>
+                                <MenuItem mnemonicParsing="false" text="Curator"    onAction="#handleCurator"/>
+                            </items>
+                        </Menu>
+                        <Menu mnemonicParsing="false" text="Admin" fx:id="adminMenu">
+                            <items>
+                                <MenuItem mnemonicParsing="false" text="Create Backup" onAction="#handleCreateBackup"/>
+                                <MenuItem mnemonicParsing="false" text="Load Backup"   onAction="#handleLoadBackup"/>
+                                <MenuItem mnemonicParsing="false" text="Delete All"    onAction="#handleDeleteAll"/>
+                            </items>
+                        </Menu>
+                    </menus>
+                </MenuBar>
+                <Region HBox.hgrow="ALWAYS"/>
+                <Button text="Logout" onAction="#handleLogout"
+                        style="-fx-background-color: transparent; -fx-padding: 4 8 4 8; -fx-cursor: hand;"/>
+            </HBox>
             <HBox alignment="CENTER_LEFT" spacing="12"
                   style="-fx-background-color: #f8f9fa; -fx-border-color: #e0e0e0; -fx-border-width: 0 0 1 0;">
                 <padding><Insets top="12" right="16" bottom="12" left="16"/></padding>
