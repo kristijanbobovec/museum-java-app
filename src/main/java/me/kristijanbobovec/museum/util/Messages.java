@@ -27,12 +27,18 @@ public final class Messages {
 
     public static final class Museum {
         public static final String MUSEUMS_LOAD_FAIL_LOG = "Failed to load museums";
-        public static final String NO_MUSEUMS = "There is no museums. Add new museum. (EDIT -> NEW MUSEUM)";
+        public static final String NO_MUSEUMS = "There is no countries. Add new museum. (EDIT -> MUSEUM)";
     }
 
+    public static final class Country {
+        public static final String COUNTRIES_LOAD_FAIL_LOG = "Failed to load countries";
+        public static final String NO_COUNTRIES = "There is no countries. Add new museum. (EDIT -> COUNTRY)";
+    }
+
+
     public static final class Exhibit {
-        public static final String EXHIBITS_LOAD_FAIL_LOG = "Failed to load exponats for museum.";
-        public static final String NO_EXHIBITS = "There is no exhibits for this museum. (EDIT -> NEW EXHIBIT)";
+        public static final String EXHIBITS_LOAD_FAIL_LOG = "Failed to load exhibits for museum.";
+        public static final String NO_EXHIBITS = "There is no exhibits for this museum. (EDIT -> EXHIBIT)";
     }
 
     public static final class SceneManager {

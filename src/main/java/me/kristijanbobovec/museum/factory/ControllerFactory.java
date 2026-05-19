@@ -1,13 +1,7 @@
 package me.kristijanbobovec.museum.factory;
 
-import me.kristijanbobovec.museum.controller.HomeController;
-import me.kristijanbobovec.museum.controller.LoginController;
-import me.kristijanbobovec.museum.controller.MuseumDetailController;
-import me.kristijanbobovec.museum.controller.RegisterController;
-import me.kristijanbobovec.museum.service.AuthService;
-import me.kristijanbobovec.museum.service.ExhibitService;
-import me.kristijanbobovec.museum.service.MuseumCollectionService;
-import me.kristijanbobovec.museum.service.MuseumService;
+import me.kristijanbobovec.museum.controller.*;
+import me.kristijanbobovec.museum.service.*;
 
 public class ControllerFactory {
     private final AuthService authService;
@@ -15,12 +9,15 @@ public class ControllerFactory {
 
     private final ExhibitService exhibitService;
     private final MuseumCollectionService museumCollectionService;
+    private final CountryService countryService;
 
-    public ControllerFactory(AuthService authService, MuseumService museumService, ExhibitService exhibitService, MuseumCollectionService museumCollectionService) {
+    public ControllerFactory(AuthService authService, MuseumService museumService, ExhibitService exhibitService, MuseumCollectionService museumCollectionService,
+                             CountryService countryService) {
         this.authService = authService;
         this.museumService = museumService;
         this.exhibitService = exhibitService;
         this.museumCollectionService = museumCollectionService;
+        this.countryService = countryService;
     }
 
     public Object create(Class<?> controllerClass) {
@@ -38,6 +35,10 @@ public class ControllerFactory {
 
         if (controllerClass == MuseumDetailController.class) {
             return new MuseumDetailController(exhibitService, museumCollectionService);
+        }
+
+        if (controllerClass == CountryController.class) {
+            return new CountryController(countryService);
         }
 
         try {

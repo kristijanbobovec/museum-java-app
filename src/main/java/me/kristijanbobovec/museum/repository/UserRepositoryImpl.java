@@ -5,93 +5,9 @@ import me.kristijanbobovec.museum.model.User;
 import me.kristijanbobovec.museum.util.SQLQueries;
 
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Optional;
 
 public class UserRepositoryImpl implements UserRepository {
-
-    @Override
-    public List<User> getAll() throws SQLException {
-        List<User> users = new ArrayList<>();
-        try (
-                Connection conn = DatabaseManager.getConnection();
-                CallableStatement csGetAllUsers = conn.prepareCall(SQLQueries.GETALL_USERS);
-                ) {
-
-            ResultSet rsUsers = csGetAllUsers.executeQuery();
-            while (rsUsers.next()) {
-                users.add(mapRow(rsUsers));
-            }
-        }
-
-        return users;
-    }
-
-    @Override
-    public Optional<User> getById(int id) throws SQLException {
-        try (
-                Connection conn = DatabaseManager.getConnection();
-                CallableStatement csGetUserById = conn.prepareCall(SQLQueries.GETBYID_USER);
-        ) {
-            csGetUserById.setInt(1, id);
-
-            ResultSet rsUser = csGetUserById.executeQuery();
-            if (rsUser.next()) {
-                return Optional.of(mapRow(rsUser));
-            }
-        }
-        return Optional.empty();
-    }
-
-    @Override
-    public Optional<User> insert(User user) throws SQLException {
-        try (Connection conn = DatabaseManager.getConnection();
-        CallableStatement csInsertUser = conn.prepareCall(SQLQueries.INSERT_USER);
-        ) {
-            csInsertUser.setString(1, user.getUsername());
-            csInsertUser.setString(2, user.getEmail());
-            csInsertUser.setString(3, user.getFirstName());
-            csInsertUser.setString(4, user.getLastName());
-            csInsertUser.setString(5, user.getPassword());
-            csInsertUser.setInt(6, user.getRoleId());
-            csInsertUser.registerOutParameter(7, Types.INTEGER);
-
-            csInsertUser.execute();
-
-            int idUser = csInsertUser.getInt(7);
-            return getById(idUser);
-        }
-    }
-
-    @Override
-    public boolean update(int id, User user) throws SQLException {
-        try (Connection conn = DatabaseManager.getConnection();
-             CallableStatement csUpdateUser = conn.prepareCall(SQLQueries.UPDATE_USER);
-        ) {
-            Optional<User> nonUpdatedUser = getById(id);
-            if (nonUpdatedUser.isEmpty()) return false;
-
-            csUpdateUser.setInt(1, id);
-            csUpdateUser.setString(2, user.getUsername() == null ? nonUpdatedUser.get().getUsername() : user.getUsername());
-            csUpdateUser.setString(3, user.getEmail() == null ? nonUpdatedUser.get().getEmail() : user.getEmail());
-            csUpdateUser.setString(4, user.getFirstName() == null ? nonUpdatedUser.get().getFirstName() : user.getFirstName());
-            csUpdateUser.setString(5, user.getLastName() == null ? nonUpdatedUser.get().getLastName() : user.getLastName());
-
-            return csUpdateUser.executeUpdate() > 0;
-        }
-    }
-
-    @Override
-    public boolean delete(int id) throws SQLException {
-        try (Connection conn = DatabaseManager.getConnection();
-             CallableStatement csDeleteUser = conn.prepareCall(SQLQueries.DELETE_USER)) {
-            csDeleteUser.setInt(1, id);
-
-            return csDeleteUser.executeUpdate() > 0;
-        }
-    }
-
     @Override
     public Optional<User> getByUsername(String username) throws SQLException {
         try (
@@ -137,7 +53,7 @@ public class UserRepositoryImpl implements UserRepository {
         return cs.getBoolean(2);
     }
 
-    private User mapRow(ResultSet rs) throws SQLException {
+    public User mapRow(ResultSet rs) throws SQLException {
         return new User(
                 rs.getInt("IDUser"),
                 rs.getString("Username"),
@@ -147,5 +63,25 @@ public class UserRepositoryImpl implements UserRepository {
                 rs.getString("Password"),
                 rs.getInt("RoleID")
         );
+    }
+
+    @Override
+    public void mapForInsert(CallableStatement cs, User item) throws SQLException {
+        cs.setString(1, item.getUsername());
+        cs.setString(2, item.getEmail());
+        cs.setString(3, item.getFirstName());
+        cs.setString(4, item.getLastName());
+        cs.setString(5, item.getPassword());
+        cs.setInt(6, item.getRoleId());
+        cs.registerOutParameter(7, Types.INTEGER);
+    }
+
+    @Override
+    public void mapForUpdate(CallableStatement cs, int id, User originalItem, User toUpdate) throws SQLException {
+        cs.setInt(1, id);
+        cs.setString(2, toUpdate.getUsername() == null ? originalItem.getUsername() : toUpdate.getUsername());
+        cs.setString(3, toUpdate.getEmail() == null ? originalItem.getEmail() : toUpdate.getEmail());
+        cs.setString(4, toUpdate.getFirstName() == null ? originalItem.getFirstName() : toUpdate.getFirstName());
+        cs.setString(5, toUpdate.getLastName() == null ? originalItem.getLastName() : toUpdate.getLastName());
     }
 }

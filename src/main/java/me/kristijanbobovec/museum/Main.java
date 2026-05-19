@@ -8,7 +8,6 @@ import me.kristijanbobovec.museum.database.DatabaseInitialization;
 import me.kristijanbobovec.museum.event.AppSubscribers;
 import me.kristijanbobovec.museum.factory.ControllerFactory;
 import me.kristijanbobovec.museum.manager.SceneManager;
-import me.kristijanbobovec.museum.model.Country;
 import me.kristijanbobovec.museum.repository.*;
 import me.kristijanbobovec.museum.service.*;
 import me.kristijanbobovec.museum.util.AlertHelper;
@@ -17,7 +16,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.sql.SQLException;
-import java.util.List;
 
 public class Main extends Application {
     private static final Logger log = LoggerFactory.getLogger(Main.class);
@@ -56,18 +54,15 @@ public class Main extends Application {
         CountryRepository countryRepository = new CountryRepositoryImpl();
         MuseumCollectionRepository museumCollectionRepository = new MuseumCollectionRepositoryImpl();
 
-
-        List<Country> countries = countryRepository.getAll();
-        countries.forEach(System.out::println);
-
         // Registring services
         UserService userService = new UserService(userRepository);
         AuthService authService = new AuthService(userService);
         MuseumService museumService = new MuseumService(museumRepository);
         ExhibitService exhibitService = new ExhibitService(exhibitRepository);
         MuseumCollectionService museumCollectionService = new MuseumCollectionService(museumCollectionRepository);
+        CountryService countryService = new CountryService(countryRepository);
 
-        ControllerFactory cf = new ControllerFactory(authService, museumService, exhibitService, museumCollectionService);
+        ControllerFactory cf = new ControllerFactory(authService, museumService, exhibitService, museumCollectionService, countryService);
 
         // Set primary stage in stagemanager!
         SceneManager.setStage(stage);

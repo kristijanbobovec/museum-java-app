@@ -31,6 +31,7 @@ public class SQLQueries {
     public final static String INSERT_EXHIBIT              = "{call usp_Exhibit_Insert(?, ?, ?, ?, ?, ?, ?)}";
     public final static String UPDATE_EXHIBIT              = "{call usp_Exhibit_Update(?, ?, ?, ?, ?, ?, ?)}";
     public final static String DELETE_EXHIBIT              = "{call usp_Exhibit_Delete(?)}";
+    public final static String GETALL_MUSEUMCOLLECTIONS             = "{call usp_MuseumCollection_GetAll}";
     public final static String GETBYID_MUSEUMCOLLECTION             = "{call usp_MuseumCollection_GetById(?)}";
     public final static String GETBYMUSEUMID_MUSEUMCOLLECTION       = "{call usp_MuseumCollection_GetByMuseumId(?)}";
     public final static String INSERT_MUSEUMCOLLECTION              = "{call usp_MuseumCollection_Insert(?, ?)}";
@@ -162,13 +163,13 @@ public class SQLQueries {
             @LastName   NVARCHAR(100),
             @Password   NVARCHAR(500),
             @RoleID     INT,
-            @IDUser     INT OUTPUT
+            @IDInserted     INT OUTPUT
         AS
         BEGIN
             SET NOCOUNT ON;
             INSERT INTO [User] (Username, Email, FirstName, LastName, Password, RoleID)
             VALUES (@Username, @Email, @FirstName, @LastName, @Password, @RoleID);
-            SET @IDUser = SCOPE_IDENTITY();
+            SET @IDInserted = SCOPE_IDENTITY();
         END
         GO
         CREATE OR ALTER PROCEDURE usp_Museum_GetAll
@@ -210,13 +211,13 @@ public class SQLQueries {
             @Description        NVARCHAR(MAX),
             @ImagePath          NVARCHAR(500),
             @CityID             INT,
-            @IDMuseum           INT OUTPUT
+            @IDInserted         INT OUTPUT
         AS
         BEGIN
             SET NOCOUNT ON;
             INSERT INTO Museum (Name, Adress, EstablishmentYear, Description, ImagePath, CityID)
             VALUES (@Name, @Adress, @EstablishmentYear, @Description, @ImagePath, @CityID);
-            SET @IDMuseum = SCOPE_IDENTITY();
+            SET @IDInserted = SCOPE_IDENTITY();
         END
         GO
         CREATE OR ALTER PROCEDURE usp_Museum_Update
@@ -375,13 +376,13 @@ public class SQLQueries {
             @ImagePath          NVARCHAR(500),
             @MuseumCollectionID INT,
             @MuseumID           INT,
-            @IDExhibit          INT OUTPUT
+            @IDInserted         INT OUTPUT
         AS
         BEGIN
             SET NOCOUNT ON;
             INSERT INTO Exhibit (Name, Description, CreationYear, ImagePath, MuseumCollectionID, MuseumID)
             VALUES (@Name, @Description, @CreationYear, @ImagePath, @MuseumCollectionID, @MuseumID);
-            SET @IDExhibit = SCOPE_IDENTITY();
+            SET @IDInserted = SCOPE_IDENTITY();
         END
         GO
         CREATE OR ALTER PROCEDURE usp_Exhibit_Update
@@ -413,6 +414,16 @@ public class SQLQueries {
             WHERE IDExhibit = @IDExhibit;
         END
         GO
+        CREATE OR ALTER PROCEDURE usp_MuseumCollection_GetAll
+        AS
+        BEGIN
+            SET NOCOUNT ON;
+            SELECT
+                IDMuseumCollection,
+                Name
+            FROM MuseumCollection;
+        END
+        GO
         CREATE OR ALTER PROCEDURE usp_MuseumCollection_GetById
             @IDMuseumCollection INT
         AS
@@ -440,13 +451,13 @@ public class SQLQueries {
         GO
         CREATE OR ALTER PROCEDURE usp_MuseumCollection_Insert
             @Name               NVARCHAR(200),
-            @IDMuseumCollection INT OUTPUT
+            @IDInserted         INT OUTPUT
         AS
         BEGIN
             SET NOCOUNT ON;
             INSERT INTO MuseumCollection (Name)
             VALUES (@Name);
-            SET @IDMuseumCollection = SCOPE_IDENTITY();
+            SET @IDInserted = SCOPE_IDENTITY();
         END
         GO
         CREATE OR ALTER PROCEDURE usp_MuseumCollection_Update
@@ -493,13 +504,13 @@ public class SQLQueries {
         GO
         CREATE OR ALTER PROCEDURE usp_Country_Insert
             @Name       NVARCHAR(100),
-            @IDCountry  INT OUTPUT
+            @IDInserted INT OUTPUT
         AS
         BEGIN
             SET NOCOUNT ON;
             INSERT INTO Country (Name)
             VALUES (@Name);
-            SET @IDCountry = SCOPE_IDENTITY();
+            SET @IDInserted = SCOPE_IDENTITY();
         END
         GO
         CREATE OR ALTER PROCEDURE usp_Country_Update
