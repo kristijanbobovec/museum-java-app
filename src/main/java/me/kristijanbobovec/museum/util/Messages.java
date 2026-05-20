@@ -23,6 +23,8 @@ public final class Messages {
         public static final String DATABASE_CREATING_ROLES = "Creating roles...";
         public static final String DATABASE_CREATING_ADMIN = "Creating admin account...";
         public static final String DATABASE_SEEDING = "Seeding initial data...";
+        public static final String DATABASE_FAILEDTO_GENERIC = "Database failed to do operaion!";
+        public static final String DATABASE_FAILEDTO = "Database failed to %s: %s object!";
     }
 
     public static final class Museum {
@@ -32,6 +34,9 @@ public final class Messages {
 
     public static final class Country {
         public static final String COUNTRIES_LOAD_FAIL_LOG = "Failed to load countries";
+        public static final String COUNTRY_DELETE_FAIL_LOG = "Failed to delete a country. (%s)";
+        public static final String COUNTRY_INSERT_FAIL_LOG = "Failed to insert a country. (%s)";
+        public static final String COUNTRY_UPDATE_FAIL_LOG = "Failed to update a country. (%s)";
         public static final String NO_COUNTRIES = "There is no countries. Add new museum. (EDIT -> COUNTRY)";
     }
 
@@ -39,6 +44,26 @@ public final class Messages {
     public static final class Exhibit {
         public static final String EXHIBITS_LOAD_FAIL_LOG = "Failed to load exhibits for museum.";
         public static final String NO_EXHIBITS = "There is no exhibits for this museum. (EDIT -> EXHIBIT)";
+    }
+
+    public static final class CRUD {
+        public static final String DELETED_HEADER = "Deleted";
+        public static final String DELETED_CONTENT = "%s is successfully deleted! And all his connections!";
+        public static final String DELETED_LOG = "%s is successfully deleted by %s!";
+
+        public static final String INSERTED_HEADER = "Inserted";
+        public static final String INSERTED_CONTENT = "%s is successfully inserted!";
+        public static final String INSERT_LOG = "%s is successfully inserted by %s!";
+
+        public static final String UPDATED_HEADER = "Updated";
+        public static final String UPDATED_CONTENT = "FROM %s, TO %s is successfully updated!";
+        public static final String UPDATED_LOG = "FROM %s, TO %s is successfully updated by %s!";
+    }
+
+    public static final class CRUDValidation {
+        public static final String ITEM_NOT_SELECTED_GENERIC = "Item is not selected please select the item.";
+        public static final String ITEM_NOT_SELECTED = "Item is not selected please select the item that you want to %s.";
+        public static final String FIELD_EMPTY = "Field %s is empty!";
     }
 
     public static final class SceneManager {

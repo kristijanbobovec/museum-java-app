@@ -56,6 +56,22 @@ public enum StatementFactory {
                 "delete", SQLQueries.DELETE_USER,
                 "update", SQLQueries.UPDATE_USER
         )));
+
+        statements.put(CityRepository.class, new HashMap<>(Map.of(
+                "getAll", SQLQueries.GETALL_CITIES,
+                "getById", SQLQueries.GETBYID_CITY,
+                "insert", SQLQueries.INSERT_CITY,
+                "delete", SQLQueries.DELETE_CITY,
+                "update", SQLQueries.UPDATE_CITY
+        )));
+
+        statements.put(CuratorRepository.class, new HashMap<>(Map.of(
+                "getAll", SQLQueries.GETALL_CURATORS,
+                "getById", SQLQueries.GETBYID_CURATOR,
+                "insert", SQLQueries.INSERT_CURATOR,
+                "delete", SQLQueries.DELETE_CURATOR,
+                "update", SQLQueries.UPDATE_CURATOR
+        )));
     }
 
     public String getStatement(Class<?> repo, String methodName) {

@@ -42,6 +42,20 @@ public class SQLQueries {
     public final static String INSERT_COUNTRY    = "{call usp_Country_Insert(?, ?)}";
     public final static String UPDATE_COUNTRY    = "{call usp_Country_Update(?, ?)}";
     public final static String DELETE_COUNTRY    = "{call usp_Country_Delete(?)}";
+    public final static String GETALL_CITIES                = "{call usp_City_GetAll}";
+    public final static String GETBYID_CITY                 = "{call usp_City_GetById(?)}";
+    public final static String GETALL_CITIES_WITH_DETAILS   = "{call usp_City_GetAllWithDetails}";
+    public final static String GETBYID_CITY_WITH_DETAILS    = "{call usp_City_GetByIdWithDetails(?)}";
+    public final static String INSERT_CITY                  = "{call usp_City_Insert(?, ?, ?)}";
+    public final static String UPDATE_CITY                  = "{call usp_City_Update(?, ?, ?)}";
+    public final static String DELETE_CITY                  = "{call usp_City_Delete(?)}";
+    public final static String GETALL_CURATORS              = "{call usp_Curator_GetAll}";
+    public final static String GETBYID_CURATOR              = "{call usp_Curator_GetById(?)}";
+    public final static String GETALL_CURATORS_WITH_DETAILS = "{call usp_Curator_GetAllWithDetails}";
+    public final static String GETBYID_CURATOR_WITH_DETAILS = "{call usp_Curator_GetByIdWithDetails(?)}";
+    public final static String INSERT_CURATOR               = "{call usp_Curator_Insert(?, ?, ?, ?)}";
+    public final static String UPDATE_CURATOR               = "{call usp_Curator_Update(?, ?, ?, ?)}";
+    public final static String DELETE_CURATOR               = "{call usp_Curator_Delete(?)}";
 
 
 
@@ -245,8 +259,11 @@ public class SQLQueries {
             @IDMuseum INT
         AS
         BEGIN
-            DELETE FROM Museum
-            WHERE IDMuseum = @IDMuseum;
+            DELETE FROM CuratorCollection WHERE CuratorID IN (SELECT IDCurator FROM Curator WHERE MuseumID = @IDMuseum);
+            DELETE FROM Curator            WHERE MuseumID = @IDMuseum;
+            DELETE FROM ImagePath          WHERE ExhibitID IN (SELECT IDExhibit FROM Exhibit WHERE MuseumID = @IDMuseum);
+            DELETE FROM Exhibit            WHERE MuseumID = @IDMuseum;
+            DELETE FROM Museum             WHERE IDMuseum = @IDMuseum;
         END
         GO
         CREATE OR ALTER PROCEDURE usp_Museum_GetByIdWithDetails
@@ -410,8 +427,8 @@ public class SQLQueries {
             @IDExhibit INT
         AS
         BEGIN
-            DELETE FROM Exhibit
-            WHERE IDExhibit = @IDExhibit;
+            DELETE FROM ImagePath WHERE ExhibitID = @IDExhibit;
+            DELETE FROM Exhibit   WHERE IDExhibit = @IDExhibit;
         END
         GO
         CREATE OR ALTER PROCEDURE usp_MuseumCollection_GetAll
@@ -474,10 +491,10 @@ public class SQLQueries {
             @IDMuseumCollection INT
         AS
         BEGIN
-            DELETE FROM CuratorCollection
-            WHERE MuseumCollectionID = @IDMuseumCollection;
-            DELETE FROM MuseumCollection
-            WHERE IDMuseumCollection = @IDMuseumCollection;
+            DELETE FROM CuratorCollection WHERE MuseumCollectionID = @IDMuseumCollection;
+            DELETE FROM ImagePath          WHERE ExhibitID IN (SELECT IDExhibit FROM Exhibit WHERE MuseumCollectionID = @IDMuseumCollection);
+            DELETE FROM Exhibit            WHERE MuseumCollectionID = @IDMuseumCollection;
+            DELETE FROM MuseumCollection   WHERE IDMuseumCollection = @IDMuseumCollection;
         END
         GO
         CREATE OR ALTER PROCEDURE usp_Country_GetAll
@@ -527,8 +544,238 @@ public class SQLQueries {
             @IDCountry INT
         AS
         BEGIN
-            DELETE FROM Country
-            WHERE IDCountry = @IDCountry;
+            DELETE FROM CuratorCollection
+            WHERE CuratorID IN (
+                SELECT IDCurator FROM Curator
+                WHERE MuseumID IN (
+                    SELECT IDMuseum FROM Museum
+                    WHERE CityID IN (SELECT IDCity FROM City WHERE CountryID = @IDCountry)
+                )
+            );
+            DELETE FROM Curator
+            WHERE MuseumID IN (
+                SELECT IDMuseum FROM Museum
+                WHERE CityID IN (SELECT IDCity FROM City WHERE CountryID = @IDCountry)
+            );
+            DELETE FROM ImagePath
+            WHERE ExhibitID IN (
+                SELECT IDExhibit FROM Exhibit
+                WHERE MuseumID IN (
+                    SELECT IDMuseum FROM Museum
+                    WHERE CityID IN (SELECT IDCity FROM City WHERE CountryID = @IDCountry)
+                )
+            );
+            DELETE FROM Exhibit
+            WHERE MuseumID IN (
+                SELECT IDMuseum FROM Museum
+                WHERE CityID IN (SELECT IDCity FROM City WHERE CountryID = @IDCountry)
+            );
+            DELETE FROM Museum WHERE CityID IN (SELECT IDCity FROM City WHERE CountryID = @IDCountry);
+            DELETE FROM City    WHERE CountryID = @IDCountry;
+            DELETE FROM Country WHERE IDCountry = @IDCountry;
+        END
+        GO
+        CREATE OR ALTER PROCEDURE usp_City_GetAll
+        AS
+        BEGIN
+            SET NOCOUNT ON;
+            SELECT
+                IDCity,
+                Name,
+                CountryID
+            FROM City;
+        END
+        GO
+        CREATE OR ALTER PROCEDURE usp_City_GetById
+            @IDCity INT
+        AS
+        BEGIN
+            SET NOCOUNT ON;
+            SELECT
+                IDCity,
+                Name,
+                CountryID
+            FROM City
+            WHERE IDCity = @IDCity;
+        END
+        GO
+        CREATE OR ALTER PROCEDURE usp_City_GetAllWithDetails
+        AS
+        BEGIN
+            SET NOCOUNT ON;
+            SELECT
+                c.IDCity,
+                c.Name,
+                c.CountryID,
+                co.IDCountry,
+                co.Name     AS CountryName
+            FROM City c
+            INNER JOIN Country co ON c.CountryID = co.IDCountry;
+        END
+        GO
+        CREATE OR ALTER PROCEDURE usp_City_GetByIdWithDetails
+            @IDCity INT
+        AS
+        BEGIN
+            SET NOCOUNT ON;
+            SELECT
+                c.IDCity,
+                c.Name,
+                c.CountryID,
+                co.IDCountry,
+                co.Name     AS CountryName
+            FROM City c
+            INNER JOIN Country co ON c.CountryID = co.IDCountry
+            WHERE c.IDCity = @IDCity;
+        END
+        GO
+        CREATE OR ALTER PROCEDURE usp_City_Insert
+            @Name       NVARCHAR(100),
+            @CountryID  INT,
+            @IDInserted INT OUTPUT
+        AS
+        BEGIN
+            SET NOCOUNT ON;
+            INSERT INTO City (Name, CountryID)
+            VALUES (@Name, @CountryID);
+            SET @IDInserted = SCOPE_IDENTITY();
+        END
+        GO
+        CREATE OR ALTER PROCEDURE usp_City_Update
+            @IDCity     INT,
+            @Name       NVARCHAR(100),
+            @CountryID  INT
+        AS
+        BEGIN
+            UPDATE City
+            SET
+                Name      = @Name,
+                CountryID = @CountryID
+            WHERE IDCity = @IDCity;
+        END
+        GO
+        CREATE OR ALTER PROCEDURE usp_City_Delete
+            @IDCity INT
+        AS
+        BEGIN
+            DELETE FROM CuratorCollection
+            WHERE CuratorID IN (
+                SELECT IDCurator FROM Curator
+                WHERE MuseumID IN (SELECT IDMuseum FROM Museum WHERE CityID = @IDCity)
+            );
+            DELETE FROM Curator
+            WHERE MuseumID IN (SELECT IDMuseum FROM Museum WHERE CityID = @IDCity);
+            DELETE FROM ImagePath
+            WHERE ExhibitID IN (
+                SELECT IDExhibit FROM Exhibit
+                WHERE MuseumID IN (SELECT IDMuseum FROM Museum WHERE CityID = @IDCity)
+            );
+            DELETE FROM Exhibit
+            WHERE MuseumID IN (SELECT IDMuseum FROM Museum WHERE CityID = @IDCity);
+            DELETE FROM Museum WHERE CityID = @IDCity;
+            DELETE FROM City   WHERE IDCity  = @IDCity;
+        END
+        GO
+        CREATE OR ALTER PROCEDURE usp_Curator_GetAll
+        AS
+        BEGIN
+            SET NOCOUNT ON;
+            SELECT
+                IDCurator,
+                FirstName,
+                LastName,
+                MuseumID
+            FROM Curator;
+        END
+        GO
+        CREATE OR ALTER PROCEDURE usp_Curator_GetById
+            @IDCurator INT
+        AS
+        BEGIN
+            SET NOCOUNT ON;
+            SELECT
+                IDCurator,
+                FirstName,
+                LastName,
+                MuseumID
+            FROM Curator
+            WHERE IDCurator = @IDCurator;
+        END
+        GO
+        CREATE OR ALTER PROCEDURE usp_Curator_GetAllWithDetails
+        AS
+        BEGIN
+            SET NOCOUNT ON;
+            SELECT
+                cu.IDCurator,
+                cu.FirstName,
+                cu.LastName,
+                cu.MuseumID,
+                m.Name          AS MuseumName,
+                m.Adress        AS MuseumAdress,
+                m.EstablishmentYear,
+                m.Description   AS MuseumDescription,
+                m.ImagePath     AS MuseumImagePath,
+                m.CityID
+            FROM Curator cu
+            INNER JOIN Museum m ON cu.MuseumID = m.IDMuseum;
+        END
+        GO
+        CREATE OR ALTER PROCEDURE usp_Curator_GetByIdWithDetails
+            @IDCurator INT
+        AS
+        BEGIN
+            SET NOCOUNT ON;
+            SELECT
+                cu.IDCurator,
+                cu.FirstName,
+                cu.LastName,
+                cu.MuseumID,
+                m.Name          AS MuseumName,
+                m.Adress        AS MuseumAdress,
+                m.EstablishmentYear,
+                m.Description   AS MuseumDescription,
+                m.ImagePath     AS MuseumImagePath,
+                m.CityID
+            FROM Curator cu
+            INNER JOIN Museum m ON cu.MuseumID = m.IDMuseum
+            WHERE cu.IDCurator = @IDCurator;
+        END
+        GO
+        CREATE OR ALTER PROCEDURE usp_Curator_Insert
+            @FirstName  NVARCHAR(100),
+            @LastName   NVARCHAR(100),
+            @MuseumID   INT,
+            @IDInserted INT OUTPUT
+        AS
+        BEGIN
+            SET NOCOUNT ON;
+            INSERT INTO Curator (FirstName, LastName, MuseumID)
+            VALUES (@FirstName, @LastName, @MuseumID);
+            SET @IDInserted = SCOPE_IDENTITY();
+        END
+        GO
+        CREATE OR ALTER PROCEDURE usp_Curator_Update
+            @IDCurator  INT,
+            @FirstName  NVARCHAR(100),
+            @LastName   NVARCHAR(100),
+            @MuseumID   INT
+        AS
+        BEGIN
+            UPDATE Curator
+            SET
+                FirstName = @FirstName,
+                LastName  = @LastName,
+                MuseumID  = @MuseumID
+            WHERE IDCurator = @IDCurator;
+        END
+        GO
+        CREATE OR ALTER PROCEDURE usp_Curator_Delete
+            @IDCurator INT
+        AS
+        BEGIN
+            DELETE FROM CuratorCollection WHERE CuratorID  = @IDCurator;
+            DELETE FROM Curator           WHERE IDCurator = @IDCurator;
         END
     """;
 

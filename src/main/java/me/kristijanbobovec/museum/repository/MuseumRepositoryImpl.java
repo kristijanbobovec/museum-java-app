@@ -86,7 +86,7 @@ public class MuseumRepositoryImpl implements MuseumRepository {
                 rsMuseum.getString("CountryName")));
 
         museum.setCity(new City(rsMuseum.getInt("IDCity"),
-                rsMuseum.getString("CityName")));
+                rsMuseum.getString("CityName"), rsMuseum.getInt("IDCountry")));
 
     }
 }

@@ -58,15 +58,16 @@ public interface Repository<T> {
         }
     }
 
-    default boolean update(int id, T toUpdate) throws SQLException {
+    default Optional<T> update(int id, T toUpdate) throws SQLException {
         try (Connection conn = DatabaseManager.getConnection();
              CallableStatement cs = conn.prepareCall(StatementFactory.INSTANCE.getStatement(this.getClass(), "update"));
         ) {
             Optional<T> originalItem = getById(id);
-            if (originalItem.isEmpty()) return false;
+            if (originalItem.isEmpty()) return Optional.empty();
 
             mapForUpdate(cs, id, originalItem.get(), toUpdate);
-            return cs.executeUpdate() > 0;
+            cs.executeUpdate();
+            return getById(id);
         }
     }
 

@@ -6,12 +6,17 @@ import me.kristijanbobovec.museum.manager.SceneManager;
 import me.kristijanbobovec.museum.manager.UserSession;
 import me.kristijanbobovec.museum.service.AuthService;
 
-public abstract class NavigationController {
+public class NavigationController {
 
     @FXML
     private Menu adminMenu;
 
-    protected void toggleAdminOptions() {
+    @FXML
+    private void initialize() {
+        toggleAdminOptions();
+    }
+
+    private void toggleAdminOptions() {
         boolean isAdmin = UserSession.INSTANCE.getSession().isAdmin();
 
         adminMenu.setVisible(isAdmin);
@@ -53,7 +58,6 @@ public abstract class NavigationController {
 
     @FXML
     private void handleLogout(){
-        System.out.println("da");
         AuthService.logout();
         SceneManager.switchTo("login.fxml");
     }

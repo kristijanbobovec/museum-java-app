@@ -20,7 +20,7 @@ import org.slf4j.LoggerFactory;
 
 import java.sql.SQLException;
 
-public final class HomeController extends NavigationController {
+public final class HomeController {
 
     private static final Logger log = LoggerFactory.getLogger(HomeController.class);
 
@@ -53,7 +53,6 @@ public final class HomeController extends NavigationController {
         initList();
         bindVisibility();
         applyFilters();
-        toggleAdminOptions();
     }
 
     private void bindVisibility() {
