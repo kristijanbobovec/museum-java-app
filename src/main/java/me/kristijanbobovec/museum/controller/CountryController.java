@@ -6,8 +6,6 @@ import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import me.kristijanbobovec.museum.exception.DatabaseFailedToException;
 import me.kristijanbobovec.museum.exception.ItemNotSelectedException;
@@ -27,7 +25,7 @@ import java.sql.SQLException;
 import java.util.Optional;
 
 
-public class CountryController implements CrudController {
+public class CountryController extends CrudController<Country> {
 
     private static final Logger log = LoggerFactory.getLogger(CountryController.class);
     private final CountryService countryService;
@@ -37,16 +35,7 @@ public class CountryController implements CrudController {
     }
 
     @FXML
-    private TableView<Country> tableView;
-
-    @FXML
     private TextField nameField;
-
-    @FXML
-    private Label errorLabel;
-
-    @FXML
-    private TextField searchField;
 
 
     private ObservableList<Country> countries;
@@ -61,14 +50,14 @@ public class CountryController implements CrudController {
             sortedCountries = new SortedList<>(filteredCounties);
             initView();
         } catch (SQLException e) {
-            log.error(Messages.Country.COUNTRIES_LOAD_FAIL_LOG, e);
+            log.error(Messages.Country.LOAD_FAIL_LOG, e);
             AlertHelper.displayAlert(Alert.AlertType.ERROR, Messages.Server.SERVER_ERROR_HEADER, Messages.Server.SERVER_ERROR_CONTENT);
         }
     }
 
     private void initView() {
         initTableView();
-        applySearch();
+        applySearch(filteredCounties);
         applySelecton();
     }
 
@@ -93,7 +82,7 @@ public class CountryController implements CrudController {
 
             Country updatedCounty = countryService.update(id, countryDto);
             handleClear();
-            updateCountyInList(updatedCounty);
+            updateInObservableList(countries, updatedCounty);
             focusTableViewItem(updatedCounty);
 
             AlertHelper.displayAlert(Alert.AlertType.INFORMATION, Messages.CRUD.UPDATED_HEADER, Messages.CRUD.UPDATED_CONTENT.formatted(selectedCountry, updatedCounty));
@@ -101,7 +90,7 @@ public class CountryController implements CrudController {
         } catch (ItemNotSelectedException | OmitingRequiredFieldsException e) {
             showError(e.getMessage());
         } catch (DatabaseFailedToException | SQLException e) {
-            log.error(Messages.Country.COUNTRY_UPDATE_FAIL_LOG.formatted(UserSession.INSTANCE.getSession().username()), e);
+            log.error(Messages.Country.UPDATE_FAIL_LOG.formatted(UserSession.INSTANCE.getSession().username()), e);
             showError(Messages.Server.SERVER_ERROR_CONTENT);
         }
     }
@@ -114,7 +103,7 @@ public class CountryController implements CrudController {
             CountryInsertDTO countryDto = new CountryInsertDTO(name);
 
             Country insertedCountry = countryService.insert(countryDto);
-            addCountryToList(insertedCountry);
+            addToObservableList(countries, insertedCountry);
             handleClear();
             focusTableViewItem(insertedCountry);
 
@@ -123,12 +112,10 @@ public class CountryController implements CrudController {
         } catch (ItemNotSelectedException | OmitingRequiredFieldsException e) {
             showError(e.getMessage());
         }  catch (SQLException e) {
-            log.error(Messages.Country.COUNTRY_INSERT_FAIL_LOG.formatted(UserSession.INSTANCE.getSession().username()), e);
+            log.error(Messages.Country.INSERT_FAIL_LOG.formatted(UserSession.INSTANCE.getSession().username()), e);
             showError(Messages.Server.SERVER_ERROR_CONTENT);
         }
     }
-
-
 
     @Override
     public void handleClear() {
@@ -144,14 +131,15 @@ public class CountryController implements CrudController {
             int id = selectedCountry.map(Country::getIdCountry).orElse(-1);
 
             countryService.delete(id);
-            removeCountryFromList(selectedCountry.get());
+            removeFromObservableList(countries, selectedCountry.get());
             handleClear();
+
             AlertHelper.displayAlert(Alert.AlertType.INFORMATION, Messages.CRUD.DELETED_HEADER, Messages.CRUD.DELETED_CONTENT.formatted(selectedCountry.get().getName()));
             log.info(Messages.CRUD.DELETED_LOG.formatted(selectedCountry.get().getName(), UserSession.INSTANCE.getSession().username()));
         } catch (ItemNotSelectedException e) {
             showError(e.getMessage());
         } catch (SQLException e) {
-            log.error(Messages.Country.COUNTRY_DELETE_FAIL_LOG.formatted(UserSession.INSTANCE.getSession().username()), e);
+            log.error(Messages.Country.DELETE_FAIL_LOG.formatted(UserSession.INSTANCE.getSession().username()), e);
             showError(Messages.Server.SERVER_ERROR_CONTENT);
         }
 
@@ -164,48 +152,7 @@ public class CountryController implements CrudController {
         });
     }
 
-    private void updateCountyInList(Country country) {
-        removeCountryFromList(country);
-        addCountryToList(country);
-    }
-
-    private void unFocusTableView() {
-        tableView.getSelectionModel().clearSelection();
-    }
-
-    private void focusTableViewItem(Country country) {
-        tableView.getSelectionModel().select(country);
-    }
-
-    private void showError(String message) {
-        errorLabel.setVisible(true);
-        errorLabel.setManaged(true);
-        errorLabel.setText(message);
-    }
-
-    private void clearError() {
-        errorLabel.setVisible(false);
-        errorLabel.setManaged(false);
-    }
-
-    private void removeCountryFromList(Country country) {
-        countries.remove(country);
-    }
-
-    private void addCountryToList(Country country) {
-        countries.add(country);
-    }
-
     private void clearNameField() {
         nameField.clear();
-    }
-
-    private void applySearch() {
-        searchField.textProperty().addListener((obs, oldval, newval) -> {
-            filteredCounties.setPredicate(c -> {
-                if (newval == null || newval.isEmpty()) return true;
-                return c.getName().toLowerCase().contains(newval.toLowerCase());
-            });
-        });
     }
 }

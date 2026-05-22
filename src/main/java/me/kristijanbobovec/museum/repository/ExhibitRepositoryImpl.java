@@ -37,10 +37,8 @@ public class ExhibitRepositoryImpl implements ExhibitRepository {
                 rs.getInt("CityID")
         );
 
-        MuseumCollection collection = new MuseumCollection(
-                rs.getInt("MuseumCollectionID"),
-                rs.getString("CollectionName")
-        );
+        int collectionId = rs.getInt("MuseumCollectionID");
+        MuseumCollection collection = rs.wasNull() ? null : new MuseumCollection(collectionId, rs.getString("CollectionName"));
 
         return new Exhibit(
                 rs.getInt("IDExhibit"),

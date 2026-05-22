@@ -13,6 +13,16 @@ import java.util.Optional;
 public class CityRepositoryImpl implements CityRepository {
 
     @Override
+    public Optional<City> getById(int id) throws SQLException {
+        return getByIdWithDetails(id);
+    }
+
+    @Override
+    public List<City> getAll() throws SQLException {
+        return getAllWithDetails();
+    }
+
+    @Override
     public City mapRow(ResultSet rs) throws SQLException {
         return new City(
                 rs.getInt("IDCity"),
@@ -35,8 +45,7 @@ public class CityRepositoryImpl implements CityRepository {
         cs.setInt(3, toUpdate.getCountryId() == 0 ? originalItem.getCountryId() : toUpdate.getCountryId());
     }
 
-    @Override
-    public List<City> getAllWithDetails() throws SQLException {
+    private List<City> getAllWithDetails() throws SQLException {
         List<City> cities = new ArrayList<>();
         try (Connection conn = DatabaseManager.getConnection();
              CallableStatement csGetAllCitiesWithDetails = conn.prepareCall(SQLQueries.GETALL_CITIES_WITH_DETAILS)) {
@@ -50,8 +59,7 @@ public class CityRepositoryImpl implements CityRepository {
         return cities;
     }
 
-    @Override
-    public Optional<City> getByIdWithDetails(int id) throws SQLException {
+    private Optional<City> getByIdWithDetails(int id) throws SQLException {
         try (Connection conn = DatabaseManager.getConnection();
              CallableStatement csGetByIdCityWithDetails = conn.prepareCall(SQLQueries.GETBYID_CITY_WITH_DETAILS)) {
             csGetByIdCityWithDetails.setInt("IDCity", id);

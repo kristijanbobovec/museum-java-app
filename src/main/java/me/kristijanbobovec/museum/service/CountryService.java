@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public class CountryService {
+public class CountryService implements Service<Country, CountryInsertDTO, CountryUpdateDTO> {
     private final CountryRepository countryRepository;
 
     public CountryService(CountryRepository countryRepository) {

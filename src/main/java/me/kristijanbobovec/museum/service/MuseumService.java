@@ -13,8 +13,8 @@ public class MuseumService {
         this.museumRepository = museumRepository;
     }
 
-    public List<Museum> getAllWithoutDetails() throws SQLException {
-        return museumRepository.getAllWithDetails();
+    public List<Museum> getAll() throws SQLException {
+        return museumRepository.getAll();
 
     }
 

@@ -33,11 +33,16 @@ public final class Messages {
     }
 
     public static final class Country {
-        public static final String COUNTRIES_LOAD_FAIL_LOG = "Failed to load countries";
-        public static final String COUNTRY_DELETE_FAIL_LOG = "Failed to delete a country. (%s)";
-        public static final String COUNTRY_INSERT_FAIL_LOG = "Failed to insert a country. (%s)";
-        public static final String COUNTRY_UPDATE_FAIL_LOG = "Failed to update a country. (%s)";
-        public static final String NO_COUNTRIES = "There is no countries. Add new museum. (EDIT -> COUNTRY)";
+        public static final String LOAD_FAIL_LOG = "Failed to load countries";
+        public static final String DELETE_FAIL_LOG = "Failed to delete a country. (%s)";
+        public static final String INSERT_FAIL_LOG = "Failed to insert a country. (%s)";
+        public static final String UPDATE_FAIL_LOG = "Failed to update a country. (%s)";
+    }
+
+    public static final class City {
+        public static final String DELETE_FAIL_LOG = "Failed to delete a city. (%s)";
+        public static final String INSERT_FAIL_LOG = "Failed to insert a city. (%s)";
+        public static final String UPDATE_FAIL_LOG = "Failed to update a city. (%s)";
     }
 
 

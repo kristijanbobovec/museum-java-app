@@ -2,7 +2,7 @@ package me.kristijanbobovec.museum.model;
 
 import java.util.Objects;
 
-public class Exhibit {
+public class Exhibit implements Named {
     private int idExhibit;
     private String name;
     private String description;

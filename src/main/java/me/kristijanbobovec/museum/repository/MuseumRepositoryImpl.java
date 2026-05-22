@@ -12,6 +12,17 @@ import java.util.List;
 import java.util.Optional;
 
 public class MuseumRepositoryImpl implements MuseumRepository {
+
+    @Override
+    public Optional<Museum> getById(int id) throws SQLException {
+        return getByIdWithDetails(id);
+    }
+
+    @Override
+    public List<Museum> getAll() throws SQLException {
+        return getAllWithDetails();
+    }
+
     public void mapForInsert(CallableStatement cs, Museum item) throws SQLException {
         cs.setString(1, item.getName());
         cs.setString(2, item.getAdress());
@@ -46,8 +57,7 @@ public class MuseumRepositoryImpl implements MuseumRepository {
         );
     }
 
-    @Override
-    public List<Museum> getAllWithDetails() throws SQLException {
+    private List<Museum> getAllWithDetails() throws SQLException {
         List<Museum> museums = new ArrayList<>();
         try (Connection conn = DatabaseManager.getConnection();
         CallableStatement csGetAllMuseumsWithDetials = conn.prepareCall(SQLQueries.GETALL_MUSEUMS_WITH_DETAILS)) {
@@ -62,8 +72,7 @@ public class MuseumRepositoryImpl implements MuseumRepository {
         return museums;
     }
 
-    @Override
-    public Optional<Museum> getByIdWithDetails(int id) throws SQLException {
+    private Optional<Museum> getByIdWithDetails(int id) throws SQLException {
         try (Connection conn = DatabaseManager.getConnection();
              CallableStatement csGetByIdMuseumsWithDetials = conn.prepareCall(SQLQueries.GETBYID_MUSEUM_WITH_DETAILS)) {
 

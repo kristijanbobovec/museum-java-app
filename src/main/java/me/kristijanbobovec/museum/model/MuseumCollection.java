@@ -2,7 +2,7 @@ package me.kristijanbobovec.museum.model;
 
 import java.util.Objects;
 
-public class MuseumCollection {
+public class MuseumCollection implements Named {
     private int idMuseumCollection;
     private String name;
 

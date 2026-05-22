@@ -13,6 +13,16 @@ import java.util.Optional;
 public class CuratorRepositoryImpl implements CuratorRepository {
 
     @Override
+    public Optional<Curator> getById(int id) throws SQLException {
+        return getByIdWithDetails(id);
+    }
+
+    @Override
+    public List<Curator> getAll() throws SQLException {
+        return getAllWithDetails();
+    }
+
+    @Override
     public Curator mapRow(ResultSet rs) throws SQLException {
         return new Curator(
                 rs.getInt("IDCurator"),
@@ -38,8 +48,7 @@ public class CuratorRepositoryImpl implements CuratorRepository {
         cs.setInt(4, toUpdate.getMuseumId() == 0 ? originalItem.getMuseumId() : toUpdate.getMuseumId());
     }
 
-    @Override
-    public List<Curator> getAllWithDetails() throws SQLException {
+    private List<Curator> getAllWithDetails() throws SQLException {
         List<Curator> curators = new ArrayList<>();
         try (Connection conn = DatabaseManager.getConnection();
              CallableStatement csGetAllCuratorsWithDetails = conn.prepareCall(SQLQueries.GETALL_CURATORS_WITH_DETAILS)) {
@@ -53,8 +62,7 @@ public class CuratorRepositoryImpl implements CuratorRepository {
         return curators;
     }
 
-    @Override
-    public Optional<Curator> getByIdWithDetails(int id) throws SQLException {
+    private Optional<Curator> getByIdWithDetails(int id) throws SQLException {
         try (Connection conn = DatabaseManager.getConnection();
              CallableStatement csGetByIdCuratorWithDetails = conn.prepareCall(SQLQueries.GETBYID_CURATOR_WITH_DETAILS)) {
             csGetByIdCuratorWithDetails.setInt("IDCurator", id);

@@ -30,7 +30,7 @@ public class UserService {
     public void insert(UserToInsertDTO userDto) throws SQLException {
         User user = userDto.mapToUser();
 
-        user.setPassword(hashPassworrd(user.getPassword()));
+        user.setPassword(hashPassword(user.getPassword()));
         userRepository.insert(user);
     }
 
@@ -38,7 +38,7 @@ public class UserService {
         return BCrypt.checkpw(enteredPassword, userPassword);
     }
 
-    private String hashPassworrd(String plainPassword) {
+    private String hashPassword(String plainPassword) {
         return BCrypt.hashpw(plainPassword, BCrypt.gensalt());
     }
 }

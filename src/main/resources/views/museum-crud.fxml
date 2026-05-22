@@ -16,7 +16,7 @@
 <?import javafx.scene.layout.VBox?>
 
 <BorderPane xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="me.kristijanbobovec.museum.controller.MuseumCrudController"
+            fx:controller="me.kristijanbobovec.museum.controller.MuseumController"
             minWidth="800" minHeight="560">
 
     <top>

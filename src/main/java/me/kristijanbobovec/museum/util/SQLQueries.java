@@ -382,7 +382,7 @@ public class SQLQueries {
                 m.CityID
             FROM Exhibit e
             INNER JOIN Museum           m   ON e.MuseumID           = m.IDMuseum
-            INNER JOIN MuseumCollection mc  ON e.MuseumCollectionID = mc.IDMuseumCollection
+            LEFT  JOIN MuseumCollection mc  ON e.MuseumCollectionID = mc.IDMuseumCollection
             WHERE e.MuseumID = @MuseumID
         END
         GO
@@ -491,10 +491,9 @@ public class SQLQueries {
             @IDMuseumCollection INT
         AS
         BEGIN
-            DELETE FROM CuratorCollection WHERE MuseumCollectionID = @IDMuseumCollection;
-            DELETE FROM ImagePath          WHERE ExhibitID IN (SELECT IDExhibit FROM Exhibit WHERE MuseumCollectionID = @IDMuseumCollection);
-            DELETE FROM Exhibit            WHERE MuseumCollectionID = @IDMuseumCollection;
-            DELETE FROM MuseumCollection   WHERE IDMuseumCollection = @IDMuseumCollection;
+            UPDATE CuratorCollection SET MuseumCollectionID = NULL WHERE MuseumCollectionID = @IDMuseumCollection;
+            UPDATE Exhibit SET MuseumCollectionID = NULL WHERE MuseumCollectionID = @IDMuseumCollection;
+            DELETE FROM MuseumCollection WHERE IDMuseumCollection = @IDMuseumCollection;
         END
         GO
         CREATE OR ALTER PROCEDURE usp_Country_GetAll
@@ -927,7 +926,7 @@ public class SQLQueries {
         IDMuseum            INT            NOT NULL IDENTITY(1,1),
         Name                NVARCHAR(200)  NOT NULL,
         Adress              NVARCHAR(300)  NULL,
-        EstablishmentYear   INT            NULL,
+        EstablishmentYear   INT            NOT NULL,
         Description         NVARCHAR(MAX)  NULL,
         ImagePath           NVARCHAR(500)  NULL,
         CityID              INT            NOT NULL,
@@ -948,7 +947,7 @@ public class SQLQueries {
         Description         NVARCHAR(MAX)  NULL,
         CreationYear        INT            NULL,
         ImagePath           NVARCHAR(500)  NULL,
-        MuseumCollectionID  INT            NOT NULL,
+        MuseumCollectionID  INT            NULL,
         MuseumID            INT            NOT NULL,
         CONSTRAINT PK_Exhibit PRIMARY KEY (IDExhibit),
         CONSTRAINT FK_Exhibit_MuseumCollection FOREIGN KEY (MuseumCollectionID)
@@ -978,15 +977,17 @@ public class SQLQueries {
     GO
     CREATE TABLE CuratorCollection (
         IDCuratorCollection INT NOT NULL IDENTITY(1,1),
-        MuseumCollectionID  INT NOT NULL,
+        MuseumCollectionID  INT NULL,
         CuratorID           INT NOT NULL,
         CONSTRAINT PK_CuratorCollection PRIMARY KEY (IDCuratorCollection),
         CONSTRAINT FK_CuratorCollection_MuseumCollection FOREIGN KEY (MuseumCollectionID)
             REFERENCES MuseumCollection (IDMuseumCollection),
         CONSTRAINT FK_CuratorCollection_Curator FOREIGN KEY (CuratorID)
-            REFERENCES Curator (IDCurator),
-        CONSTRAINT UQ_CuratorCollection UNIQUE (MuseumCollectionID, CuratorID)
+            REFERENCES Curator (IDCurator)
     )
+    GO
+    CREATE UNIQUE INDEX UQ_CuratorCollection ON CuratorCollection(MuseumCollectionID, CuratorID)
+    WHERE MuseumCollectionID IS NOT NULL;
     GO
     CREATE TABLE Role (
         IDRole  INT           NOT NULL,

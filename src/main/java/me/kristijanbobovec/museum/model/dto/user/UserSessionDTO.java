@@ -2,8 +2,9 @@ package me.kristijanbobovec.museum.model.dto.user;
 
 import me.kristijanbobovec.museum.model.RoleType;
 import me.kristijanbobovec.museum.model.User;
+import me.kristijanbobovec.museum.model.dto.Dto;
 
-public record UserSessionDTO(int userId, String username, String firstName, String lastName, RoleType role) {
+public record UserSessionDTO(int userId, String username, String firstName, String lastName, RoleType role) implements Dto {
     public boolean isAdmin() {
         return role == RoleType.ADMINISTRATOR;
     }

@@ -47,6 +47,10 @@ public class ControllerFactory {
             return new CityController(countryService, cityService);
         }
 
+        if (controllerClass == MuseumCollectionController.class) {
+            return new MuseumCollectionController(museumCollectionService);
+        }
+
         try {
             return controllerClass.getDeclaredConstructor().newInstance();
         } catch (Exception e) {

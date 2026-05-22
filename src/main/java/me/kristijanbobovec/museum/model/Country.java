@@ -2,7 +2,7 @@ package me.kristijanbobovec.museum.model;
 
 import java.util.Objects;
 
-public class Country {
+public class Country implements Named {
     private int idCountry;
     private String name;
     public Country(String name) {

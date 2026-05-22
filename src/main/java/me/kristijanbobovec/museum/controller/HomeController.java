@@ -39,7 +39,7 @@ public final class HomeController {
     @FXML
     private void initialize() {
         try {
-            museums = FXCollections.observableArrayList(museumService.getAllWithoutDetails());
+            museums = FXCollections.observableArrayList(museumService.getAll());
             filteredMuseums = new FilteredList<>(museums, m -> true);
             initView();
         } catch (SQLException e) {
