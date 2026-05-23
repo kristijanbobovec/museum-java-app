@@ -27,7 +27,6 @@ public class DatabaseInitialization {
         dataSource.setPassword(ApplicationProperties.Database.getPassword());
 
         try (Connection conn = dataSource.getConnection()) {
-            dropDatabase(dataSource);
 
             if (checkDatabase(conn)) return;
             createDatabaseIfNotExists(conn);

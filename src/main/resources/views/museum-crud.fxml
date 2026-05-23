@@ -46,8 +46,6 @@
                            style="-fx-background-color: transparent;">
                     <padding><Insets top="4" right="8" bottom="4" left="8"/></padding>
                     <columns>
-                        <TableColumn fx:id="nameColumn" text="Museum" prefWidth="140"/>
-                        <TableColumn fx:id="cityColumn" text="City" prefWidth="110"/>
                     </columns>
                 </TableView>
             </VBox>

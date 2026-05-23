@@ -43,7 +43,7 @@ public final class HomeController {
             filteredMuseums = new FilteredList<>(museums, m -> true);
             initView();
         } catch (SQLException e) {
-            log.error(Messages.Museum.MUSEUMS_LOAD_FAIL_LOG, e);
+            log.error(Messages.Database.LOAD_FAIL, e);
             AlertHelper.displayAlert(Alert.AlertType.ERROR, Messages.Server.SERVER_ERROR_HEADER, Messages.Server.SERVER_ERROR_CONTENT);
         }
     }

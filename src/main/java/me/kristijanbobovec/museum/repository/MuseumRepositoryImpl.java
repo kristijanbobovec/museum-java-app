@@ -83,7 +83,7 @@ public class MuseumRepositoryImpl implements MuseumRepository {
             if (rsMuseum.next()) {
                 Museum museum = mapRow(rsMuseum);
                 mapDetailsToMuseum(museum, rsMuseum);
-                return Optional.of(mapRow(rsMuseum));
+                return Optional.of(museum);
             }
 
         }

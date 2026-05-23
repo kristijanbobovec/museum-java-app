@@ -4,6 +4,7 @@ package me.kristijanbobovec.museum.factory.column;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import me.kristijanbobovec.museum.util.ImageHelper;
 
@@ -30,8 +31,9 @@ public class ColumnFactory {
                 if (empty || imagePath == null) {
                     setGraphic(null);
                 } else {
-                    ImageView imageView = new ImageView();
-                    imageView.setImage(ImageHelper.loadImage(this.getClass().getResource(imagePath)));
+                    Image img = ImageHelper.loadImage(this.getClass().getResource(imagePath));
+                    if (img == null) { setGraphic(null); return; }
+                    ImageView imageView = new ImageView(img);
                     imageView.setFitWidth(50);
                     imageView.setFitHeight(80);
                     imageView.setPreserveRatio(true);

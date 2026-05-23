@@ -17,4 +17,5 @@ public class ExhibitService {
         return exhibitRepository.getByMuseumId(museumId);
     }
 
+
 }

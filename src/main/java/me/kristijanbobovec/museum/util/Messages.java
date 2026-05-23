@@ -14,6 +14,7 @@ public final class Messages {
     }
 
     public static final class Database {
+        public static final String LOAD_FAIL = "Database failed to load data!";
         public static final String DATABASE_STARTED_CREATION = "Database not found creating new one!";
         public static final String DATABASE_CREATED = "Database is created!";
         public static final String DATABASE_FAIL_CREATION = "Database failed with creation!";
@@ -28,12 +29,13 @@ public final class Messages {
     }
 
     public static final class Museum {
-        public static final String MUSEUMS_LOAD_FAIL_LOG = "Failed to load museums";
         public static final String NO_MUSEUMS = "There is no countries. Add new museum. (EDIT -> MUSEUM)";
+        public static final String DELETE_FAIL_LOG = "Failed to delete a museum. (%s)";
+        public static final String INSERT_FAIL_LOG = "Failed to insert a museum. (%s)";
+        public static final String UPDATE_FAIL_LOG = "Failed to update a museum. (%s)";
     }
 
     public static final class Country {
-        public static final String LOAD_FAIL_LOG = "Failed to load countries";
         public static final String DELETE_FAIL_LOG = "Failed to delete a country. (%s)";
         public static final String INSERT_FAIL_LOG = "Failed to insert a country. (%s)";
         public static final String UPDATE_FAIL_LOG = "Failed to update a country. (%s)";
@@ -45,9 +47,12 @@ public final class Messages {
         public static final String UPDATE_FAIL_LOG = "Failed to update a city. (%s)";
     }
 
+    public static final class Image {
+        public static final String FAILED_TO_MANIPULATE = "Failed to manipulate a image. (%s)";
+    }
+
 
     public static final class Exhibit {
-        public static final String EXHIBITS_LOAD_FAIL_LOG = "Failed to load exhibits for museum.";
         public static final String NO_EXHIBITS = "There is no exhibits for this museum. (EDIT -> EXHIBIT)";
     }
 
@@ -97,6 +102,5 @@ public final class Messages {
         public static final String LOGOUT_SUCCEED_LOG = "User %s successfully logged out!";
         public static final String REGISTER_SUCCEED_LOG = "User %s successfully registered!";
         public static final String LOGIN_FAILED_LOG = "User %s failed at login!";
-        public static final String USER_LOAD_FAIL_LOG = "Failed to load user during login";
     }
 }

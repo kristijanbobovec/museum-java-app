@@ -72,7 +72,7 @@ public final class MuseumDetailController {
             sortedExhibits = new SortedList<>(filteredExhibits);
             initView();
         } catch (SQLException e) {
-            log.error(Messages.Exhibit.EXHIBITS_LOAD_FAIL_LOG, e);
+            log.error(Messages.Database.LOAD_FAIL, e);
             AlertHelper.displayAlert(Alert.AlertType.ERROR, Messages.Server.SERVER_ERROR_HEADER, Messages.Server.SERVER_ERROR_CONTENT);
         }
     }

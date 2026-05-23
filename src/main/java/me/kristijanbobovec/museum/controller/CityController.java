@@ -59,7 +59,7 @@ public class CityController extends CrudController<City> {
             sortedCities = new SortedList<>(filteredCities);
             initView();
         } catch (SQLException e) {
-            log.error(Messages.Country.LOAD_FAIL_LOG, e);
+            log.error(Messages.Database.LOAD_FAIL, e);
             AlertHelper.displayAlert(Alert.AlertType.ERROR, Messages.Server.SERVER_ERROR_HEADER, Messages.Server.SERVER_ERROR_CONTENT);
         }
     }
@@ -108,7 +108,7 @@ public class CityController extends CrudController<City> {
         } catch (ItemNotSelectedException | OmitingRequiredFieldsException e) {
             showError(e.getMessage());
         } catch (DatabaseFailedToException | SQLException e) {
-            log.error(Messages.Country.UPDATE_FAIL_LOG.formatted(UserSession.INSTANCE.getSession().username()), e);
+            log.error(Messages.City.UPDATE_FAIL_LOG.formatted(UserSession.INSTANCE.getSession().username()), e);
             showError(Messages.Server.SERVER_ERROR_CONTENT);
         }
     }
@@ -132,7 +132,7 @@ public class CityController extends CrudController<City> {
         } catch (ItemNotSelectedException | OmitingRequiredFieldsException e) {
             showError(e.getMessage());
         }  catch (SQLException e) {
-            log.error(Messages.Country.INSERT_FAIL_LOG.formatted(UserSession.INSTANCE.getSession().username()), e);
+            log.error(Messages.City.INSERT_FAIL_LOG.formatted(UserSession.INSTANCE.getSession().username()), e);
             showError(Messages.Server.SERVER_ERROR_CONTENT);
         }
     }

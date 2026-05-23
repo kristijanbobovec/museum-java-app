@@ -37,8 +37,8 @@ public abstract class CrudController<T extends Named> {
     }
 
     protected void updateInObservableList(ObservableList<T> list, T item) {
-        removeFromObservableList(list, item);
-        addToObservableList(list, item);
+        int index = list.indexOf(item);
+        list.set(index, item);
     }
 
     protected void unFocusTableView() {

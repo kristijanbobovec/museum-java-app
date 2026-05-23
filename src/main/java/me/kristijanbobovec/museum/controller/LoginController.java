@@ -42,7 +42,7 @@ public final class LoginController extends AuthController {
             setErrorLabelVisibility(true);
             errorLabel.setText(e.getMessage());
         } catch (SQLException e) {
-            log.error(Messages.Auth.USER_LOAD_FAIL_LOG, e);
+            log.error(Messages.Database.LOAD_FAIL, e);
             AlertHelper.displayAlert(Alert.AlertType.ERROR,
                     Messages.Server.SERVER_ERROR_HEADER,
                     Messages.Server.SERVER_ERROR_CONTENT,

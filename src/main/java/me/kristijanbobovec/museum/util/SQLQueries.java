@@ -56,10 +56,7 @@ public class SQLQueries {
     public final static String INSERT_CURATOR               = "{call usp_Curator_Insert(?, ?, ?, ?)}";
     public final static String UPDATE_CURATOR               = "{call usp_Curator_Update(?, ?, ?, ?)}";
     public final static String DELETE_CURATOR               = "{call usp_Curator_Delete(?)}";
-
-
-
-
+    public final static String IMAGE_USAGE_COUNT            = "{call usp_ImagePath_GetUsageCount(?, ?)}";
 
     public static final String PROCEDURES = """
         CREATE OR ALTER PROCEDURE usp_User_GetAll
@@ -775,6 +772,17 @@ public class SQLQueries {
         BEGIN
             DELETE FROM CuratorCollection WHERE CuratorID  = @IDCurator;
             DELETE FROM Curator           WHERE IDCurator = @IDCurator;
+        END
+        GO
+        CREATE OR ALTER PROCEDURE usp_ImagePath_GetUsageCount
+            @ImagePath          NVARCHAR(500),
+            @ReferencesCount    INT OUTPUT
+        AS
+        BEGIN
+            SET NOCOUNT ON;
+            SELECT @ReferencesCount =
+                (SELECT COUNT(*) FROM Museum  WHERE ImagePath = @ImagePath) +
+                (SELECT COUNT(*) FROM Exhibit WHERE ImagePath = @ImagePath);
         END
     """;
 

@@ -21,6 +21,7 @@ public class CityService implements Service<City, CityInsertDTO, CityUpdateDTO> 
         this.cityRepository = cityRepository;
     }
 
+    @Override
     public boolean delete(int id) throws SQLException {
         if (id == -1) throw new ItemNotSelectedException(Messages.CRUDValidation.ITEM_NOT_SELECTED.formatted("delete"));
 

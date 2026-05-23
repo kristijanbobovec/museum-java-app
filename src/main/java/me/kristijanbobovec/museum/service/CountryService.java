@@ -21,16 +21,19 @@ public class CountryService implements Service<Country, CountryInsertDTO, Countr
         this.countryRepository = countryRepository;
     }
 
+    @Override
     public List<Country> getAll() throws SQLException {
         return countryRepository.getAll();
     }
 
+    @Override
     public boolean delete(int id) throws SQLException {
         if (id == -1) throw new ItemNotSelectedException(Messages.CRUDValidation.ITEM_NOT_SELECTED.formatted("delete"));
 
         return countryRepository.delete(id);
     }
 
+    @Override
     public Country insert(CountryInsertDTO countryDto) throws SQLException {
         List<String> errors = new ArrayList<>();
         if (countryDto.name() == null || countryDto.name().isEmpty()) errors.add(Messages.CRUDValidation.FIELD_EMPTY.formatted("name"));
@@ -42,6 +45,7 @@ public class CountryService implements Service<Country, CountryInsertDTO, Countr
         throw new DatabaseFailedToException(Messages.Database.DATABASE_FAILEDTO.formatted("insert", countryDto));
     }
 
+    @Override
     public Country update(int id, CountryUpdateDTO countryDto) throws SQLException {
         if (id == -1) throw new ItemNotSelectedException(Messages.CRUDValidation.ITEM_NOT_SELECTED.formatted("update"));
 

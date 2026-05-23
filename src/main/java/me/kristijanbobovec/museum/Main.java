@@ -53,11 +53,13 @@ public class Main extends Application {
         ExhibitRepository exhibitRepository = new ExhibitRepositoryImpl();
         CountryRepository countryRepository = new CountryRepositoryImpl();
         MuseumCollectionRepository museumCollectionRepository = new MuseumCollectionRepositoryImpl();
+        ImagePathRepository imagePathRepository = new ImagePathRepositoryImpl();
         CityRepository cityRepository = new CityRepositoryImpl();
 
         // Registring services
         UserService userService = new UserService(userRepository);
         AuthService authService = new AuthService(userService);
+        ImagePathService imagePathService = new ImagePathService(imagePathRepository);
         MuseumService museumService = new MuseumService(museumRepository);
         ExhibitService exhibitService = new ExhibitService(exhibitRepository);
         MuseumCollectionService museumCollectionService = new MuseumCollectionService(museumCollectionRepository);
@@ -65,7 +67,7 @@ public class Main extends Application {
         CityService cityService = new CityService(cityRepository);
 
         ControllerFactory cf = new ControllerFactory(authService, museumService, exhibitService, museumCollectionService, countryService,
-                cityService);
+                cityService, imagePathService);
 
         // Set primary stage in stagemanager!
         SceneManager.setStage(stage);
