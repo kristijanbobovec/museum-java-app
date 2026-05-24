@@ -75,6 +75,11 @@ public enum StatementFactory {
     }
 
     public String getStatement(Class<?> repo, String methodName) {
-        return statements.get(repo.getInterfaces()[0]).get(methodName);
+        for (Class<?> iface : repo.getInterfaces()) {
+            if (statements.containsKey(iface)) {
+                return statements.get(iface).get(methodName);
+            }
+        }
+        throw new IllegalArgumentException("No statements registered for: " + repo.getName());
     }
 }

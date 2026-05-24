@@ -68,10 +68,9 @@ public abstract class CrudController<T extends Named> {
             case DELETE -> removeFromObservableList(list, item);
             case UPDATE -> updateInObservableList(list, item);
         }
-        focusTableViewItem(item);
     }
 
-    protected void applySelecton(Runnable onSelected) {
+    protected void applySelection(Runnable onSelected) {
         tableView.getSelectionModel().selectedItemProperty().addListener(e -> {
             if (tableView.getSelectionModel().getSelectedItem() == null) return;
             onSelected.run();

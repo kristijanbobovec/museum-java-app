@@ -47,6 +47,18 @@ public final class Messages {
         public static final String UPDATE_FAIL_LOG = "Failed to update a city. (%s)";
     }
 
+    public static final class Curator {
+        public static final String DELETE_FAIL_LOG = "Failed to delete a curator. (%s)";
+        public static final String INSERT_FAIL_LOG = "Failed to insert a curator. (%s)";
+        public static final String UPDATE_FAIL_LOG = "Failed to update a curator. (%s)";
+    }
+
+    public static final class MuseumCollection {
+        public static final String DELETE_FAIL_LOG = "Failed to delete a curator. (%s)";
+        public static final String INSERT_FAIL_LOG = "Failed to insert a curator. (%s)";
+        public static final String UPDATE_FAIL_LOG = "Failed to update a curator. (%s)";
+    }
+
     public static final class Image {
         public static final String FAILED_TO_MANIPULATE = "Failed to manipulate a image. (%s)";
     }

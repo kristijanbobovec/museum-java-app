@@ -69,7 +69,7 @@ public class CityController extends CrudController<City> {
         initTableView();
         initCombobox();
         applySearch(filteredCities);
-        applySelecton(() -> {
+        applySelection(() -> {
             nameField.setText(tableView.getSelectionModel().getSelectedItem().getName());
             countryComboBox.getSelectionModel().select(tableView.getSelectionModel().getSelectedItem().getCountry());
         });

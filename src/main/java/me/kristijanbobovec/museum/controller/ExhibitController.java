@@ -93,7 +93,7 @@ public class ExhibitController extends CrudController<Exhibit> {
         initTableView();
         initCombobox();
         applySearch(filteredExhibits);
-        applySelecton(() -> {
+        applySelection(() -> {
             nameField.setText(tableView.getSelectionModel().getSelectedItem().getName());
             imagePathField.setText(tableView.getSelectionModel().getSelectedItem().getImagePath());
             yearField.setText(String.valueOf(tableView.getSelectionModel().getSelectedItem().getCreationYear()));
@@ -146,7 +146,6 @@ public class ExhibitController extends CrudController<Exhibit> {
                     .orElse(null);
 
             ExhibitUpdateDTO exhibitDto = new ExhibitUpdateDTO(name, desc, creationYear, imagePath, museumId, museumCollectionId);
-            System.out.println(exhibitDto);
 
             Exhibit updatedExhibit = exhibitService.update(idExhibit, exhibitDto);
 

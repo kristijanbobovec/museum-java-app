@@ -57,7 +57,7 @@ public class CountryController extends CrudController<Country> {
     private void initView() {
         initTableView();
         applySearch(filteredCountries);
-        applySelecton(() -> nameField.setText(tableView.getSelectionModel().getSelectedItem().getName()));
+        applySelection(() -> nameField.setText(tableView.getSelectionModel().getSelectedItem().getName()));
     }
 
     private void initTableView() {

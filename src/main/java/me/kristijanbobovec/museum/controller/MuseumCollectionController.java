@@ -57,7 +57,7 @@ public class MuseumCollectionController extends CrudController<MuseumCollection>
     private void initView() {
         initTableView();
         applySearch(filteredCollections);
-        applySelecton(() -> nameField.setText(tableView.getSelectionModel().getSelectedItem().getName()));
+        applySelection(() -> nameField.setText(tableView.getSelectionModel().getSelectedItem().getName()));
     }
 
     private void initTableView() {
@@ -91,7 +91,7 @@ public class MuseumCollectionController extends CrudController<MuseumCollection>
         } catch (OmitingRequiredFieldsException e) {
             showError(e.getMessage());
         } catch (DatabaseFailedToException | SQLException e) {
-            log.error(Messages.Country.UPDATE_FAIL_LOG.formatted(UserSession.INSTANCE.getSession().username()), e);
+            log.error(Messages.MuseumCollection.UPDATE_FAIL_LOG.formatted(UserSession.INSTANCE.getSession().username()), e);
             showError(Messages.Server.SERVER_ERROR_CONTENT);
         }
     }
@@ -111,7 +111,7 @@ public class MuseumCollectionController extends CrudController<MuseumCollection>
         } catch (OmitingRequiredFieldsException e) {
             showError(e.getMessage());
         } catch (SQLException e) {
-            log.error(Messages.Country.INSERT_FAIL_LOG.formatted(UserSession.INSTANCE.getSession().username()), e);
+            log.error(Messages.MuseumCollection.INSERT_FAIL_LOG.formatted(UserSession.INSTANCE.getSession().username()), e);
             showError(Messages.Server.SERVER_ERROR_CONTENT);
         }
     }
@@ -139,7 +139,7 @@ public class MuseumCollectionController extends CrudController<MuseumCollection>
             AlertHelper.displayAlert(Alert.AlertType.INFORMATION, Messages.CRUD.DELETED_HEADER, Messages.CRUD.DELETED_CONTENT.formatted(selectedMuseumCollection.getName()));
             log.info(Messages.CRUD.DELETED_LOG.formatted(selectedMuseumCollection.getName(), UserSession.INSTANCE.getSession().username()));
         } catch (SQLException e) {
-            log.error(Messages.Country.DELETE_FAIL_LOG.formatted(UserSession.INSTANCE.getSession().username()), e);
+            log.error(Messages.MuseumCollection.DELETE_FAIL_LOG.formatted(UserSession.INSTANCE.getSession().username()), e);
             showError(Messages.Server.SERVER_ERROR_CONTENT);
         }
     }

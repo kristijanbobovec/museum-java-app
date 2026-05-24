@@ -90,7 +90,7 @@ public class MuseumController extends CrudController<Museum> {
         initTableView();
         initCombobox();
         applySearch(filteredMuseums);
-        applySelecton(() -> {
+        applySelection(() -> {
             nameField.setText(tableView.getSelectionModel().getSelectedItem().getName());
             addressField.setText(tableView.getSelectionModel().getSelectedItem().getAdress());
             yearField.setText(String.valueOf(tableView.getSelectionModel().getSelectedItem().getEstablishmentYear()));
@@ -121,12 +121,12 @@ public class MuseumController extends CrudController<Museum> {
         clearYearField();
         clearDescriptionField();
         clearImagePathField();
-        clearCountrySelection();
+        clearCitySelection();
         clearOriginalPath();
         unFocusTableView();
     }
 
-    private void clearCountrySelection() {
+    private void clearCitySelection() {
         cityComboBox.getSelectionModel().clearSelection();
     }
 
