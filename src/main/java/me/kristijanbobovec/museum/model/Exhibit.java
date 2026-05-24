@@ -1,6 +1,7 @@
 package me.kristijanbobovec.museum.model;
 
 import java.util.Objects;
+import java.util.Optional;
 
 public class Exhibit implements Named {
     private int idExhibit;
@@ -10,13 +11,21 @@ public class Exhibit implements Named {
     private String imagePath;
     private MuseumCollection museumCollection;
     private Museum museum;
+    private int museumId;
+    private Integer museumCollectionId;
 
-
-    public Exhibit(String name, String description, int creationYear, String imagePath, MuseumCollection museumCollection, Museum museum) {
+    public Exhibit(String name, String description, int creationYear, String imagePath, int museumId, Integer museumCollectionId) {
         this.name = name;
         this.description = description;
         this.creationYear = creationYear;
         this.imagePath = imagePath;
+        this.museumId = museumId;
+        this.museumCollectionId = museumCollectionId;
+    }
+
+
+    public Exhibit(String name, String description, int creationYear, String imagePath, MuseumCollection museumCollection, Museum museum) {
+        this(name, description, creationYear, imagePath, museum.getIdMuseum(), Optional.ofNullable(museumCollection).map(MuseumCollection::getIdCollection).orElse(null));
         this.museumCollection = museumCollection;
         this.museum = museum;
     }
@@ -26,18 +35,7 @@ public class Exhibit implements Named {
         this.idExhibit = idExhibit;
     }
 
-    @Override
-    public String toString() {
-        return "Exhibit{" +
-                "idExhibit=" + idExhibit +
-                ", name='" + name + '\'' +
-                ", description='" + description + '\'' +
-                ", creationYear=" + creationYear +
-                ", imagePath='" + imagePath + '\'' +
-                ", collection=" + museumCollection +
-                ", museum=" + museum +
-                '}';
-    }
+
 
     @Override
     public boolean equals(Object o) {
@@ -101,5 +99,36 @@ public class Exhibit implements Named {
 
     public Museum getMuseum() {
         return museum;
+    }
+
+    public int getMuseumId() {
+        return museumId;
+    }
+
+    public void setMuseumId(int museumId) {
+        this.museumId = museumId;
+    }
+
+    public Integer getMuseumCollectionId() {
+        return museumCollectionId;
+    }
+
+    public void setMuseumCollectionId(Integer museumCollectionId) {
+        this.museumCollectionId = museumCollectionId;
+    }
+
+    @Override
+    public String toString() {
+        return "Exhibit{" +
+                "idExhibit=" + idExhibit +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", creationYear=" + creationYear +
+                ", imagePath='" + imagePath + '\'' +
+                ", museumCollection=" + museumCollection +
+                ", museum=" + museum +
+                ", museumId=" + museumId +
+                ", museumCollectionId=" + museumCollectionId +
+                '}';
     }
 }

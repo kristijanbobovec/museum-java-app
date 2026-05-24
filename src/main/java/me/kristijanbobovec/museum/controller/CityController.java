@@ -9,12 +9,12 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import me.kristijanbobovec.museum.exception.DatabaseFailedToException;
-import me.kristijanbobovec.museum.exception.ItemNotSelectedException;
 import me.kristijanbobovec.museum.exception.OmitingRequiredFieldsException;
 import me.kristijanbobovec.museum.factory.column.CityColumnFactory;
 import me.kristijanbobovec.museum.manager.UserSession;
 import me.kristijanbobovec.museum.model.City;
 import me.kristijanbobovec.museum.model.Country;
+import me.kristijanbobovec.museum.model.CrudOperation;
 import me.kristijanbobovec.museum.model.dto.city.CityInsertDTO;
 import me.kristijanbobovec.museum.model.dto.city.CityUpdateDTO;
 import me.kristijanbobovec.museum.service.CityService;
@@ -69,7 +69,10 @@ public class CityController extends CrudController<City> {
         initTableView();
         initCombobox();
         applySearch(filteredCities);
-        applySelecton();
+        applySelecton(() -> {
+            nameField.setText(tableView.getSelectionModel().getSelectedItem().getName());
+            countryComboBox.getSelectionModel().select(tableView.getSelectionModel().getSelectedItem().getCountry());
+        });
     }
 
     private void initCombobox() {
@@ -90,22 +93,26 @@ public class CityController extends CrudController<City> {
     public void handleUpdate() {
         clearError();
         try {
-            Optional<City> selectedCity = Optional.ofNullable(tableView.getSelectionModel().getSelectedItem());
-            int id = selectedCity.map(City::getIdCity).orElse(-1);
+            City selectedCity = tableView.getSelectionModel().getSelectedItem();
+            if (selectedCity == null) {
+                showError(Messages.CRUDValidation.ITEM_NOT_SELECTED.formatted("update"));
+                return;
+            }
+            int idCity = selectedCity.getIdCity();
 
             String name = nameField.getText();
-            Country selectedCountry = countryComboBox.getSelectionModel().getSelectedItem();
-            int countryId = selectedCountry == null ? 0 : selectedCountry.getIdCountry();
-            CityUpdateDTO cityDto = new CityUpdateDTO(name, countryId);
+            int countryId = Optional.ofNullable(countryComboBox.getSelectionModel().getSelectedItem())
+                    .map(Country::getIdCountry)
+                    .orElse(0);
 
-            City updatedCity = cityService.update(id, cityDto);
-            handleClear();
-            updateInObservableList(cities, updatedCity);
-            focusTableViewItem(updatedCity);
+            CityUpdateDTO cityDto = new CityUpdateDTO(name, countryId);
+            City updatedCity = cityService.update(idCity, cityDto);
+
+            tableViewUpdate(CrudOperation.UPDATE, cities, updatedCity);
 
             AlertHelper.displayAlert(Alert.AlertType.INFORMATION, Messages.CRUD.UPDATED_HEADER, Messages.CRUD.UPDATED_CONTENT.formatted(selectedCity, updatedCity));
             log.info(Messages.CRUD.UPDATED_LOG.formatted(selectedCity, updatedCity, UserSession.INSTANCE.getSession().username()));
-        } catch (ItemNotSelectedException | OmitingRequiredFieldsException e) {
+        } catch (OmitingRequiredFieldsException e) {
             showError(e.getMessage());
         } catch (DatabaseFailedToException | SQLException e) {
             log.error(Messages.City.UPDATE_FAIL_LOG.formatted(UserSession.INSTANCE.getSession().username()), e);
@@ -118,31 +125,23 @@ public class CityController extends CrudController<City> {
         clearError();
         try {
             String name = nameField.getText();
-            Country selectedCountry = countryComboBox.getSelectionModel().getSelectedItem();
-            int countryId = selectedCountry == null ? 0 : selectedCountry.getIdCountry();
-            CityInsertDTO cityDto = new CityInsertDTO(name, countryId);
+            int countryId = Optional.ofNullable(countryComboBox.getSelectionModel().getSelectedItem())
+                    .map(Country::getIdCountry)
+                    .orElse(0);
 
+            CityInsertDTO cityDto = new CityInsertDTO(name, countryId);
             City insertedCity = cityService.insert(cityDto);
-            addToObservableList(cities, insertedCity);
-            handleClear();
-            focusTableViewItem(insertedCity);
+
+            tableViewUpdate(CrudOperation.INSERT, cities, insertedCity);
 
             AlertHelper.displayAlert(Alert.AlertType.INFORMATION, Messages.CRUD.INSERTED_HEADER, Messages.CRUD.INSERTED_CONTENT.formatted(insertedCity.getName()));
             log.info(Messages.CRUD.INSERT_LOG.formatted(insertedCity.getName(), UserSession.INSTANCE.getSession().username()));
-        } catch (ItemNotSelectedException | OmitingRequiredFieldsException e) {
+        } catch (OmitingRequiredFieldsException e) {
             showError(e.getMessage());
-        }  catch (SQLException e) {
+        } catch (DatabaseFailedToException | SQLException e) {
             log.error(Messages.City.INSERT_FAIL_LOG.formatted(UserSession.INSTANCE.getSession().username()), e);
             showError(Messages.Server.SERVER_ERROR_CONTENT);
         }
-    }
-
-    private void applySelecton() {
-        tableView.getSelectionModel().selectedItemProperty().addListener(e -> {
-            if(tableView.getSelectionModel().getSelectedItem() == null) return;
-            nameField.setText(tableView.getSelectionModel().getSelectedItem().getName());
-            countryComboBox.getSelectionModel().select(tableView.getSelectionModel().getSelectedItem().getCountry());
-        });
     }
 
     @Override
@@ -164,20 +163,25 @@ public class CityController extends CrudController<City> {
     public void handleDelete() {
         clearError();
         try {
-            Optional<City> selectedCity = Optional.ofNullable(tableView.getSelectionModel().getSelectedItem());
-            int id = selectedCity.map(City::getIdCity).orElse(-1);
+            City selectedCity = tableView.getSelectionModel().getSelectedItem();
+            if (selectedCity == null) {
+                showError(Messages.CRUDValidation.ITEM_NOT_SELECTED.formatted("delete"));
+                return;
+            }
+            int idCity = selectedCity.getIdCity();
 
-            cityService.delete(id);
-            removeFromObservableList(cities, selectedCity.get());
-            handleClear();
+            cityService.delete(idCity);
 
-            AlertHelper.displayAlert(Alert.AlertType.INFORMATION, Messages.CRUD.DELETED_HEADER, Messages.CRUD.DELETED_CONTENT.formatted(selectedCity.get().getName()));
-            log.info(Messages.CRUD.DELETED_LOG.formatted(selectedCity.get().getName(), UserSession.INSTANCE.getSession().username()));
-        } catch (ItemNotSelectedException e) {
+            tableViewUpdate(CrudOperation.DELETE, cities, selectedCity);
+
+            AlertHelper.displayAlert(Alert.AlertType.INFORMATION, Messages.CRUD.DELETED_HEADER, Messages.CRUD.DELETED_CONTENT.formatted(selectedCity.getName()));
+            log.info(Messages.CRUD.DELETED_LOG.formatted(selectedCity.getName(), UserSession.INSTANCE.getSession().username()));
+        } catch (OmitingRequiredFieldsException e) {
             showError(e.getMessage());
         } catch (SQLException e) {
             log.error(Messages.City.DELETE_FAIL_LOG.formatted(UserSession.INSTANCE.getSession().username()), e);
             showError(Messages.Server.SERVER_ERROR_CONTENT);
         }
     }
+
 }

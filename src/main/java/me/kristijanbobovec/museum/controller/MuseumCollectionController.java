@@ -8,10 +8,10 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import me.kristijanbobovec.museum.exception.DatabaseFailedToException;
-import me.kristijanbobovec.museum.exception.ItemNotSelectedException;
 import me.kristijanbobovec.museum.exception.OmitingRequiredFieldsException;
 import me.kristijanbobovec.museum.factory.column.MuseumCollectionColumnFactory;
 import me.kristijanbobovec.museum.manager.UserSession;
+import me.kristijanbobovec.museum.model.CrudOperation;
 import me.kristijanbobovec.museum.model.MuseumCollection;
 import me.kristijanbobovec.museum.model.dto.museumcollection.MuseumCollectionInsertDTO;
 import me.kristijanbobovec.museum.model.dto.museumcollection.MuseumCollectionUpdateDTO;
@@ -22,7 +22,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.sql.SQLException;
-import java.util.Optional;
 
 
 public class MuseumCollectionController extends CrudController<MuseumCollection> {
@@ -58,7 +57,7 @@ public class MuseumCollectionController extends CrudController<MuseumCollection>
     private void initView() {
         initTableView();
         applySearch(filteredCollections);
-        applySelecton();
+        applySelecton(() -> nameField.setText(tableView.getSelectionModel().getSelectedItem().getName()));
     }
 
     private void initTableView() {
@@ -74,20 +73,22 @@ public class MuseumCollectionController extends CrudController<MuseumCollection>
     public void handleUpdate() {
         clearError();
         try {
-            Optional<MuseumCollection> selectedMuseumCollection = Optional.ofNullable(tableView.getSelectionModel().getSelectedItem());
-            int id = selectedMuseumCollection.map(MuseumCollection::getIdCollection).orElse(-1);
+            MuseumCollection selectedMuseumCollection = tableView.getSelectionModel().getSelectedItem();
+            if (selectedMuseumCollection == null) {
+                showError(Messages.CRUDValidation.ITEM_NOT_SELECTED.formatted("update"));
+                return;
+            }
+            int idCollection = selectedMuseumCollection.getIdCollection();
 
             String name = nameField.getText();
             MuseumCollectionUpdateDTO museumCollectionDTO = new MuseumCollectionUpdateDTO(name);
 
-            MuseumCollection updatedMuseumCollection = museumCollectionService.update(id, museumCollectionDTO);
-            handleClear();
-            updateInObservableList(collections, updatedMuseumCollection);
-            focusTableViewItem(updatedMuseumCollection);
+            MuseumCollection updatedMuseumCollection = museumCollectionService.update(idCollection, museumCollectionDTO);
+            tableViewUpdate(CrudOperation.UPDATE, collections, updatedMuseumCollection);
 
             AlertHelper.displayAlert(Alert.AlertType.INFORMATION, Messages.CRUD.UPDATED_HEADER, Messages.CRUD.UPDATED_CONTENT.formatted(selectedMuseumCollection, updatedMuseumCollection));
             log.info(Messages.CRUD.UPDATED_LOG.formatted(selectedMuseumCollection, updatedMuseumCollection, UserSession.INSTANCE.getSession().username()));
-        } catch (ItemNotSelectedException | OmitingRequiredFieldsException e) {
+        } catch (OmitingRequiredFieldsException e) {
             showError(e.getMessage());
         } catch (DatabaseFailedToException | SQLException e) {
             log.error(Messages.Country.UPDATE_FAIL_LOG.formatted(UserSession.INSTANCE.getSession().username()), e);
@@ -103,15 +104,13 @@ public class MuseumCollectionController extends CrudController<MuseumCollection>
             MuseumCollectionInsertDTO museumCollectionDTO = new MuseumCollectionInsertDTO(name);
 
             MuseumCollection insertedMuseumCollection = museumCollectionService.insert(museumCollectionDTO);
-            addToObservableList(collections, insertedMuseumCollection);
-            handleClear();
-            focusTableViewItem(insertedMuseumCollection);
+            tableViewUpdate(CrudOperation.INSERT, collections, insertedMuseumCollection);
 
             AlertHelper.displayAlert(Alert.AlertType.INFORMATION, Messages.CRUD.INSERTED_HEADER, Messages.CRUD.INSERTED_CONTENT.formatted(insertedMuseumCollection.getName()));
             log.info(Messages.CRUD.INSERT_LOG.formatted(insertedMuseumCollection.getName(), UserSession.INSTANCE.getSession().username()));
-        } catch (ItemNotSelectedException | OmitingRequiredFieldsException e) {
+        } catch (OmitingRequiredFieldsException e) {
             showError(e.getMessage());
-        }  catch (SQLException e) {
+        } catch (SQLException e) {
             log.error(Messages.Country.INSERT_FAIL_LOG.formatted(UserSession.INSTANCE.getSession().username()), e);
             showError(Messages.Server.SERVER_ERROR_CONTENT);
         }
@@ -127,29 +126,22 @@ public class MuseumCollectionController extends CrudController<MuseumCollection>
     public void handleDelete() {
         clearError();
         try {
-            Optional<MuseumCollection> selectedMuseumCollection = Optional.ofNullable(tableView.getSelectionModel().getSelectedItem());
-            int id = selectedMuseumCollection.map(MuseumCollection::getIdCollection).orElse(-1);
+            MuseumCollection selectedMuseumCollection = tableView.getSelectionModel().getSelectedItem();
+            if (selectedMuseumCollection == null) {
+                showError(Messages.CRUDValidation.ITEM_NOT_SELECTED.formatted("delete"));
+                return;
+            }
+            int idCollection = selectedMuseumCollection.getIdCollection();
 
-            museumCollectionService.delete(id);
-            removeFromObservableList(collections, selectedMuseumCollection.get());
-            handleClear();
+            museumCollectionService.delete(idCollection);
+            tableViewUpdate(CrudOperation.DELETE, collections, selectedMuseumCollection);
 
-            AlertHelper.displayAlert(Alert.AlertType.INFORMATION, Messages.CRUD.DELETED_HEADER, Messages.CRUD.DELETED_CONTENT.formatted(selectedMuseumCollection.get().getName()));
-            log.info(Messages.CRUD.DELETED_LOG.formatted(selectedMuseumCollection.get().getName(), UserSession.INSTANCE.getSession().username()));
-        } catch (ItemNotSelectedException e) {
-            showError(e.getMessage());
+            AlertHelper.displayAlert(Alert.AlertType.INFORMATION, Messages.CRUD.DELETED_HEADER, Messages.CRUD.DELETED_CONTENT.formatted(selectedMuseumCollection.getName()));
+            log.info(Messages.CRUD.DELETED_LOG.formatted(selectedMuseumCollection.getName(), UserSession.INSTANCE.getSession().username()));
         } catch (SQLException e) {
             log.error(Messages.Country.DELETE_FAIL_LOG.formatted(UserSession.INSTANCE.getSession().username()), e);
             showError(Messages.Server.SERVER_ERROR_CONTENT);
         }
-
-    }
-
-    private void applySelecton() {
-        tableView.getSelectionModel().selectedItemProperty().addListener(e -> {
-            if(tableView.getSelectionModel().getSelectedItem() == null) return;
-            nameField.setText(tableView.getSelectionModel().getSelectedItem().getName());
-        });
     }
 
     private void clearNameField() {

@@ -8,11 +8,11 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import me.kristijanbobovec.museum.exception.DatabaseFailedToException;
-import me.kristijanbobovec.museum.exception.ItemNotSelectedException;
 import me.kristijanbobovec.museum.exception.OmitingRequiredFieldsException;
 import me.kristijanbobovec.museum.factory.column.CountryColumnFactory;
 import me.kristijanbobovec.museum.manager.UserSession;
 import me.kristijanbobovec.museum.model.Country;
+import me.kristijanbobovec.museum.model.CrudOperation;
 import me.kristijanbobovec.museum.model.dto.country.CountryInsertDTO;
 import me.kristijanbobovec.museum.model.dto.country.CountryUpdateDTO;
 import me.kristijanbobovec.museum.service.CountryService;
@@ -22,7 +22,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.sql.SQLException;
-import java.util.Optional;
 
 
 public class CountryController extends CrudController<Country> {
@@ -39,15 +38,15 @@ public class CountryController extends CrudController<Country> {
 
 
     private ObservableList<Country> countries;
-    private FilteredList<Country> filteredCounties;
+    private FilteredList<Country> filteredCountries;
     private SortedList<Country> sortedCountries;
 
     @FXML
     private void initialize() {
         try {
             countries = FXCollections.observableArrayList(countryService.getAll());
-            filteredCounties = new FilteredList<>(countries);
-            sortedCountries = new SortedList<>(filteredCounties);
+            filteredCountries = new FilteredList<>(countries);
+            sortedCountries = new SortedList<>(filteredCountries);
             initView();
         } catch (SQLException e) {
             log.error(Messages.Database.LOAD_FAIL, e);
@@ -57,8 +56,8 @@ public class CountryController extends CrudController<Country> {
 
     private void initView() {
         initTableView();
-        applySearch(filteredCounties);
-        applySelecton();
+        applySearch(filteredCountries);
+        applySelecton(() -> nameField.setText(tableView.getSelectionModel().getSelectedItem().getName()));
     }
 
     private void initTableView() {
@@ -74,20 +73,23 @@ public class CountryController extends CrudController<Country> {
     public void handleUpdate() {
         clearError();
         try {
-            Optional<Country> selectedCountry = Optional.ofNullable(tableView.getSelectionModel().getSelectedItem());
-            int id = selectedCountry.map(Country::getIdCountry).orElse(-1);
+            Country selectedCountry = tableView.getSelectionModel().getSelectedItem();
+            if (selectedCountry == null) {
+                showError(Messages.CRUDValidation.ITEM_NOT_SELECTED.formatted("update"));
+                return;
+            }
+            int idCountry = selectedCountry.getIdCountry();
 
             String name = nameField.getText();
+
             CountryUpdateDTO countryDto = new CountryUpdateDTO(name);
+            Country updatedCountry = countryService.update(idCountry, countryDto);
 
-            Country updatedCounty = countryService.update(id, countryDto);
-            handleClear();
-            updateInObservableList(countries, updatedCounty);
-            focusTableViewItem(updatedCounty);
+            tableViewUpdate(CrudOperation.UPDATE, countries, updatedCountry);
 
-            AlertHelper.displayAlert(Alert.AlertType.INFORMATION, Messages.CRUD.UPDATED_HEADER, Messages.CRUD.UPDATED_CONTENT.formatted(selectedCountry, updatedCounty));
-            log.info(Messages.CRUD.UPDATED_LOG.formatted(selectedCountry, updatedCounty, UserSession.INSTANCE.getSession().username()));
-        } catch (ItemNotSelectedException | OmitingRequiredFieldsException e) {
+            AlertHelper.displayAlert(Alert.AlertType.INFORMATION, Messages.CRUD.UPDATED_HEADER, Messages.CRUD.UPDATED_CONTENT.formatted(selectedCountry, updatedCountry));
+            log.info(Messages.CRUD.UPDATED_LOG.formatted(selectedCountry, updatedCountry, UserSession.INSTANCE.getSession().username()));
+        } catch (OmitingRequiredFieldsException e) {
             showError(e.getMessage());
         } catch (DatabaseFailedToException | SQLException e) {
             log.error(Messages.Country.UPDATE_FAIL_LOG.formatted(UserSession.INSTANCE.getSession().username()), e);
@@ -100,18 +102,17 @@ public class CountryController extends CrudController<Country> {
         clearError();
         try {
             String name = nameField.getText();
-            CountryInsertDTO countryDto = new CountryInsertDTO(name);
 
-            Country insertedCountry = countryService.insert(countryDto);
-            addToObservableList(countries, insertedCountry);
-            handleClear();
-            focusTableViewItem(insertedCountry);
+            CountryInsertDTO countryDTO = new CountryInsertDTO(name);
+            Country insertedCountry = countryService.insert(countryDTO);
+
+            tableViewUpdate(CrudOperation.INSERT, countries, insertedCountry);
 
             AlertHelper.displayAlert(Alert.AlertType.INFORMATION, Messages.CRUD.INSERTED_HEADER, Messages.CRUD.INSERTED_CONTENT.formatted(insertedCountry.getName()));
             log.info(Messages.CRUD.INSERT_LOG.formatted(insertedCountry.getName(), UserSession.INSTANCE.getSession().username()));
-        } catch (ItemNotSelectedException | OmitingRequiredFieldsException e) {
+        } catch (OmitingRequiredFieldsException e) {
             showError(e.getMessage());
-        }  catch (SQLException e) {
+        } catch (DatabaseFailedToException | SQLException e) {
             log.error(Messages.Country.INSERT_FAIL_LOG.formatted(UserSession.INSTANCE.getSession().username()), e);
             showError(Messages.Server.SERVER_ERROR_CONTENT);
         }
@@ -127,29 +128,25 @@ public class CountryController extends CrudController<Country> {
     public void handleDelete() {
         clearError();
         try {
-            Optional<Country> selectedCountry = Optional.ofNullable(tableView.getSelectionModel().getSelectedItem());
-            int id = selectedCountry.map(Country::getIdCountry).orElse(-1);
+            Country selectedCountry = tableView.getSelectionModel().getSelectedItem();
+            if (selectedCountry == null) {
+                showError(Messages.CRUDValidation.ITEM_NOT_SELECTED.formatted("delete"));
+                return;
+            }
+            int idCountry = selectedCountry.getIdCountry();
 
-            countryService.delete(id);
-            removeFromObservableList(countries, selectedCountry.get());
-            handleClear();
+            countryService.delete(idCountry);
 
-            AlertHelper.displayAlert(Alert.AlertType.INFORMATION, Messages.CRUD.DELETED_HEADER, Messages.CRUD.DELETED_CONTENT.formatted(selectedCountry.get().getName()));
-            log.info(Messages.CRUD.DELETED_LOG.formatted(selectedCountry.get().getName(), UserSession.INSTANCE.getSession().username()));
-        } catch (ItemNotSelectedException e) {
+            tableViewUpdate(CrudOperation.DELETE, countries, selectedCountry);
+
+            AlertHelper.displayAlert(Alert.AlertType.INFORMATION, Messages.CRUD.DELETED_HEADER, Messages.CRUD.DELETED_CONTENT.formatted(selectedCountry.getName()));
+            log.info(Messages.CRUD.DELETED_LOG.formatted(selectedCountry.getName(), UserSession.INSTANCE.getSession().username()));
+        } catch (OmitingRequiredFieldsException e) {
             showError(e.getMessage());
         } catch (SQLException e) {
             log.error(Messages.Country.DELETE_FAIL_LOG.formatted(UserSession.INSTANCE.getSession().username()), e);
             showError(Messages.Server.SERVER_ERROR_CONTENT);
         }
-
-    }
-
-    private void applySelecton() {
-        tableView.getSelectionModel().selectedItemProperty().addListener(e -> {
-            if(tableView.getSelectionModel().getSelectedItem() == null) return;
-            nameField.setText(tableView.getSelectionModel().getSelectedItem().getName());
-        });
     }
 
     private void clearNameField() {

@@ -11,6 +11,7 @@ module me.kristijanbobovec.museum {
     requires java.management;
     requires org.slf4j;
     requires java.desktop;
+    requires org.apache.commons.lang3;
 
 
     opens me.kristijanbobovec.museum to javafx.fxml;

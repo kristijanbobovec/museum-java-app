@@ -54,6 +54,9 @@ public final class Messages {
 
     public static final class Exhibit {
         public static final String NO_EXHIBITS = "There is no exhibits for this museum. (EDIT -> EXHIBIT)";
+        public static final String DELETE_FAIL_LOG = "Failed to delete a exhibit. (%s)";
+        public static final String INSERT_FAIL_LOG = "Failed to insert a exhibit. (%s)";
+        public static final String UPDATE_FAIL_LOG = "Failed to update a exhibit. (%s)";
     }
 
     public static final class CRUD {

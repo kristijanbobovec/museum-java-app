@@ -3,11 +3,10 @@ package me.kristijanbobovec.museum.model;
 import java.util.List;
 import java.util.Objects;
 
-public final class Curator extends Person {
+public final class Curator extends Person  implements  Named{
     private int idCurator;
     private int museumId;
     private Museum museum;
-
     private List<MuseumCollection> museumCollections;
 
     public Curator(String firstName, String lastName, int museumId) {
@@ -78,5 +77,10 @@ public final class Curator extends Person {
                 ", museum=" + museum +
                 ", museumCollections=" + museumCollections +
                 '}';
+    }
+
+    @Override
+    public String getName() {
+        return firstName + " " + lastName;
     }
 }

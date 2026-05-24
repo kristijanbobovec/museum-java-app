@@ -21,6 +21,8 @@ public class Main extends Application {
     private static final Logger log = LoggerFactory.getLogger(Main.class);
     private static boolean databaseException = false;
 
+    private static Stage primaryStage;
+
     @Override
     public void init() {
         try {
@@ -55,6 +57,8 @@ public class Main extends Application {
         MuseumCollectionRepository museumCollectionRepository = new MuseumCollectionRepositoryImpl();
         ImagePathRepository imagePathRepository = new ImagePathRepositoryImpl();
         CityRepository cityRepository = new CityRepositoryImpl();
+        CuratorCollectionRepository curatorCollectionRepository = new CuratorCollectionRepositoryImpl();
+        CuratorRepository curatorRepository = new CuratorRepositoryImpl();
 
         // Registring services
         UserService userService = new UserService(userRepository);
@@ -65,9 +69,11 @@ public class Main extends Application {
         MuseumCollectionService museumCollectionService = new MuseumCollectionService(museumCollectionRepository);
         CountryService countryService = new CountryService(countryRepository);
         CityService cityService = new CityService(cityRepository);
+        CuratorCollectionService curatorCollectionService = new CuratorCollectionService(curatorCollectionRepository);
+        CuratorService curatorService = new CuratorService(curatorRepository);
 
         ControllerFactory cf = new ControllerFactory(authService, museumService, exhibitService, museumCollectionService, countryService,
-                cityService, imagePathService);
+                cityService, imagePathService, curatorCollectionService, curatorService);
 
         // Set primary stage in stagemanager!
         SceneManager.setStage(stage);
@@ -75,5 +81,11 @@ public class Main extends Application {
 
         SceneManager.switchTo("login.fxml");
         stage.show();
+
+        primaryStage = stage;
+    }
+
+    public static Stage getPrimaryStage() {
+        return primaryStage;
     }
 }

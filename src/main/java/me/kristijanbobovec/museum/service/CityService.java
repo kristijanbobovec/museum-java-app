@@ -1,7 +1,6 @@
 package me.kristijanbobovec.museum.service;
 
 import me.kristijanbobovec.museum.exception.DatabaseFailedToException;
-import me.kristijanbobovec.museum.exception.ItemNotSelectedException;
 import me.kristijanbobovec.museum.exception.OmitingRequiredFieldsException;
 import me.kristijanbobovec.museum.model.City;
 import me.kristijanbobovec.museum.model.dto.city.CityInsertDTO;
@@ -23,8 +22,6 @@ public class CityService implements Service<City, CityInsertDTO, CityUpdateDTO> 
 
     @Override
     public boolean delete(int id) throws SQLException {
-        if (id == -1) throw new ItemNotSelectedException(Messages.CRUDValidation.ITEM_NOT_SELECTED.formatted("delete"));
-
         return cityRepository.delete(id);
     }
 
@@ -48,8 +45,6 @@ public class CityService implements Service<City, CityInsertDTO, CityUpdateDTO> 
 
     @Override
     public City update(int id, CityUpdateDTO dto) throws SQLException {
-        if (id == -1) throw new ItemNotSelectedException(Messages.CRUDValidation.ITEM_NOT_SELECTED.formatted("update"));
-
         List<String> errors = new ArrayList<>();
         if (dto.name() == null || dto.name().isEmpty()) errors.add(Messages.CRUDValidation.FIELD_EMPTY.formatted("name"));
         if (dto.countryID() == 0) errors.add(Messages.CRUDValidation.FIELD_EMPTY.formatted("country id"));

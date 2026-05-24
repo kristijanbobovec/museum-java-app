@@ -1,8 +1,8 @@
 package me.kristijanbobovec.museum.service;
 
 import me.kristijanbobovec.museum.exception.DatabaseFailedToException;
-import me.kristijanbobovec.museum.exception.ItemNotSelectedException;
 import me.kristijanbobovec.museum.exception.OmitingRequiredFieldsException;
+import me.kristijanbobovec.museum.model.Museum;
 import me.kristijanbobovec.museum.model.MuseumCollection;
 import me.kristijanbobovec.museum.model.dto.museumcollection.MuseumCollectionInsertDTO;
 import me.kristijanbobovec.museum.model.dto.museumcollection.MuseumCollectionUpdateDTO;
@@ -11,7 +11,9 @@ import me.kristijanbobovec.museum.util.Messages;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 public class MuseumCollectionService implements Service<MuseumCollection, MuseumCollectionInsertDTO, MuseumCollectionUpdateDTO> {
@@ -27,11 +29,17 @@ public class MuseumCollectionService implements Service<MuseumCollection, Museum
         return museumCollectionRepository.getByMuseumId(museumId);
     }
 
+    public Map<Integer, List<MuseumCollection>> getAllGroupedByMuseum(List<Museum> museums) throws SQLException {
+        Map<Integer, List<MuseumCollection>> map = new HashMap<>();
+        for (Museum museum : museums) {
+            map.put(museum.getIdMuseum(), museumCollectionRepository.getByMuseumId(museum.getIdMuseum()));
+        }
+        return map;
+    }
+
 
     @Override
     public boolean delete(int id) throws SQLException {
-        if (id == -1) throw new ItemNotSelectedException(Messages.CRUDValidation.ITEM_NOT_SELECTED.formatted("delete"));
-
         return museumCollectionRepository.delete(id);
     }
 
@@ -54,8 +62,6 @@ public class MuseumCollectionService implements Service<MuseumCollection, Museum
 
     @Override
     public MuseumCollection update(int id, MuseumCollectionUpdateDTO dto) throws SQLException {
-        if (id == -1) throw new ItemNotSelectedException(Messages.CRUDValidation.ITEM_NOT_SELECTED.formatted("update"));
-
         List<String> errors = new ArrayList<>();
         if (dto.name() == null || dto.name().isEmpty()) errors.add(Messages.CRUDValidation.FIELD_EMPTY.formatted("name"));
         if (!errors.isEmpty()) throw new OmitingRequiredFieldsException(errors);

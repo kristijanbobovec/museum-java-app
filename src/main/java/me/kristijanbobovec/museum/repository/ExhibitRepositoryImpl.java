@@ -57,8 +57,14 @@ public class ExhibitRepositoryImpl implements ExhibitRepository {
         cs.setString(2, item.getDescription());
         cs.setInt(3, item.getCreationYear());
         cs.setString(4, item.getImagePath());
-        cs.setInt(5, item.getMuseumCollection().getIdCollection());
-        cs.setInt(6, item.getMuseum().getIdMuseum());
+
+        if (item.getMuseumCollectionId() != null) {
+            cs.setInt(5, item.getMuseumCollectionId());
+        } else {
+            cs.setNull(5, Types.INTEGER);
+        }
+
+        cs.setInt(6, item.getMuseumId());
         cs.registerOutParameter(7, Types.INTEGER);
     }
 
@@ -69,11 +75,11 @@ public class ExhibitRepositoryImpl implements ExhibitRepository {
         cs.setString(3, toUpdate.getDescription() == null ? originalItem.getDescription() : toUpdate.getDescription());
         cs.setInt(4, toUpdate.getCreationYear() == 0 ? originalItem.getCreationYear() : toUpdate.getCreationYear());
         cs.setString(5, toUpdate.getImagePath() == null ? originalItem.getImagePath() : toUpdate.getImagePath());
-        cs.setInt(6, toUpdate.getMuseumCollection() != null
-                ? toUpdate.getMuseumCollection().getIdCollection()
-                : originalItem.getMuseumCollection().getIdCollection());
-        cs.setInt(7, toUpdate.getMuseum() != null
-                ? toUpdate.getMuseum().getIdMuseum()
-                : originalItem.getMuseum().getIdMuseum());
+        cs.setInt(6, toUpdate.getMuseumCollectionId() != null
+                ? toUpdate.getMuseumCollectionId()
+                : originalItem.getMuseumCollectionId());
+        cs.setInt(7, toUpdate.getMuseumId() != 0
+                ? toUpdate.getMuseumId()
+                : originalItem.getMuseumId());
     }
 }

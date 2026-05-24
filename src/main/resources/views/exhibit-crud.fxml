@@ -6,7 +6,6 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.SplitPane?>
-<?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
@@ -15,18 +14,14 @@
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="me.kristijanbobovec.museum.controller.ExhibitCrudController"
-            minWidth="800" minHeight="580">
+<BorderPane minHeight="580" minWidth="800" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="me.kristijanbobovec.museum.controller.ExhibitController">
 
     <top>
         <VBox>
-            <fx:include source="navigation.fxml"/>
-            <HBox alignment="CENTER_LEFT" spacing="12"
-                  style="-fx-background-color: #f8f9fa; -fx-border-color: #e0e0e0; -fx-border-width: 0 0 1 0;">
-                <padding><Insets top="12" right="16" bottom="12" left="16"/></padding>
-                <Label text="Exhibit Management"
-                       style="-fx-font-size: 18; -fx-font-weight: bold; -fx-text-fill: #333333;"/>
+            <fx:include source="navigation.fxml" />
+            <HBox alignment="CENTER_LEFT" spacing="12" style="-fx-background-color: #f8f9fa; -fx-border-color: #e0e0e0; -fx-border-width: 0 0 1 0;">
+                <padding><Insets bottom="12" left="16" right="16" top="12" /></padding>
+                <Label style="-fx-font-size: 18; -fx-font-weight: bold; -fx-text-fill: #333333;" text="Exhibit Management" />
             </HBox>
         </VBox>
     </top>
@@ -37,97 +32,75 @@
             <!-- LEFT: List -->
             <VBox style="-fx-background-color: #ffffff;">
                 <VBox style="-fx-background-color: #f8f9fa; -fx-border-color: #e0e0e0; -fx-border-width: 0 0 1 0;">
-                    <padding><Insets top="8" right="12" bottom="8" left="12"/></padding>
-                    <HBox spacing="8" alignment="CENTER_LEFT">
-                        <Label text="Search:" style="-fx-font-weight: bold; -fx-text-fill: #444444;"/>
-                        <TextField fx:id="searchField" promptText="Filter exhibits..." HBox.hgrow="ALWAYS"/>
+                    <padding><Insets bottom="8" left="12" right="12" top="8" /></padding>
+                    <HBox alignment="CENTER_LEFT" spacing="8">
+                        <Label style="-fx-font-weight: bold; -fx-text-fill: #444444;" text="Search:" />
+                        <TextField fx:id="searchField" promptText="Filter exhibits..." HBox.hgrow="ALWAYS" />
                     </HBox>
-                    <HBox spacing="8" alignment="CENTER_LEFT">
-                        <VBox.margin><Insets top="6"/></VBox.margin>
-                        <Label text="Museum:" style="-fx-font-weight: bold; -fx-text-fill: #444444;"/>
-                        <ComboBox fx:id="filterMuseumComboBox" promptText="All museums" HBox.hgrow="ALWAYS"/>
+                    <HBox alignment="CENTER_LEFT" spacing="8">
+                        <VBox.margin><Insets top="6" /></VBox.margin>
                     </HBox>
                 </VBox>
-                <TableView fx:id="tableView" VBox.vgrow="ALWAYS"
-                           style="-fx-background-color: transparent;">
-                    <padding><Insets top="4" right="8" bottom="4" left="8"/></padding>
-                    <columns>
-                        <TableColumn fx:id="nameColumn" text="Exhibit" prefWidth="130"/>
-                        <TableColumn fx:id="museumColumn" text="Museum" prefWidth="120"/>
-                    </columns>
+                <TableView fx:id="tableView" style="-fx-background-color: transparent;" VBox.vgrow="ALWAYS">
+                    <padding><Insets bottom="4" left="8" right="8" top="4" /></padding>
                 </TableView>
             </VBox>
 
             <!-- RIGHT: Form -->
             <BorderPane style="-fx-background-color: #ffffff;">
                 <center>
-                    <ScrollPane fitToWidth="true" style="-fx-background-color: transparent; -fx-background: transparent;"
-                                BorderPane.alignment="TOP_LEFT">
+                    <ScrollPane fitToWidth="true" style="-fx-background-color: transparent; -fx-background: transparent;" BorderPane.alignment="TOP_LEFT">
                         <VBox spacing="14">
-                            <padding><Insets top="24" right="24" bottom="16" left="24"/></padding>
+                            <padding><Insets bottom="16" left="24" right="24" top="24" /></padding>
 
-                            <Label text="Exhibit Details"
-                                   style="-fx-font-size: 15; -fx-font-weight: bold; -fx-text-fill: #333333;"/>
+                            <Label style="-fx-font-size: 15; -fx-font-weight: bold; -fx-text-fill: #333333;" text="Exhibit Details" />
 
                             <VBox spacing="6">
-                                <Label text="Name *" style="-fx-font-weight: bold; -fx-text-fill: #444444;"/>
-                                <TextField fx:id="nameField" promptText="Enter exhibit name" maxWidth="Infinity"/>
+                                <Label style="-fx-font-weight: bold; -fx-text-fill: #444444;" text="Name *" />
+                                <TextField fx:id="nameField" maxWidth="Infinity" promptText="Enter exhibit name" />
                             </VBox>
 
                             <VBox spacing="6">
-                                <Label text="Creation Year *" style="-fx-font-weight: bold; -fx-text-fill: #444444;"/>
-                                <TextField fx:id="yearField" promptText="e.g. 1503" maxWidth="Infinity"/>
+                                <Label style="-fx-font-weight: bold; -fx-text-fill: #444444;" text="Creation Year" />
+                                <TextField fx:id="yearField" maxWidth="Infinity" promptText="e.g. 1503" />
                             </VBox>
 
                             <VBox spacing="6">
-                                <Label text="Museum *" style="-fx-font-weight: bold; -fx-text-fill: #444444;"/>
-                                <ComboBox fx:id="museumComboBox" promptText="Select museum" maxWidth="Infinity"/>
+                                <Label style="-fx-font-weight: bold; -fx-text-fill: #444444;" text="Museum *" />
+                                <ComboBox fx:id="museumComboBox" maxWidth="Infinity" promptText="Select museum" />
                             </VBox>
 
                             <VBox spacing="6">
-                                <Label text="Collection (optional)" style="-fx-font-weight: bold; -fx-text-fill: #444444;"/>
-                                <ComboBox fx:id="collectionComboBox" promptText="Select collection" maxWidth="Infinity"/>
+                                <Label style="-fx-font-weight: bold; -fx-text-fill: #444444;" text="Collection (optional)" />
+                                <ComboBox fx:id="collectionComboBox" maxWidth="Infinity" promptText="Select collection" />
                             </VBox>
 
                             <VBox spacing="6">
-                                <Label text="Description" style="-fx-font-weight: bold; -fx-text-fill: #444444;"/>
-                                <TextArea fx:id="descriptionField"
-                                          promptText="Enter exhibit description"
-                                          prefRowCount="4"
-                                          wrapText="true"
-                                          maxWidth="Infinity"/>
+                                <Label style="-fx-font-weight: bold; -fx-text-fill: #444444;" text="Description" />
+                                <TextArea fx:id="descriptionField" maxWidth="Infinity" prefRowCount="4" promptText="Enter exhibit description" wrapText="true" />
                             </VBox>
 
                             <VBox spacing="6">
-                                <Label text="Image Path" style="-fx-font-weight: bold; -fx-text-fill: #444444;"/>
-                                <HBox spacing="8" alignment="CENTER_LEFT">
-                                    <TextField fx:id="imagePathField" promptText="Path to image file"
-                                               HBox.hgrow="ALWAYS"/>
-                                    <Button fx:id="browseButton" text="Browse..." onAction="#handleBrowse"
-                                            style="-fx-cursor: hand; -fx-padding: 6 12 6 12;"/>
+                                <Label style="-fx-font-weight: bold; -fx-text-fill: #444444;" text="Image Path" />
+                                <HBox alignment="CENTER_LEFT" spacing="8">
+                                    <TextField fx:id="imagePathField" promptText="Path to image file" HBox.hgrow="ALWAYS" />
+                                    <Button fx:id="browseButton" onAction="#handleBrowse" style="-fx-cursor: hand; -fx-padding: 6 12 6 12;" text="Browse..." />
                                 </HBox>
                             </VBox>
 
-                            <Label fx:id="errorLabel" text="" wrapText="true"
-                                   visible="false" managed="false"
-                                   style="-fx-text-fill: #c0392b; -fx-font-size: 12;"/>
+                            <Label fx:id="errorLabel" managed="false" style="-fx-text-fill: #c0392b; -fx-font-size: 12;" text="" visible="false" wrapText="true" />
                         </VBox>
                     </ScrollPane>
                 </center>
 
                 <bottom>
-                    <HBox spacing="8" alignment="CENTER_LEFT"
-                          style="-fx-background-color: #f8f9fa; -fx-border-color: #e0e0e0; -fx-border-width: 1 0 0 0;">
-                        <padding><Insets top="12" right="16" bottom="12" left="24"/></padding>
-                        <Button fx:id="createButton" text="Create" onAction="#handleCreate"
-                                style="-fx-background-color: #27ae60; -fx-text-fill: white; -fx-font-weight: bold; -fx-cursor: hand; -fx-padding: 8 20 8 20; -fx-background-radius: 4;"/>
-                        <Button fx:id="updateButton" text="Update" onAction="#handleUpdate"
-                                style="-fx-background-color: #2980b9; -fx-text-fill: white; -fx-font-weight: bold; -fx-cursor: hand; -fx-padding: 8 20 8 20; -fx-background-radius: 4;"/>
-                        <Button fx:id="deleteButton" text="Delete" onAction="#handleDelete"
-                                style="-fx-background-color: #c0392b; -fx-text-fill: white; -fx-font-weight: bold; -fx-cursor: hand; -fx-padding: 8 20 8 20; -fx-background-radius: 4;"/>
-                        <Region HBox.hgrow="ALWAYS"/>
-                        <Button fx:id="clearButton" text="Clear" onAction="#handleClear"
-                                style="-fx-background-color: #7f8c8d; -fx-text-fill: white; -fx-font-weight: bold; -fx-cursor: hand; -fx-padding: 8 20 8 20; -fx-background-radius: 4;"/>
+                    <HBox alignment="CENTER_LEFT" spacing="8" style="-fx-background-color: #f8f9fa; -fx-border-color: #e0e0e0; -fx-border-width: 1 0 0 0;">
+                        <padding><Insets bottom="12" left="24" right="16" top="12" /></padding>
+                        <Button fx:id="createButton" onAction="#handleCreate" style="-fx-background-color: #27ae60; -fx-text-fill: white; -fx-font-weight: bold; -fx-cursor: hand; -fx-padding: 8 20 8 20; -fx-background-radius: 4;" text="Create" />
+                        <Button fx:id="updateButton" onAction="#handleUpdate" style="-fx-background-color: #2980b9; -fx-text-fill: white; -fx-font-weight: bold; -fx-cursor: hand; -fx-padding: 8 20 8 20; -fx-background-radius: 4;" text="Update" />
+                        <Button fx:id="deleteButton" onAction="#handleDelete" style="-fx-background-color: #c0392b; -fx-text-fill: white; -fx-font-weight: bold; -fx-cursor: hand; -fx-padding: 8 20 8 20; -fx-background-radius: 4;" text="Delete" />
+                        <Region HBox.hgrow="ALWAYS" />
+                        <Button fx:id="clearButton" onAction="#handleClear" style="-fx-background-color: #7f8c8d; -fx-text-fill: white; -fx-font-weight: bold; -fx-cursor: hand; -fx-padding: 8 20 8 20; -fx-background-radius: 4;" text="Clear" />
                     </HBox>
                 </bottom>
             </BorderPane>

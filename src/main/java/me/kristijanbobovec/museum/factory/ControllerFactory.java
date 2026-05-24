@@ -12,9 +12,12 @@ public class ControllerFactory {
     private final CountryService countryService;
     private final CityService cityService;
     private final ImagePathService imagePathService;
+    private final CuratorCollectionService curatorCollectionService;
+    private final CuratorService curatorService;
 
     public ControllerFactory(AuthService authService, MuseumService museumService, ExhibitService exhibitService, MuseumCollectionService museumCollectionService,
-                             CountryService countryService, CityService cityService, ImagePathService imagePathService) {
+                             CountryService countryService, CityService cityService, ImagePathService imagePathService,
+                             CuratorCollectionService curatorCollectionService, CuratorService curatorService) {
         this.authService = authService;
         this.museumService = museumService;
         this.exhibitService = exhibitService;
@@ -22,6 +25,8 @@ public class ControllerFactory {
         this.countryService = countryService;
         this.cityService = cityService;
         this.imagePathService = imagePathService;
+        this.curatorCollectionService = curatorCollectionService;
+        this.curatorService = curatorService;
     }
 
     public Object create(Class<?> controllerClass) {
@@ -55,6 +60,15 @@ public class ControllerFactory {
 
         if (controllerClass == MuseumController.class) {
             return new MuseumController(museumService, cityService, imagePathService);
+        }
+
+        if (controllerClass == ExhibitController.class) {
+            return new ExhibitController(exhibitService, museumService, museumCollectionService, imagePathService);
+        }
+
+
+        if (controllerClass == CuratorController.class) {
+            return new CuratorController(curatorService, museumService, curatorCollectionService, museumCollectionService);
         }
 
         try {

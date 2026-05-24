@@ -3,12 +3,11 @@ package me.kristijanbobovec.museum.repository;
 import me.kristijanbobovec.museum.manager.DatabaseManager;
 import me.kristijanbobovec.museum.model.Curator;
 import me.kristijanbobovec.museum.model.Museum;
+import me.kristijanbobovec.museum.model.MuseumCollection;
 import me.kristijanbobovec.museum.util.SQLQueries;
 
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 public class CuratorRepositoryImpl implements CuratorRepository {
 
@@ -51,12 +50,27 @@ public class CuratorRepositoryImpl implements CuratorRepository {
     private List<Curator> getAllWithDetails() throws SQLException {
         List<Curator> curators = new ArrayList<>();
         try (Connection conn = DatabaseManager.getConnection();
-             CallableStatement csGetAllCuratorsWithDetails = conn.prepareCall(SQLQueries.GETALL_CURATORS_WITH_DETAILS)) {
-            ResultSet rsCurator = csGetAllCuratorsWithDetails.executeQuery();
+             CallableStatement csGetAll = conn.prepareCall(SQLQueries.GETALL_CURATORS_WITH_DETAILS);
+             CallableStatement csGetCollections = conn.prepareCall(SQLQueries.GETALL_CURATOR_COLLECTIONS)) {
+
+            ResultSet rsCurator = csGetAll.executeQuery();
             while (rsCurator.next()) {
                 Curator curator = mapRow(rsCurator);
-                mapDetailsToCurator(curator, rsCurator);
+                mapMuseumToCurator(curator, rsCurator);
                 curators.add(curator);
+            }
+
+            Map<Integer, Curator> curatorMap = new LinkedHashMap<>();
+            for (Curator c : curators) curatorMap.put(c.getIdCurator(), c);
+            curators.forEach(c -> c.setMuseumCollections(new ArrayList<>()));
+
+            ResultSet rsCollections = csGetCollections.executeQuery();
+            while (rsCollections.next()) {
+                int curatorId = rsCollections.getInt("CuratorID");
+                Curator curator = curatorMap.get(curatorId);
+                if (curator != null) {
+                    curator.getMuseumCollections().add(mapCollection(rsCollections));
+                }
             }
         }
         return curators;
@@ -64,27 +78,44 @@ public class CuratorRepositoryImpl implements CuratorRepository {
 
     private Optional<Curator> getByIdWithDetails(int id) throws SQLException {
         try (Connection conn = DatabaseManager.getConnection();
-             CallableStatement csGetByIdCuratorWithDetails = conn.prepareCall(SQLQueries.GETBYID_CURATOR_WITH_DETAILS)) {
-            csGetByIdCuratorWithDetails.setInt("IDCurator", id);
-            ResultSet rsCurator = csGetByIdCuratorWithDetails.executeQuery();
-            if (rsCurator.next()) {
-                Curator curator = mapRow(rsCurator);
-                mapDetailsToCurator(curator, rsCurator);
-                return Optional.of(curator);
+             CallableStatement csGetById = conn.prepareCall(SQLQueries.GETBYID_CURATOR_WITH_DETAILS);
+             CallableStatement csGetCollections = conn.prepareCall(SQLQueries.GETBYID_CURATOR_COLLECTIONS)) {
+
+            csGetById.setInt("IDCurator", id);
+            ResultSet rsCurator = csGetById.executeQuery();
+            if (!rsCurator.next()) return Optional.empty();
+
+            Curator curator = mapRow(rsCurator);
+            mapMuseumToCurator(curator, rsCurator);
+
+            List<MuseumCollection> collections = new ArrayList<>();
+            csGetCollections.setInt(1, id);
+            ResultSet rsCollections = csGetCollections.executeQuery();
+            while (rsCollections.next()) {
+                collections.add(mapCollection(rsCollections));
             }
+            curator.setMuseumCollections(collections);
+
+            return Optional.of(curator);
         }
-        return Optional.empty();
     }
 
-    private void mapDetailsToCurator(Curator curator, ResultSet rsCurator) throws SQLException {
+    private void mapMuseumToCurator(Curator curator, ResultSet rs) throws SQLException {
         curator.setMuseum(new Museum(
-                rsCurator.getInt("MuseumID"),
-                rsCurator.getString("MuseumName"),
-                rsCurator.getString("MuseumAdress"),
-                rsCurator.getInt("EstablishmentYear"),
-                rsCurator.getString("MuseumDescription"),
-                rsCurator.getString("MuseumImagePath"),
-                rsCurator.getInt("CityID")
+                rs.getInt("MuseumID"),
+                rs.getString("MuseumName"),
+                rs.getString("MuseumAdress"),
+                rs.getInt("EstablishmentYear"),
+                rs.getString("MuseumDescription"),
+                rs.getString("MuseumImagePath"),
+                rs.getInt("CityID")
         ));
+    }
+
+    private MuseumCollection mapCollection(ResultSet rs) throws SQLException {
+        return new MuseumCollection(
+                rs.getInt("IDMuseumCollection"),
+                rs.getString("CollectionName")
+        );
     }
 }

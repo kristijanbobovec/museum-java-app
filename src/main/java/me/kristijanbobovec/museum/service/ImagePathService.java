@@ -1,5 +1,6 @@
 package me.kristijanbobovec.museum.service;
 
+import me.kristijanbobovec.museum.model.ImagePath;
 import me.kristijanbobovec.museum.repository.ImagePathRepository;
 
 import java.io.IOException;
@@ -16,15 +17,34 @@ public class ImagePathService {
         this.imagePathRepository = imagePathRepository;
     }
 
-    public void deleteIfNotReferences(String classpathPath) throws SQLException, IOException {
+    private void deleteIfNotReferences(String classpathPath) throws SQLException, IOException {
         if (countReferences(classpathPath) > 0) return;
         Files.deleteIfExists(resolveStoragePath(classpathPath));
     }
 
-    public void createIfNotExists(String oPath, String classpathPath) throws IOException {
-        Path dest = resolveStoragePath(classpathPath);
+    private void copyToAssets(ImagePath imagePath) throws IOException {
+        Path dest = resolveStoragePath(imagePath.getAssetsPath());
         if (Files.exists(dest)) return;
-        Files.copy(Path.of(oPath), dest);
+        Files.copy(Path.of(imagePath.getOriginalPath()), dest);
+    }
+
+    public void remove(String imagePath) throws SQLException, IOException {
+        if (imagePath == null || imagePath.isEmpty()) return;
+        deleteIfNotReferences(imagePath);
+    }
+
+    public void create(ImagePath imagePath) throws SQLException, IOException {
+        if (imagePath.getAssetsPath() == null || imagePath.getAssetsPath().isEmpty()) return;
+        if (imagePath.getOriginalPath() == null || imagePath.getOriginalPath().isEmpty()) return;
+        copyToAssets(imagePath);
+    }
+
+    public void update(String oldPath, ImagePath newPath) throws SQLException, IOException {
+        if (oldPath != null && !oldPath.isEmpty() && !oldPath.equals(newPath.getAssetsPath()))
+            deleteIfNotReferences(oldPath);
+
+        if (newPath.getAssetsPath() != null && !newPath.getAssetsPath().isEmpty() && !newPath.getAssetsPath().equals(oldPath))
+            create(newPath);
     }
 
     private Path resolveStoragePath(String classpathPath) throws IOException {

@@ -1,0 +1,1269 @@
+2026-05-22 11:03:45 ERROR me.kristijanbobovec.museum.Main - Database failed with creation!
+com.microsoft.sqlserver.jdbc.SQLServerException: The TCP/IP connection to the host localhost, port 1401 has failed. Error: "Connection refused. Verify the connection properties. Make sure that an instance of SQL Server is running on the host and accepting TCP/IP connections at the port. Make sure that TCP connections to the port are not blocked by a firewall.".
+	at com.microsoft.sqlserver.jdbc@13.4.0.jre11/com.microsoft.sqlserver.jdbc.SQLServerException.makeFromDriverError(SQLServerException.java:308)
+	at com.microsoft.sqlserver.jdbc@13.4.0.jre11/com.microsoft.sqlserver.jdbc.SQLServerException.convertConnectExceptionToSQLServerException(SQLServerException.java:399)
+	at com.microsoft.sqlserver.jdbc@13.4.0.jre11/com.microsoft.sqlserver.jdbc.SocketFinder.findSocket(IOBuffer.java:2618)
+	at com.microsoft.sqlserver.jdbc@13.4.0.jre11/com.microsoft.sqlserver.jdbc.TDSChannel.open(IOBuffer.java:743)
+	at com.microsoft.sqlserver.jdbc@13.4.0.jre11/com.microsoft.sqlserver.jdbc.SQLServerConnection.connectHelper(SQLServerConnection.java:4352)
+	at com.microsoft.sqlserver.jdbc@13.4.0.jre11/com.microsoft.sqlserver.jdbc.SQLServerConnection.login(SQLServerConnection.java:3937)
+	at com.microsoft.sqlserver.jdbc@13.4.0.jre11/com.microsoft.sqlserver.jdbc.SQLServerConnection.connectInternal(SQLServerConnection.java:3700)
+	at com.microsoft.sqlserver.jdbc@13.4.0.jre11/com.microsoft.sqlserver.jdbc.SQLServerConnection.connect(SQLServerConnection.java:2385)
+	at com.microsoft.sqlserver.jdbc@13.4.0.jre11/com.microsoft.sqlserver.jdbc.SQLServerDataSource.getConnectionInternal(SQLServerDataSource.java:1735)
+	at com.microsoft.sqlserver.jdbc@13.4.0.jre11/com.microsoft.sqlserver.jdbc.SQLServerDataSource.getConnection(SQLServerDataSource.java:99)
+	at me.kristijanbobovec.museum@1.0-SNAPSHOT/me.kristijanbobovec.museum.database.DatabaseInitialization.init(DatabaseInitialization.java:29)
+	at me.kristijanbobovec.museum@1.0-SNAPSHOT/me.kristijanbobovec.museum.Main.init(Main.java:27)
+	at javafx.graphics@22.0.1/com.sun.javafx.application.LauncherImpl.launchApplication1(LauncherImpl.java:817)
+	at javafx.graphics@22.0.1/com.sun.javafx.application.LauncherImpl.lambda$launchApplication$2(LauncherImpl.java:196)
+	at java.base/java.lang.Thread.run(Thread.java:1570)
+2026-05-22 11:04:06 INFO  m.k.m.d.DatabaseInitialization - Database not found creating new one!
+2026-05-22 11:04:06 DEBUG m.k.m.d.DatabaseInitialization - Creating tables...
+2026-05-22 11:04:06 DEBUG m.k.m.d.DatabaseInitialization - Creating stored procedures...
+2026-05-22 11:04:06 DEBUG m.k.m.d.DatabaseInitialization - Creating roles...
+2026-05-22 11:04:06 DEBUG m.k.m.d.DatabaseInitialization - Creating admin account...
+2026-05-22 11:04:06 DEBUG m.k.m.d.DatabaseInitialization - Seeding initial data...
+2026-05-22 11:04:06 INFO  m.k.m.d.DatabaseInitialization - Database is created!
+2026-05-22 11:04:10 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-05-22 11:04:10 INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection ConnectionID:3 ClientConnectionId: 4ae75447-6e65-470b-ad76-b6439a4710be
+2026-05-22 11:04:10 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-05-22 11:04:10 INFO  m.k.museum.event.AppSubscribers - User admin successfully logged in!
+2026-05-22 11:37:08 INFO  m.k.m.d.DatabaseInitialization - Database not found creating new one!
+2026-05-22 11:37:08 DEBUG m.k.m.d.DatabaseInitialization - Creating tables...
+2026-05-22 11:37:08 DEBUG m.k.m.d.DatabaseInitialization - Creating stored procedures...
+2026-05-22 11:37:08 DEBUG m.k.m.d.DatabaseInitialization - Creating roles...
+2026-05-22 11:37:08 DEBUG m.k.m.d.DatabaseInitialization - Creating admin account...
+2026-05-22 11:37:08 DEBUG m.k.m.d.DatabaseInitialization - Seeding initial data...
+2026-05-22 11:37:08 INFO  m.k.m.d.DatabaseInitialization - Database is created!
+2026-05-22 11:37:12 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-05-22 11:37:12 INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection ConnectionID:3 ClientConnectionId: 667af440-c55f-40ce-a179-64103717ceff
+2026-05-22 11:37:12 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-05-22 11:37:12 INFO  m.k.museum.event.AppSubscribers - User admin successfully logged in!
+2026-05-22 11:44:20 INFO  m.k.m.d.DatabaseInitialization - Database not found creating new one!
+2026-05-22 11:44:20 DEBUG m.k.m.d.DatabaseInitialization - Creating tables...
+2026-05-22 11:44:20 DEBUG m.k.m.d.DatabaseInitialization - Creating stored procedures...
+2026-05-22 11:44:20 DEBUG m.k.m.d.DatabaseInitialization - Creating roles...
+2026-05-22 11:44:20 DEBUG m.k.m.d.DatabaseInitialization - Creating admin account...
+2026-05-22 11:44:20 DEBUG m.k.m.d.DatabaseInitialization - Seeding initial data...
+2026-05-22 11:44:20 INFO  m.k.m.d.DatabaseInitialization - Database is created!
+2026-05-22 11:44:23 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-05-22 11:44:23 INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection ConnectionID:3 ClientConnectionId: a3d1c4f3-b1ae-46e9-8f9c-752320691ae3
+2026-05-22 11:44:23 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-05-22 11:44:23 INFO  m.k.museum.event.AppSubscribers - User admin successfully logged in!
+2026-05-22 11:47:12 INFO  m.k.m.d.DatabaseInitialization - Database not found creating new one!
+2026-05-22 11:47:13 DEBUG m.k.m.d.DatabaseInitialization - Creating tables...
+2026-05-22 11:47:13 DEBUG m.k.m.d.DatabaseInitialization - Creating stored procedures...
+2026-05-22 11:47:13 DEBUG m.k.m.d.DatabaseInitialization - Creating roles...
+2026-05-22 11:47:13 DEBUG m.k.m.d.DatabaseInitialization - Creating admin account...
+2026-05-22 11:47:13 DEBUG m.k.m.d.DatabaseInitialization - Seeding initial data...
+2026-05-22 11:47:13 INFO  m.k.m.d.DatabaseInitialization - Database is created!
+2026-05-22 11:47:15 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-05-22 11:47:15 INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection ConnectionID:3 ClientConnectionId: 0987d760-ece2-4e69-b19c-2954ced86194
+2026-05-22 11:47:15 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-05-22 11:47:15 INFO  m.k.museum.event.AppSubscribers - User admin successfully logged in!
+2026-05-22 11:47:34 INFO  m.k.museum.controller.CityController - Kitic mile is successfully inserted by admin!
+2026-05-22 11:48:38 INFO  m.k.museum.controller.CityController - FROM Optional[City{idCity=4, name='Firenza', country=Country{idCountry=2, name='Italija'}}], TO City{idCity=4, name='Milislava', country=null} is successfully updated by admin!
+2026-05-22 11:59:44 INFO  m.k.m.d.DatabaseInitialization - Database not found creating new one!
+2026-05-22 11:59:44 DEBUG m.k.m.d.DatabaseInitialization - Creating tables...
+2026-05-22 11:59:44 DEBUG m.k.m.d.DatabaseInitialization - Creating stored procedures...
+2026-05-22 11:59:44 DEBUG m.k.m.d.DatabaseInitialization - Creating roles...
+2026-05-22 11:59:44 DEBUG m.k.m.d.DatabaseInitialization - Creating admin account...
+2026-05-22 11:59:44 DEBUG m.k.m.d.DatabaseInitialization - Seeding initial data...
+2026-05-22 11:59:44 INFO  m.k.m.d.DatabaseInitialization - Database is created!
+2026-05-22 11:59:49 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-05-22 11:59:49 INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection ConnectionID:3 ClientConnectionId: d4f9fc1b-598e-493a-b005-31a248ac4c6e
+2026-05-22 11:59:49 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-05-22 11:59:49 INFO  m.k.museum.event.AppSubscribers - User admin successfully logged in!
+2026-05-22 11:59:58 INFO  m.k.museum.controller.CityController - Milekic is successfully inserted by admin!
+2026-05-22 12:00:08 INFO  m.k.museum.controller.CityController - FROM Optional[City{idCity=6, name='London', country=Country{idCountry=4, name='Ujedinjeno Kraljevstvo'}}], TO City{idCity=6, name='Ala', country=Country{idCountry=3, name='Francuska'}} is successfully updated by admin!
+2026-05-22 13:16:13 INFO  m.k.m.d.DatabaseInitialization - Database not found creating new one!
+2026-05-22 13:16:14 DEBUG m.k.m.d.DatabaseInitialization - Creating tables...
+2026-05-22 13:16:14 DEBUG m.k.m.d.DatabaseInitialization - Creating stored procedures...
+2026-05-22 13:16:14 DEBUG m.k.m.d.DatabaseInitialization - Creating roles...
+2026-05-22 13:16:14 DEBUG m.k.m.d.DatabaseInitialization - Creating admin account...
+2026-05-22 13:16:14 DEBUG m.k.m.d.DatabaseInitialization - Seeding initial data...
+2026-05-22 13:16:14 INFO  m.k.m.d.DatabaseInitialization - Database is created!
+2026-05-22 13:16:16 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-05-22 13:16:17 INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection ConnectionID:3 ClientConnectionId: 1694ccfe-029e-424a-8d4d-46fd3c700c40
+2026-05-22 13:16:17 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-05-22 13:16:17 INFO  m.k.museum.event.AppSubscribers - User admin successfully logged in!
+2026-05-22 13:16:34 INFO  m.k.museum.controller.CityController - FROM Optional[City{idCity=3, name='Rim', country=Country{idCountry=2, name='Italija'}}], TO City{idCity=3, name='rim', country=Country{idCountry=3, name='Francuska'}} is successfully updated by admin!
+2026-05-22 13:19:23 INFO  m.k.m.d.DatabaseInitialization - Database not found creating new one!
+2026-05-22 13:19:23 DEBUG m.k.m.d.DatabaseInitialization - Creating tables...
+2026-05-22 13:19:23 DEBUG m.k.m.d.DatabaseInitialization - Creating stored procedures...
+2026-05-22 13:19:23 DEBUG m.k.m.d.DatabaseInitialization - Creating roles...
+2026-05-22 13:19:23 DEBUG m.k.m.d.DatabaseInitialization - Creating admin account...
+2026-05-22 13:19:23 DEBUG m.k.m.d.DatabaseInitialization - Seeding initial data...
+2026-05-22 13:19:23 INFO  m.k.m.d.DatabaseInitialization - Database is created!
+2026-05-22 13:19:26 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-05-22 13:19:26 INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection ConnectionID:3 ClientConnectionId: 470003f8-a9bf-4942-b680-62ea751bff87
+2026-05-22 13:19:26 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-05-22 13:19:26 INFO  m.k.museum.event.AppSubscribers - User admin successfully logged in!
+2026-05-22 13:19:53 INFO  m.k.m.d.DatabaseInitialization - Database not found creating new one!
+2026-05-22 13:19:53 DEBUG m.k.m.d.DatabaseInitialization - Creating tables...
+2026-05-22 13:19:53 DEBUG m.k.m.d.DatabaseInitialization - Creating stored procedures...
+2026-05-22 13:19:53 DEBUG m.k.m.d.DatabaseInitialization - Creating roles...
+2026-05-22 13:19:53 DEBUG m.k.m.d.DatabaseInitialization - Creating admin account...
+2026-05-22 13:19:53 DEBUG m.k.m.d.DatabaseInitialization - Seeding initial data...
+2026-05-22 13:19:53 INFO  m.k.m.d.DatabaseInitialization - Database is created!
+2026-05-22 13:19:56 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-05-22 13:19:56 INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection ConnectionID:3 ClientConnectionId: 4877eb54-8c40-4bdb-88dd-695286f5d102
+2026-05-22 13:19:56 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-05-22 13:19:56 INFO  m.k.museum.event.AppSubscribers - User admin successfully logged in!
+2026-05-22 13:20:07 INFO  m.k.museum.controller.CityController - FROM Optional[City{idCity=6, name='London', country=Country{idCountry=4, name='Ujedinjeno Kraljevstvo'}}], TO City{idCity=6, name='London', country=Country{idCountry=2, name='Italija'}} is successfully updated by admin!
+2026-05-22 13:20:23 INFO  m.k.museum.controller.CityController - Zagrebacki Bregi is successfully inserted by admin!
+2026-05-22 13:37:41 INFO  m.k.m.d.DatabaseInitialization - Database not found creating new one!
+2026-05-22 13:37:41 DEBUG m.k.m.d.DatabaseInitialization - Creating tables...
+2026-05-22 13:37:41 DEBUG m.k.m.d.DatabaseInitialization - Creating stored procedures...
+2026-05-22 13:37:41 DEBUG m.k.m.d.DatabaseInitialization - Creating roles...
+2026-05-22 13:37:41 DEBUG m.k.m.d.DatabaseInitialization - Creating admin account...
+2026-05-22 13:37:41 DEBUG m.k.m.d.DatabaseInitialization - Seeding initial data...
+2026-05-22 13:37:41 INFO  m.k.m.d.DatabaseInitialization - Database is created!
+2026-05-22 13:37:44 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-05-22 13:37:44 INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection ConnectionID:3 ClientConnectionId: 925d2d49-637b-4224-84c9-e3cf544fd3b3
+2026-05-22 13:37:44 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-05-22 13:37:44 INFO  m.k.museum.event.AppSubscribers - User admin successfully logged in!
+2026-05-22 13:38:53 INFO  m.k.m.d.DatabaseInitialization - Database not found creating new one!
+2026-05-22 13:38:53 DEBUG m.k.m.d.DatabaseInitialization - Creating tables...
+2026-05-22 13:38:53 DEBUG m.k.m.d.DatabaseInitialization - Creating stored procedures...
+2026-05-22 13:38:53 DEBUG m.k.m.d.DatabaseInitialization - Creating roles...
+2026-05-22 13:38:53 DEBUG m.k.m.d.DatabaseInitialization - Creating admin account...
+2026-05-22 13:38:53 DEBUG m.k.m.d.DatabaseInitialization - Seeding initial data...
+2026-05-22 13:38:53 INFO  m.k.m.d.DatabaseInitialization - Database is created!
+2026-05-22 13:38:56 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-05-22 13:38:56 INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection ConnectionID:3 ClientConnectionId: cb2e58bf-79f0-4ab4-b99f-32aa8efbeab2
+2026-05-22 13:38:56 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-05-22 13:38:56 INFO  m.k.museum.event.AppSubscribers - User admin successfully logged in!
+2026-05-22 13:39:06 INFO  m.k.m.c.MuseumCollectionController - Moderna umjetnost is successfully deleted by admin!
+2026-05-22 13:39:09 INFO  m.k.m.c.MuseumCollectionController - Anticka zbirka is successfully deleted by admin!
+2026-05-22 13:41:27 INFO  m.k.m.d.DatabaseInitialization - Database not found creating new one!
+2026-05-22 13:41:27 DEBUG m.k.m.d.DatabaseInitialization - Creating tables...
+2026-05-22 13:41:27 DEBUG m.k.m.d.DatabaseInitialization - Creating stored procedures...
+2026-05-22 13:41:27 DEBUG m.k.m.d.DatabaseInitialization - Creating roles...
+2026-05-22 13:41:27 DEBUG m.k.m.d.DatabaseInitialization - Creating admin account...
+2026-05-22 13:41:28 DEBUG m.k.m.d.DatabaseInitialization - Seeding initial data...
+2026-05-22 13:41:28 INFO  m.k.m.d.DatabaseInitialization - Database is created!
+2026-05-22 13:41:31 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-05-22 13:41:31 INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection ConnectionID:3 ClientConnectionId: 44e93356-f24f-40b1-a5f8-f8a1658bdfa5
+2026-05-22 13:41:31 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-05-22 13:41:31 INFO  m.k.museum.event.AppSubscribers - User admin successfully logged in!
+2026-05-22 13:41:42 INFO  m.k.m.c.MuseumCollectionController - Moderna umjetnost is successfully deleted by admin!
+2026-05-22 13:41:55 INFO  m.k.m.c.MuseumCollectionController - Moderna umjetnost is successfully deleted by admin!
+2026-05-22 13:45:53 INFO  m.k.m.d.DatabaseInitialization - Database not found creating new one!
+2026-05-22 13:45:54 DEBUG m.k.m.d.DatabaseInitialization - Creating tables...
+2026-05-22 13:45:54 DEBUG m.k.m.d.DatabaseInitialization - Creating stored procedures...
+2026-05-22 13:45:54 DEBUG m.k.m.d.DatabaseInitialization - Creating roles...
+2026-05-22 13:45:54 DEBUG m.k.m.d.DatabaseInitialization - Creating admin account...
+2026-05-22 13:45:54 DEBUG m.k.m.d.DatabaseInitialization - Seeding initial data...
+2026-05-22 13:45:54 INFO  m.k.m.d.DatabaseInitialization - Database is created!
+2026-05-22 13:45:58 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-05-22 13:45:58 INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection ConnectionID:3 ClientConnectionId: d9a84dd8-9322-4bf6-86f8-a5f0289984fd
+2026-05-22 13:45:58 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-05-22 13:45:58 INFO  m.k.museum.event.AppSubscribers - User admin successfully logged in!
+2026-05-22 13:46:04 INFO  m.k.m.c.MuseumCollectionController - Renesansna skulptura is successfully deleted by admin!
+2026-05-22 13:46:06 INFO  m.k.m.c.MuseumCollectionController - Anticka zbirka is successfully deleted by admin!
+2026-05-22 13:46:08 INFO  m.k.m.c.MuseumCollectionController - Moderna umjetnost is successfully deleted by admin!
+2026-05-22 13:46:10 INFO  m.k.m.c.MuseumCollectionController - Namještaj i dekorativna art is successfully deleted by admin!
+2026-05-22 13:52:00 INFO  m.k.m.d.DatabaseInitialization - Database not found creating new one!
+2026-05-22 13:52:00 DEBUG m.k.m.d.DatabaseInitialization - Creating tables...
+2026-05-22 13:52:01 DEBUG m.k.m.d.DatabaseInitialization - Creating stored procedures...
+2026-05-22 13:52:01 DEBUG m.k.m.d.DatabaseInitialization - Creating roles...
+2026-05-22 13:52:01 DEBUG m.k.m.d.DatabaseInitialization - Creating admin account...
+2026-05-22 13:52:01 DEBUG m.k.m.d.DatabaseInitialization - Seeding initial data...
+2026-05-22 13:52:01 INFO  m.k.m.d.DatabaseInitialization - Database is created!
+2026-05-22 13:52:04 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-05-22 13:52:04 INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection ConnectionID:3 ClientConnectionId: 19e0a77a-b7d8-4a23-b7c5-94e08dcb40ab
+2026-05-22 13:52:04 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-05-22 13:52:04 INFO  m.k.museum.event.AppSubscribers - User admin successfully logged in!
+2026-05-22 13:52:09 INFO  m.k.m.c.MuseumCollectionController - Anticka zbirka is successfully deleted by admin!
+2026-05-22 13:54:20 INFO  m.k.m.d.DatabaseInitialization - Database not found creating new one!
+2026-05-22 13:54:20 DEBUG m.k.m.d.DatabaseInitialization - Creating tables...
+2026-05-22 13:54:20 DEBUG m.k.m.d.DatabaseInitialization - Creating stored procedures...
+2026-05-22 13:54:20 DEBUG m.k.m.d.DatabaseInitialization - Creating roles...
+2026-05-22 13:54:21 DEBUG m.k.m.d.DatabaseInitialization - Creating admin account...
+2026-05-22 13:54:21 DEBUG m.k.m.d.DatabaseInitialization - Seeding initial data...
+2026-05-22 13:54:21 INFO  m.k.m.d.DatabaseInitialization - Database is created!
+2026-05-22 13:54:24 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-05-22 13:54:24 INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection ConnectionID:3 ClientConnectionId: 67322f51-cf70-4f04-ac4e-10449a1fd8e2
+2026-05-22 13:54:24 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-05-22 13:54:24 INFO  m.k.museum.event.AppSubscribers - User admin successfully logged in!
+2026-05-22 13:54:31 INFO  m.k.m.c.MuseumCollectionController - Moderna umjetnost is successfully deleted by admin!
+2026-05-22 13:59:07 INFO  m.k.m.d.DatabaseInitialization - Database not found creating new one!
+2026-05-22 13:59:07 DEBUG m.k.m.d.DatabaseInitialization - Creating tables...
+2026-05-22 13:59:07 DEBUG m.k.m.d.DatabaseInitialization - Creating stored procedures...
+2026-05-22 13:59:07 DEBUG m.k.m.d.DatabaseInitialization - Creating roles...
+2026-05-22 13:59:07 DEBUG m.k.m.d.DatabaseInitialization - Creating admin account...
+2026-05-22 13:59:08 DEBUG m.k.m.d.DatabaseInitialization - Seeding initial data...
+2026-05-22 13:59:08 INFO  m.k.m.d.DatabaseInitialization - Database is created!
+2026-05-22 13:59:11 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-05-22 13:59:11 INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection ConnectionID:3 ClientConnectionId: 752275ce-1a5f-46a2-92f6-c1b6fe46b6cc
+2026-05-22 13:59:11 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-05-22 13:59:11 INFO  m.k.museum.event.AppSubscribers - User admin successfully logged in!
+2026-05-22 13:59:16 INFO  m.k.m.c.MuseumCollectionController - Moderna umjetnost is successfully deleted by admin!
+2026-05-22 14:02:57 INFO  m.k.m.d.DatabaseInitialization - Database not found creating new one!
+2026-05-22 14:02:57 DEBUG m.k.m.d.DatabaseInitialization - Creating tables...
+2026-05-22 14:02:57 DEBUG m.k.m.d.DatabaseInitialization - Creating stored procedures...
+2026-05-22 14:02:57 DEBUG m.k.m.d.DatabaseInitialization - Creating roles...
+2026-05-22 14:02:57 DEBUG m.k.m.d.DatabaseInitialization - Creating admin account...
+2026-05-22 14:02:57 DEBUG m.k.m.d.DatabaseInitialization - Seeding initial data...
+2026-05-22 14:02:58 INFO  m.k.m.d.DatabaseInitialization - Database is created!
+2026-05-22 14:03:06 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-05-22 14:03:06 INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection ConnectionID:3 ClientConnectionId: 5a72df1d-753f-4d0a-9c74-64358d010e92
+2026-05-22 14:03:06 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-05-22 14:03:06 INFO  m.k.museum.event.AppSubscribers - User admin successfully logged in!
+2026-05-22 14:03:14 INFO  m.k.m.c.MuseumCollectionController - Moderna umjetnost is successfully deleted by admin!
+2026-05-22 14:03:37 INFO  m.k.m.d.DatabaseInitialization - Database not found creating new one!
+2026-05-22 14:03:38 DEBUG m.k.m.d.DatabaseInitialization - Creating tables...
+2026-05-22 14:03:38 DEBUG m.k.m.d.DatabaseInitialization - Creating stored procedures...
+2026-05-22 14:03:38 DEBUG m.k.m.d.DatabaseInitialization - Creating roles...
+2026-05-22 14:03:38 DEBUG m.k.m.d.DatabaseInitialization - Creating admin account...
+2026-05-22 14:03:38 DEBUG m.k.m.d.DatabaseInitialization - Seeding initial data...
+2026-05-22 14:03:38 INFO  m.k.m.d.DatabaseInitialization - Database is created!
+2026-05-22 14:03:41 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-05-22 14:03:41 INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection ConnectionID:3 ClientConnectionId: db06a31a-c71e-4b4f-bf01-12ad94de7eb7
+2026-05-22 14:03:41 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-05-22 14:03:42 INFO  m.k.museum.event.AppSubscribers - User admin successfully logged in!
+2026-05-22 14:03:46 INFO  m.k.m.c.MuseumCollectionController - Moderna umjetnost is successfully deleted by admin!
+2026-05-22 14:05:09 INFO  m.k.m.d.DatabaseInitialization - Database not found creating new one!
+2026-05-22 14:05:09 DEBUG m.k.m.d.DatabaseInitialization - Creating tables...
+2026-05-22 14:05:09 DEBUG m.k.m.d.DatabaseInitialization - Creating stored procedures...
+2026-05-22 14:05:09 DEBUG m.k.m.d.DatabaseInitialization - Creating roles...
+2026-05-22 14:05:09 DEBUG m.k.m.d.DatabaseInitialization - Creating admin account...
+2026-05-22 14:05:09 DEBUG m.k.m.d.DatabaseInitialization - Seeding initial data...
+2026-05-22 14:05:09 INFO  m.k.m.d.DatabaseInitialization - Database is created!
+2026-05-22 14:05:12 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-05-22 14:05:12 INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection ConnectionID:3 ClientConnectionId: 42fdf689-c4c3-4092-92c4-13a9d2e50a07
+2026-05-22 14:05:12 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-05-22 14:05:12 INFO  m.k.museum.event.AppSubscribers - User admin successfully logged in!
+2026-05-22 14:05:24 INFO  m.k.m.c.MuseumCollectionController - FROM Optional[Anticka zbirka], TO Seksi umjetnost is successfully updated by admin!
+2026-05-22 14:10:18 INFO  m.k.m.d.DatabaseInitialization - Database not found creating new one!
+2026-05-22 14:10:18 DEBUG m.k.m.d.DatabaseInitialization - Creating tables...
+2026-05-22 14:10:18 DEBUG m.k.m.d.DatabaseInitialization - Creating stored procedures...
+2026-05-22 14:10:18 DEBUG m.k.m.d.DatabaseInitialization - Creating roles...
+2026-05-22 14:10:18 DEBUG m.k.m.d.DatabaseInitialization - Creating admin account...
+2026-05-22 14:10:18 DEBUG m.k.m.d.DatabaseInitialization - Seeding initial data...
+2026-05-22 14:10:18 INFO  m.k.m.d.DatabaseInitialization - Database is created!
+2026-05-22 14:10:21 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-05-22 14:10:21 INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection ConnectionID:3 ClientConnectionId: 75071092-e28e-41f0-b0bd-ea685e29d29f
+2026-05-22 14:10:21 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-05-22 14:10:21 INFO  m.k.museum.event.AppSubscribers - User admin successfully logged in!
+2026-05-23 10:25:06 ERROR me.kristijanbobovec.museum.Main - Database failed with creation!
+com.microsoft.sqlserver.jdbc.SQLServerException: The TCP/IP connection to the host localhost, port 1401 has failed. Error: "Connection refused. Verify the connection properties. Make sure that an instance of SQL Server is running on the host and accepting TCP/IP connections at the port. Make sure that TCP connections to the port are not blocked by a firewall.".
+	at com.microsoft.sqlserver.jdbc@13.4.0.jre11/com.microsoft.sqlserver.jdbc.SQLServerException.makeFromDriverError(SQLServerException.java:308)
+	at com.microsoft.sqlserver.jdbc@13.4.0.jre11/com.microsoft.sqlserver.jdbc.SQLServerException.convertConnectExceptionToSQLServerException(SQLServerException.java:399)
+	at com.microsoft.sqlserver.jdbc@13.4.0.jre11/com.microsoft.sqlserver.jdbc.SocketFinder.findSocket(IOBuffer.java:2618)
+	at com.microsoft.sqlserver.jdbc@13.4.0.jre11/com.microsoft.sqlserver.jdbc.TDSChannel.open(IOBuffer.java:743)
+	at com.microsoft.sqlserver.jdbc@13.4.0.jre11/com.microsoft.sqlserver.jdbc.SQLServerConnection.connectHelper(SQLServerConnection.java:4352)
+	at com.microsoft.sqlserver.jdbc@13.4.0.jre11/com.microsoft.sqlserver.jdbc.SQLServerConnection.login(SQLServerConnection.java:3937)
+	at com.microsoft.sqlserver.jdbc@13.4.0.jre11/com.microsoft.sqlserver.jdbc.SQLServerConnection.connectInternal(SQLServerConnection.java:3700)
+	at com.microsoft.sqlserver.jdbc@13.4.0.jre11/com.microsoft.sqlserver.jdbc.SQLServerConnection.connect(SQLServerConnection.java:2385)
+	at com.microsoft.sqlserver.jdbc@13.4.0.jre11/com.microsoft.sqlserver.jdbc.SQLServerDataSource.getConnectionInternal(SQLServerDataSource.java:1735)
+	at com.microsoft.sqlserver.jdbc@13.4.0.jre11/com.microsoft.sqlserver.jdbc.SQLServerDataSource.getConnection(SQLServerDataSource.java:99)
+	at me.kristijanbobovec.museum/me.kristijanbobovec.museum.database.DatabaseInitialization.init(DatabaseInitialization.java:29)
+	at me.kristijanbobovec.museum/me.kristijanbobovec.museum.Main.init(Main.java:27)
+	at javafx.graphics@22.0.1/com.sun.javafx.application.LauncherImpl.launchApplication1(LauncherImpl.java:817)
+	at javafx.graphics@22.0.1/com.sun.javafx.application.LauncherImpl.lambda$launchApplication$2(LauncherImpl.java:196)
+	at java.base/java.lang.Thread.run(Thread.java:1570)
+2026-05-23 10:25:33 INFO  m.k.m.d.DatabaseInitialization - Database not found creating new one!
+2026-05-23 10:25:33 DEBUG m.k.m.d.DatabaseInitialization - Creating tables...
+2026-05-23 10:25:33 DEBUG m.k.m.d.DatabaseInitialization - Creating stored procedures...
+2026-05-23 10:25:33 DEBUG m.k.m.d.DatabaseInitialization - Creating roles...
+2026-05-23 10:25:33 DEBUG m.k.m.d.DatabaseInitialization - Creating admin account...
+2026-05-23 10:25:34 DEBUG m.k.m.d.DatabaseInitialization - Seeding initial data...
+2026-05-23 10:25:34 INFO  m.k.m.d.DatabaseInitialization - Database is created!
+2026-05-23 10:25:37 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-05-23 10:25:37 INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection ConnectionID:3 ClientConnectionId: a9b1281c-cb53-4eb9-a307-fbd1c8bb5f9e
+2026-05-23 10:25:37 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-05-23 10:25:37 INFO  m.k.museum.event.AppSubscribers - User admin successfully logged in!
+2026-05-23 10:25:56 INFO  m.k.m.c.MuseumCollectionController - Moja kolekcijica is successfully inserted by admin!
+2026-05-23 10:25:58 INFO  m.k.m.c.MuseumCollectionController - Moja kolekcijica is successfully deleted by admin!
+2026-05-23 10:26:48 INFO  m.k.m.d.DatabaseInitialization - Database not found creating new one!
+2026-05-23 10:26:48 DEBUG m.k.m.d.DatabaseInitialization - Creating tables...
+2026-05-23 10:26:48 DEBUG m.k.m.d.DatabaseInitialization - Creating stored procedures...
+2026-05-23 10:26:48 DEBUG m.k.m.d.DatabaseInitialization - Creating roles...
+2026-05-23 10:26:48 DEBUG m.k.m.d.DatabaseInitialization - Creating admin account...
+2026-05-23 10:26:48 DEBUG m.k.m.d.DatabaseInitialization - Seeding initial data...
+2026-05-23 10:26:48 INFO  m.k.m.d.DatabaseInitialization - Database is created!
+2026-05-23 10:26:53 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-05-23 10:26:53 INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection ConnectionID:3 ClientConnectionId: e5da2b2f-6475-4a1f-a358-ff37d1caab69
+2026-05-23 10:26:53 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-05-23 10:26:53 INFO  m.k.museum.event.AppSubscribers - User admin successfully logged in!
+2026-05-23 10:50:22 INFO  m.k.m.d.DatabaseInitialization - Database not found creating new one!
+2026-05-23 10:50:22 DEBUG m.k.m.d.DatabaseInitialization - Creating tables...
+2026-05-23 10:50:22 DEBUG m.k.m.d.DatabaseInitialization - Creating stored procedures...
+2026-05-23 10:50:22 DEBUG m.k.m.d.DatabaseInitialization - Creating roles...
+2026-05-23 10:50:22 DEBUG m.k.m.d.DatabaseInitialization - Creating admin account...
+2026-05-23 10:50:23 DEBUG m.k.m.d.DatabaseInitialization - Seeding initial data...
+2026-05-23 10:50:23 INFO  m.k.m.d.DatabaseInitialization - Database is created!
+2026-05-23 10:50:25 INFO  m.k.m.d.DatabaseInitialization - Database not found creating new one!
+2026-05-23 10:50:25 DEBUG m.k.m.d.DatabaseInitialization - Creating tables...
+2026-05-23 10:50:25 DEBUG m.k.m.d.DatabaseInitialization - Creating stored procedures...
+2026-05-23 10:50:25 DEBUG m.k.m.d.DatabaseInitialization - Creating roles...
+2026-05-23 10:50:25 DEBUG m.k.m.d.DatabaseInitialization - Creating admin account...
+2026-05-23 10:50:25 DEBUG m.k.m.d.DatabaseInitialization - Seeding initial data...
+2026-05-23 10:50:25 INFO  m.k.m.d.DatabaseInitialization - Database is created!
+2026-05-23 10:50:30 INFO  m.k.m.d.DatabaseInitialization - Database not found creating new one!
+2026-05-23 10:50:30 DEBUG m.k.m.d.DatabaseInitialization - Creating tables...
+2026-05-23 10:50:30 DEBUG m.k.m.d.DatabaseInitialization - Creating stored procedures...
+2026-05-23 10:50:30 DEBUG m.k.m.d.DatabaseInitialization - Creating roles...
+2026-05-23 10:50:30 DEBUG m.k.m.d.DatabaseInitialization - Creating admin account...
+2026-05-23 10:50:30 DEBUG m.k.m.d.DatabaseInitialization - Seeding initial data...
+2026-05-23 10:50:30 INFO  m.k.m.d.DatabaseInitialization - Database is created!
+2026-05-23 10:50:34 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-05-23 10:50:34 INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection ConnectionID:3 ClientConnectionId: 12b0a78c-78f3-400b-b1b5-6c83ba85dde0
+2026-05-23 10:50:34 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-05-23 10:50:35 INFO  m.k.museum.event.AppSubscribers - User admin successfully logged in!
+2026-05-23 10:51:20 INFO  m.k.m.d.DatabaseInitialization - Database not found creating new one!
+2026-05-23 10:51:20 DEBUG m.k.m.d.DatabaseInitialization - Creating tables...
+2026-05-23 10:51:20 DEBUG m.k.m.d.DatabaseInitialization - Creating stored procedures...
+2026-05-23 10:51:20 DEBUG m.k.m.d.DatabaseInitialization - Creating roles...
+2026-05-23 10:51:21 DEBUG m.k.m.d.DatabaseInitialization - Creating admin account...
+2026-05-23 10:51:21 DEBUG m.k.m.d.DatabaseInitialization - Seeding initial data...
+2026-05-23 10:51:21 INFO  m.k.m.d.DatabaseInitialization - Database is created!
+2026-05-23 10:51:23 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-05-23 10:51:23 INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection ConnectionID:3 ClientConnectionId: 293c2cd4-24e1-47d3-8559-d31e1636184c
+2026-05-23 10:51:23 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-05-23 10:51:23 INFO  m.k.museum.event.AppSubscribers - User admin successfully logged in!
+2026-05-23 10:52:19 INFO  m.k.m.d.DatabaseInitialization - Database not found creating new one!
+2026-05-23 10:52:19 DEBUG m.k.m.d.DatabaseInitialization - Creating tables...
+2026-05-23 10:52:19 DEBUG m.k.m.d.DatabaseInitialization - Creating stored procedures...
+2026-05-23 10:52:19 DEBUG m.k.m.d.DatabaseInitialization - Creating roles...
+2026-05-23 10:52:19 DEBUG m.k.m.d.DatabaseInitialization - Creating admin account...
+2026-05-23 10:52:19 DEBUG m.k.m.d.DatabaseInitialization - Seeding initial data...
+2026-05-23 10:52:19 INFO  m.k.m.d.DatabaseInitialization - Database is created!
+2026-05-23 10:52:22 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-05-23 10:52:22 INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection ConnectionID:3 ClientConnectionId: b457971f-4936-458b-a8e6-af7bd4cebbd0
+2026-05-23 10:52:22 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-05-23 10:52:22 INFO  m.k.museum.event.AppSubscribers - User admin successfully logged in!
+2026-05-23 10:53:28 INFO  m.k.m.d.DatabaseInitialization - Database not found creating new one!
+2026-05-23 10:53:29 DEBUG m.k.m.d.DatabaseInitialization - Creating tables...
+2026-05-23 10:53:29 DEBUG m.k.m.d.DatabaseInitialization - Creating stored procedures...
+2026-05-23 10:53:29 DEBUG m.k.m.d.DatabaseInitialization - Creating roles...
+2026-05-23 10:53:29 DEBUG m.k.m.d.DatabaseInitialization - Creating admin account...
+2026-05-23 10:53:29 DEBUG m.k.m.d.DatabaseInitialization - Seeding initial data...
+2026-05-23 10:53:29 INFO  m.k.m.d.DatabaseInitialization - Database is created!
+2026-05-23 10:53:31 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-05-23 10:53:31 INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection ConnectionID:3 ClientConnectionId: 31ad50c7-9a9f-4e23-a1dc-993d1b5cec8c
+2026-05-23 10:53:31 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-05-23 10:53:31 INFO  m.k.museum.event.AppSubscribers - User admin successfully logged in!
+2026-05-23 11:01:55 INFO  m.k.m.d.DatabaseInitialization - Database not found creating new one!
+2026-05-23 11:01:55 DEBUG m.k.m.d.DatabaseInitialization - Creating tables...
+2026-05-23 11:01:55 DEBUG m.k.m.d.DatabaseInitialization - Creating stored procedures...
+2026-05-23 11:01:55 DEBUG m.k.m.d.DatabaseInitialization - Creating roles...
+2026-05-23 11:01:55 DEBUG m.k.m.d.DatabaseInitialization - Creating admin account...
+2026-05-23 11:01:55 DEBUG m.k.m.d.DatabaseInitialization - Seeding initial data...
+2026-05-23 11:01:55 INFO  m.k.m.d.DatabaseInitialization - Database is created!
+2026-05-23 11:01:58 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-05-23 11:01:58 INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection ConnectionID:3 ClientConnectionId: 6c546e02-3acc-46d0-8990-20e97d12c815
+2026-05-23 11:01:58 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-05-23 11:01:58 INFO  m.k.museum.event.AppSubscribers - User admin successfully logged in!
+2026-05-23 11:09:09 INFO  m.k.m.d.DatabaseInitialization - Database not found creating new one!
+2026-05-23 11:09:09 DEBUG m.k.m.d.DatabaseInitialization - Creating tables...
+2026-05-23 11:09:09 DEBUG m.k.m.d.DatabaseInitialization - Creating stored procedures...
+2026-05-23 11:09:09 DEBUG m.k.m.d.DatabaseInitialization - Creating roles...
+2026-05-23 11:09:09 DEBUG m.k.m.d.DatabaseInitialization - Creating admin account...
+2026-05-23 11:09:10 DEBUG m.k.m.d.DatabaseInitialization - Seeding initial data...
+2026-05-23 11:09:10 INFO  m.k.m.d.DatabaseInitialization - Database is created!
+2026-05-23 11:09:12 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-05-23 11:09:12 INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection ConnectionID:3 ClientConnectionId: ccc5a997-da47-4de5-894e-1fd9643b2e7b
+2026-05-23 11:09:12 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-05-23 11:09:12 INFO  m.k.museum.event.AppSubscribers - User admin successfully logged in!
+2026-05-23 11:12:36 INFO  m.k.m.d.DatabaseInitialization - Database not found creating new one!
+2026-05-23 11:12:36 DEBUG m.k.m.d.DatabaseInitialization - Creating tables...
+2026-05-23 11:12:36 DEBUG m.k.m.d.DatabaseInitialization - Creating stored procedures...
+2026-05-23 11:12:36 DEBUG m.k.m.d.DatabaseInitialization - Creating roles...
+2026-05-23 11:12:36 DEBUG m.k.m.d.DatabaseInitialization - Creating admin account...
+2026-05-23 11:12:36 DEBUG m.k.m.d.DatabaseInitialization - Seeding initial data...
+2026-05-23 11:12:36 INFO  m.k.m.d.DatabaseInitialization - Database is created!
+2026-05-23 11:12:39 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-05-23 11:12:39 INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection ConnectionID:3 ClientConnectionId: d1b5d0db-60f2-4b86-95e6-b40a809a33db
+2026-05-23 11:12:39 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-05-23 11:12:39 INFO  m.k.museum.event.AppSubscribers - User admin successfully logged in!
+2026-05-23 11:19:22 INFO  m.k.m.d.DatabaseInitialization - Database not found creating new one!
+2026-05-23 11:19:22 DEBUG m.k.m.d.DatabaseInitialization - Creating tables...
+2026-05-23 11:19:22 DEBUG m.k.m.d.DatabaseInitialization - Creating stored procedures...
+2026-05-23 11:19:22 DEBUG m.k.m.d.DatabaseInitialization - Creating roles...
+2026-05-23 11:19:22 DEBUG m.k.m.d.DatabaseInitialization - Creating admin account...
+2026-05-23 11:19:22 DEBUG m.k.m.d.DatabaseInitialization - Seeding initial data...
+2026-05-23 11:19:22 INFO  m.k.m.d.DatabaseInitialization - Database is created!
+2026-05-23 11:19:25 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-05-23 11:19:25 INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection ConnectionID:3 ClientConnectionId: 03206a8d-a9e0-42aa-9ad5-228764d46d3c
+2026-05-23 11:19:25 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-05-23 11:19:25 INFO  m.k.museum.event.AppSubscribers - User admin successfully logged in!
+2026-05-23 11:20:04 INFO  m.k.m.d.DatabaseInitialization - Database not found creating new one!
+2026-05-23 11:20:05 DEBUG m.k.m.d.DatabaseInitialization - Creating tables...
+2026-05-23 11:20:05 DEBUG m.k.m.d.DatabaseInitialization - Creating stored procedures...
+2026-05-23 11:20:05 DEBUG m.k.m.d.DatabaseInitialization - Creating roles...
+2026-05-23 11:20:05 DEBUG m.k.m.d.DatabaseInitialization - Creating admin account...
+2026-05-23 11:20:05 DEBUG m.k.m.d.DatabaseInitialization - Seeding initial data...
+2026-05-23 11:20:05 INFO  m.k.m.d.DatabaseInitialization - Database is created!
+2026-05-23 11:20:08 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-05-23 11:20:08 INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection ConnectionID:3 ClientConnectionId: 67612205-f343-4a1a-ae5f-b4ac7347dee0
+2026-05-23 11:20:08 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-05-23 11:20:08 INFO  m.k.museum.event.AppSubscribers - User admin successfully logged in!
+2026-05-23 11:21:26 INFO  m.k.m.d.DatabaseInitialization - Database not found creating new one!
+2026-05-23 11:21:27 DEBUG m.k.m.d.DatabaseInitialization - Creating tables...
+2026-05-23 11:21:27 DEBUG m.k.m.d.DatabaseInitialization - Creating stored procedures...
+2026-05-23 11:21:27 DEBUG m.k.m.d.DatabaseInitialization - Creating roles...
+2026-05-23 11:21:27 DEBUG m.k.m.d.DatabaseInitialization - Creating admin account...
+2026-05-23 11:21:27 DEBUG m.k.m.d.DatabaseInitialization - Seeding initial data...
+2026-05-23 11:21:27 INFO  m.k.m.d.DatabaseInitialization - Database is created!
+2026-05-23 11:21:29 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-05-23 11:21:29 INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection ConnectionID:3 ClientConnectionId: ff5cf3c5-978f-48dd-a027-2223945d7b80
+2026-05-23 11:21:29 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-05-23 11:21:30 INFO  m.k.museum.event.AppSubscribers - User admin successfully logged in!
+2026-05-23 11:22:25 INFO  m.k.m.d.DatabaseInitialization - Database not found creating new one!
+2026-05-23 11:22:25 DEBUG m.k.m.d.DatabaseInitialization - Creating tables...
+2026-05-23 11:22:25 DEBUG m.k.m.d.DatabaseInitialization - Creating stored procedures...
+2026-05-23 11:22:25 DEBUG m.k.m.d.DatabaseInitialization - Creating roles...
+2026-05-23 11:22:25 DEBUG m.k.m.d.DatabaseInitialization - Creating admin account...
+2026-05-23 11:22:25 DEBUG m.k.m.d.DatabaseInitialization - Seeding initial data...
+2026-05-23 11:22:25 INFO  m.k.m.d.DatabaseInitialization - Database is created!
+2026-05-23 11:22:28 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-05-23 11:22:28 INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection ConnectionID:3 ClientConnectionId: 1f09ab2d-dace-4fb3-a3db-842478e41036
+2026-05-23 11:22:28 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-05-23 11:22:28 INFO  m.k.museum.event.AppSubscribers - User admin successfully logged in!
+2026-05-23 11:24:25 INFO  m.k.m.d.DatabaseInitialization - Database not found creating new one!
+2026-05-23 11:24:26 DEBUG m.k.m.d.DatabaseInitialization - Creating tables...
+2026-05-23 11:24:26 DEBUG m.k.m.d.DatabaseInitialization - Creating stored procedures...
+2026-05-23 11:24:26 DEBUG m.k.m.d.DatabaseInitialization - Creating roles...
+2026-05-23 11:24:26 DEBUG m.k.m.d.DatabaseInitialization - Creating admin account...
+2026-05-23 11:24:26 DEBUG m.k.m.d.DatabaseInitialization - Seeding initial data...
+2026-05-23 11:24:26 INFO  m.k.m.d.DatabaseInitialization - Database is created!
+2026-05-23 11:24:28 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-05-23 11:24:28 INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection ConnectionID:3 ClientConnectionId: 314be9e3-b038-4668-81d7-a8613dd06fe5
+2026-05-23 11:24:28 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-05-23 11:24:28 INFO  m.k.museum.event.AppSubscribers - User admin successfully logged in!
+2026-05-23 11:26:55 INFO  m.k.m.d.DatabaseInitialization - Database not found creating new one!
+2026-05-23 11:26:55 DEBUG m.k.m.d.DatabaseInitialization - Creating tables...
+2026-05-23 11:26:55 DEBUG m.k.m.d.DatabaseInitialization - Creating stored procedures...
+2026-05-23 11:26:55 DEBUG m.k.m.d.DatabaseInitialization - Creating roles...
+2026-05-23 11:26:55 DEBUG m.k.m.d.DatabaseInitialization - Creating admin account...
+2026-05-23 11:26:55 DEBUG m.k.m.d.DatabaseInitialization - Seeding initial data...
+2026-05-23 11:26:55 INFO  m.k.m.d.DatabaseInitialization - Database is created!
+2026-05-23 11:26:57 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-05-23 11:26:57 INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection ConnectionID:3 ClientConnectionId: 40b108e8-1d53-4f20-851d-6470bbd1e89f
+2026-05-23 11:26:57 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-05-23 11:26:58 INFO  m.k.museum.event.AppSubscribers - User admin successfully logged in!
+2026-05-23 11:27:27 INFO  m.k.m.d.DatabaseInitialization - Database not found creating new one!
+2026-05-23 11:27:27 DEBUG m.k.m.d.DatabaseInitialization - Creating tables...
+2026-05-23 11:27:27 DEBUG m.k.m.d.DatabaseInitialization - Creating stored procedures...
+2026-05-23 11:27:27 DEBUG m.k.m.d.DatabaseInitialization - Creating roles...
+2026-05-23 11:27:27 DEBUG m.k.m.d.DatabaseInitialization - Creating admin account...
+2026-05-23 11:27:27 DEBUG m.k.m.d.DatabaseInitialization - Seeding initial data...
+2026-05-23 11:27:27 INFO  m.k.m.d.DatabaseInitialization - Database is created!
+2026-05-23 11:27:30 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-05-23 11:27:30 INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection ConnectionID:3 ClientConnectionId: 41cfebdc-494e-4267-9b22-db01862b7f62
+2026-05-23 11:27:30 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-05-23 11:27:30 INFO  m.k.museum.event.AppSubscribers - User admin successfully logged in!
+2026-05-23 12:33:30 INFO  m.k.m.d.DatabaseInitialization - Database not found creating new one!
+2026-05-23 12:33:30 DEBUG m.k.m.d.DatabaseInitialization - Creating tables...
+2026-05-23 12:33:30 DEBUG m.k.m.d.DatabaseInitialization - Creating stored procedures...
+2026-05-23 12:33:30 DEBUG m.k.m.d.DatabaseInitialization - Creating roles...
+2026-05-23 12:33:31 DEBUG m.k.m.d.DatabaseInitialization - Creating admin account...
+2026-05-23 12:33:31 DEBUG m.k.m.d.DatabaseInitialization - Seeding initial data...
+2026-05-23 12:33:31 INFO  m.k.m.d.DatabaseInitialization - Database is created!
+2026-05-23 12:33:34 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-05-23 12:33:34 INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection ConnectionID:3 ClientConnectionId: b56f5ce4-5c6c-4fc7-9ee6-efc8adee6afe
+2026-05-23 12:33:34 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-05-23 12:33:34 INFO  m.k.museum.event.AppSubscribers - User admin successfully logged in!
+2026-05-23 13:28:16 INFO  m.k.m.d.DatabaseInitialization - Database not found creating new one!
+2026-05-23 13:28:17 DEBUG m.k.m.d.DatabaseInitialization - Creating tables...
+2026-05-23 13:28:17 DEBUG m.k.m.d.DatabaseInitialization - Creating stored procedures...
+2026-05-23 13:28:17 DEBUG m.k.m.d.DatabaseInitialization - Creating roles...
+2026-05-23 13:28:17 DEBUG m.k.m.d.DatabaseInitialization - Creating admin account...
+2026-05-23 13:28:17 DEBUG m.k.m.d.DatabaseInitialization - Seeding initial data...
+2026-05-23 13:28:17 INFO  m.k.m.d.DatabaseInitialization - Database is created!
+2026-05-23 13:28:20 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-05-23 13:28:20 INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection ConnectionID:3 ClientConnectionId: 2489702f-961d-4988-819f-ead588a808dd
+2026-05-23 13:28:20 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-05-23 13:28:20 INFO  m.k.museum.event.AppSubscribers - User admin successfully logged in!
+2026-05-23 13:28:58 ERROR m.k.m.controller.MuseumController - Failed to manipulate a image. (admin)
+java.nio.file.NoSuchFileException: /assets/images/penguins.jpg
+	at java.base/sun.nio.fs.UnixException.translateToIOException(UnixException.java:92)
+	at java.base/sun.nio.fs.UnixException.rethrowAsIOException(UnixException.java:106)
+	at java.base/sun.nio.fs.UnixException.rethrowAsIOException(UnixException.java:111)
+	at java.base/sun.nio.fs.UnixFileSystem.copyFile(UnixFileSystem.java:673)
+	at java.base/sun.nio.fs.BsdFileSystem.copyFile(BsdFileSystem.java:154)
+	at java.base/sun.nio.fs.UnixFileSystem.copy(UnixFileSystem.java:1084)
+	at java.base/sun.nio.fs.UnixFileSystemProvider.copy(UnixFileSystemProvider.java:300)
+	at java.base/java.nio.file.Files.copy(Files.java:1304)
+	at me.kristijanbobovec.museum/me.kristijanbobovec.museum.service.ImagePathService.createIfNotExists(ImagePathService.java:29)
+	at me.kristijanbobovec.museum/me.kristijanbobovec.museum.controller.MuseumController.handleCreate(MuseumController.java:216)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at com.sun.javafx.reflect.Trampoline.invoke(MethodUtil.java:72)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at javafx.base@22.0.1/com.sun.javafx.reflect.MethodUtil.invoke(MethodUtil.java:270)
+	at javafx.fxml@22.0.1/com.sun.javafx.fxml.MethodHelper.invoke(MethodHelper.java:84)
+	at javafx.fxml@22.0.1/javafx.fxml.FXMLLoader$MethodHandler.invoke(FXMLLoader.java:1860)
+	at javafx.fxml@22.0.1/javafx.fxml.FXMLLoader$ControllerMethodEventHandler.handle(FXMLLoader.java:1731)
+	at javafx.base@22.0.1/com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:86)
+	at javafx.base@22.0.1/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:232)
+	at javafx.base@22.0.1/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:189)
+	at javafx.base@22.0.1/com.sun.javafx.event.CompositeEventDispatcher.dispatchBubblingEvent(CompositeEventDispatcher.java:59)
+	at javafx.base@22.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58)
+	at javafx.base@22.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@22.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@22.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@22.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@22.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@22.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@22.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@22.0.1/com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74)
+	at javafx.base@22.0.1/com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:49)
+	at javafx.base@22.0.1/javafx.event.Event.fireEvent(Event.java:198)
+	at javafx.graphics@22.0.1/javafx.scene.Node.fireEvent(Node.java:8917)
+	at javafx.controls@22.0.1/javafx.scene.control.Button.fire(Button.java:203)
+	at javafx.controls@22.0.1/com.sun.javafx.scene.control.behavior.ButtonBehavior.mouseReleased(ButtonBehavior.java:207)
+	at javafx.controls@22.0.1/com.sun.javafx.scene.control.inputmap.InputMap.handle(InputMap.java:274)
+	at javafx.base@22.0.1/com.sun.javafx.event.CompositeEventHandler$NormalEventHandlerRecord.handleBubblingEvent(CompositeEventHandler.java:247)
+	at javafx.base@22.0.1/com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:80)
+	at javafx.base@22.0.1/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:232)
+	at javafx.base@22.0.1/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:189)
+	at javafx.base@22.0.1/com.sun.javafx.event.CompositeEventDispatcher.dispatchBubblingEvent(CompositeEventDispatcher.java:59)
+	at javafx.base@22.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58)
+	at javafx.base@22.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@22.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@22.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@22.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@22.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@22.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@22.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@22.0.1/com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74)
+	at javafx.base@22.0.1/com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:54)
+	at javafx.base@22.0.1/javafx.event.Event.fireEvent(Event.java:198)
+	at javafx.graphics@22.0.1/javafx.scene.Scene$MouseHandler.process(Scene.java:3985)
+	at javafx.graphics@22.0.1/javafx.scene.Scene.processMouseEvent(Scene.java:1891)
+	at javafx.graphics@22.0.1/javafx.scene.Scene$ScenePeerListener.mouseEvent(Scene.java:2709)
+	at javafx.graphics@22.0.1/com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.run(GlassViewEventHandler.java:411)
+	at javafx.graphics@22.0.1/com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.run(GlassViewEventHandler.java:301)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:400)
+	at javafx.graphics@22.0.1/com.sun.javafx.tk.quantum.GlassViewEventHandler.lambda$handleMouseEvent$2(GlassViewEventHandler.java:450)
+	at javafx.graphics@22.0.1/com.sun.javafx.tk.quantum.QuantumToolkit.runWithoutRenderLock(QuantumToolkit.java:430)
+	at javafx.graphics@22.0.1/com.sun.javafx.tk.quantum.GlassViewEventHandler.handleMouseEvent(GlassViewEventHandler.java:449)
+	at javafx.graphics@22.0.1/com.sun.glass.ui.View.handleMouseEvent(View.java:551)
+	at javafx.graphics@22.0.1/com.sun.glass.ui.View.notifyMouse(View.java:937)
+	at javafx.graphics@22.0.1/com.sun.glass.ui.mac.MacView.notifyMouse(MacView.java:127)
+2026-05-23 13:31:19 INFO  m.k.m.d.DatabaseInitialization - Database not found creating new one!
+2026-05-23 13:31:19 DEBUG m.k.m.d.DatabaseInitialization - Creating tables...
+2026-05-23 13:31:19 DEBUG m.k.m.d.DatabaseInitialization - Creating stored procedures...
+2026-05-23 13:31:19 DEBUG m.k.m.d.DatabaseInitialization - Creating roles...
+2026-05-23 13:31:19 DEBUG m.k.m.d.DatabaseInitialization - Creating admin account...
+2026-05-23 13:31:19 DEBUG m.k.m.d.DatabaseInitialization - Seeding initial data...
+2026-05-23 13:31:19 INFO  m.k.m.d.DatabaseInitialization - Database is created!
+2026-05-23 13:31:23 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-05-23 13:31:23 INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection ConnectionID:3 ClientConnectionId: 47a458c2-1153-45a6-be93-484686c08ad0
+2026-05-23 13:31:23 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-05-23 13:31:23 INFO  m.k.museum.event.AppSubscribers - User admin successfully logged in!
+2026-05-23 13:31:41 ERROR m.k.m.controller.MuseumController - Failed to manipulate a image. (admin)
+java.nio.file.NoSuchFileException: /assets/images/penguins.jpg
+	at java.base/sun.nio.fs.UnixException.translateToIOException(UnixException.java:92)
+	at java.base/sun.nio.fs.UnixException.rethrowAsIOException(UnixException.java:106)
+	at java.base/sun.nio.fs.UnixException.rethrowAsIOException(UnixException.java:111)
+	at java.base/sun.nio.fs.UnixFileSystem.copyFile(UnixFileSystem.java:673)
+	at java.base/sun.nio.fs.BsdFileSystem.copyFile(BsdFileSystem.java:154)
+	at java.base/sun.nio.fs.UnixFileSystem.copy(UnixFileSystem.java:1084)
+	at java.base/sun.nio.fs.UnixFileSystemProvider.copy(UnixFileSystemProvider.java:300)
+	at java.base/java.nio.file.Files.copy(Files.java:1304)
+	at me.kristijanbobovec.museum/me.kristijanbobovec.museum.service.ImagePathService.createIfNotExists(ImagePathService.java:28)
+	at me.kristijanbobovec.museum/me.kristijanbobovec.museum.controller.MuseumController.handleCreate(MuseumController.java:216)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at com.sun.javafx.reflect.Trampoline.invoke(MethodUtil.java:72)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at javafx.base@22.0.1/com.sun.javafx.reflect.MethodUtil.invoke(MethodUtil.java:270)
+	at javafx.fxml@22.0.1/com.sun.javafx.fxml.MethodHelper.invoke(MethodHelper.java:84)
+	at javafx.fxml@22.0.1/javafx.fxml.FXMLLoader$MethodHandler.invoke(FXMLLoader.java:1860)
+	at javafx.fxml@22.0.1/javafx.fxml.FXMLLoader$ControllerMethodEventHandler.handle(FXMLLoader.java:1731)
+	at javafx.base@22.0.1/com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:86)
+	at javafx.base@22.0.1/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:232)
+	at javafx.base@22.0.1/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:189)
+	at javafx.base@22.0.1/com.sun.javafx.event.CompositeEventDispatcher.dispatchBubblingEvent(CompositeEventDispatcher.java:59)
+	at javafx.base@22.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58)
+	at javafx.base@22.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@22.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@22.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@22.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@22.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@22.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@22.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@22.0.1/com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74)
+	at javafx.base@22.0.1/com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:49)
+	at javafx.base@22.0.1/javafx.event.Event.fireEvent(Event.java:198)
+	at javafx.graphics@22.0.1/javafx.scene.Node.fireEvent(Node.java:8917)
+	at javafx.controls@22.0.1/javafx.scene.control.Button.fire(Button.java:203)
+	at javafx.controls@22.0.1/com.sun.javafx.scene.control.behavior.ButtonBehavior.mouseReleased(ButtonBehavior.java:207)
+	at javafx.controls@22.0.1/com.sun.javafx.scene.control.inputmap.InputMap.handle(InputMap.java:274)
+	at javafx.base@22.0.1/com.sun.javafx.event.CompositeEventHandler$NormalEventHandlerRecord.handleBubblingEvent(CompositeEventHandler.java:247)
+	at javafx.base@22.0.1/com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:80)
+	at javafx.base@22.0.1/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:232)
+	at javafx.base@22.0.1/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:189)
+	at javafx.base@22.0.1/com.sun.javafx.event.CompositeEventDispatcher.dispatchBubblingEvent(CompositeEventDispatcher.java:59)
+	at javafx.base@22.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58)
+	at javafx.base@22.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@22.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@22.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@22.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@22.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@22.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@22.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@22.0.1/com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74)
+	at javafx.base@22.0.1/com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:54)
+	at javafx.base@22.0.1/javafx.event.Event.fireEvent(Event.java:198)
+	at javafx.graphics@22.0.1/javafx.scene.Scene$MouseHandler.process(Scene.java:3985)
+	at javafx.graphics@22.0.1/javafx.scene.Scene.processMouseEvent(Scene.java:1891)
+	at javafx.graphics@22.0.1/javafx.scene.Scene$ScenePeerListener.mouseEvent(Scene.java:2709)
+	at javafx.graphics@22.0.1/com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.run(GlassViewEventHandler.java:411)
+	at javafx.graphics@22.0.1/com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.run(GlassViewEventHandler.java:301)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:400)
+	at javafx.graphics@22.0.1/com.sun.javafx.tk.quantum.GlassViewEventHandler.lambda$handleMouseEvent$2(GlassViewEventHandler.java:450)
+	at javafx.graphics@22.0.1/com.sun.javafx.tk.quantum.QuantumToolkit.runWithoutRenderLock(QuantumToolkit.java:430)
+	at javafx.graphics@22.0.1/com.sun.javafx.tk.quantum.GlassViewEventHandler.handleMouseEvent(GlassViewEventHandler.java:449)
+	at javafx.graphics@22.0.1/com.sun.glass.ui.View.handleMouseEvent(View.java:551)
+	at javafx.graphics@22.0.1/com.sun.glass.ui.View.notifyMouse(View.java:937)
+	at javafx.graphics@22.0.1/com.sun.glass.ui.mac.MacView.notifyMouse(MacView.java:127)
+2026-05-23 13:33:28 INFO  m.k.m.d.DatabaseInitialization - Database not found creating new one!
+2026-05-23 13:33:28 DEBUG m.k.m.d.DatabaseInitialization - Creating tables...
+2026-05-23 13:33:28 DEBUG m.k.m.d.DatabaseInitialization - Creating stored procedures...
+2026-05-23 13:33:28 DEBUG m.k.m.d.DatabaseInitialization - Creating roles...
+2026-05-23 13:33:28 DEBUG m.k.m.d.DatabaseInitialization - Creating admin account...
+2026-05-23 13:33:28 DEBUG m.k.m.d.DatabaseInitialization - Seeding initial data...
+2026-05-23 13:33:28 INFO  m.k.m.d.DatabaseInitialization - Database is created!
+2026-05-23 13:33:30 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-05-23 13:33:31 INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection ConnectionID:3 ClientConnectionId: 8d0e842f-d2c4-4be7-b6af-34ffb3d7fb56
+2026-05-23 13:33:31 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-05-23 13:33:31 INFO  m.k.museum.event.AppSubscribers - User admin successfully logged in!
+2026-05-23 13:33:45 ERROR m.k.m.controller.MuseumController - Failed to manipulate a image. (admin)
+java.nio.file.NoSuchFileException: /assets/images/penguins.jpg
+	at java.base/sun.nio.fs.UnixException.translateToIOException(UnixException.java:92)
+	at java.base/sun.nio.fs.UnixException.rethrowAsIOException(UnixException.java:106)
+	at java.base/sun.nio.fs.UnixException.rethrowAsIOException(UnixException.java:111)
+	at java.base/sun.nio.fs.UnixFileSystem.copyFile(UnixFileSystem.java:673)
+	at java.base/sun.nio.fs.BsdFileSystem.copyFile(BsdFileSystem.java:154)
+	at java.base/sun.nio.fs.UnixFileSystem.copy(UnixFileSystem.java:1084)
+	at java.base/sun.nio.fs.UnixFileSystemProvider.copy(UnixFileSystemProvider.java:300)
+	at java.base/java.nio.file.Files.copy(Files.java:1304)
+	at me.kristijanbobovec.museum/me.kristijanbobovec.museum.service.ImagePathService.createIfNotExists(ImagePathService.java:31)
+	at me.kristijanbobovec.museum/me.kristijanbobovec.museum.controller.MuseumController.handleCreate(MuseumController.java:218)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at com.sun.javafx.reflect.Trampoline.invoke(MethodUtil.java:72)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at javafx.base@22.0.1/com.sun.javafx.reflect.MethodUtil.invoke(MethodUtil.java:270)
+	at javafx.fxml@22.0.1/com.sun.javafx.fxml.MethodHelper.invoke(MethodHelper.java:84)
+	at javafx.fxml@22.0.1/javafx.fxml.FXMLLoader$MethodHandler.invoke(FXMLLoader.java:1860)
+	at javafx.fxml@22.0.1/javafx.fxml.FXMLLoader$ControllerMethodEventHandler.handle(FXMLLoader.java:1731)
+	at javafx.base@22.0.1/com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:86)
+	at javafx.base@22.0.1/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:232)
+	at javafx.base@22.0.1/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:189)
+	at javafx.base@22.0.1/com.sun.javafx.event.CompositeEventDispatcher.dispatchBubblingEvent(CompositeEventDispatcher.java:59)
+	at javafx.base@22.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58)
+	at javafx.base@22.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@22.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@22.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@22.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@22.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@22.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@22.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@22.0.1/com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74)
+	at javafx.base@22.0.1/com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:49)
+	at javafx.base@22.0.1/javafx.event.Event.fireEvent(Event.java:198)
+	at javafx.graphics@22.0.1/javafx.scene.Node.fireEvent(Node.java:8917)
+	at javafx.controls@22.0.1/javafx.scene.control.Button.fire(Button.java:203)
+	at javafx.controls@22.0.1/com.sun.javafx.scene.control.behavior.ButtonBehavior.mouseReleased(ButtonBehavior.java:207)
+	at javafx.controls@22.0.1/com.sun.javafx.scene.control.inputmap.InputMap.handle(InputMap.java:274)
+	at javafx.base@22.0.1/com.sun.javafx.event.CompositeEventHandler$NormalEventHandlerRecord.handleBubblingEvent(CompositeEventHandler.java:247)
+	at javafx.base@22.0.1/com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:80)
+	at javafx.base@22.0.1/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:232)
+	at javafx.base@22.0.1/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:189)
+	at javafx.base@22.0.1/com.sun.javafx.event.CompositeEventDispatcher.dispatchBubblingEvent(CompositeEventDispatcher.java:59)
+	at javafx.base@22.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58)
+	at javafx.base@22.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@22.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@22.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@22.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@22.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@22.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@22.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@22.0.1/com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74)
+	at javafx.base@22.0.1/com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:54)
+	at javafx.base@22.0.1/javafx.event.Event.fireEvent(Event.java:198)
+	at javafx.graphics@22.0.1/javafx.scene.Scene$MouseHandler.process(Scene.java:3985)
+	at javafx.graphics@22.0.1/javafx.scene.Scene.processMouseEvent(Scene.java:1891)
+	at javafx.graphics@22.0.1/javafx.scene.Scene$ScenePeerListener.mouseEvent(Scene.java:2709)
+	at javafx.graphics@22.0.1/com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.run(GlassViewEventHandler.java:411)
+	at javafx.graphics@22.0.1/com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.run(GlassViewEventHandler.java:301)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:400)
+	at javafx.graphics@22.0.1/com.sun.javafx.tk.quantum.GlassViewEventHandler.lambda$handleMouseEvent$2(GlassViewEventHandler.java:450)
+	at javafx.graphics@22.0.1/com.sun.javafx.tk.quantum.QuantumToolkit.runWithoutRenderLock(QuantumToolkit.java:430)
+	at javafx.graphics@22.0.1/com.sun.javafx.tk.quantum.GlassViewEventHandler.handleMouseEvent(GlassViewEventHandler.java:449)
+	at javafx.graphics@22.0.1/com.sun.glass.ui.View.handleMouseEvent(View.java:551)
+	at javafx.graphics@22.0.1/com.sun.glass.ui.View.notifyMouse(View.java:937)
+	at javafx.graphics@22.0.1/com.sun.glass.ui.mac.MacView.notifyMouse(MacView.java:127)
+2026-05-23 13:35:28 INFO  m.k.m.d.DatabaseInitialization - Database not found creating new one!
+2026-05-23 13:35:28 DEBUG m.k.m.d.DatabaseInitialization - Creating tables...
+2026-05-23 13:35:28 DEBUG m.k.m.d.DatabaseInitialization - Creating stored procedures...
+2026-05-23 13:35:28 DEBUG m.k.m.d.DatabaseInitialization - Creating roles...
+2026-05-23 13:35:28 DEBUG m.k.m.d.DatabaseInitialization - Creating admin account...
+2026-05-23 13:35:28 DEBUG m.k.m.d.DatabaseInitialization - Seeding initial data...
+2026-05-23 13:35:28 INFO  m.k.m.d.DatabaseInitialization - Database is created!
+2026-05-23 13:35:31 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-05-23 13:35:31 INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection ConnectionID:3 ClientConnectionId: 7168d663-f916-4d77-b4df-16460d8f8455
+2026-05-23 13:35:31 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-05-23 13:35:31 INFO  m.k.museum.event.AppSubscribers - User admin successfully logged in!
+2026-05-23 13:43:08 INFO  m.k.m.d.DatabaseInitialization - Database not found creating new one!
+2026-05-23 13:43:08 DEBUG m.k.m.d.DatabaseInitialization - Creating tables...
+2026-05-23 13:43:08 DEBUG m.k.m.d.DatabaseInitialization - Creating stored procedures...
+2026-05-23 13:43:08 DEBUG m.k.m.d.DatabaseInitialization - Creating roles...
+2026-05-23 13:43:09 DEBUG m.k.m.d.DatabaseInitialization - Creating admin account...
+2026-05-23 13:43:09 DEBUG m.k.m.d.DatabaseInitialization - Seeding initial data...
+2026-05-23 13:43:09 INFO  m.k.m.d.DatabaseInitialization - Database is created!
+2026-05-23 13:43:12 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-05-23 13:43:12 INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection ConnectionID:3 ClientConnectionId: 032e0705-e561-4bd9-a076-c26abd57937e
+2026-05-23 13:43:12 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-05-23 13:43:12 INFO  m.k.museum.event.AppSubscribers - User admin successfully logged in!
+2026-05-23 13:43:36 INFO  m.k.m.controller.MuseumController - dwad is successfully inserted by admin!
+2026-05-23 13:44:31 ERROR m.k.m.controller.MuseumController - Failed to manipulate a image. (admin)
+java.nio.file.NoSuchFileException: /assets/images/penguins.jpg
+	at java.base/sun.nio.fs.UnixException.translateToIOException(UnixException.java:92)
+	at java.base/sun.nio.fs.UnixException.rethrowAsIOException(UnixException.java:106)
+	at java.base/sun.nio.fs.UnixException.rethrowAsIOException(UnixException.java:111)
+	at java.base/sun.nio.fs.UnixFileSystem.copyFile(UnixFileSystem.java:673)
+	at java.base/sun.nio.fs.BsdFileSystem.copyFile(BsdFileSystem.java:154)
+	at java.base/sun.nio.fs.UnixFileSystem.copy(UnixFileSystem.java:1084)
+	at java.base/sun.nio.fs.UnixFileSystemProvider.copy(UnixFileSystemProvider.java:300)
+	at java.base/java.nio.file.Files.copy(Files.java:1304)
+	at me.kristijanbobovec.museum/me.kristijanbobovec.museum.service.ImagePathService.createIfNotExists(ImagePathService.java:31)
+	at me.kristijanbobovec.museum/me.kristijanbobovec.museum.controller.MuseumController.handleCreate(MuseumController.java:216)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at com.sun.javafx.reflect.Trampoline.invoke(MethodUtil.java:72)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at javafx.base@22.0.1/com.sun.javafx.reflect.MethodUtil.invoke(MethodUtil.java:270)
+	at javafx.fxml@22.0.1/com.sun.javafx.fxml.MethodHelper.invoke(MethodHelper.java:84)
+	at javafx.fxml@22.0.1/javafx.fxml.FXMLLoader$MethodHandler.invoke(FXMLLoader.java:1860)
+	at javafx.fxml@22.0.1/javafx.fxml.FXMLLoader$ControllerMethodEventHandler.handle(FXMLLoader.java:1731)
+	at javafx.base@22.0.1/com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:86)
+	at javafx.base@22.0.1/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:232)
+	at javafx.base@22.0.1/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:189)
+	at javafx.base@22.0.1/com.sun.javafx.event.CompositeEventDispatcher.dispatchBubblingEvent(CompositeEventDispatcher.java:59)
+	at javafx.base@22.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58)
+	at javafx.base@22.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@22.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@22.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@22.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@22.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@22.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@22.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@22.0.1/com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74)
+	at javafx.base@22.0.1/com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:49)
+	at javafx.base@22.0.1/javafx.event.Event.fireEvent(Event.java:198)
+	at javafx.graphics@22.0.1/javafx.scene.Node.fireEvent(Node.java:8917)
+	at javafx.controls@22.0.1/javafx.scene.control.Button.fire(Button.java:203)
+	at javafx.controls@22.0.1/com.sun.javafx.scene.control.behavior.ButtonBehavior.mouseReleased(ButtonBehavior.java:207)
+	at javafx.controls@22.0.1/com.sun.javafx.scene.control.inputmap.InputMap.handle(InputMap.java:274)
+	at javafx.base@22.0.1/com.sun.javafx.event.CompositeEventHandler$NormalEventHandlerRecord.handleBubblingEvent(CompositeEventHandler.java:247)
+	at javafx.base@22.0.1/com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:80)
+	at javafx.base@22.0.1/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:232)
+	at javafx.base@22.0.1/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:189)
+	at javafx.base@22.0.1/com.sun.javafx.event.CompositeEventDispatcher.dispatchBubblingEvent(CompositeEventDispatcher.java:59)
+	at javafx.base@22.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58)
+	at javafx.base@22.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@22.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@22.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@22.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@22.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@22.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@22.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@22.0.1/com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74)
+	at javafx.base@22.0.1/com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:54)
+	at javafx.base@22.0.1/javafx.event.Event.fireEvent(Event.java:198)
+	at javafx.graphics@22.0.1/javafx.scene.Scene$MouseHandler.process(Scene.java:3985)
+	at javafx.graphics@22.0.1/javafx.scene.Scene.processMouseEvent(Scene.java:1891)
+	at javafx.graphics@22.0.1/javafx.scene.Scene$ScenePeerListener.mouseEvent(Scene.java:2709)
+	at javafx.graphics@22.0.1/com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.run(GlassViewEventHandler.java:411)
+	at javafx.graphics@22.0.1/com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.run(GlassViewEventHandler.java:301)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:400)
+	at javafx.graphics@22.0.1/com.sun.javafx.tk.quantum.GlassViewEventHandler.lambda$handleMouseEvent$2(GlassViewEventHandler.java:450)
+	at javafx.graphics@22.0.1/com.sun.javafx.tk.quantum.QuantumToolkit.runWithoutRenderLock(QuantumToolkit.java:430)
+	at javafx.graphics@22.0.1/com.sun.javafx.tk.quantum.GlassViewEventHandler.handleMouseEvent(GlassViewEventHandler.java:449)
+	at javafx.graphics@22.0.1/com.sun.glass.ui.View.handleMouseEvent(View.java:551)
+	at javafx.graphics@22.0.1/com.sun.glass.ui.View.notifyMouse(View.java:937)
+	at javafx.graphics@22.0.1/com.sun.glass.ui.mac.MacView.notifyMouse(MacView.java:127)
+2026-05-23 13:45:07 INFO  m.k.m.d.DatabaseInitialization - Database not found creating new one!
+2026-05-23 13:45:07 DEBUG m.k.m.d.DatabaseInitialization - Creating tables...
+2026-05-23 13:45:07 DEBUG m.k.m.d.DatabaseInitialization - Creating stored procedures...
+2026-05-23 13:45:07 DEBUG m.k.m.d.DatabaseInitialization - Creating roles...
+2026-05-23 13:45:07 DEBUG m.k.m.d.DatabaseInitialization - Creating admin account...
+2026-05-23 13:45:07 DEBUG m.k.m.d.DatabaseInitialization - Seeding initial data...
+2026-05-23 13:45:07 INFO  m.k.m.d.DatabaseInitialization - Database is created!
+2026-05-23 13:45:09 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-05-23 13:45:09 INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection ConnectionID:3 ClientConnectionId: 8bae2f32-f803-46c9-a094-dc180d4315e8
+2026-05-23 13:45:09 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-05-23 13:45:09 INFO  m.k.museum.event.AppSubscribers - User admin successfully logged in!
+2026-05-23 13:45:28 ERROR m.k.m.controller.MuseumController - Failed to manipulate a image. (admin)
+java.nio.file.NoSuchFileException: /assets/images/penguins.jpg
+	at java.base/sun.nio.fs.UnixException.translateToIOException(UnixException.java:92)
+	at java.base/sun.nio.fs.UnixException.rethrowAsIOException(UnixException.java:106)
+	at java.base/sun.nio.fs.UnixException.rethrowAsIOException(UnixException.java:111)
+	at java.base/sun.nio.fs.UnixFileSystem.copyFile(UnixFileSystem.java:673)
+	at java.base/sun.nio.fs.BsdFileSystem.copyFile(BsdFileSystem.java:154)
+	at java.base/sun.nio.fs.UnixFileSystem.copy(UnixFileSystem.java:1084)
+	at java.base/sun.nio.fs.UnixFileSystemProvider.copy(UnixFileSystemProvider.java:300)
+	at java.base/java.nio.file.Files.copy(Files.java:1304)
+	at me.kristijanbobovec.museum/me.kristijanbobovec.museum.service.ImagePathService.createIfNotExists(ImagePathService.java:31)
+	at me.kristijanbobovec.museum/me.kristijanbobovec.museum.controller.MuseumController.handleCreate(MuseumController.java:216)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at com.sun.javafx.reflect.Trampoline.invoke(MethodUtil.java:72)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at javafx.base@22.0.1/com.sun.javafx.reflect.MethodUtil.invoke(MethodUtil.java:270)
+	at javafx.fxml@22.0.1/com.sun.javafx.fxml.MethodHelper.invoke(MethodHelper.java:84)
+	at javafx.fxml@22.0.1/javafx.fxml.FXMLLoader$MethodHandler.invoke(FXMLLoader.java:1860)
+	at javafx.fxml@22.0.1/javafx.fxml.FXMLLoader$ControllerMethodEventHandler.handle(FXMLLoader.java:1731)
+	at javafx.base@22.0.1/com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:86)
+	at javafx.base@22.0.1/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:232)
+	at javafx.base@22.0.1/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:189)
+	at javafx.base@22.0.1/com.sun.javafx.event.CompositeEventDispatcher.dispatchBubblingEvent(CompositeEventDispatcher.java:59)
+	at javafx.base@22.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58)
+	at javafx.base@22.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@22.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@22.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@22.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@22.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@22.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@22.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@22.0.1/com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74)
+	at javafx.base@22.0.1/com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:49)
+	at javafx.base@22.0.1/javafx.event.Event.fireEvent(Event.java:198)
+	at javafx.graphics@22.0.1/javafx.scene.Node.fireEvent(Node.java:8917)
+	at javafx.controls@22.0.1/javafx.scene.control.Button.fire(Button.java:203)
+	at javafx.controls@22.0.1/com.sun.javafx.scene.control.behavior.ButtonBehavior.mouseReleased(ButtonBehavior.java:207)
+	at javafx.controls@22.0.1/com.sun.javafx.scene.control.inputmap.InputMap.handle(InputMap.java:274)
+	at javafx.base@22.0.1/com.sun.javafx.event.CompositeEventHandler$NormalEventHandlerRecord.handleBubblingEvent(CompositeEventHandler.java:247)
+	at javafx.base@22.0.1/com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:80)
+	at javafx.base@22.0.1/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:232)
+	at javafx.base@22.0.1/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:189)
+	at javafx.base@22.0.1/com.sun.javafx.event.CompositeEventDispatcher.dispatchBubblingEvent(CompositeEventDispatcher.java:59)
+	at javafx.base@22.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58)
+	at javafx.base@22.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@22.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@22.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@22.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@22.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@22.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@22.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@22.0.1/com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74)
+	at javafx.base@22.0.1/com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:54)
+	at javafx.base@22.0.1/javafx.event.Event.fireEvent(Event.java:198)
+	at javafx.graphics@22.0.1/javafx.scene.Scene$MouseHandler.process(Scene.java:3985)
+	at javafx.graphics@22.0.1/javafx.scene.Scene.processMouseEvent(Scene.java:1891)
+	at javafx.graphics@22.0.1/javafx.scene.Scene$ScenePeerListener.mouseEvent(Scene.java:2709)
+	at javafx.graphics@22.0.1/com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.run(GlassViewEventHandler.java:411)
+	at javafx.graphics@22.0.1/com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.run(GlassViewEventHandler.java:301)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:400)
+	at javafx.graphics@22.0.1/com.sun.javafx.tk.quantum.GlassViewEventHandler.lambda$handleMouseEvent$2(GlassViewEventHandler.java:450)
+	at javafx.graphics@22.0.1/com.sun.javafx.tk.quantum.QuantumToolkit.runWithoutRenderLock(QuantumToolkit.java:430)
+	at javafx.graphics@22.0.1/com.sun.javafx.tk.quantum.GlassViewEventHandler.handleMouseEvent(GlassViewEventHandler.java:449)
+	at javafx.graphics@22.0.1/com.sun.glass.ui.View.handleMouseEvent(View.java:551)
+	at javafx.graphics@22.0.1/com.sun.glass.ui.View.notifyMouse(View.java:937)
+	at javafx.graphics@22.0.1/com.sun.glass.ui.mac.MacView.notifyMouse(MacView.java:127)
+2026-05-23 13:47:52 INFO  m.k.m.d.DatabaseInitialization - Database not found creating new one!
+2026-05-23 13:47:53 DEBUG m.k.m.d.DatabaseInitialization - Creating tables...
+2026-05-23 13:47:53 DEBUG m.k.m.d.DatabaseInitialization - Creating stored procedures...
+2026-05-23 13:47:53 DEBUG m.k.m.d.DatabaseInitialization - Creating roles...
+2026-05-23 13:47:53 DEBUG m.k.m.d.DatabaseInitialization - Creating admin account...
+2026-05-23 13:47:53 DEBUG m.k.m.d.DatabaseInitialization - Seeding initial data...
+2026-05-23 13:47:53 INFO  m.k.m.d.DatabaseInitialization - Database is created!
+2026-05-23 13:47:55 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-05-23 13:47:55 INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection ConnectionID:3 ClientConnectionId: a2b8b50d-34c7-48aa-8055-e50c778cfc4c
+2026-05-23 13:47:55 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-05-23 13:47:55 INFO  m.k.museum.event.AppSubscribers - User admin successfully logged in!
+2026-05-23 13:48:07 ERROR m.k.m.controller.MuseumController - Failed to manipulate a image. (admin)
+java.nio.file.NoSuchFileException: /assets/images/penguins.jpg
+	at java.base/sun.nio.fs.UnixException.translateToIOException(UnixException.java:92)
+	at java.base/sun.nio.fs.UnixException.rethrowAsIOException(UnixException.java:106)
+	at java.base/sun.nio.fs.UnixException.rethrowAsIOException(UnixException.java:111)
+	at java.base/sun.nio.fs.UnixFileSystem.copyFile(UnixFileSystem.java:673)
+	at java.base/sun.nio.fs.BsdFileSystem.copyFile(BsdFileSystem.java:154)
+	at java.base/sun.nio.fs.UnixFileSystem.copy(UnixFileSystem.java:1084)
+	at java.base/sun.nio.fs.UnixFileSystemProvider.copy(UnixFileSystemProvider.java:300)
+	at java.base/java.nio.file.Files.copy(Files.java:1304)
+	at me.kristijanbobovec.museum/me.kristijanbobovec.museum.service.ImagePathService.createIfNotExists(ImagePathService.java:31)
+	at me.kristijanbobovec.museum/me.kristijanbobovec.museum.controller.MuseumController.handleCreate(MuseumController.java:216)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at com.sun.javafx.reflect.Trampoline.invoke(MethodUtil.java:72)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at javafx.base@22.0.1/com.sun.javafx.reflect.MethodUtil.invoke(MethodUtil.java:270)
+	at javafx.fxml@22.0.1/com.sun.javafx.fxml.MethodHelper.invoke(MethodHelper.java:84)
+	at javafx.fxml@22.0.1/javafx.fxml.FXMLLoader$MethodHandler.invoke(FXMLLoader.java:1860)
+	at javafx.fxml@22.0.1/javafx.fxml.FXMLLoader$ControllerMethodEventHandler.handle(FXMLLoader.java:1731)
+	at javafx.base@22.0.1/com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:86)
+	at javafx.base@22.0.1/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:232)
+	at javafx.base@22.0.1/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:189)
+	at javafx.base@22.0.1/com.sun.javafx.event.CompositeEventDispatcher.dispatchBubblingEvent(CompositeEventDispatcher.java:59)
+	at javafx.base@22.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58)
+	at javafx.base@22.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@22.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@22.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@22.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@22.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@22.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@22.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@22.0.1/com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74)
+	at javafx.base@22.0.1/com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:49)
+	at javafx.base@22.0.1/javafx.event.Event.fireEvent(Event.java:198)
+	at javafx.graphics@22.0.1/javafx.scene.Node.fireEvent(Node.java:8917)
+	at javafx.controls@22.0.1/javafx.scene.control.Button.fire(Button.java:203)
+	at javafx.controls@22.0.1/com.sun.javafx.scene.control.behavior.ButtonBehavior.mouseReleased(ButtonBehavior.java:207)
+	at javafx.controls@22.0.1/com.sun.javafx.scene.control.inputmap.InputMap.handle(InputMap.java:274)
+	at javafx.base@22.0.1/com.sun.javafx.event.CompositeEventHandler$NormalEventHandlerRecord.handleBubblingEvent(CompositeEventHandler.java:247)
+	at javafx.base@22.0.1/com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:80)
+	at javafx.base@22.0.1/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:232)
+	at javafx.base@22.0.1/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:189)
+	at javafx.base@22.0.1/com.sun.javafx.event.CompositeEventDispatcher.dispatchBubblingEvent(CompositeEventDispatcher.java:59)
+	at javafx.base@22.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58)
+	at javafx.base@22.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@22.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@22.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@22.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@22.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@22.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@22.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@22.0.1/com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74)
+	at javafx.base@22.0.1/com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:54)
+	at javafx.base@22.0.1/javafx.event.Event.fireEvent(Event.java:198)
+	at javafx.graphics@22.0.1/javafx.scene.Scene$MouseHandler.process(Scene.java:3985)
+	at javafx.graphics@22.0.1/javafx.scene.Scene.processMouseEvent(Scene.java:1891)
+	at javafx.graphics@22.0.1/javafx.scene.Scene$ScenePeerListener.mouseEvent(Scene.java:2709)
+	at javafx.graphics@22.0.1/com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.run(GlassViewEventHandler.java:411)
+	at javafx.graphics@22.0.1/com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.run(GlassViewEventHandler.java:301)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:400)
+	at javafx.graphics@22.0.1/com.sun.javafx.tk.quantum.GlassViewEventHandler.lambda$handleMouseEvent$2(GlassViewEventHandler.java:450)
+	at javafx.graphics@22.0.1/com.sun.javafx.tk.quantum.QuantumToolkit.runWithoutRenderLock(QuantumToolkit.java:430)
+	at javafx.graphics@22.0.1/com.sun.javafx.tk.quantum.GlassViewEventHandler.handleMouseEvent(GlassViewEventHandler.java:449)
+	at javafx.graphics@22.0.1/com.sun.glass.ui.View.handleMouseEvent(View.java:551)
+	at javafx.graphics@22.0.1/com.sun.glass.ui.View.notifyMouse(View.java:937)
+	at javafx.graphics@22.0.1/com.sun.glass.ui.mac.MacView.notifyMouse(MacView.java:127)
+2026-05-23 13:55:10 INFO  m.k.m.d.DatabaseInitialization - Database not found creating new one!
+2026-05-23 13:55:10 DEBUG m.k.m.d.DatabaseInitialization - Creating tables...
+2026-05-23 13:55:10 DEBUG m.k.m.d.DatabaseInitialization - Creating stored procedures...
+2026-05-23 13:55:10 DEBUG m.k.m.d.DatabaseInitialization - Creating roles...
+2026-05-23 13:55:10 DEBUG m.k.m.d.DatabaseInitialization - Creating admin account...
+2026-05-23 13:55:10 DEBUG m.k.m.d.DatabaseInitialization - Seeding initial data...
+2026-05-23 13:55:10 INFO  m.k.m.d.DatabaseInitialization - Database is created!
+2026-05-23 13:55:16 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-05-23 13:55:16 INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection ConnectionID:3 ClientConnectionId: a6d6ce0f-ffda-431f-9f9f-4855ae99bb74
+2026-05-23 13:55:16 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-05-23 13:55:16 INFO  m.k.museum.event.AppSubscribers - User admin successfully logged in!
+2026-05-23 13:57:22 INFO  m.k.m.d.DatabaseInitialization - Database not found creating new one!
+2026-05-23 13:57:22 DEBUG m.k.m.d.DatabaseInitialization - Creating tables...
+2026-05-23 13:57:22 DEBUG m.k.m.d.DatabaseInitialization - Creating stored procedures...
+2026-05-23 13:57:22 DEBUG m.k.m.d.DatabaseInitialization - Creating roles...
+2026-05-23 13:57:22 DEBUG m.k.m.d.DatabaseInitialization - Creating admin account...
+2026-05-23 13:57:22 DEBUG m.k.m.d.DatabaseInitialization - Seeding initial data...
+2026-05-23 13:57:22 INFO  m.k.m.d.DatabaseInitialization - Database is created!
+2026-05-23 13:57:25 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-05-23 13:57:25 INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection ConnectionID:3 ClientConnectionId: 39303ae8-f6f8-46bf-a6e1-1bfc3634ba74
+2026-05-23 13:57:25 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-05-23 13:57:25 INFO  m.k.museum.event.AppSubscribers - User admin successfully logged in!
+2026-05-23 13:57:39 ERROR m.k.m.controller.MuseumController - Failed to manipulate a image. (admin)
+java.nio.file.NoSuchFileException: assets/images/pimpek.jpg
+	at java.base/sun.nio.fs.UnixException.translateToIOException(UnixException.java:92)
+	at java.base/sun.nio.fs.UnixException.rethrowAsIOException(UnixException.java:106)
+	at java.base/sun.nio.fs.UnixException.rethrowAsIOException(UnixException.java:111)
+	at java.base/sun.nio.fs.UnixFileSystem.copyFile(UnixFileSystem.java:673)
+	at java.base/sun.nio.fs.BsdFileSystem.copyFile(BsdFileSystem.java:154)
+	at java.base/sun.nio.fs.UnixFileSystem.copy(UnixFileSystem.java:1084)
+	at java.base/sun.nio.fs.UnixFileSystemProvider.copy(UnixFileSystemProvider.java:300)
+	at java.base/java.nio.file.Files.copy(Files.java:1304)
+	at me.kristijanbobovec.museum/me.kristijanbobovec.museum.service.ImagePathService.createIfNotExists(ImagePathService.java:31)
+	at me.kristijanbobovec.museum/me.kristijanbobovec.museum.controller.MuseumController.handleCreate(MuseumController.java:216)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at com.sun.javafx.reflect.Trampoline.invoke(MethodUtil.java:72)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at javafx.base@22.0.1/com.sun.javafx.reflect.MethodUtil.invoke(MethodUtil.java:270)
+	at javafx.fxml@22.0.1/com.sun.javafx.fxml.MethodHelper.invoke(MethodHelper.java:84)
+	at javafx.fxml@22.0.1/javafx.fxml.FXMLLoader$MethodHandler.invoke(FXMLLoader.java:1860)
+	at javafx.fxml@22.0.1/javafx.fxml.FXMLLoader$ControllerMethodEventHandler.handle(FXMLLoader.java:1731)
+	at javafx.base@22.0.1/com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:86)
+	at javafx.base@22.0.1/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:232)
+	at javafx.base@22.0.1/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:189)
+	at javafx.base@22.0.1/com.sun.javafx.event.CompositeEventDispatcher.dispatchBubblingEvent(CompositeEventDispatcher.java:59)
+	at javafx.base@22.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58)
+	at javafx.base@22.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@22.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@22.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@22.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@22.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@22.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@22.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@22.0.1/com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74)
+	at javafx.base@22.0.1/com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:49)
+	at javafx.base@22.0.1/javafx.event.Event.fireEvent(Event.java:198)
+	at javafx.graphics@22.0.1/javafx.scene.Node.fireEvent(Node.java:8917)
+	at javafx.controls@22.0.1/javafx.scene.control.Button.fire(Button.java:203)
+	at javafx.controls@22.0.1/com.sun.javafx.scene.control.behavior.ButtonBehavior.mouseReleased(ButtonBehavior.java:207)
+	at javafx.controls@22.0.1/com.sun.javafx.scene.control.inputmap.InputMap.handle(InputMap.java:274)
+	at javafx.base@22.0.1/com.sun.javafx.event.CompositeEventHandler$NormalEventHandlerRecord.handleBubblingEvent(CompositeEventHandler.java:247)
+	at javafx.base@22.0.1/com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:80)
+	at javafx.base@22.0.1/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:232)
+	at javafx.base@22.0.1/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:189)
+	at javafx.base@22.0.1/com.sun.javafx.event.CompositeEventDispatcher.dispatchBubblingEvent(CompositeEventDispatcher.java:59)
+	at javafx.base@22.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58)
+	at javafx.base@22.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@22.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@22.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@22.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@22.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@22.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@22.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@22.0.1/com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74)
+	at javafx.base@22.0.1/com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:54)
+	at javafx.base@22.0.1/javafx.event.Event.fireEvent(Event.java:198)
+	at javafx.graphics@22.0.1/javafx.scene.Scene$MouseHandler.process(Scene.java:3985)
+	at javafx.graphics@22.0.1/javafx.scene.Scene.processMouseEvent(Scene.java:1891)
+	at javafx.graphics@22.0.1/javafx.scene.Scene$ScenePeerListener.mouseEvent(Scene.java:2709)
+	at javafx.graphics@22.0.1/com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.run(GlassViewEventHandler.java:411)
+	at javafx.graphics@22.0.1/com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.run(GlassViewEventHandler.java:301)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:400)
+	at javafx.graphics@22.0.1/com.sun.javafx.tk.quantum.GlassViewEventHandler.lambda$handleMouseEvent$2(GlassViewEventHandler.java:450)
+	at javafx.graphics@22.0.1/com.sun.javafx.tk.quantum.QuantumToolkit.runWithoutRenderLock(QuantumToolkit.java:430)
+	at javafx.graphics@22.0.1/com.sun.javafx.tk.quantum.GlassViewEventHandler.handleMouseEvent(GlassViewEventHandler.java:449)
+	at javafx.graphics@22.0.1/com.sun.glass.ui.View.handleMouseEvent(View.java:551)
+	at javafx.graphics@22.0.1/com.sun.glass.ui.View.notifyMouse(View.java:937)
+	at javafx.graphics@22.0.1/com.sun.glass.ui.mac.MacView.notifyMouse(MacView.java:127)
+2026-05-23 14:00:27 INFO  m.k.m.d.DatabaseInitialization - Database not found creating new one!
+2026-05-23 14:00:27 DEBUG m.k.m.d.DatabaseInitialization - Creating tables...
+2026-05-23 14:00:27 DEBUG m.k.m.d.DatabaseInitialization - Creating stored procedures...
+2026-05-23 14:00:27 DEBUG m.k.m.d.DatabaseInitialization - Creating roles...
+2026-05-23 14:00:27 DEBUG m.k.m.d.DatabaseInitialization - Creating admin account...
+2026-05-23 14:00:27 DEBUG m.k.m.d.DatabaseInitialization - Seeding initial data...
+2026-05-23 14:00:27 INFO  m.k.m.d.DatabaseInitialization - Database is created!
+2026-05-23 14:00:30 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-05-23 14:00:30 INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection ConnectionID:3 ClientConnectionId: 4739a899-0d98-4d3f-9ed2-ea830c1abd72
+2026-05-23 14:00:30 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-05-23 14:00:30 INFO  m.k.museum.event.AppSubscribers - User admin successfully logged in!
+2026-05-23 14:00:58 INFO  m.k.m.controller.MuseumController - Muzej pingvinas is successfully inserted by admin!
+2026-05-23 14:03:21 INFO  m.k.m.d.DatabaseInitialization - Database not found creating new one!
+2026-05-23 14:03:21 DEBUG m.k.m.d.DatabaseInitialization - Creating tables...
+2026-05-23 14:03:21 DEBUG m.k.m.d.DatabaseInitialization - Creating stored procedures...
+2026-05-23 14:03:21 DEBUG m.k.m.d.DatabaseInitialization - Creating roles...
+2026-05-23 14:03:21 DEBUG m.k.m.d.DatabaseInitialization - Creating admin account...
+2026-05-23 14:03:21 DEBUG m.k.m.d.DatabaseInitialization - Seeding initial data...
+2026-05-23 14:03:21 INFO  m.k.m.d.DatabaseInitialization - Database is created!
+2026-05-23 14:03:24 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-05-23 14:03:24 INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection ConnectionID:3 ClientConnectionId: da52f1ea-3c0f-499f-ad4b-dd61c48fa76b
+2026-05-23 14:03:24 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-05-23 14:03:24 INFO  m.k.museum.event.AppSubscribers - User admin successfully logged in!
+2026-05-23 14:03:46 INFO  m.k.m.controller.MuseumController - Muzej pingvine is successfully inserted by admin!
+2026-05-23 14:04:00 INFO  m.k.m.controller.MuseumController - FROM Optional[Muzej pingvine], TO Muzej pingvine is successfully updated by admin!
+2026-05-23 14:05:06 INFO  m.k.m.d.DatabaseInitialization - Database not found creating new one!
+2026-05-23 14:05:06 DEBUG m.k.m.d.DatabaseInitialization - Creating tables...
+2026-05-23 14:05:06 DEBUG m.k.m.d.DatabaseInitialization - Creating stored procedures...
+2026-05-23 14:05:06 DEBUG m.k.m.d.DatabaseInitialization - Creating roles...
+2026-05-23 14:05:06 DEBUG m.k.m.d.DatabaseInitialization - Creating admin account...
+2026-05-23 14:05:06 DEBUG m.k.m.d.DatabaseInitialization - Seeding initial data...
+2026-05-23 14:05:06 INFO  m.k.m.d.DatabaseInitialization - Database is created!
+2026-05-23 14:05:09 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-05-23 14:05:09 INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection ConnectionID:3 ClientConnectionId: f42c4071-11d5-49a6-aacf-7ef3e69762a8
+2026-05-23 14:05:09 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-05-23 14:05:09 INFO  m.k.museum.event.AppSubscribers - User admin successfully logged in!
+2026-05-23 14:06:13 INFO  m.k.m.controller.MuseumController - muzej pingvina is successfully inserted by admin!
+2026-05-23 14:09:11 INFO  m.k.m.d.DatabaseInitialization - Database not found creating new one!
+2026-05-23 14:09:11 DEBUG m.k.m.d.DatabaseInitialization - Creating tables...
+2026-05-23 14:09:11 DEBUG m.k.m.d.DatabaseInitialization - Creating stored procedures...
+2026-05-23 14:09:11 DEBUG m.k.m.d.DatabaseInitialization - Creating roles...
+2026-05-23 14:09:11 DEBUG m.k.m.d.DatabaseInitialization - Creating admin account...
+2026-05-23 14:09:11 DEBUG m.k.m.d.DatabaseInitialization - Seeding initial data...
+2026-05-23 14:09:11 INFO  m.k.m.d.DatabaseInitialization - Database is created!
+2026-05-23 14:09:14 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-05-23 14:09:14 INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection ConnectionID:3 ClientConnectionId: 08719c3e-bc47-4d53-8c5d-65b5644a9c6e
+2026-05-23 14:09:14 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-05-23 14:09:14 INFO  m.k.museum.event.AppSubscribers - User admin successfully logged in!
+2026-05-23 14:10:00 INFO  m.k.m.controller.MuseumController - FROM Optional[Rijksmuseum], TO Rijksmuseum is successfully updated by admin!
+2026-05-23 14:10:41 INFO  m.k.m.controller.MuseumController - Muzej pingvina is successfully inserted by admin!
+2026-05-23 14:12:12 INFO  m.k.m.d.DatabaseInitialization - Database not found creating new one!
+2026-05-23 14:12:12 DEBUG m.k.m.d.DatabaseInitialization - Creating tables...
+2026-05-23 14:12:12 DEBUG m.k.m.d.DatabaseInitialization - Creating stored procedures...
+2026-05-23 14:12:12 DEBUG m.k.m.d.DatabaseInitialization - Creating roles...
+2026-05-23 14:12:12 DEBUG m.k.m.d.DatabaseInitialization - Creating admin account...
+2026-05-23 14:12:13 DEBUG m.k.m.d.DatabaseInitialization - Seeding initial data...
+2026-05-23 14:12:13 INFO  m.k.m.d.DatabaseInitialization - Database is created!
+2026-05-23 14:12:15 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-05-23 14:12:15 INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection ConnectionID:3 ClientConnectionId: 117240fe-5d32-457e-b8e4-e1a125e45ca4
+2026-05-23 14:12:15 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-05-23 14:12:15 INFO  m.k.museum.event.AppSubscribers - User admin successfully logged in!
+2026-05-23 14:12:35 INFO  m.k.m.controller.MuseumController - muzej pingvina is successfully inserted by admin!
+2026-05-23 14:14:01 INFO  m.k.m.d.DatabaseInitialization - Database not found creating new one!
+2026-05-23 14:14:02 DEBUG m.k.m.d.DatabaseInitialization - Creating tables...
+2026-05-23 14:14:02 DEBUG m.k.m.d.DatabaseInitialization - Creating stored procedures...
+2026-05-23 14:14:02 DEBUG m.k.m.d.DatabaseInitialization - Creating roles...
+2026-05-23 14:14:02 DEBUG m.k.m.d.DatabaseInitialization - Creating admin account...
+2026-05-23 14:14:02 DEBUG m.k.m.d.DatabaseInitialization - Seeding initial data...
+2026-05-23 14:14:02 INFO  m.k.m.d.DatabaseInitialization - Database is created!
+2026-05-23 14:14:05 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-05-23 14:14:05 INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection ConnectionID:3 ClientConnectionId: 05208600-495d-4ecf-8544-b62edfdc3dcb
+2026-05-23 14:14:05 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-05-23 14:14:05 INFO  m.k.museum.event.AppSubscribers - User admin successfully logged in!
+2026-05-23 14:14:29 INFO  m.k.m.controller.MuseumController - pingvini is successfully inserted by admin!
+2026-05-23 14:16:01 INFO  m.k.m.controller.MuseumController - pingvini is successfully deleted by admin!
+2026-05-23 14:16:10 INFO  m.k.m.controller.MuseumController - Rijksmuseum is successfully inserted by admin!
+2026-05-23 14:17:11 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-05-23 14:17:11 INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection ConnectionID:2 ClientConnectionId: ffd13884-df5c-453e-b2d6-59ab05104383
+2026-05-23 14:17:11 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-05-23 14:17:11 INFO  m.k.museum.event.AppSubscribers - User admin successfully logged in!
+2026-05-23 14:17:41 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-05-23 14:17:41 INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection ConnectionID:2 ClientConnectionId: 36504059-7a2f-45df-9cbb-7f67ee179b9b
+2026-05-23 14:17:41 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-05-23 14:17:41 INFO  m.k.museum.event.AppSubscribers - User admin successfully logged in!
+2026-05-23 14:19:12 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-05-23 14:19:12 INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection ConnectionID:2 ClientConnectionId: bc0e9946-9845-4d08-a249-b44fe451613c
+2026-05-23 14:19:12 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-05-23 14:19:12 INFO  m.k.museum.event.AppSubscribers - User admin successfully logged in!
+2026-05-23 15:41:35 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-05-23 15:41:35 INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection ConnectionID:2 ClientConnectionId: ef2ebffd-19df-4af6-82d2-6fdd337ac67c
+2026-05-23 15:41:35 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-05-23 15:41:35 INFO  m.k.museum.event.AppSubscribers - User admin successfully logged in!
+2026-05-23 15:41:46 INFO  m.k.m.controller.MuseumController - Rijksmuseum is successfully deleted by admin!
+2026-05-23 15:43:25 INFO  m.k.m.controller.MuseumController - FROM Optional[Rijksmuseum], TO Rijksmuseum is successfully updated by admin!
+2026-05-23 15:43:34 INFO  m.k.m.controller.MuseumController - FROM Optional[Rijksmuseum], TO Rijksmuseum is successfully updated by admin!
+2026-05-23 15:43:59 INFO  m.k.m.controller.MuseumController - FROM Optional[Arheološki muzej Split], TO Arheološki muzej Split is successfully updated by admin!
+2026-05-23 15:45:28 INFO  m.k.m.controller.MuseumController - Arheološki muzej Split is successfully deleted by admin!
+2026-05-23 15:45:37 INFO  m.k.m.controller.MuseumController - FROM Optional[Vatikanski muzeji], TO Vatikanski muzeji is successfully updated by admin!
+2026-05-23 15:45:39 INFO  m.k.m.controller.MuseumController - FROM Optional[British Museum], TO British Museum is successfully updated by admin!
+2026-05-23 15:45:41 INFO  m.k.m.controller.MuseumController - British Museum is successfully deleted by admin!
+2026-05-23 15:45:47 INFO  m.k.m.controller.MuseumController - Rijksmuseum is successfully deleted by admin!
+2026-05-23 15:45:49 INFO  m.k.m.controller.MuseumController - Galerija Uffizi is successfully deleted by admin!
+2026-05-23 15:46:11 INFO  m.k.m.controller.MuseumController - Muzej Pingvina is successfully inserted by admin!
+2026-05-23 15:46:55 INFO  m.k.m.controller.MuseumController - FROM Optional[Vatikanski muzeji], TO Vatikanski muzeji is successfully updated by admin!
+2026-05-23 15:46:56 INFO  m.k.m.controller.MuseumController - Vatikanski muzeji is successfully deleted by admin!
+2026-05-23 15:47:18 INFO  m.k.m.controller.MuseumController - FROM Optional[Muzej Pingvina], TO Muzej Pingvina is successfully updated by admin!
+2026-05-23 15:47:31 INFO  m.k.m.controller.MuseumController - FROM Optional[Muzej Pingvina], TO Muzej Pingvina is successfully updated by admin!
+2026-05-23 15:47:39 INFO  m.k.m.controller.MuseumController - FROM Optional[Muzej Pingvina], TO Muzej Pingvina is successfully updated by admin!
+2026-05-23 15:49:42 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-05-23 15:49:42 INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection ConnectionID:2 ClientConnectionId: f0f83888-9666-402e-a655-ad6139d5a8f3
+2026-05-23 15:49:42 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-05-23 15:49:42 INFO  m.k.museum.event.AppSubscribers - User admin successfully logged in!
+2026-05-23 15:50:27 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-05-23 15:50:28 INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection ConnectionID:2 ClientConnectionId: 7b12d585-e0a7-4522-8efe-54db5dabb2f1
+2026-05-23 15:50:28 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-05-23 15:50:28 INFO  m.k.museum.event.AppSubscribers - User admin successfully logged in!
+2026-05-23 15:50:39 INFO  m.k.museum.controller.CityController - FROM Optional[City{idCity=2, name='Split', country=Country{idCountry=1, name='Hrvatska'}}], TO City{idCity=2, name='Zadar', country=Country{idCountry=1, name='Hrvatska'}} is successfully updated by admin!
+2026-05-23 15:54:09 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-05-23 15:54:09 INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection ConnectionID:2 ClientConnectionId: b104dc62-339e-4796-9efe-04eabd9f5793
+2026-05-23 15:54:09 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-05-23 15:54:10 INFO  m.k.museum.event.AppSubscribers - User admin successfully logged in!
+2026-05-23 15:54:22 INFO  m.k.museum.controller.CityController - FROM Optional[City{idCity=3, name='Rim', country=Country{idCountry=2, name='Italija'}}], TO City{idCity=3, name='Romulus', country=Country{idCountry=2, name='Italija'}} is successfully updated by admin!
+2026-05-23 15:54:46 INFO  m.k.museum.controller.CityController - FROM Optional[City{idCity=3, name='Romulus', country=Country{idCountry=2, name='Italija'}}], TO City{idCity=3, name='Rim', country=Country{idCountry=2, name='Italija'}} is successfully updated by admin!
+2026-05-23 15:55:01 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-05-23 15:55:01 INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection ConnectionID:2 ClientConnectionId: acf55195-a51f-45fd-a40f-9d9ddd5c6acd
+2026-05-23 15:55:01 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-05-23 15:55:01 INFO  m.k.museum.event.AppSubscribers - User admin successfully logged in!
+2026-05-23 15:55:17 INFO  m.k.museum.controller.CityController - FROM Optional[City{idCity=3, name='Rim', country=Country{idCountry=2, name='Italija'}}], TO City{idCity=3, name='Romulus', country=Country{idCountry=2, name='Italija'}} is successfully updated by admin!
+2026-05-23 15:56:19 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-05-23 15:56:19 INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection ConnectionID:2 ClientConnectionId: 5f098972-a2e4-4bb4-8c2b-77849030c787
+2026-05-23 15:56:19 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-05-23 15:56:19 INFO  m.k.museum.event.AppSubscribers - User admin successfully logged in!
+2026-05-23 15:56:28 INFO  m.k.museum.controller.CityController - FROM Optional[City{idCity=3, name='Romulus', country=Country{idCountry=2, name='Italija'}}], TO City{idCity=3, name='Rim', country=Country{idCountry=2, name='Italija'}} is successfully updated by admin!
+2026-05-23 15:56:44 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-05-23 15:56:44 INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection ConnectionID:2 ClientConnectionId: 8bb0be70-9baa-4c09-8d5b-692323914ea6
+2026-05-23 15:56:44 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-05-23 15:56:45 INFO  m.k.museum.event.AppSubscribers - User admin successfully logged in!
+2026-05-23 15:57:04 INFO  m.k.m.c.MuseumCollectionController - FROM Optional[Moderna umjetnost], TO Da is successfully updated by admin!
+2026-05-23 16:00:54 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-05-23 16:00:54 INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection ConnectionID:2 ClientConnectionId: 460e88a5-8300-459c-abda-816137991374
+2026-05-23 16:00:54 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-05-23 16:00:54 INFO  m.k.museum.event.AppSubscribers - User admin successfully logged in!
+2026-05-23 16:01:05 INFO  m.k.m.c.MuseumCollectionController - FROM Optional[Da], TO Milekitic is successfully updated by admin!
+2026-05-23 18:53:59 ERROR me.kristijanbobovec.museum.Main - Database failed with creation!
+com.microsoft.sqlserver.jdbc.SQLServerException: The TCP/IP connection to the host localhost, port 1401 has failed. Error: "Connection refused. Verify the connection properties. Make sure that an instance of SQL Server is running on the host and accepting TCP/IP connections at the port. Make sure that TCP connections to the port are not blocked by a firewall.".
+	at com.microsoft.sqlserver.jdbc@13.4.0.jre11/com.microsoft.sqlserver.jdbc.SQLServerException.makeFromDriverError(SQLServerException.java:308)
+	at com.microsoft.sqlserver.jdbc@13.4.0.jre11/com.microsoft.sqlserver.jdbc.SQLServerException.convertConnectExceptionToSQLServerException(SQLServerException.java:399)
+	at com.microsoft.sqlserver.jdbc@13.4.0.jre11/com.microsoft.sqlserver.jdbc.SocketFinder.findSocket(IOBuffer.java:2618)
+	at com.microsoft.sqlserver.jdbc@13.4.0.jre11/com.microsoft.sqlserver.jdbc.TDSChannel.open(IOBuffer.java:743)
+	at com.microsoft.sqlserver.jdbc@13.4.0.jre11/com.microsoft.sqlserver.jdbc.SQLServerConnection.connectHelper(SQLServerConnection.java:4352)
+	at com.microsoft.sqlserver.jdbc@13.4.0.jre11/com.microsoft.sqlserver.jdbc.SQLServerConnection.login(SQLServerConnection.java:3937)
+	at com.microsoft.sqlserver.jdbc@13.4.0.jre11/com.microsoft.sqlserver.jdbc.SQLServerConnection.connectInternal(SQLServerConnection.java:3700)
+	at com.microsoft.sqlserver.jdbc@13.4.0.jre11/com.microsoft.sqlserver.jdbc.SQLServerConnection.connect(SQLServerConnection.java:2385)
+	at com.microsoft.sqlserver.jdbc@13.4.0.jre11/com.microsoft.sqlserver.jdbc.SQLServerDataSource.getConnectionInternal(SQLServerDataSource.java:1735)
+	at com.microsoft.sqlserver.jdbc@13.4.0.jre11/com.microsoft.sqlserver.jdbc.SQLServerDataSource.getConnection(SQLServerDataSource.java:99)
+	at me.kristijanbobovec.museum/me.kristijanbobovec.museum.database.DatabaseInitialization.init(DatabaseInitialization.java:29)
+	at me.kristijanbobovec.museum/me.kristijanbobovec.museum.Main.init(Main.java:27)
+	at javafx.graphics@22.0.1/com.sun.javafx.application.LauncherImpl.launchApplication1(LauncherImpl.java:817)
+	at javafx.graphics@22.0.1/com.sun.javafx.application.LauncherImpl.lambda$launchApplication$2(LauncherImpl.java:196)
+	at java.base/java.lang.Thread.run(Thread.java:1570)
+2026-05-23 18:54:06 ERROR me.kristijanbobovec.museum.Main - Database failed with creation!
+com.microsoft.sqlserver.jdbc.SQLServerException: Connection reset ClientConnectionId:7d45d9b8-e0d0-4021-8055-c0a0e1ea1299
+	at com.microsoft.sqlserver.jdbc@13.4.0.jre11/com.microsoft.sqlserver.jdbc.SQLServerConnection.terminate(SQLServerConnection.java:4904)
+	at com.microsoft.sqlserver.jdbc@13.4.0.jre11/com.microsoft.sqlserver.jdbc.TDSChannel.read(IOBuffer.java:2202)
+	at com.microsoft.sqlserver.jdbc@13.4.0.jre11/com.microsoft.sqlserver.jdbc.SQLServerConnection.prelogin(SQLServerConnection.java:4578)
+	at com.microsoft.sqlserver.jdbc@13.4.0.jre11/com.microsoft.sqlserver.jdbc.SQLServerConnection.connectHelper(SQLServerConnection.java:4377)
+	at com.microsoft.sqlserver.jdbc@13.4.0.jre11/com.microsoft.sqlserver.jdbc.SQLServerConnection.login(SQLServerConnection.java:3937)
+	at com.microsoft.sqlserver.jdbc@13.4.0.jre11/com.microsoft.sqlserver.jdbc.SQLServerConnection.connectInternal(SQLServerConnection.java:3700)
+	at com.microsoft.sqlserver.jdbc@13.4.0.jre11/com.microsoft.sqlserver.jdbc.SQLServerConnection.connect(SQLServerConnection.java:2385)
+	at com.microsoft.sqlserver.jdbc@13.4.0.jre11/com.microsoft.sqlserver.jdbc.SQLServerDataSource.getConnectionInternal(SQLServerDataSource.java:1735)
+	at com.microsoft.sqlserver.jdbc@13.4.0.jre11/com.microsoft.sqlserver.jdbc.SQLServerDataSource.getConnection(SQLServerDataSource.java:99)
+	at me.kristijanbobovec.museum/me.kristijanbobovec.museum.database.DatabaseInitialization.init(DatabaseInitialization.java:29)
+	at me.kristijanbobovec.museum/me.kristijanbobovec.museum.Main.init(Main.java:27)
+	at javafx.graphics@22.0.1/com.sun.javafx.application.LauncherImpl.launchApplication1(LauncherImpl.java:817)
+	at javafx.graphics@22.0.1/com.sun.javafx.application.LauncherImpl.lambda$launchApplication$2(LauncherImpl.java:196)
+	at java.base/java.lang.Thread.run(Thread.java:1570)
+Caused by: java.net.SocketException: Connection reset
+	at java.base/sun.nio.ch.NioSocketImpl.implRead(NioSocketImpl.java:318)
+	at java.base/sun.nio.ch.NioSocketImpl.read(NioSocketImpl.java:346)
+	at java.base/sun.nio.ch.NioSocketImpl$1.read(NioSocketImpl.java:796)
+	at java.base/java.net.Socket$SocketInputStream.implRead(Socket.java:1108)
+	at java.base/java.net.Socket$SocketInputStream.read(Socket.java:1095)
+	at com.microsoft.sqlserver.jdbc@13.4.0.jre11/com.microsoft.sqlserver.jdbc.TDSChannel$ProxyInputStream.readInternal(IOBuffer.java:1228)
+	at com.microsoft.sqlserver.jdbc@13.4.0.jre11/com.microsoft.sqlserver.jdbc.TDSChannel$ProxyInputStream.read(IOBuffer.java:1214)
+	at com.microsoft.sqlserver.jdbc@13.4.0.jre11/com.microsoft.sqlserver.jdbc.TDSChannel.read(IOBuffer.java:2191)
+	... 12 common frames omitted
+2026-05-23 18:54:16 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-05-23 18:54:16 INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection ConnectionID:2 ClientConnectionId: 76b4a5c4-96df-4da8-a5e9-f70a9f6ff79d
+2026-05-23 18:54:16 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-05-23 18:54:16 INFO  m.k.museum.event.AppSubscribers - User admin successfully logged in!
+2026-05-23 18:54:47 INFO  m.k.museum.controller.CityController - FROM City{idCity=2, name='Zadar', country=Country{idCountry=1, name='Hrvatska'}}, TO City{idCity=2, name='Šibenik', country=Country{idCountry=1, name='Hrvatska'}} is successfully updated by admin!
+2026-05-23 18:54:56 INFO  m.k.museum.controller.CityController - FROM City{idCity=2, name='Šibenik', country=Country{idCountry=1, name='Hrvatska'}}, TO City{idCity=2, name='Šibenik', country=Country{idCountry=3, name='Francuska'}} is successfully updated by admin!
+2026-05-23 18:54:58 INFO  m.k.museum.controller.CityController - FROM City{idCity=2, name='Šibenik', country=Country{idCountry=3, name='Francuska'}}, TO City{idCity=2, name='Šibenik', country=Country{idCountry=3, name='Francuska'}} is successfully updated by admin!
+2026-05-23 18:55:09 INFO  m.k.museum.controller.CityController - New York is successfully deleted by admin!
+2026-05-23 18:55:22 INFO  m.k.museum.controller.CityController - Firenza is successfully deleted by admin!
+2026-05-23 18:56:11 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-05-23 18:56:11 INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection ConnectionID:2 ClientConnectionId: 7597c252-52af-4fd0-88f4-7b24f612baa9
+2026-05-23 18:56:11 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-05-23 18:56:11 INFO  m.k.museum.event.AppSubscribers - User admin successfully logged in!
+2026-05-23 18:56:17 INFO  m.k.museum.controller.CityController - Rim is successfully deleted by admin!
+2026-05-23 18:56:26 INFO  m.k.museum.controller.CityController - FROM City{idCity=8, name='Amsterdam', country=Country{idCountry=6, name='Nizozemska'}}, TO City{idCity=8, name='Milek', country=Country{idCountry=6, name='Nizozemska'}} is successfully updated by admin!
+2026-05-23 18:56:43 INFO  m.k.museum.controller.CityController - Amsterdam is successfully inserted by admin!
+2026-05-23 18:56:51 INFO  m.k.museum.controller.CityController - Amsterdam is successfully deleted by admin!
+2026-05-23 18:56:53 INFO  m.k.museum.event.AppSubscribers - User admin successfully logged out!
+2026-05-23 19:07:53 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-05-23 19:07:53 INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection ConnectionID:2 ClientConnectionId: 43ca639f-f2e7-49bf-9270-0c7ac3aff2f2
+2026-05-23 19:07:53 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-05-23 19:07:53 INFO  m.k.museum.event.AppSubscribers - User admin successfully logged in!
+2026-05-23 19:08:00 INFO  m.k.m.controller.CountryController - Francuska is successfully deleted by admin!
+2026-05-23 19:08:11 INFO  m.k.m.controller.CountryController - Kostarika is successfully inserted by admin!
+2026-05-23 19:08:33 INFO  m.k.m.controller.CountryController - FROM Country{idCountry=5, name='SAD'}, TO Country{idCountry=5, name='SADIC'} is successfully updated by admin!
+2026-05-23 19:08:45 INFO  m.k.m.controller.CountryController - daw is successfully inserted by admin!
+2026-05-23 19:08:47 INFO  m.k.m.controller.CountryController - ewadawdwa is successfully inserted by admin!
+2026-05-23 19:08:49 INFO  m.k.m.controller.CountryController - aewgawefdaw is successfully inserted by admin!
+2026-05-23 19:08:50 INFO  m.k.m.controller.CountryController - Nizozemska is successfully deleted by admin!
+2026-05-23 19:08:52 INFO  m.k.m.controller.CountryController - ewadawdwa is successfully deleted by admin!
+2026-05-23 19:08:53 INFO  m.k.m.controller.CountryController - daw is successfully deleted by admin!
+2026-05-23 19:08:55 INFO  m.k.m.controller.CountryController - aewgawefdaw is successfully deleted by admin!
+2026-05-23 19:27:25 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-05-23 19:27:25 INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection ConnectionID:2 ClientConnectionId: a3931a18-0d8b-4dbb-8ceb-17d819cf9241
+2026-05-23 19:27:25 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-05-23 19:27:25 INFO  m.k.museum.event.AppSubscribers - User admin successfully logged in!
+2026-05-23 19:27:32 INFO  m.k.m.c.MuseumCollectionController - FROM Renesansna skulptura, TO Renesansna skulptura is successfully updated by admin!
+2026-05-23 19:27:34 INFO  m.k.m.c.MuseumCollectionController - Renesansna skulptura is successfully deleted by admin!
+2026-05-23 19:27:41 INFO  m.k.m.c.MuseumCollectionController - Anticka Mira is successfully inserted by admin!
+2026-05-23 19:27:50 INFO  m.k.m.c.MuseumCollectionController - Namještaj i dekorativna art is successfully deleted by admin!

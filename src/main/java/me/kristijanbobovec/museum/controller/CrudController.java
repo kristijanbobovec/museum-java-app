@@ -4,6 +4,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import me.kristijanbobovec.museum.model.CrudOperation;
 import me.kristijanbobovec.museum.model.Named;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -58,6 +59,23 @@ public abstract class CrudController<T extends Named> {
     protected void clearError() {
         errorLabel.setVisible(false);
         errorLabel.setManaged(false);
+    }
+
+    protected void tableViewUpdate(CrudOperation operation, ObservableList<T> list, T item) {
+        handleClear();
+        switch (operation) {
+            case INSERT -> addToObservableList(list, item);
+            case DELETE -> removeFromObservableList(list, item);
+            case UPDATE -> updateInObservableList(list, item);
+        }
+        focusTableViewItem(item);
+    }
+
+    protected void applySelecton(Runnable onSelected) {
+        tableView.getSelectionModel().selectedItemProperty().addListener(e -> {
+            if (tableView.getSelectionModel().getSelectedItem() == null) return;
+            onSelected.run();
+        });
     }
 
     protected void applySearch(FilteredList<T> filteredList) {

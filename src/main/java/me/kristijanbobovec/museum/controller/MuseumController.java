@@ -9,13 +9,13 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import javafx.stage.FileChooser;
 import me.kristijanbobovec.museum.exception.DatabaseFailedToException;
-import me.kristijanbobovec.museum.exception.ItemNotSelectedException;
 import me.kristijanbobovec.museum.exception.OmitingRequiredFieldsException;
 import me.kristijanbobovec.museum.factory.column.MuseumColumnFactory;
 import me.kristijanbobovec.museum.manager.UserSession;
 import me.kristijanbobovec.museum.model.City;
+import me.kristijanbobovec.museum.model.CrudOperation;
+import me.kristijanbobovec.museum.model.ImagePath;
 import me.kristijanbobovec.museum.model.Museum;
 import me.kristijanbobovec.museum.model.dto.museum.MuseumInsertDTO;
 import me.kristijanbobovec.museum.model.dto.museum.MuseumUpdateDTO;
@@ -25,11 +25,11 @@ import me.kristijanbobovec.museum.service.MuseumService;
 import me.kristijanbobovec.museum.util.AlertHelper;
 import me.kristijanbobovec.museum.util.ImageHelper;
 import me.kristijanbobovec.museum.util.Messages;
+import org.apache.commons.lang3.math.NumberUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.File;
-import java.nio.file.Path;
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.Optional;
 
@@ -40,24 +40,28 @@ public class MuseumController extends CrudController<Museum> {
     private final CityService cityService;
     private final ImagePathService imagePathService;
 
-    ObservableList<Museum> museums;
-    FilteredList<Museum> filteredMuseums;
-    SortedList<Museum> sortedMuseums;
-    ObservableList<City> cities;
+    private ObservableList<Museum> museums;
+    private FilteredList<Museum> filteredMuseums;
+    private SortedList<Museum> sortedMuseums;
+    private ObservableList<City> cities;
 
-    private String originalImagePath;
+    private String originalPath;
 
     @FXML
     private ComboBox<City> cityComboBox;
 
     @FXML
     private TextField nameField;
+
     @FXML
     private TextField addressField;
+
     @FXML
     private TextField yearField;
+
     @FXML
     private TextArea descriptionField;
+
     @FXML
     private TextField imagePathField;
 
@@ -86,17 +90,7 @@ public class MuseumController extends CrudController<Museum> {
         initTableView();
         initCombobox();
         applySearch(filteredMuseums);
-        applySelection();
-    }
-
-    private void initCombobox() {
-        comboBoxFormat(cityComboBox, City::getName);
-        comboBoxSetItems(cityComboBox, cities);
-    }
-
-    private void applySelection() {
-        tableView.getSelectionModel().selectedItemProperty().addListener(e -> {
-            if(tableView.getSelectionModel().getSelectedItem() == null) return;
+        applySelecton(() -> {
             nameField.setText(tableView.getSelectionModel().getSelectedItem().getName());
             addressField.setText(tableView.getSelectionModel().getSelectedItem().getAdress());
             yearField.setText(String.valueOf(tableView.getSelectionModel().getSelectedItem().getEstablishmentYear()));
@@ -104,6 +98,11 @@ public class MuseumController extends CrudController<Museum> {
             imagePathField.setText(tableView.getSelectionModel().getSelectedItem().getImagePath());
             cityComboBox.getSelectionModel().select(tableView.getSelectionModel().getSelectedItem().getCity());
         });
+    }
+
+    private void initCombobox() {
+        comboBoxFormat(cityComboBox, City::getName);
+        comboBoxSetItems(cityComboBox, cities);
     }
 
     private void initTableView() {
@@ -123,70 +122,77 @@ public class MuseumController extends CrudController<Museum> {
         clearDescriptionField();
         clearImagePathField();
         clearCountrySelection();
+        clearOriginalPath();
         unFocusTableView();
     }
 
     private void clearCountrySelection() {
         cityComboBox.getSelectionModel().clearSelection();
     }
+
     private void clearNameField() {
         nameField.clear();
     }
+
     private void clearImagePathField() {
         imagePathField.clear();
     }
+
     private void clearDescriptionField() {
         descriptionField.clear();
     }
+
     private void clearYearField() {
         yearField.clear();
     }
+
     private void clearAddressField() {
         addressField.clear();
+    }
+
+    private void clearOriginalPath() {
+        originalPath = null;
     }
 
     @Override
     public void handleUpdate() {
         clearError();
         try {
-            Optional<Museum> selectedMuseum = Optional.ofNullable(tableView.getSelectionModel().getSelectedItem());
-            int id = selectedMuseum.map(Museum::getIdMuseum).orElse(-1);
+            Museum selectedMuseum = tableView.getSelectionModel().getSelectedItem();
+            if (selectedMuseum == null) {
+                showError(Messages.CRUDValidation.ITEM_NOT_SELECTED.formatted("update"));
+                return;
+            }
+            int idMuseum = selectedMuseum.getIdMuseum();
 
             String name = nameField.getText();
             String address = addressField.getText();
             String imagePath = imagePathField.getText();
-
-            int establishmentYear;
-            try {
-                establishmentYear = Integer.parseInt(yearField.getText());
-            } catch (NumberFormatException e) {
-                establishmentYear = 0;
-            }
-
+            int establishmentYear = NumberUtils.toInt(yearField.getText(), 0);
             String desc = descriptionField.getText();
-            City selectedCity = cityComboBox.getSelectionModel().getSelectedItem();
-            int cityId = selectedCity == null ? 0 : selectedCity.getIdCity();
+            int cityId = Optional.ofNullable(cityComboBox.getSelectionModel().getSelectedItem())
+                    .map(City::getIdCity)
+                    .orElse(0);
 
             MuseumUpdateDTO museumDto = new MuseumUpdateDTO(name, address, establishmentYear, desc, imagePath, cityId);
 
-            Museum updatedMuseum = museumService.update(id, museumDto);
-            handleClear();
-            updateInObservableList(museums, updatedMuseum);
-            focusTableViewItem(updatedMuseum);
+            Museum updatedMuseum = museumService.update(idMuseum, museumDto);
 
+            String oldPath = selectedMuseum.getImagePath();
+            imagePathService.update(oldPath, new ImagePath(originalPath, imagePath));
+            originalPath = null;
 
-            // if selectedMuseum does not have imagePath just check if the updated museum has if it has just createImageIfNotExists
-            // if selectedMuseum has imagePath check if imagePath is changed if it is check if there are references to that imagePath if not delete image
-            // TODO IMPLEMENT IMAGE LOGIC
-
-
+            tableViewUpdate(CrudOperation.UPDATE, museums, updatedMuseum);
 
             AlertHelper.displayAlert(Alert.AlertType.INFORMATION, Messages.CRUD.UPDATED_HEADER, Messages.CRUD.UPDATED_CONTENT.formatted(selectedMuseum, updatedMuseum));
             log.info(Messages.CRUD.UPDATED_LOG.formatted(selectedMuseum, updatedMuseum, UserSession.INSTANCE.getSession().username()));
-        } catch (ItemNotSelectedException | OmitingRequiredFieldsException e) {
+        } catch (OmitingRequiredFieldsException e) {
             showError(e.getMessage());
         } catch (DatabaseFailedToException | SQLException e) {
             log.error(Messages.Museum.UPDATE_FAIL_LOG.formatted(UserSession.INSTANCE.getSession().username()), e);
+            showError(Messages.Server.SERVER_ERROR_CONTENT);
+        } catch (IOException e) {
+            log.error(Messages.Image.FAILED_TO_MANIPULATE.formatted("update"), e);
             showError(Messages.Server.SERVER_ERROR_CONTENT);
         }
     }
@@ -198,36 +204,30 @@ public class MuseumController extends CrudController<Museum> {
             String name = nameField.getText();
             String address = addressField.getText();
             String imagePath = imagePathField.getText();
-
-            int establishmentYear;
-            try {
-                establishmentYear = Integer.parseInt(yearField.getText());
-            } catch (NumberFormatException e) {
-                establishmentYear = 0;
-            }
-
+            int establishmentYear = NumberUtils.toInt(yearField.getText(), 0);
             String desc = descriptionField.getText();
-            City selectedCity = cityComboBox.getSelectionModel().getSelectedItem();
-            int cityId = selectedCity == null ? 0 : selectedCity.getIdCity();
+            int cityId = Optional.ofNullable(cityComboBox.getSelectionModel().getSelectedItem())
+                    .map(City::getIdCity)
+                    .orElse(0);
 
             MuseumInsertDTO museumDto = new MuseumInsertDTO(name, address, establishmentYear, desc, imagePath, cityId);
 
             Museum insertedMuseum = museumService.insert(museumDto);
-            addToObservableList(museums, insertedMuseum);
-            handleClear();
-            focusTableViewItem(insertedMuseum);
 
-            // If originalPath and otherPath are not null and not empty!
-            // Original Path of image + createIfNotExists
-            // Copy image if not exists into the assets/images
-            // TODO IMPLEMENT IMAGE LOGIC
+            imagePathService.create(new ImagePath(originalPath, imagePath));
+            originalPath = null;
+
+            tableViewUpdate(CrudOperation.INSERT, museums, insertedMuseum);
 
             AlertHelper.displayAlert(Alert.AlertType.INFORMATION, Messages.CRUD.INSERTED_HEADER, Messages.CRUD.INSERTED_CONTENT.formatted(insertedMuseum.getName()));
             log.info(Messages.CRUD.INSERT_LOG.formatted(insertedMuseum.getName(), UserSession.INSTANCE.getSession().username()));
-        } catch (ItemNotSelectedException | OmitingRequiredFieldsException e) {
+        } catch (OmitingRequiredFieldsException e) {
             showError(e.getMessage());
         } catch (SQLException e) {
             log.error(Messages.Museum.INSERT_FAIL_LOG.formatted(UserSession.INSTANCE.getSession().username()), e);
+            showError(Messages.Server.SERVER_ERROR_CONTENT);
+        } catch (IOException e) {
+            log.error(Messages.Image.FAILED_TO_MANIPULATE.formatted("create"), e);
             showError(Messages.Server.SERVER_ERROR_CONTENT);
         }
     }
@@ -236,43 +236,44 @@ public class MuseumController extends CrudController<Museum> {
     public void handleDelete() {
         clearError();
         try {
-            Optional<Museum> selectedMuseum = Optional.ofNullable(tableView.getSelectionModel().getSelectedItem());
-            int id = selectedMuseum.map(Museum::getIdMuseum).orElse(-1);
+            Museum selectedMuseum = tableView.getSelectionModel().getSelectedItem();
+            if (selectedMuseum == null) {
+                showError(Messages.CRUDValidation.ITEM_NOT_SELECTED.formatted("delete"));
+                return;
+            }
+            int idMuseum = selectedMuseum.getIdMuseum();
 
-            museumService.delete(id);
-            removeFromObservableList(museums, selectedMuseum.get());
-            handleClear();
+            museumService.delete(idMuseum);
 
-            // TODO IMPLEMENT IMAGE LOGIC
+            String imagePath = selectedMuseum.getImagePath();
+            imagePathService.remove(imagePath);
 
-            AlertHelper.displayAlert(Alert.AlertType.INFORMATION, Messages.CRUD.DELETED_HEADER, Messages.CRUD.DELETED_CONTENT.formatted(selectedMuseum.get().getName()));
-            log.info(Messages.CRUD.DELETED_LOG.formatted(selectedMuseum.get().getName(), UserSession.INSTANCE.getSession().username()));
-        } catch (ItemNotSelectedException e) {
-            showError(e.getMessage());
+            tableViewUpdate(CrudOperation.DELETE, museums, selectedMuseum);
+
+            AlertHelper.displayAlert(Alert.AlertType.INFORMATION, Messages.CRUD.DELETED_HEADER, Messages.CRUD.DELETED_CONTENT.formatted(selectedMuseum.getName()));
+            log.info(Messages.CRUD.DELETED_LOG.formatted(selectedMuseum.getName(), UserSession.INSTANCE.getSession().username()));
         } catch (SQLException e) {
             log.error(Messages.Museum.DELETE_FAIL_LOG.formatted(UserSession.INSTANCE.getSession().username()), e);
+            showError(Messages.Server.SERVER_ERROR_CONTENT);
+        } catch (IOException e) {
+            log.error(Messages.Image.FAILED_TO_MANIPULATE.formatted("delete"), e);
             showError(Messages.Server.SERVER_ERROR_CONTENT);
         }
     }
 
     @FXML
     private void handleBrowse() {
-        FileChooser fileChooser = new FileChooser();
-
-        fileChooser.getExtensionFilters().addAll(
-                new FileChooser.ExtensionFilter("All images", "*.png", "*.jpg"),
-                new FileChooser.ExtensionFilter("PNG", "*.png"),
-                new FileChooser.ExtensionFilter("JPG", "*.jpg")
+        ImageHelper.handleBrowse(
+                this::setOriginalPath,
+                this::setImagePathField
         );
+    }
 
-        fileChooser.setTitle("Choose the image");
+    public void setImagePathField(String path) {
+        imagePathField.setText(path);
+    }
 
-        Optional<File> file = Optional.ofNullable(fileChooser.showOpenDialog(nameField.getParent().getScene().getWindow()));
-
-        file.ifPresent(f -> {
-            Path path = f.toPath();
-            originalImagePath = path.toString();
-            imagePathField.setText(ImageHelper.buildStringURL(path.getFileName().toString()));
-        });
+    public void setOriginalPath(String path) {
+        originalPath = path;
     }
 }

@@ -49,14 +49,19 @@ public class SQLQueries {
     public final static String INSERT_CITY                  = "{call usp_City_Insert(?, ?, ?)}";
     public final static String UPDATE_CITY                  = "{call usp_City_Update(?, ?, ?)}";
     public final static String DELETE_CITY                  = "{call usp_City_Delete(?)}";
-    public final static String GETALL_CURATORS              = "{call usp_Curator_GetAll}";
-    public final static String GETBYID_CURATOR              = "{call usp_Curator_GetById(?)}";
-    public final static String GETALL_CURATORS_WITH_DETAILS = "{call usp_Curator_GetAllWithDetails}";
-    public final static String GETBYID_CURATOR_WITH_DETAILS = "{call usp_Curator_GetByIdWithDetails(?)}";
-    public final static String INSERT_CURATOR               = "{call usp_Curator_Insert(?, ?, ?, ?)}";
-    public final static String UPDATE_CURATOR               = "{call usp_Curator_Update(?, ?, ?, ?)}";
-    public final static String DELETE_CURATOR               = "{call usp_Curator_Delete(?)}";
-    public final static String IMAGE_USAGE_COUNT            = "{call usp_ImagePath_GetUsageCount(?, ?)}";
+    public final static String GETALL_CURATORS                       = "{call usp_Curator_GetAll}";
+    public final static String GETBYID_CURATOR                       = "{call usp_Curator_GetById(?)}";
+    public final static String GETALL_CURATORS_WITH_DETAILS          = "{call usp_Curator_GetAllWithDetails}";
+    public final static String GETBYID_CURATOR_WITH_DETAILS          = "{call usp_Curator_GetByIdWithDetails(?)}";
+    public final static String INSERT_CURATOR                        = "{call usp_Curator_Insert(?, ?, ?, ?)}";
+    public final static String UPDATE_CURATOR                        = "{call usp_Curator_Update(?, ?, ?, ?)}";
+    public final static String DELETE_CURATOR                        = "{call usp_Curator_Delete(?)}";
+    public final static String GETALL_CURATOR_COLLECTIONS            = "{call usp_CuratorCollection_GetAll}";
+    public final static String GETBYID_CURATOR_COLLECTIONS           = "{call usp_CuratorCollection_GetByCuratorId(?)}";
+    public final static String INSERT_CURATOR_COLLECTION             = "{call usp_CuratorCollection_Insert(?, ?)}";
+    public final static String DELETE_CURATOR_COLLECTION             = "{call usp_CuratorCollection_Delete(?, ?)}";
+    public final static String DELETE_CURATOR_COLLECTION_BY_CURATOR  = "{call usp_CuratorCollection_DeleteByCuratorId(?)}";
+    public final static String IMAGE_USAGE_COUNT                     = "{call usp_ImagePath_GetUsageCount(?, ?)}";
 
     public static final String PROCEDURES = """
         CREATE OR ALTER PROCEDURE usp_User_GetAll
@@ -328,7 +333,7 @@ public class SQLQueries {
                 m.CityID
             FROM Exhibit e
             INNER JOIN Museum           m   ON e.MuseumID           = m.IDMuseum
-            INNER JOIN MuseumCollection mc  ON e.MuseumCollectionID = mc.IDMuseumCollection
+            LEFT  JOIN MuseumCollection mc  ON e.MuseumCollectionID = mc.IDMuseumCollection
         END
         GO
         CREATE OR ALTER PROCEDURE usp_Exhibit_GetById
@@ -353,7 +358,7 @@ public class SQLQueries {
                 m.CityID
             FROM Exhibit e
             INNER JOIN Museum           m   ON e.MuseumID           = m.IDMuseum
-            INNER JOIN MuseumCollection mc  ON e.MuseumCollectionID = mc.IDMuseumCollection
+            LEFT  JOIN MuseumCollection mc  ON e.MuseumCollectionID = mc.IDMuseumCollection
             WHERE e.IDExhibit = @IDExhibit
         END
         GO
@@ -488,7 +493,7 @@ public class SQLQueries {
             @IDMuseumCollection INT
         AS
         BEGIN
-            UPDATE CuratorCollection SET MuseumCollectionID = NULL WHERE MuseumCollectionID = @IDMuseumCollection;
+            DELETE FROM CuratorCollection WHERE MuseumCollectionID = @IDMuseumCollection;
             UPDATE Exhibit SET MuseumCollectionID = NULL WHERE MuseumCollectionID = @IDMuseumCollection;
             DELETE FROM MuseumCollection WHERE IDMuseumCollection = @IDMuseumCollection;
         END
@@ -774,6 +779,56 @@ public class SQLQueries {
             DELETE FROM Curator           WHERE IDCurator = @IDCurator;
         END
         GO
+        CREATE OR ALTER PROCEDURE usp_CuratorCollection_GetAll
+        AS
+        BEGIN
+            SET NOCOUNT ON;
+            SELECT
+                cc.CuratorID,
+                mc.IDMuseumCollection,
+                mc.Name AS CollectionName
+            FROM CuratorCollection cc
+            INNER JOIN MuseumCollection mc ON cc.MuseumCollectionID = mc.IDMuseumCollection;
+        END
+        GO
+        CREATE OR ALTER PROCEDURE usp_CuratorCollection_GetByCuratorId
+            @IDCurator INT
+        AS
+        BEGIN
+            SET NOCOUNT ON;
+            SELECT
+                mc.IDMuseumCollection,
+                mc.Name AS CollectionName
+            FROM CuratorCollection cc
+            INNER JOIN MuseumCollection mc ON cc.MuseumCollectionID = mc.IDMuseumCollection
+            WHERE cc.CuratorID = @IDCurator;
+        END
+        GO
+        CREATE OR ALTER PROCEDURE usp_CuratorCollection_Insert
+            @CuratorID          INT,
+            @MuseumCollectionID INT
+        AS
+        BEGIN
+            INSERT INTO CuratorCollection (MuseumCollectionID, CuratorID)
+            VALUES (@MuseumCollectionID, @CuratorID);
+        END
+        GO
+        CREATE OR ALTER PROCEDURE usp_CuratorCollection_Delete
+            @CuratorID          INT,
+            @MuseumCollectionID INT
+        AS
+        BEGIN
+            DELETE FROM CuratorCollection
+            WHERE CuratorID = @CuratorID AND MuseumCollectionID = @MuseumCollectionID;
+        END
+        GO
+        CREATE OR ALTER PROCEDURE usp_CuratorCollection_DeleteByCuratorId
+            @CuratorID INT
+        AS
+        BEGIN
+            DELETE FROM CuratorCollection WHERE CuratorID = @CuratorID;
+        END
+        GO
         CREATE OR ALTER PROCEDURE usp_ImagePath_GetUsageCount
             @ImagePath          NVARCHAR(500),
             @ReferencesCount    INT OUTPUT
@@ -984,18 +1039,14 @@ public class SQLQueries {
     )
     GO
     CREATE TABLE CuratorCollection (
-        IDCuratorCollection INT NOT NULL IDENTITY(1,1),
-        MuseumCollectionID  INT NULL,
+        MuseumCollectionID  INT NOT NULL,
         CuratorID           INT NOT NULL,
-        CONSTRAINT PK_CuratorCollection PRIMARY KEY (IDCuratorCollection),
+        CONSTRAINT PK_CuratorCollection PRIMARY KEY (MuseumCollectionID, CuratorID),
         CONSTRAINT FK_CuratorCollection_MuseumCollection FOREIGN KEY (MuseumCollectionID)
             REFERENCES MuseumCollection (IDMuseumCollection),
         CONSTRAINT FK_CuratorCollection_Curator FOREIGN KEY (CuratorID)
             REFERENCES Curator (IDCurator)
     )
-    GO
-    CREATE UNIQUE INDEX UQ_CuratorCollection ON CuratorCollection(MuseumCollectionID, CuratorID)
-    WHERE MuseumCollectionID IS NOT NULL;
     GO
     CREATE TABLE Role (
         IDRole  INT           NOT NULL,
