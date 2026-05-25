@@ -27,8 +27,6 @@ public class DatabaseInitialization {
         dataSource.setPassword(ApplicationProperties.Database.getPassword());
 
         try (Connection conn = dataSource.getConnection()) {
-            dropDatabase(dataSource);
-
             if (checkDatabase(conn)) return;
             createDatabaseIfNotExists(conn);
 
@@ -38,7 +36,7 @@ public class DatabaseInitialization {
                 createProceduresIfNotExists(conn);
                 createRoles(conn);
                 createAdminAccount(conn);
-                seedData(conn);
+                //seedData(conn);
                 conn.commit();
 
                 log.info(Messages.Database.DATABASE_CREATED);
@@ -132,6 +130,7 @@ public class DatabaseInitialization {
             statement.execute(SQLQueries.DROP_DATABASE.formatted(db, db));
         }
     }
+
 
     private static boolean checkDatabase(Connection conn) throws SQLException {
         try (Statement statement = conn.createStatement()) {

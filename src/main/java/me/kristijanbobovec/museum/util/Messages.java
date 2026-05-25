@@ -26,6 +26,12 @@ public final class Messages {
         public static final String DATABASE_SEEDING = "Seeding initial data...";
         public static final String DATABASE_FAILEDTO_GENERIC = "Database failed to do operaion!";
         public static final String DATABASE_FAILEDTO = "Database failed to %s: %s object!";
+        public static final String RESET_FAIL = "Database failed to reset.";
+    }
+
+    public static final class XML {
+        public static final String EXPORT_FAIL = "%s failed to export. (User: %s)";
+        public static final String EXPORT_SUCCESSFUL = "%s are exported. (User: %s)";
     }
 
     public static final class Museum {

@@ -1,13 +1,24 @@
 package me.kristijanbobovec.museum.controller;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Menu;
+import me.kristijanbobovec.museum.manager.DatabaseManager;
 import me.kristijanbobovec.museum.manager.SceneManager;
 import me.kristijanbobovec.museum.manager.UserSession;
 import me.kristijanbobovec.museum.service.AuthService;
+import me.kristijanbobovec.museum.util.AlertHelper;
+import me.kristijanbobovec.museum.util.Messages;
+import me.kristijanbobovec.museum.util.XMLExport;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.io.IOException;
+import java.sql.SQLException;
 
 public class NavigationController {
 
+    private static final Logger log = LoggerFactory.getLogger(NavigationController.class);
     @FXML
     private Menu adminMenu;
 
@@ -65,17 +76,28 @@ public class NavigationController {
 
     /// ADMIN OPTIONS
     @FXML
-    private void handleCreateBackup() {
-        System.out.println("kreiram backup");
-    }
+    private void handleMuseumXMLExport() {
+        try {
+            XMLExport.exportMuseums();
+            AlertHelper.displayAlert(Alert.AlertType.INFORMATION, "Museums Exported", "Museums exported successfully");
+        }catch (SQLException e) {
+            log.error(Messages.Database.LOAD_FAIL, e);
+        } catch (IOException e) {
+            log.error(Messages.XML.EXPORT_FAIL.formatted("Museums", UserSession.INSTANCE.getSession().username()), e);
+        }
 
-    @FXML
-    private void handleLoadBackup() {
-        System.out.println("loadam backup");
     }
 
     @FXML
     private void handleDeleteAll() {
-        System.out.println("deleted all database");
+        try {
+            DatabaseManager.resetDatabase();
+            handleHome();
+
+            AlertHelper.displayAlert(Alert.AlertType.INFORMATION, "Data Reset", "Data is reset successfully!");
+        } catch (SQLException e) {
+            log.error(Messages.Database.RESET_FAIL, e);
+            AlertHelper.displayAlert(Alert.AlertType.WARNING, "Data reset failed", "Data reset failed!");
+        }
     }
 }

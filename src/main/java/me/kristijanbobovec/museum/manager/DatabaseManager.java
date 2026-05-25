@@ -3,7 +3,9 @@ package me.kristijanbobovec.museum.manager;
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 import me.kristijanbobovec.museum.config.ApplicationProperties;
+import me.kristijanbobovec.museum.util.SQLQueries;
 
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.SQLException;
 
@@ -34,5 +36,12 @@ public class DatabaseManager {
 
     public static Connection getConnection() throws SQLException {
         return ds.getConnection();
+    }
+
+    public static void resetDatabase() throws SQLException {
+        try (Connection conn = getConnection();
+             CallableStatement cs = conn.prepareCall(SQLQueries.DELETE_ALL_DATA)) {
+            cs.execute();
+        }
     }
 }

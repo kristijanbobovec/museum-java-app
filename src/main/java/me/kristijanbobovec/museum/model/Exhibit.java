@@ -4,14 +4,23 @@ import java.util.Objects;
 import java.util.Optional;
 
 public class Exhibit implements Named {
+
     private int idExhibit;
+
     private String name;
+
     private String description;
+
     private int creationYear;
+
     private String imagePath;
+
     private MuseumCollection museumCollection;
+
     private Museum museum;
+
     private int museumId;
+
     private Integer museumCollectionId;
 
     public Exhibit(String name, String description, int creationYear, String imagePath, int museumId, Integer museumCollectionId) {

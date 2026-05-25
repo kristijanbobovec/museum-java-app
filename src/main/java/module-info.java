@@ -12,6 +12,9 @@ module me.kristijanbobovec.museum {
     requires org.slf4j;
     requires java.desktop;
     requires org.apache.commons.lang3;
+    requires com.fasterxml.jackson.dataformat.xml;
+    requires com.fasterxml.jackson.annotation;
+    requires com.fasterxml.jackson.databind;
 
 
     opens me.kristijanbobovec.museum to javafx.fxml;
@@ -20,4 +23,7 @@ module me.kristijanbobovec.museum {
     opens me.kristijanbobovec.museum.database to javafx.fxml;
     opens me.kristijanbobovec.museum.manager to javafx.fxml;
     opens me.kristijanbobovec.museum.factory to javafx.fxml;
+    opens me.kristijanbobovec.museum.model.dto.museum to com.fasterxml.jackson.databind;
+    opens me.kristijanbobovec.museum.model.dto.exhibit to com.fasterxml.jackson.databind;
+    opens me.kristijanbobovec.museum.model.dto.museumcollection to com.fasterxml.jackson.databind;
 }

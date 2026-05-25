@@ -25,8 +25,7 @@
             </Menu>
             <Menu mnemonicParsing="false" text="Admin" fx:id="adminMenu">
                 <items>
-                    <MenuItem mnemonicParsing="false" text="Create Backup" onAction="#handleCreateBackup"/>
-                    <MenuItem mnemonicParsing="false" text="Load Backup"   onAction="#handleLoadBackup"/>
+                    <MenuItem mnemonicParsing="false" text="Museum XML Export" onAction="#handleMuseumXMLExport"/>
                     <MenuItem mnemonicParsing="false" text="Delete All"    onAction="#handleDeleteAll"/>
                 </items>
             </Menu>

@@ -21,7 +21,8 @@ public class SQLQueries {
     public final static String GETALL_MUSEUMS             = "{call usp_Museum_GetAll}";
     public final static String GETBYID_MUSEUM             = "{call usp_Museum_GetById(?)}";
     public final static String GETBYID_MUSEUM_WITH_DETAILS = "{call usp_Museum_GetByIdWithDetails(?)}";
-    public final static String GETALL_MUSEUMS_WITH_DETAILS      = "{call usp_Museum_GetAllWithDetails}";
+    public final static String GETALL_MUSEUMS_WITH_DETAILS       = "{call usp_Museum_GetAllWithDetails}";
+    public final static String GETALL_MUSEUMS_FOR_XML_EXPORT     = "{call usp_Museum_GetAllForXMLExport}";
     public final static String INSERT_MUSEUM              = "{call usp_Museum_Insert(?, ?, ?, ?, ?, ?, ?)}";
     public final static String UPDATE_MUSEUM              = "{call usp_Museum_Update(?, ?, ?, ?, ?, ?, ?)}";
     public final static String DELETE_MUSEUM              = "{call usp_Museum_Delete(?)}";
@@ -62,7 +63,7 @@ public class SQLQueries {
     public final static String DELETE_CURATOR_COLLECTION             = "{call usp_CuratorCollection_Delete(?, ?)}";
     public final static String DELETE_CURATOR_COLLECTION_BY_CURATOR  = "{call usp_CuratorCollection_DeleteByCuratorId(?)}";
     public final static String IMAGE_USAGE_COUNT                     = "{call usp_ImagePath_GetUsageCount(?, ?)}";
-
+    public final static String DELETE_ALL_DATA                       = "{call usp_DeleteAllData}";
     public static final String PROCEDURES = """
         CREATE OR ALTER PROCEDURE usp_User_GetAll
         AS
@@ -263,7 +264,6 @@ public class SQLQueries {
         BEGIN
             DELETE FROM CuratorCollection WHERE CuratorID IN (SELECT IDCurator FROM Curator WHERE MuseumID = @IDMuseum);
             DELETE FROM Curator            WHERE MuseumID = @IDMuseum;
-            DELETE FROM ImagePath          WHERE ExhibitID IN (SELECT IDExhibit FROM Exhibit WHERE MuseumID = @IDMuseum);
             DELETE FROM Exhibit            WHERE MuseumID = @IDMuseum;
             DELETE FROM Museum             WHERE IDMuseum = @IDMuseum;
         END
@@ -429,7 +429,6 @@ public class SQLQueries {
             @IDExhibit INT
         AS
         BEGIN
-            DELETE FROM ImagePath WHERE ExhibitID = @IDExhibit;
             DELETE FROM Exhibit   WHERE IDExhibit = @IDExhibit;
         END
         GO
@@ -558,14 +557,6 @@ public class SQLQueries {
                 SELECT IDMuseum FROM Museum
                 WHERE CityID IN (SELECT IDCity FROM City WHERE CountryID = @IDCountry)
             );
-            DELETE FROM ImagePath
-            WHERE ExhibitID IN (
-                SELECT IDExhibit FROM Exhibit
-                WHERE MuseumID IN (
-                    SELECT IDMuseum FROM Museum
-                    WHERE CityID IN (SELECT IDCity FROM City WHERE CountryID = @IDCountry)
-                )
-            );
             DELETE FROM Exhibit
             WHERE MuseumID IN (
                 SELECT IDMuseum FROM Museum
@@ -666,11 +657,6 @@ public class SQLQueries {
             );
             DELETE FROM Curator
             WHERE MuseumID IN (SELECT IDMuseum FROM Museum WHERE CityID = @IDCity);
-            DELETE FROM ImagePath
-            WHERE ExhibitID IN (
-                SELECT IDExhibit FROM Exhibit
-                WHERE MuseumID IN (SELECT IDMuseum FROM Museum WHERE CityID = @IDCity)
-            );
             DELETE FROM Exhibit
             WHERE MuseumID IN (SELECT IDMuseum FROM Museum WHERE CityID = @IDCity);
             DELETE FROM Museum WHERE CityID = @IDCity;
@@ -827,6 +813,45 @@ public class SQLQueries {
         AS
         BEGIN
             DELETE FROM CuratorCollection WHERE CuratorID = @CuratorID;
+        END
+        GO
+        CREATE OR ALTER PROCEDURE usp_Museum_GetAllForXMLExport
+        AS
+        BEGIN
+            SET NOCOUNT ON;
+            SELECT
+                m.IDMuseum,
+                m.Name,
+                m.Adress,
+                m.EstablishmentYear,
+                m.Description,
+                m.ImagePath,
+                m.CityID,
+                e.IDExhibit,
+                e.Name              AS ExhibitName,
+                e.Description       AS ExhibitDescription,
+                e.CreationYear,
+                e.ImagePath         AS ExhibitImagePath,
+                mc.IDMuseumCollection,
+                mc.Name             AS CollectionName
+            FROM Museum m
+            LEFT JOIN Exhibit          e  ON e.MuseumID            = m.IDMuseum
+            LEFT JOIN MuseumCollection mc ON e.MuseumCollectionID  = mc.IDMuseumCollection
+            ORDER BY m.IDMuseum;
+        END
+        GO
+        CREATE OR ALTER PROCEDURE usp_DeleteAllData
+        AS
+        BEGIN
+            SET NOCOUNT ON;
+            DELETE FROM CuratorCollection;
+            DELETE FROM Exhibit;
+            DELETE FROM Curator;
+            DELETE FROM Museum;
+            DELETE FROM MuseumCollection;
+            DELETE FROM City;
+            DELETE FROM Country;
+            DELETE FROM [User] WHERE RoleID != (SELECT IDRole FROM Role WHERE Name = 'ADMINISTRATOR');
         END
         GO
         CREATE OR ALTER PROCEDURE usp_ImagePath_GetUsageCount
@@ -1017,15 +1042,6 @@ public class SQLQueries {
             REFERENCES MuseumCollection (IDMuseumCollection),
         CONSTRAINT FK_Exhibit_Museum FOREIGN KEY (MuseumID)
             REFERENCES Museum (IDMuseum)
-    )
-    GO
-    CREATE TABLE ImagePath (
-        IDImagePath     INT            NOT NULL IDENTITY(1,1),
-        ImagePath       NVARCHAR(500)  NOT NULL,
-        ExhibitID       INT            NOT NULL,
-        CONSTRAINT PK_ImagePath PRIMARY KEY (IDImagePath),
-        CONSTRAINT FK_ImagePath_Exhibit FOREIGN KEY (ExhibitID)
-            REFERENCES Exhibit (IDExhibit)
     )
     GO
     CREATE TABLE Curator (
