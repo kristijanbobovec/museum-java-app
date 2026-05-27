@@ -46,7 +46,7 @@ public class AuthService {
                 lastName.isEmpty()) {
             errors.add(Messages.Auth.EMPTY_FIELDS);
             throw new ValidationException(errors);
-        };
+        }
 
         if (!email.matches(Patterns.EMAIL_PATTERN)) errors.add(Messages.Auth.EMAIL_FORMAT);
         if (password.length() < 8) errors.add(Messages.Auth.PASSWORD_NOT_VALID);

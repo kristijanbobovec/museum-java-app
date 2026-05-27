@@ -11,14 +11,11 @@ import me.kristijanbobovec.museum.manager.SceneManager;
 import me.kristijanbobovec.museum.service.AuthService;
 import me.kristijanbobovec.museum.util.AlertHelper;
 import me.kristijanbobovec.museum.util.Messages;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.sql.SQLException;
 
 public final class RegisterController extends AuthController {
 
-    private static final Logger log = LoggerFactory.getLogger(RegisterController.class);
     private final AuthService authService;
 
     public RegisterController(AuthService authService) {
@@ -40,7 +37,7 @@ public final class RegisterController extends AuthController {
         } catch (ValidationException e) {
             setErrorLabelVisibility(true);
             errorLabel.setText(e.getMessage());
-        } catch (SQLException e) {
+        } catch (SQLException _) {
             AlertHelper.displayAlert(Alert.AlertType.ERROR,
                     Messages.Server.SERVER_ERROR_HEADER,
                     Messages.Server.SERVER_ERROR_CONTENT,

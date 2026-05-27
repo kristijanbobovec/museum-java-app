@@ -20,7 +20,7 @@ public class XMLExport {
 
     private XMLExport() {}
 
-    public static void exportMuseums() throws SQLException, IOException{
+    public static boolean exportMuseums() throws SQLException, IOException{
         MuseumWrapper museums = MuseumRepository.getAllMuseumsForXMLExport();
         FileChooser fileChooser = new FileChooser();
         fileChooser.getExtensionFilters().add(
@@ -32,8 +32,9 @@ public class XMLExport {
         if (file != null) {
             ObjectMapper mapper = new XmlMapper().enable(SerializationFeature.INDENT_OUTPUT);
             mapper.writeValue(file, museums);
+            log.info(Messages.XML.EXPORT_SUCCESSFUL.formatted("Museums", UserSession.INSTANCE.getSession().username()));
+            return true;
         }
-
-        log.info(Messages.XML.EXPORT_SUCCESSFUL.formatted("Museums", UserSession.INSTANCE.getSession().username()));
+        return false;
     }
 }

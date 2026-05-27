@@ -78,22 +78,21 @@ public abstract class CrudController<T extends Named> {
     }
 
     protected void applySearch(FilteredList<T> filteredList) {
-        searchField.textProperty().addListener((obs, oldval, newval) -> {
+        searchField.textProperty().addListener((obs, oldval, newval) ->
             filteredList.setPredicate(c -> {
                 if (newval == null || newval.isEmpty()) return true;
                 return c.getName().toLowerCase().contains(newval.toLowerCase());
-            });
-        });
+            }));
     }
 
-    protected <T> void comboBoxSetItems(ComboBox<T> comboBox, ObservableList<T> itemList) {
+    protected <D> void comboBoxSetItems(ComboBox<D> comboBox, ObservableList<D> itemList) {
         comboBox.getItems().addAll(itemList);
     }
 
-    protected <T> void comboBoxFormat(ComboBox<T> comboBox, Function<T, String> func) {
+    protected <D> void comboBoxFormat(ComboBox<D> comboBox, Function<D, String> func) {
         comboBox.setCellFactory(lv -> new ListCell<>() {
             @Override
-            protected void updateItem(T item, boolean empty) {
+            protected void updateItem(D item, boolean empty) {
                 super.updateItem(item, empty);
                 setText(empty || item == null ? null : func.apply(item));
             }
@@ -101,7 +100,7 @@ public abstract class CrudController<T extends Named> {
 
         comboBox.setButtonCell(new ListCell<>() {
             @Override
-            protected void updateItem(T item, boolean empty) {
+            protected void updateItem(D item, boolean empty) {
                 super.updateItem(item, empty);
                 setText(empty || item == null ? null : func.apply(item));
             }

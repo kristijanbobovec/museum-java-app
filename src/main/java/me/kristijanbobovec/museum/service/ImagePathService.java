@@ -33,7 +33,7 @@ public class ImagePathService {
         deleteIfNotReferences(imagePath);
     }
 
-    public void create(ImagePath imagePath) throws SQLException, IOException {
+    public void create(ImagePath imagePath) throws IOException {
         if (imagePath.getAssetsPath() == null || imagePath.getAssetsPath().isEmpty()) return;
         if (imagePath.getOriginalPath() == null || imagePath.getOriginalPath().isEmpty()) return;
         copyToAssets(imagePath);

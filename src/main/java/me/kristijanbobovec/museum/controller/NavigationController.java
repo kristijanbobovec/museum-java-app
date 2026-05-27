@@ -74,12 +74,12 @@ public class NavigationController {
     }
 
 
-    /// ADMIN OPTIONS
+    // ADMIN OPTIONS
     @FXML
     private void handleMuseumXMLExport() {
         try {
-            XMLExport.exportMuseums();
-            AlertHelper.displayAlert(Alert.AlertType.INFORMATION, "Museums Exported", "Museums exported successfully");
+            boolean exported = XMLExport.exportMuseums();
+            if (exported) AlertHelper.displayAlert(Alert.AlertType.INFORMATION, "Museums Exported", "Museums exported successfully");
         }catch (SQLException e) {
             log.error(Messages.Database.LOAD_FAIL, e);
         } catch (IOException e) {

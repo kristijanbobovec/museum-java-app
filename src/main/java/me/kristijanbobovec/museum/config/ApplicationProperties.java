@@ -51,13 +51,17 @@ public class ApplicationProperties {
         props.setProperty(key, val);
     }
 
-    public final static class Administrator {
+    public static final class Administrator {
+        private Administrator() {}
+
         public static String getPassword() {
             return props.getProperty("ADMIN_PASSWORD");
         }
     }
 
-    public final static class Database {
+    public static final class Database {
+        private Database() {}
+
         public static String getHost() { return props.getProperty("db.host"); }
         public static String getURL() { return props.getProperty("db.url"); }
         public static int getPort() { return Integer.parseInt(props.getProperty("db.port")); }
@@ -72,7 +76,9 @@ public class ApplicationProperties {
     }
 
 
-    public final static class Hikari {
+    public static final class Hikari {
+        private Hikari() {}
+
         public static int getMaximumPoolSize() {
             return Integer.parseInt(props.getProperty("hikari.maximumPoolSize"));
         }

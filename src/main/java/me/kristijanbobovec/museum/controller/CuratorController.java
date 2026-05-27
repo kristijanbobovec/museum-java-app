@@ -111,7 +111,7 @@ public class CuratorController extends CrudController<Curator> {
             if (selected == null) {
                 if (!assignedCollections.isEmpty()) clearAssignedListView();
                 if (!museumCollections.isEmpty())   clearAvailableListView();
-            };
+            }
             updateAssignedCollectionsListView();
             updateAvailableCollectionsListView();
         });

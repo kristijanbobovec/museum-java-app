@@ -4,16 +4,19 @@ public final class Messages {
     private Messages() {}
 
     public static final class Configuration {
+        private Configuration() {}
         public static final String FILE_NOT_FOUND = "\"%s\" not found. Using default configuration!%n";
         public static final String FILE_ERROR = "Error with reading a file \"%s\". Using default configuration!%n";
     }
 
     public static final class Server {
+        private Server() {}
         public static final String SERVER_ERROR_HEADER = "Server error!";
         public static final String SERVER_ERROR_CONTENT = "There is a problem with the server try again later!";
     }
 
     public static final class Database {
+        private Database() {}
         public static final String LOAD_FAIL = "Database failed to load data!";
         public static final String DATABASE_STARTED_CREATION = "Database not found creating new one!";
         public static final String DATABASE_CREATED = "Database is created!";
@@ -30,11 +33,13 @@ public final class Messages {
     }
 
     public static final class XML {
+        private XML() {}
         public static final String EXPORT_FAIL = "%s failed to export. (User: %s)";
         public static final String EXPORT_SUCCESSFUL = "%s are exported. (User: %s)";
     }
 
     public static final class Museum {
+        private Museum() {}
         public static final String NO_MUSEUMS = "There is no countries. Add new museum. (EDIT -> MUSEUM)";
         public static final String DELETE_FAIL_LOG = "Failed to delete a museum. (%s)";
         public static final String INSERT_FAIL_LOG = "Failed to insert a museum. (%s)";
@@ -42,35 +47,41 @@ public final class Messages {
     }
 
     public static final class Country {
+        private Country() {}
         public static final String DELETE_FAIL_LOG = "Failed to delete a country. (%s)";
         public static final String INSERT_FAIL_LOG = "Failed to insert a country. (%s)";
         public static final String UPDATE_FAIL_LOG = "Failed to update a country. (%s)";
     }
 
     public static final class City {
+        private City() {}
         public static final String DELETE_FAIL_LOG = "Failed to delete a city. (%s)";
         public static final String INSERT_FAIL_LOG = "Failed to insert a city. (%s)";
         public static final String UPDATE_FAIL_LOG = "Failed to update a city. (%s)";
     }
 
     public static final class Curator {
+        private Curator() {}
         public static final String DELETE_FAIL_LOG = "Failed to delete a curator. (%s)";
         public static final String INSERT_FAIL_LOG = "Failed to insert a curator. (%s)";
         public static final String UPDATE_FAIL_LOG = "Failed to update a curator. (%s)";
     }
 
     public static final class MuseumCollection {
+        private MuseumCollection() {}
         public static final String DELETE_FAIL_LOG = "Failed to delete a curator. (%s)";
         public static final String INSERT_FAIL_LOG = "Failed to insert a curator. (%s)";
         public static final String UPDATE_FAIL_LOG = "Failed to update a curator. (%s)";
     }
 
     public static final class Image {
+        private Image() {}
         public static final String FAILED_TO_MANIPULATE = "Failed to manipulate a image. (%s)";
     }
 
 
     public static final class Exhibit {
+        private Exhibit() {}
         public static final String NO_EXHIBITS = "There is no exhibits for this museum. (EDIT -> EXHIBIT)";
         public static final String DELETE_FAIL_LOG = "Failed to delete a exhibit. (%s)";
         public static final String INSERT_FAIL_LOG = "Failed to insert a exhibit. (%s)";
@@ -78,6 +89,7 @@ public final class Messages {
     }
 
     public static final class CRUD {
+        private CRUD() {}
         public static final String DELETED_HEADER = "Deleted";
         public static final String DELETED_CONTENT = "%s is successfully deleted! And all his connections!";
         public static final String DELETED_LOG = "%s is successfully deleted by %s!";
@@ -92,20 +104,19 @@ public final class Messages {
     }
 
     public static final class CRUDValidation {
+        private CRUDValidation() {}
         public static final String ITEM_NOT_SELECTED_GENERIC = "Item is not selected please select the item.";
         public static final String ITEM_NOT_SELECTED = "Item is not selected please select the item that you want to %s.";
         public static final String FIELD_EMPTY = "Field %s is empty!";
     }
 
-    public static final class SceneManager {
-        public static final String NOT_INITIALIZED = "Stage is not initialized and/or controller factory is not injected!";
-    }
-
     public static final class Filter {
+        private Filter() {}
         public static final String NO_RESULTS = "There is no results for this filters!";
     }
 
     public static final class Auth {
+        private Auth() {}
         public static final String LOGIN_FAILED = "Your username or password is wrong!";
         public static final String SERVER_ERROR_CONTENT = "There is a problem with the server try again later!";
         public static final String USERNAME_TAKEN = "Username is already taken.";

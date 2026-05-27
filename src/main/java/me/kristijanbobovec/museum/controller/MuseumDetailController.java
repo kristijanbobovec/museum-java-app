@@ -89,13 +89,11 @@ public final class MuseumDetailController {
     private void applyFilters() {
         selectedCollections = collectionComboBox.getCheckModel().getCheckedItems();
 
-        selectedCollections.addListener((ListChangeListener<MuseumCollection>) e -> {
-            filteredExhibits.setPredicate(this::buildPredicate);
-        });
+        selectedCollections.addListener((ListChangeListener<MuseumCollection>) e ->
+            filteredExhibits.setPredicate(this::buildPredicate));
 
-        searchField.textProperty().addListener((obs, oldVal, newVal) -> {
-            filteredExhibits.setPredicate(this::buildPredicate);
-        });
+        searchField.textProperty().addListener((obs, oldVal, newVal) ->
+            filteredExhibits.setPredicate(this::buildPredicate));
     }
 
     private boolean buildPredicate(Exhibit exhibit) {

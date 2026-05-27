@@ -6,5 +6,5 @@ import me.kristijanbobovec.museum.model.dto.Dto;
 public record MuseumCollectionInsertDTO(String name) implements Dto {
     public MuseumCollection mapToMuseumCollection() {
         return new MuseumCollection(name);
-    };
+    }
 }

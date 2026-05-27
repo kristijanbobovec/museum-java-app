@@ -21,7 +21,7 @@ public enum AppSubscribers {
         EventBus.INSTANCE.subscribe(UserLoggedOutEvent.class, UserSession.INSTANCE::clearSession);
 
         // Log
-        EventBus.INSTANCE.subscribe(UserLoggedOutEvent.class, (e) -> log.info(Messages.Auth.LOGOUT_SUCCEED_LOG.formatted(e.user().username())));
+        EventBus.INSTANCE.subscribe(UserLoggedOutEvent.class, e -> log.info(Messages.Auth.LOGOUT_SUCCEED_LOG.formatted(e.user().username())));
     }
 
     private void subscribeUserLoggedInEvent() {
@@ -29,6 +29,6 @@ public enum AppSubscribers {
         EventBus.INSTANCE.subscribe(UserLoggedInEvent.class, UserSession.INSTANCE::setSession);
 
         // Login
-        EventBus.INSTANCE.subscribe(UserLoggedInEvent.class, (e) -> log.info(Messages.Auth.LOGIN_SUCCEED_LOG.formatted(e.user().getUsername())));
+        EventBus.INSTANCE.subscribe(UserLoggedInEvent.class, e -> log.info(Messages.Auth.LOGIN_SUCCEED_LOG.formatted(e.user().getUsername())));
     }
 }
