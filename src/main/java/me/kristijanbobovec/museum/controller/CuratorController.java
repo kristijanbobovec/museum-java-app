@@ -239,7 +239,7 @@ public class CuratorController extends CrudController<Curator> {
             tableViewUpdate(CrudOperation.UPDATE, curators, updatedCurator);
 
             AlertHelper.displayAlert(Alert.AlertType.INFORMATION, Messages.CRUD.UPDATED_HEADER, Messages.CRUD.UPDATED_CONTENT.formatted(selectedCurator, updatedCurator));
-            log.info(Messages.CRUD.UPDATED_LOG.formatted(selectedCurator, updatedCurator, UserSession.INSTANCE.getSession().username()));
+            log.info(Messages.CRUD.UPDATED_LOG, selectedCurator, updatedCurator, UserSession.INSTANCE.getSession().username());
         } catch (OmitingRequiredFieldsException e) {
             showError(e.getMessage());
         } catch (DatabaseFailedToException | SQLException e) {
@@ -270,7 +270,7 @@ public class CuratorController extends CrudController<Curator> {
             tableViewUpdate(CrudOperation.INSERT, curators, insertedCurator);
 
             AlertHelper.displayAlert(Alert.AlertType.INFORMATION, Messages.CRUD.INSERTED_HEADER, Messages.CRUD.INSERTED_CONTENT.formatted(insertedCurator.getName()));
-            log.info(Messages.CRUD.INSERT_LOG.formatted(insertedCurator.getName(), UserSession.INSTANCE.getSession().username()));
+            log.info(Messages.CRUD.INSERT_LOG, insertedCurator.getName(), UserSession.INSTANCE.getSession().username());
         } catch (OmitingRequiredFieldsException e) {
             showError(e.getMessage());
         } catch (DatabaseFailedToException | SQLException e) {
@@ -330,7 +330,7 @@ public class CuratorController extends CrudController<Curator> {
             tableViewUpdate(CrudOperation.DELETE, curators, selectedCurator);
 
             AlertHelper.displayAlert(Alert.AlertType.INFORMATION, Messages.CRUD.DELETED_HEADER, Messages.CRUD.DELETED_CONTENT.formatted(selectedCurator.getName()));
-            log.info(Messages.CRUD.DELETED_LOG.formatted(selectedCurator.getName(), UserSession.INSTANCE.getSession().username()));
+            log.info(Messages.CRUD.DELETED_LOG, selectedCurator.getName(), UserSession.INSTANCE.getSession().username());
         } catch (OmitingRequiredFieldsException e) {
             showError(e.getMessage());
         } catch (SQLException e) {

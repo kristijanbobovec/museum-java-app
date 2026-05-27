@@ -1,0 +1,24 @@
+2026-05-26 14:58:30 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-05-26 14:58:30 INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection ConnectionID:2 ClientConnectionId: 8a4ba9c9-e198-43c8-b223-ed904361f5c1
+2026-05-26 14:58:30 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-05-26 14:58:31 INFO  m.k.museum.event.AppSubscribers - User admin successfully logged in!
+2026-05-26 14:59:12 INFO  m.k.m.controller.CuratorController - FROM Curator{idCurator=5, firstName=Mile, lastName=Kitic, museum=Muzej palih boraca 7, museumCollections=[Paliborac]}, TO Curator{idCurator=5, firstName=Mile, lastName=Kitic, museum=Muzej palih boraca 7, museumCollections=[Paliborac]} is successfully updated by admin!
+2026-05-26 14:59:20 INFO  m.k.museum.util.XMLExport - Museums are exported. (User: admin)
+2026-05-26 14:59:33 INFO  m.k.museum.util.XMLExport - Museums are exported. (User: admin)
+2026-05-26 15:08:31 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-05-26 15:08:31 INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection ConnectionID:2 ClientConnectionId: c39512a2-19f2-4d71-9dc5-1d178a0f9bb6
+2026-05-26 15:08:31 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-05-26 15:08:31 INFO  m.k.museum.event.AppSubscribers - User admin successfully logged in!
+2026-05-26 15:08:40 INFO  m.k.museum.util.XMLExport - Museums are exported. (User: admin)
+2026-05-26 15:08:44 INFO  m.k.museum.event.AppSubscribers - User admin successfully logged out!
+2026-05-26 15:14:56 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-05-26 15:14:57 INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection ConnectionID:2 ClientConnectionId: 70585ea8-6951-4ab4-99fb-24dd621648ae
+2026-05-26 15:14:57 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-05-26 15:14:57 INFO  m.k.museum.event.AppSubscribers - User admin successfully logged in!
+2026-05-26 15:37:12 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-05-26 15:37:12 INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection ConnectionID:2 ClientConnectionId: 71f45f51-0317-4a77-a9c8-1a0c73ed7f6f
+2026-05-26 15:37:12 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-05-26 15:37:12 WARN  m.k.m.controller.LoginController - User admin failed at login!
+2026-05-26 15:37:16 WARN  m.k.m.controller.LoginController - User admin failed at login!
+2026-05-26 15:37:27 INFO  m.k.museum.event.AppSubscribers - User admin successfully logged in!
+2026-05-26 15:37:43 INFO  m.k.museum.event.AppSubscribers - User admin successfully logged out!

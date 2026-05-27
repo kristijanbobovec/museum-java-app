@@ -111,11 +111,11 @@ public class CityController extends CrudController<City> {
             tableViewUpdate(CrudOperation.UPDATE, cities, updatedCity);
 
             AlertHelper.displayAlert(Alert.AlertType.INFORMATION, Messages.CRUD.UPDATED_HEADER, Messages.CRUD.UPDATED_CONTENT.formatted(selectedCity, updatedCity));
-            log.info(Messages.CRUD.UPDATED_LOG.formatted(selectedCity, updatedCity, UserSession.INSTANCE.getSession().username()));
+            log.info(Messages.CRUD.UPDATED_LOG, selectedCity, updatedCity, UserSession.INSTANCE.getSession().username());
         } catch (OmitingRequiredFieldsException e) {
             showError(e.getMessage());
         } catch (DatabaseFailedToException | SQLException e) {
-            log.error(Messages.City.UPDATE_FAIL_LOG.formatted(UserSession.INSTANCE.getSession().username()), e);
+            log.error(Messages.City.UPDATE_FAIL_LOG, UserSession.INSTANCE.getSession().username(), e);
             showError(Messages.Server.SERVER_ERROR_CONTENT);
         }
     }
@@ -135,7 +135,7 @@ public class CityController extends CrudController<City> {
             tableViewUpdate(CrudOperation.INSERT, cities, insertedCity);
 
             AlertHelper.displayAlert(Alert.AlertType.INFORMATION, Messages.CRUD.INSERTED_HEADER, Messages.CRUD.INSERTED_CONTENT.formatted(insertedCity.getName()));
-            log.info(Messages.CRUD.INSERT_LOG.formatted(insertedCity.getName(), UserSession.INSTANCE.getSession().username()));
+            log.info(Messages.CRUD.INSERT_LOG, insertedCity.getName(), UserSession.INSTANCE.getSession().username());
         } catch (OmitingRequiredFieldsException e) {
             showError(e.getMessage());
         } catch (DatabaseFailedToException | SQLException e) {
@@ -175,11 +175,11 @@ public class CityController extends CrudController<City> {
             tableViewUpdate(CrudOperation.DELETE, cities, selectedCity);
 
             AlertHelper.displayAlert(Alert.AlertType.INFORMATION, Messages.CRUD.DELETED_HEADER, Messages.CRUD.DELETED_CONTENT.formatted(selectedCity.getName()));
-            log.info(Messages.CRUD.DELETED_LOG.formatted(selectedCity.getName(), UserSession.INSTANCE.getSession().username()));
+            log.info(Messages.CRUD.DELETED_LOG, selectedCity.getName(), UserSession.INSTANCE.getSession().username());
         } catch (OmitingRequiredFieldsException e) {
             showError(e.getMessage());
         } catch (SQLException e) {
-            log.error(Messages.City.DELETE_FAIL_LOG.formatted(UserSession.INSTANCE.getSession().username()), e);
+            log.error(Messages.City.DELETE_FAIL_LOG, UserSession.INSTANCE.getSession().username(), e);
             showError(Messages.Server.SERVER_ERROR_CONTENT);
         }
     }

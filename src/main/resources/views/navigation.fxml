@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Region?>
 
-<HBox alignment="CENTER_LEFT" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1"
+<HBox alignment="CENTER_LEFT" xmlns="http://javafx.com/javafx/22.0.1" xmlns:fx="http://javafx.com/fxml/1"
       fx:controller="me.kristijanbobovec.museum.controller.NavigationController">
     <Button text="Home" onAction="#handleHome"
             style="-fx-background-color: transparent; -fx-padding: 4 8 4 8; -fx-cursor: hand;"/>

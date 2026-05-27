@@ -156,7 +156,7 @@ public class ExhibitController extends CrudController<Exhibit> {
             tableViewUpdate(CrudOperation.UPDATE, exhibits, updatedExhibit);
 
             AlertHelper.displayAlert(Alert.AlertType.INFORMATION, Messages.CRUD.UPDATED_HEADER, Messages.CRUD.UPDATED_CONTENT.formatted(selectedExhibit, updatedExhibit));
-            log.info(Messages.CRUD.UPDATED_LOG.formatted(selectedExhibit, updatedExhibit, UserSession.INSTANCE.getSession().username()));
+            log.info(Messages.CRUD.UPDATED_LOG, selectedExhibit, updatedExhibit, UserSession.INSTANCE.getSession().username());
         } catch (OmitingRequiredFieldsException e) {
             showError(e.getMessage());
         } catch (DatabaseFailedToException | SQLException e) {
@@ -196,7 +196,7 @@ public class ExhibitController extends CrudController<Exhibit> {
             tableViewUpdate(CrudOperation.INSERT, exhibits, insertedExhibit);
 
             AlertHelper.displayAlert(Alert.AlertType.INFORMATION, Messages.CRUD.INSERTED_HEADER, Messages.CRUD.INSERTED_CONTENT.formatted(insertedExhibit.getName()));
-            log.info(Messages.CRUD.INSERT_LOG.formatted(insertedExhibit.getName(), UserSession.INSTANCE.getSession().username()));
+            log.info(Messages.CRUD.INSERT_LOG, insertedExhibit.getName(), UserSession.INSTANCE.getSession().username());
         } catch (OmitingRequiredFieldsException e) {
             showError(e.getMessage());
         } catch (SQLException e) {
@@ -227,7 +227,7 @@ public class ExhibitController extends CrudController<Exhibit> {
             tableViewUpdate(CrudOperation.DELETE, exhibits, selectedExhibit);
 
             AlertHelper.displayAlert(Alert.AlertType.INFORMATION, Messages.CRUD.DELETED_HEADER, Messages.CRUD.DELETED_CONTENT.formatted(selectedExhibit.getName()));
-            log.info(Messages.CRUD.DELETED_LOG.formatted(selectedExhibit.getName(), UserSession.INSTANCE.getSession().username()));
+            log.info(Messages.CRUD.DELETED_LOG, selectedExhibit.getName(), UserSession.INSTANCE.getSession().username());
         } catch (SQLException e) {
             log.error(Messages.Exhibit.DELETE_FAIL_LOG.formatted(UserSession.INSTANCE.getSession().username()), e);
             showError(Messages.Server.SERVER_ERROR_CONTENT);

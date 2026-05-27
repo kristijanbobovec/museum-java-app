@@ -1,24 +1,25 @@
-2026-05-26 14:58:30 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
-2026-05-26 14:58:30 INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection ConnectionID:2 ClientConnectionId: 8a4ba9c9-e198-43c8-b223-ed904361f5c1
-2026-05-26 14:58:30 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
-2026-05-26 14:58:31 INFO  m.k.museum.event.AppSubscribers - User admin successfully logged in!
-2026-05-26 14:59:12 INFO  m.k.m.controller.CuratorController - FROM Curator{idCurator=5, firstName=Mile, lastName=Kitic, museum=Muzej palih boraca 7, museumCollections=[Paliborac]}, TO Curator{idCurator=5, firstName=Mile, lastName=Kitic, museum=Muzej palih boraca 7, museumCollections=[Paliborac]} is successfully updated by admin!
-2026-05-26 14:59:20 INFO  m.k.museum.util.XMLExport - Museums are exported. (User: admin)
-2026-05-26 14:59:33 INFO  m.k.museum.util.XMLExport - Museums are exported. (User: admin)
-2026-05-26 15:08:31 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
-2026-05-26 15:08:31 INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection ConnectionID:2 ClientConnectionId: c39512a2-19f2-4d71-9dc5-1d178a0f9bb6
-2026-05-26 15:08:31 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
-2026-05-26 15:08:31 INFO  m.k.museum.event.AppSubscribers - User admin successfully logged in!
-2026-05-26 15:08:40 INFO  m.k.museum.util.XMLExport - Museums are exported. (User: admin)
-2026-05-26 15:08:44 INFO  m.k.museum.event.AppSubscribers - User admin successfully logged out!
-2026-05-26 15:14:56 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
-2026-05-26 15:14:57 INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection ConnectionID:2 ClientConnectionId: 70585ea8-6951-4ab4-99fb-24dd621648ae
-2026-05-26 15:14:57 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
-2026-05-26 15:14:57 INFO  m.k.museum.event.AppSubscribers - User admin successfully logged in!
-2026-05-26 15:37:12 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
-2026-05-26 15:37:12 INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection ConnectionID:2 ClientConnectionId: 71f45f51-0317-4a77-a9c8-1a0c73ed7f6f
-2026-05-26 15:37:12 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
-2026-05-26 15:37:12 WARN  m.k.m.controller.LoginController - User admin failed at login!
-2026-05-26 15:37:16 WARN  m.k.m.controller.LoginController - User admin failed at login!
-2026-05-26 15:37:27 INFO  m.k.museum.event.AppSubscribers - User admin successfully logged in!
-2026-05-26 15:37:43 INFO  m.k.museum.event.AppSubscribers - User admin successfully logged out!
+2026-05-27 10:04:44 ERROR me.kristijanbobovec.museum.Main - Database failed with creation!
+com.microsoft.sqlserver.jdbc.SQLServerException: The TCP/IP connection to the host localhost, port 1401 has failed. Error: "Connection refused. Verify the connection properties. Make sure that an instance of SQL Server is running on the host and accepting TCP/IP connections at the port. Make sure that TCP connections to the port are not blocked by a firewall.".
+	at com.microsoft.sqlserver.jdbc@13.4.0.jre11/com.microsoft.sqlserver.jdbc.SQLServerException.makeFromDriverError(SQLServerException.java:308)
+	at com.microsoft.sqlserver.jdbc@13.4.0.jre11/com.microsoft.sqlserver.jdbc.SQLServerException.convertConnectExceptionToSQLServerException(SQLServerException.java:399)
+	at com.microsoft.sqlserver.jdbc@13.4.0.jre11/com.microsoft.sqlserver.jdbc.SocketFinder.findSocket(IOBuffer.java:2618)
+	at com.microsoft.sqlserver.jdbc@13.4.0.jre11/com.microsoft.sqlserver.jdbc.TDSChannel.open(IOBuffer.java:743)
+	at com.microsoft.sqlserver.jdbc@13.4.0.jre11/com.microsoft.sqlserver.jdbc.SQLServerConnection.connectHelper(SQLServerConnection.java:4352)
+	at com.microsoft.sqlserver.jdbc@13.4.0.jre11/com.microsoft.sqlserver.jdbc.SQLServerConnection.login(SQLServerConnection.java:3937)
+	at com.microsoft.sqlserver.jdbc@13.4.0.jre11/com.microsoft.sqlserver.jdbc.SQLServerConnection.connectInternal(SQLServerConnection.java:3700)
+	at com.microsoft.sqlserver.jdbc@13.4.0.jre11/com.microsoft.sqlserver.jdbc.SQLServerConnection.connect(SQLServerConnection.java:2385)
+	at com.microsoft.sqlserver.jdbc@13.4.0.jre11/com.microsoft.sqlserver.jdbc.SQLServerDataSource.getConnectionInternal(SQLServerDataSource.java:1735)
+	at com.microsoft.sqlserver.jdbc@13.4.0.jre11/com.microsoft.sqlserver.jdbc.SQLServerDataSource.getConnection(SQLServerDataSource.java:99)
+	at me.kristijanbobovec.museum/me.kristijanbobovec.museum.database.DatabaseInitialization.init(DatabaseInitialization.java:29)
+	at me.kristijanbobovec.museum/me.kristijanbobovec.museum.Main.init(Main.java:29)
+	at javafx.graphics@22.0.1/com.sun.javafx.application.LauncherImpl.launchApplication1(LauncherImpl.java:817)
+	at javafx.graphics@22.0.1/com.sun.javafx.application.LauncherImpl.lambda$launchApplication$2(LauncherImpl.java:196)
+	at java.base/java.lang.Thread.run(Thread.java:1570)
+2026-05-27 10:05:47 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-05-27 10:05:47 INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection ConnectionID:2 ClientConnectionId: 86b56a18-b305-4af9-903b-adffc4cee44e
+2026-05-27 10:05:47 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-05-27 10:05:48 INFO  m.k.museum.event.AppSubscribers - User admin successfully logged in!
+2026-05-27 10:08:45 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-05-27 10:08:45 INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection ConnectionID:2 ClientConnectionId: 9b88e4e7-4003-47d0-bce7-07b5a2d03ace
+2026-05-27 10:08:45 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-05-27 10:08:45 INFO  m.k.museum.event.AppSubscribers - User admin successfully logged in!

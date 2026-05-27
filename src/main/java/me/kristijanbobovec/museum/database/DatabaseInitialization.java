@@ -36,7 +36,6 @@ public class DatabaseInitialization {
                 createProceduresIfNotExists(conn);
                 createRoles(conn);
                 createAdminAccount(conn);
-                //seedData(conn);
                 conn.commit();
 
                 log.info(Messages.Database.DATABASE_CREATED);
@@ -55,13 +54,6 @@ public class DatabaseInitialization {
         }
     }
 
-    private static void seedData(Connection conn) throws SQLException {
-        log.debug(Messages.Database.DATABASE_SEEDING);
-        try (Statement statement = conn.createStatement()) {
-            statement.execute(SQLQueries.USE_DATABASE.formatted(ApplicationProperties.Database.getDatabase()));
-            statement.execute(SQLQueries.SEED);
-        }
-    }
 
     private static void createAdminAccount(Connection conn) throws SQLException {
         log.debug(Messages.Database.DATABASE_CREATING_ADMIN);

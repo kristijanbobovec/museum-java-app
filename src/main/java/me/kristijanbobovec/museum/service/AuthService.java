@@ -57,7 +57,7 @@ public class AuthService {
 
         UserToInsertDTO userToInsert = new UserToInsertDTO(username, email, firstName, lastName, password, RoleType.USER.getValue());
         userService.insert(userToInsert);
-        log.info(Messages.Auth.REGISTER_SUCCEED_LOG.formatted(userToInsert.username()));
+        log.info(Messages.Auth.REGISTER_SUCCEED_LOG, userToInsert.username());
     }
 
     public static void logout() {

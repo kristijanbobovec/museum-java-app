@@ -76,12 +76,11 @@ public final class HomeController {
     }
 
     private void applyFilters() {
-        searchField.textProperty().addListener((obs, oldval, newval) -> {
+        searchField.textProperty().addListener((obs, oldval, newval) ->
             filteredMuseums.setPredicate(m -> {
                 if (newval == null || newval.isEmpty()) return true;
                 return m.getName().toLowerCase().contains(newval.toLowerCase());
-            });
-        });
+            }));
     }
 
     private void setNoMuseumsLabel() {

@@ -1,6 +1,6 @@
 package me.kristijanbobovec.museum.model;
 
-public sealed abstract class Person permits Curator, User {
+public abstract sealed class Person permits Curator, User {
     protected String firstName;
     protected String lastName;
 
@@ -20,7 +20,7 @@ public sealed abstract class Person permits Curator, User {
         this.lastName = lastName;
     }
 
-    public Person(String firstName, String lastName) {
+    protected Person(String firstName, String lastName) {
         this.firstName = firstName;
         this.lastName = lastName;
     }

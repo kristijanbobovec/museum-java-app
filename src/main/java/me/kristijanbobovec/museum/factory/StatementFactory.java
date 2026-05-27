@@ -9,6 +9,12 @@ import java.util.Map;
 public enum StatementFactory {
     INSTANCE;
 
+    private static final String GET_ALL = "getAll";
+    private static final String GET_BY_ID = "getById";
+    private static final String INSERT = "insert";
+    private static final String DELETE = "delete";
+    private static final String UPDATE = "update";
+
     StatementFactory() {
         initHashMap();
     }
@@ -17,60 +23,60 @@ public enum StatementFactory {
 
     private void initHashMap() {
         statements.put(CountryRepository.class, new HashMap<>(Map.of(
-                "getAll", SQLQueries.GETALL_COUNTRIES,
-                "getById", SQLQueries.GETBYID_COUNTRY,
-                "insert", SQLQueries.INSERT_COUNTRY,
-                "delete", SQLQueries.DELETE_COUNTRY,
-                "update", SQLQueries.UPDATE_COUNTRY
+                GET_ALL, SQLQueries.GETALL_COUNTRIES,
+                GET_BY_ID, SQLQueries.GETBYID_COUNTRY,
+                INSERT, SQLQueries.INSERT_COUNTRY,
+                DELETE, SQLQueries.DELETE_COUNTRY,
+                UPDATE, SQLQueries.UPDATE_COUNTRY
         )));
 
         statements.put(MuseumRepository.class, new HashMap<>(Map.of(
-                "getAll", SQLQueries.GETALL_MUSEUMS,
-                "getById", SQLQueries.GETBYID_MUSEUM,
-                "insert", SQLQueries.INSERT_MUSEUM,
-                "delete", SQLQueries.DELETE_MUSEUM,
-                "update", SQLQueries.UPDATE_MUSEUM
+                GET_ALL, SQLQueries.GETALL_MUSEUMS,
+                GET_BY_ID, SQLQueries.GETBYID_MUSEUM,
+                INSERT, SQLQueries.INSERT_MUSEUM,
+                DELETE, SQLQueries.DELETE_MUSEUM,
+                UPDATE, SQLQueries.UPDATE_MUSEUM
         )));
 
         statements.put(ExhibitRepository.class, new HashMap<>(Map.of(
-                "getAll", SQLQueries.GETALL_EXHIBITS,
-                "getById", SQLQueries.GETBYID_EXHIBIT,
-                "insert", SQLQueries.INSERT_EXHIBIT,
-                "delete", SQLQueries.DELETE_EXHIBIT,
-                "update", SQLQueries.UPDATE_EXHIBIT
+                GET_ALL, SQLQueries.GETALL_EXHIBITS,
+                GET_BY_ID, SQLQueries.GETBYID_EXHIBIT,
+                INSERT, SQLQueries.INSERT_EXHIBIT,
+                DELETE, SQLQueries.DELETE_EXHIBIT,
+                UPDATE, SQLQueries.UPDATE_EXHIBIT
         )));
 
 
         statements.put(MuseumCollectionRepository.class, new HashMap<>(Map.of(
-                "getAll", SQLQueries.GETALL_MUSEUMCOLLECTIONS,
-                    "getById", SQLQueries.GETBYID_MUSEUMCOLLECTION,
-                "insert", SQLQueries.INSERT_MUSEUMCOLLECTION,
-                "delete", SQLQueries.DELETE_MUSEUMCOLLECTION,
-                "update", SQLQueries.UPDATE_MUSEUMCOLLECTION
+                GET_ALL, SQLQueries.GETALL_MUSEUMCOLLECTIONS,
+                GET_BY_ID, SQLQueries.GETBYID_MUSEUMCOLLECTION,
+                INSERT, SQLQueries.INSERT_MUSEUMCOLLECTION,
+                DELETE, SQLQueries.DELETE_MUSEUMCOLLECTION,
+                UPDATE, SQLQueries.UPDATE_MUSEUMCOLLECTION
         )));
 
         statements.put(UserRepository.class, new HashMap<>(Map.of(
-                "getAll", SQLQueries.GETALL_USERS,
-                "getById", SQLQueries.GETBYID_USER,
-                "insert", SQLQueries.INSERT_USER,
-                "delete", SQLQueries.DELETE_USER,
-                "update", SQLQueries.UPDATE_USER
+                GET_ALL, SQLQueries.GETALL_USERS,
+                GET_BY_ID, SQLQueries.GETBYID_USER,
+                INSERT, SQLQueries.INSERT_USER,
+                DELETE, SQLQueries.DELETE_USER,
+                UPDATE, SQLQueries.UPDATE_USER
         )));
 
         statements.put(CityRepository.class, new HashMap<>(Map.of(
-                "getAll", SQLQueries.GETALL_CITIES,
-                "getById", SQLQueries.GETBYID_CITY,
-                "insert", SQLQueries.INSERT_CITY,
-                "delete", SQLQueries.DELETE_CITY,
-                "update", SQLQueries.UPDATE_CITY
+                GET_ALL, SQLQueries.GETALL_CITIES,
+                GET_BY_ID, SQLQueries.GETBYID_CITY,
+                INSERT, SQLQueries.INSERT_CITY,
+                DELETE, SQLQueries.DELETE_CITY,
+                UPDATE, SQLQueries.UPDATE_CITY
         )));
 
         statements.put(CuratorRepository.class, new HashMap<>(Map.of(
-                "getAll", SQLQueries.GETALL_CURATORS,
-                "getById", SQLQueries.GETBYID_CURATOR,
-                "insert", SQLQueries.INSERT_CURATOR,
-                "delete", SQLQueries.DELETE_CURATOR,
-                "update", SQLQueries.UPDATE_CURATOR
+                GET_ALL, SQLQueries.GETALL_CURATORS,
+                GET_BY_ID, SQLQueries.GETBYID_CURATOR,
+                INSERT, SQLQueries.INSERT_CURATOR,
+                DELETE, SQLQueries.DELETE_CURATOR,
+                UPDATE, SQLQueries.UPDATE_CURATOR
         )));
     }
 

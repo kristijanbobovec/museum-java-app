@@ -87,7 +87,7 @@ public class MuseumCollectionController extends CrudController<MuseumCollection>
             tableViewUpdate(CrudOperation.UPDATE, collections, updatedMuseumCollection);
 
             AlertHelper.displayAlert(Alert.AlertType.INFORMATION, Messages.CRUD.UPDATED_HEADER, Messages.CRUD.UPDATED_CONTENT.formatted(selectedMuseumCollection, updatedMuseumCollection));
-            log.info(Messages.CRUD.UPDATED_LOG.formatted(selectedMuseumCollection, updatedMuseumCollection, UserSession.INSTANCE.getSession().username()));
+            log.info(Messages.CRUD.UPDATED_LOG, selectedMuseumCollection, updatedMuseumCollection, UserSession.INSTANCE.getSession().username());
         } catch (OmitingRequiredFieldsException e) {
             showError(e.getMessage());
         } catch (DatabaseFailedToException | SQLException e) {
@@ -107,7 +107,7 @@ public class MuseumCollectionController extends CrudController<MuseumCollection>
             tableViewUpdate(CrudOperation.INSERT, collections, insertedMuseumCollection);
 
             AlertHelper.displayAlert(Alert.AlertType.INFORMATION, Messages.CRUD.INSERTED_HEADER, Messages.CRUD.INSERTED_CONTENT.formatted(insertedMuseumCollection.getName()));
-            log.info(Messages.CRUD.INSERT_LOG.formatted(insertedMuseumCollection.getName(), UserSession.INSTANCE.getSession().username()));
+            log.info(Messages.CRUD.INSERT_LOG, insertedMuseumCollection.getName(), UserSession.INSTANCE.getSession().username());
         } catch (OmitingRequiredFieldsException e) {
             showError(e.getMessage());
         } catch (SQLException e) {
@@ -137,7 +137,7 @@ public class MuseumCollectionController extends CrudController<MuseumCollection>
             tableViewUpdate(CrudOperation.DELETE, collections, selectedMuseumCollection);
 
             AlertHelper.displayAlert(Alert.AlertType.INFORMATION, Messages.CRUD.DELETED_HEADER, Messages.CRUD.DELETED_CONTENT.formatted(selectedMuseumCollection.getName()));
-            log.info(Messages.CRUD.DELETED_LOG.formatted(selectedMuseumCollection.getName(), UserSession.INSTANCE.getSession().username()));
+            log.info(Messages.CRUD.DELETED_LOG, selectedMuseumCollection.getName(), UserSession.INSTANCE.getSession().username());
         } catch (SQLException e) {
             log.error(Messages.MuseumCollection.DELETE_FAIL_LOG.formatted(UserSession.INSTANCE.getSession().username()), e);
             showError(Messages.Server.SERVER_ERROR_CONTENT);

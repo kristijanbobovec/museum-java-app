@@ -30,13 +30,13 @@ public class ApplicationProperties {
         defaultProps.setProperty("hikari.idleTimeout", "600000");
         defaultProps.setProperty("hikari.maxLifetime", "1800000");
 
-        try (InputStream is = ApplicationProperties.class.getClassLoader().getResourceAsStream("application.properties")) {
+        try (InputStream is = ApplicationProperties.class.getClassLoader().getResourceAsStream(Messages.Configuration.APPLICATION_PROPERTIES)) {
             if (is == null) throw new FileNotFoundException();
             props.load(is);
         } catch (FileNotFoundException e) {
-            log.error(Messages.Configuration.FILE_NOT_FOUND.formatted("application.properties"), e);
+            log.error(Messages.Configuration.FILE_NOT_FOUND.formatted(Messages.Configuration.APPLICATION_PROPERTIES), e);
         } catch (IOException e) {
-            log.error(Messages.Configuration.FILE_ERROR.formatted("application.properties"), e);
+            log.error(Messages.Configuration.FILE_ERROR.formatted(Messages.Configuration.APPLICATION_PROPERTIES), e);
         }
 
         loadEnvVariable("DB_USERNAME");

@@ -185,7 +185,7 @@ public class MuseumController extends CrudController<Museum> {
             tableViewUpdate(CrudOperation.UPDATE, museums, updatedMuseum);
 
             AlertHelper.displayAlert(Alert.AlertType.INFORMATION, Messages.CRUD.UPDATED_HEADER, Messages.CRUD.UPDATED_CONTENT.formatted(selectedMuseum, updatedMuseum));
-            log.info(Messages.CRUD.UPDATED_LOG.formatted(selectedMuseum, updatedMuseum, UserSession.INSTANCE.getSession().username()));
+            log.info(Messages.CRUD.UPDATED_LOG, selectedMuseum, updatedMuseum, UserSession.INSTANCE.getSession().username());
         } catch (OmitingRequiredFieldsException e) {
             showError(e.getMessage());
         } catch (DatabaseFailedToException | SQLException e) {
@@ -220,7 +220,7 @@ public class MuseumController extends CrudController<Museum> {
             tableViewUpdate(CrudOperation.INSERT, museums, insertedMuseum);
 
             AlertHelper.displayAlert(Alert.AlertType.INFORMATION, Messages.CRUD.INSERTED_HEADER, Messages.CRUD.INSERTED_CONTENT.formatted(insertedMuseum.getName()));
-            log.info(Messages.CRUD.INSERT_LOG.formatted(insertedMuseum.getName(), UserSession.INSTANCE.getSession().username()));
+            log.info(Messages.CRUD.INSERT_LOG, insertedMuseum.getName(), UserSession.INSTANCE.getSession().username());
         } catch (OmitingRequiredFieldsException e) {
             showError(e.getMessage());
         } catch (SQLException e) {
@@ -251,7 +251,7 @@ public class MuseumController extends CrudController<Museum> {
             tableViewUpdate(CrudOperation.DELETE, museums, selectedMuseum);
 
             AlertHelper.displayAlert(Alert.AlertType.INFORMATION, Messages.CRUD.DELETED_HEADER, Messages.CRUD.DELETED_CONTENT.formatted(selectedMuseum.getName()));
-            log.info(Messages.CRUD.DELETED_LOG.formatted(selectedMuseum.getName(), UserSession.INSTANCE.getSession().username()));
+            log.info(Messages.CRUD.DELETED_LOG, selectedMuseum.getName(), UserSession.INSTANCE.getSession().username());
         } catch (SQLException e) {
             log.error(Messages.Museum.DELETE_FAIL_LOG.formatted(UserSession.INSTANCE.getSession().username()), e);
             showError(Messages.Server.SERVER_ERROR_CONTENT);

@@ -1,6 +1,7 @@
 package me.kristijanbobovec.museum.factory;
 
 import me.kristijanbobovec.museum.controller.*;
+import me.kristijanbobovec.museum.exception.ControllerInstantiationException;
 import me.kristijanbobovec.museum.service.*;
 
 public class ControllerFactory {
@@ -74,7 +75,7 @@ public class ControllerFactory {
         try {
             return controllerClass.getDeclaredConstructor().newInstance();
         } catch (Exception e) {
-            throw new RuntimeException("Cannot instantiate controller: " + controllerClass, e);
+            throw new ControllerInstantiationException(controllerClass, e);
         }
     }
 }

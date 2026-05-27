@@ -32,7 +32,7 @@ public class XMLExport {
         if (file != null) {
             ObjectMapper mapper = new XmlMapper().enable(SerializationFeature.INDENT_OUTPUT);
             mapper.writeValue(file, museums);
-            log.info(Messages.XML.EXPORT_SUCCESSFUL.formatted("Museums", UserSession.INSTANCE.getSession().username()));
+            log.info(Messages.XML.EXPORT_SUCCESSFUL, "Museums", UserSession.INSTANCE.getSession().username());
             return true;
         }
         return false;

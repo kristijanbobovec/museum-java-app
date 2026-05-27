@@ -4,6 +4,8 @@ public final class Messages {
     private Messages() {}
 
     public static final class Configuration {
+        public static final String APPLICATION_PROPERTIES = "application.properties";
+
         private Configuration() {}
         public static final String FILE_NOT_FOUND = "\"%s\" not found. Using default configuration!%n";
         public static final String FILE_ERROR = "Error with reading a file \"%s\". Using default configuration!%n";
@@ -35,7 +37,7 @@ public final class Messages {
     public static final class XML {
         private XML() {}
         public static final String EXPORT_FAIL = "%s failed to export. (User: %s)";
-        public static final String EXPORT_SUCCESSFUL = "%s are exported. (User: %s)";
+        public static final String EXPORT_SUCCESSFUL = "{} are exported. (User: {})";
     }
 
     public static final class Museum {
@@ -55,9 +57,9 @@ public final class Messages {
 
     public static final class City {
         private City() {}
-        public static final String DELETE_FAIL_LOG = "Failed to delete a city. (%s)";
-        public static final String INSERT_FAIL_LOG = "Failed to insert a city. (%s)";
-        public static final String UPDATE_FAIL_LOG = "Failed to update a city. (%s)";
+        public static final String DELETE_FAIL_LOG = "Failed to delete a city. ({})";
+        public static final String INSERT_FAIL_LOG = "Failed to insert a city. ({})";
+        public static final String UPDATE_FAIL_LOG = "Failed to update a city. ({})";
     }
 
     public static final class Curator {
@@ -92,15 +94,15 @@ public final class Messages {
         private CRUD() {}
         public static final String DELETED_HEADER = "Deleted";
         public static final String DELETED_CONTENT = "%s is successfully deleted! And all his connections!";
-        public static final String DELETED_LOG = "%s is successfully deleted by %s!";
+        public static final String DELETED_LOG = "{} is successfully deleted by {}!";
 
         public static final String INSERTED_HEADER = "Inserted";
         public static final String INSERTED_CONTENT = "%s is successfully inserted!";
-        public static final String INSERT_LOG = "%s is successfully inserted by %s!";
+        public static final String INSERT_LOG = "{} is successfully inserted by {}!";
 
         public static final String UPDATED_HEADER = "Updated";
         public static final String UPDATED_CONTENT = "FROM %s, TO %s is successfully updated!";
-        public static final String UPDATED_LOG = "FROM %s, TO %s is successfully updated by %s!";
+        public static final String UPDATED_LOG = "FROM {}, TO {} is successfully updated by {}!";
     }
 
     public static final class CRUDValidation {
@@ -132,7 +134,7 @@ public final class Messages {
 
         public static final String LOGIN_SUCCEED_LOG = "User %s successfully logged in!";
         public static final String LOGOUT_SUCCEED_LOG = "User %s successfully logged out!";
-        public static final String REGISTER_SUCCEED_LOG = "User %s successfully registered!";
+        public static final String REGISTER_SUCCEED_LOG = "User {} successfully registered!";
         public static final String LOGIN_FAILED_LOG = "User %s failed at login!";
     }
 }

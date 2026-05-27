@@ -4,6 +4,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import me.kristijanbobovec.museum.exception.ViewLoadException;
 import me.kristijanbobovec.museum.factory.ControllerFactory;
 
 import java.io.IOException;
@@ -43,7 +44,7 @@ public class SceneManager {
             stage.setScene(scene);
             stage.setTitle(title);
         } catch (IOException e) {
-            throw new RuntimeException("Failed to load view: " + fxml, e);
+            throw new ViewLoadException("Failed to load view: " + fxml, e);
         }
     }
 

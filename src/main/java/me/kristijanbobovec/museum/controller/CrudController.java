@@ -6,14 +6,10 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import me.kristijanbobovec.museum.model.CrudOperation;
 import me.kristijanbobovec.museum.model.Named;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.util.function.Function;
 
 public abstract class CrudController<T extends Named> {
-    private static final Logger log = LoggerFactory.getLogger(CrudController.class);
-
     @FXML
     protected TableView<T> tableView;
 
