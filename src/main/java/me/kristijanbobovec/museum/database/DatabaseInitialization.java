@@ -90,9 +90,11 @@ public class DatabaseInitialization {
             statement.execute(SQLQueries.USE_DATABASE.formatted(ApplicationProperties.Database.getDatabase()));
             String[] procedures = SQLQueries.PROCEDURES.split("(?im)^\\s*GO\\s*$");
             for (String procedure : procedures) {
-                statement.addBatch(procedure);
+                String trimmed = procedure.trim();
+                if (!trimmed.isEmpty()) {
+                    statement.execute(trimmed);
+                }
             }
-            statement.executeBatch();
         }
     }
 
